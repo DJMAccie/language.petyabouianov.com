@@ -53,3 +53,41 @@ jobs:
             **/*.webp
             **/*.mp4
             **/*.mov
+
+      - name: Install lftp
+        run: sudo apt-get update && sudo apt-get install -y lftp
+
+      - name: Seed runtime files from main site when missing
+        run: |
+          set -u
+          mkdir -p runtime-seed
+
+          for file in global_lists.json global_scores.json global_word_stats.json studio_api_config.php; do
+            if lftp -u "${{ secrets.FTP_USERNAME }}","${{ secrets.FTP_PASSWORD }}" "${{ secrets.FTP_SERVER }}" <<EOF
+set ftp:ssl-force true
+set ftp:ssl-protect-data true
+set ssl:verify-certificate no
+get /public_html/$file -o runtime-seed/$file
+bye
+EOF
+            then
+              if lftp -u "${{ secrets.FTP_USERNAME }}","${{ secrets.FTP_PASSWORD }}" "${{ secrets.FTP_SERVER }}" -e "set ftp:ssl-force true; set ftp:ssl-protect-data true; set ssl:verify-certificate no; cls -1 /language.petyabouianov.com/$file; bye" >/dev/null 2>&1; then
+                echo "Keeping existing $file in /language.petyabouianov.com/"
+              else
+                if lftp -u "${{ secrets.FTP_USERNAME }}","${{ secrets.FTP_PASSWORD }}" "${{ secrets.FTP_SERVER }}" <<EOF
+set ftp:ssl-force true
+set ftp:ssl-protect-data true
+set ssl:verify-certificate no
+put runtime-seed/$file -o /language.petyabouianov.com/$file
+bye
+EOF
+                then
+                  echo "Seeded $file into /language.petyabouianov.com/"
+                else
+                  echo "Warning: failed to seed $file" >&2
+                fi
+              fi
+            else
+              echo "Warning: could not fetch /public_html/$file for seeding" >&2
+            fi
+          done
