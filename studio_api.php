@@ -43,16 +43,6 @@ $listsFile = __DIR__ . '/global_lists.json';
 $scoresFile = __DIR__ . '/global_scores.json';
 $statsFile = __DIR__ . '/global_word_stats.json';
 
-// Create them if missing
-foreach([$listsFile, $scoresFile, $statsFile] as $f) {
-    if (!file_exists($f)) file_put_contents($f, json_encode(['nihongo' => [], 'bahasa' => [], 'italia' => []]));
-}
-
-// Ensure files exist
-foreach([$listsFile, $scoresFile, $statsFile] as $f) {
-    if (!file_exists($f)) file_put_contents($f, '{}');
-}
-
 // --- HELPER FUNCTIONS ---
 
 function outputJSON($data, $statusCode = 200) {
@@ -151,6 +141,90 @@ function normalizeWordEntry($item) {
         'jp' => function_exists('mb_substr') ? mb_substr(preg_replace('/\s+/', ' ', $jp), 0, 160) : substr(preg_replace('/\s+/', ' ', $jp), 0, 160),
         'en' => function_exists('mb_substr') ? mb_substr(preg_replace('/\s+/', ' ', $en), 0, 200) : substr(preg_replace('/\s+/', ' ', $en), 0, 200),
     ];
+}
+
+function hasMeaningfulRuntimeData($value) {
+    if (is_array($value)) {
+        foreach ($value as $item) {
+            if (hasMeaningfulRuntimeData($item)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    if (is_string($value)) {
+        return trim($value) !== '';
+    }
+
+    return $value !== null;
+}
+
+function shouldSeedRuntimeFile($targetPath) {
+    if (!file_exists($targetPath)) {
+        return true;
+    }
+
+    $content = @file_get_contents($targetPath);
+    if ($content === false) {
+        return true;
+    }
+
+    $content = trim($content);
+    if ($content === '' || $content === '{}' || $content === '[]') {
+        return true;
+    }
+
+    $decoded = json_decode($content, true);
+    if (!is_array($decoded)) {
+        return false;
+    }
+
+    return !hasMeaningfulRuntimeData($decoded);
+}
+
+function migrateBundledRuntimeSnapshot($targets) {
+    $seedDir = __DIR__ . '/runtime-migration';
+    $sentinelPath = __DIR__ . '/.runtime-seeded';
+
+    if (file_exists($sentinelPath) || !is_dir($seedDir)) {
+        return;
+    }
+
+    $seededAny = false;
+
+    foreach ($targets as $targetPath) {
+        $basename = basename($targetPath);
+        $sourcePath = $seedDir . '/' . $basename;
+
+        if (!file_exists($sourcePath)) {
+            continue;
+        }
+
+        if (!shouldSeedRuntimeFile($targetPath)) {
+            continue;
+        }
+
+        if (@copy($sourcePath, $targetPath)) {
+            $seededAny = true;
+        }
+    }
+
+    if ($seededAny) {
+        @file_put_contents($sentinelPath, gmdate('c'));
+    }
+}
+
+migrateBundledRuntimeSnapshot([$listsFile, $scoresFile, $statsFile]);
+
+// Create them if missing
+foreach([$listsFile, $scoresFile, $statsFile] as $f) {
+    if (!file_exists($f)) file_put_contents($f, json_encode(['nihongo' => [], 'bahasa' => [], 'italia' => []]));
+}
+
+// Ensure files exist
+foreach([$listsFile, $scoresFile, $statsFile] as $f) {
+    if (!file_exists($f)) file_put_contents($f, '{}');
 }
 
 
