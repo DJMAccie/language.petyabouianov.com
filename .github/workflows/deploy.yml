@@ -34,6 +34,7 @@ jobs:
             **/node_modules/**
             **/.DS_Store
             .ftp-deploy-sync-state.json
+            runtime-migration/**
             uploads/**
             newsletter/emails.txt
             upload_image_config.php
