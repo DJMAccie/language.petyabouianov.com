@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Nihongo Studio | Japanese Study Tool by Petya Bouianov</title>
+    <meta name="description" content="Practice Japanese vocabulary, quizzes, speech review, and quick dictionary lookup in Nihongo Studio by Petya Bouianov.">
+    <link rel="canonical" href="https://language.petyabouianov.com/nihongo-studio">
+    <meta property="og:title" content="Nihongo Studio | Japanese Study Tool">
+    <meta property="og:description" content="A focused Japanese learning studio with quizzes, speech practice, and quick Jisho-powered lookup.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://language.petyabouianov.com/nihongo-studio">
+    <meta property="og:image" content="https://petyabouianov.com/images/Petya-2.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Nihongo Studio | Japanese Study Tool">
+    <meta name="twitter:description" content="Practice Japanese vocabulary, quizzes, speech review, and fast dictionary lookup.">
+    <meta name="twitter:image" content="https://petyabouianov.com/images/Petya-2.jpg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/wanakana"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <link rel="stylesheet" href="studio.css">
+    <style>
+        /* --- Scrollbar --- */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        /* --- Mic Button Listening Animation --- */
+        @keyframes pulse-ring {
+            0% {
+                transform: scale(0.8);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1.4);
+                opacity: 0;
+            }
+        }
+
+        .mic-listening::before {
+            content: '';
+            position: absolute;
+            inset: -8px;
+            border-radius: 50%;
+            background: rgba(239, 68, 68, 0.4);
+            animation: pulse-ring 1s ease-out infinite;
+        }
+    </style>
+
+</head>
+
+<body class="h-screen w-screen flex items-center justify-center p-4 md:p-4 p-0 overflow-hidden">
+
+    <!-- MAIN WINDOW -->
+    <div
+        class="mac-window w-full max-w-6xl h-[85vh] md:h-[85vh] h-screen md:rounded-xl rounded-none md:border border-white/40 border-none overflow-hidden flex flex-col relative">
+
+        <!-- HEADER -->
+        <div
+            class="bg-gradient-to-b from-gray-100 to-gray-200 border-b border-gray-300 h-10 flex items-center px-4 justify-between shrink-0 select-none relative z-50">
+            <div class="w-10"></div>
+            <div class="text-sm font-semibold text-gray-600 flex items-center gap-2">
+                <i class="fas fa-language text-gray-500"></i> Nihongo Studio
+            </div>
+            <div class="w-10"></div>
+        </div>
+
+        <link rel="icon"
+            href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 900 600%22><rect width=%22900%22 height=%22600%22 fill=%22white%22/><circle cx=%22450%22 cy=%22300%22 r=%22180%22 fill=%22%23bc002d%22/></svg>">
+
+        <!-- TOOLBAR -->
+        <div id="system-bar"
+            class="bg-gray-50/80 p-4 md:p-6 border-b border-gray-200 shrink-0 flex flex-col items-center justify-center gap-3 transition-all duration-300 ease-in-out relative z-10">
+            <div class="w-full flex flex-col md:flex-row justify-between items-center gap-3 md:gap-0 max-w-5xl">
+                <!-- Action Buttons -->
+                <div class="flex gap-2 w-full md:w-auto justify-center md:justify-start">
+                    <button onclick="openCreateNew()"
+                        class="px-4 py-2 bg-white border border-gray-300 rounded-full text-sm font-medium text-gray-600 shadow-sm hover:bg-gray-50 active:scale-95 transition flex items-center gap-2">
+                        <i class="fas fa-plus text-blue-500"></i> New List
+                    </button>
+                    <!-- MIX BUTTON -->
+                    <button onclick="startMixSession()"
+                        class="px-4 py-2 bg-gradient-to-b from-indigo-50 to-white border border-indigo-200 rounded-full text-sm font-medium text-indigo-600 shadow-sm hover:from-white hover:to-white active:scale-95 transition flex items-center gap-2">
+                        <i class="fas fa-random text-indigo-500"></i>
+                    </button>
+                </div>
+                <!-- Unified Search (Lists + Dictionary on Enter) -->
+                <div class="relative w-full md:w-96 group">
+                    <i class="fas fa-search absolute left-4 top-3.5 text-gray-400 group-focus-within:text-blue-500"></i>
+                    <input type="text" id="list-search" placeholder="Search lists... (Enter for Jisho)"
+                        onkeyup="handleSearchKeyup(event)"
+                        class="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-300 rounded-full text-sm focus:outline-none focus:ring-4 focus:ring-blue-400/30 focus:border-blue-400 shadow-sm transition-all search-input">
+                </div>
+                <!-- Mode Toggle -->
+                <div class="relative w-full md:w-auto">
+                    <select id="global-quiz-mode" onchange="renderTable(loadedLists, loadedScores)"
+                        class="w-full md:w-auto appearance-none bg-white border border-gray-300 text-gray-600 py-2 pl-4 pr-10 rounded-full text-sm font-medium shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 cursor-pointer">
+                        <option value="en-jp" selected>EN → JP</option>
+                        <option value="jp-en">JP → EN</option>
+                        <option value="speech">🗣 はなす</option>
+                    </select>
+                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-400">
+                        <i class="fas fa-chevron-down text-xs"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTENT -->
+        <div class="flex-1 overflow-hidden bg-white relative flex flex-col z-0">
+
+            <!-- TABLE SECTION -->
+            <div id="select-section" class="flex-1 overflow-auto animate-fade-in flex flex-col">
+                <div class="flex-1 overflow-auto">
+                    <table class="w-full text-left border-collapse finder-table">
+                        <thead class="bg-white sticky top-0 border-b border-gray-200 shadow-sm z-10">
+                            <tr>
+                                <th class="p-3 pl-6 text-xs font-medium text-gray-500 uppercase w-1/3">List Name</th>
+                                <th class="p-3 text-xs font-medium text-gray-500 uppercase">Words</th>
+                                <th class="p-3 text-xs font-medium text-gray-500 uppercase hidden md:table-cell">
+                                    Accuracy</th>
+                                <th class="p-3 text-xs font-medium text-gray-500 uppercase hidden md:table-cell">Status
+                                </th>
+                                <th class="p-3 pr-6 text-xs font-medium text-gray-500 uppercase text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="list-table-body" class="text-sm text-gray-700">
+                            <!-- JS Injects Rows Here -->
+                        </tbody>
+                    </table>
+                </div>
+                <!-- FOOTER -->
+                <div
+                    class="bg-gray-50 border-t border-gray-200 py-2 px-4 shrink-0 flex justify-between items-center select-none relative h-10">
+                    <div class="flex items-center gap-2 text-[11px] text-gray-400 font-medium z-10 relative">
+                        <span id="total-lists-count">0 lists</span>
+                        <span>•</span>
+                        <span id="total-words-count">0 words</span>
+                    </div>
+
+                    <!-- CENTERED QUOTE -->
+                    <div id="daily-quote"
+                        class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center w-2/3 hidden md:block">
+                        <!-- JS injects quote here -->
+                    </div>
+
+                    <div class="flex items-center gap-1.5 text-[11px] text-gray-400 font-medium hover:text-gray-600 transition-colors cursor-default z-10 relative"
+                        title="Your current study streak">
+                        <i id="streak-icon" class="fas fa-fire text-gray-300 transition-colors"></i>
+                        <span id="streak-text">0 Day Streak</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SETUP SECTION (Create/Edit) -->
+            <div id="setup-section" class="hidden absolute inset-0 bg-white z-20 flex flex-col animate-fade-in">
+                <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex justify-between items-center shrink-0">
+                    <h2 class="font-semibold text-gray-700">Edit Collection</h2>
+                    <button onclick="showSection('select')" class="text-gray-400 hover:text-gray-600 transition"><i
+                            class="fas fa-times text-lg"></i></button>
+                </div>
+                <div class="flex-1 overflow-y-auto p-6 w-full max-w-3xl mx-auto">
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 uppercase mb-2">List Name</label>
+                            <input type="text" id="list-name-input"
+                                class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition shadow-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 uppercase mb-2">Words <span
+                                    class="text-gray-400 font-normal normal-case ml-1">(Format: Word,
+                                    Meaning)</span></label>
+                            <textarea id="word-input"
+                                class="w-full h-64 px-4 py-3 bg-gray-50 border border-gray-300 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition resize-none font-mono text-sm shadow-sm leading-relaxed"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-6 border-t border-gray-200 bg-white shrink-0 z-10"
+                    style="padding-bottom: max(1.5rem, env(safe-area-inset-bottom));">
+                    <div class="max-w-3xl mx-auto studio-save-row">
+                        <button onclick="saveListToServer()" class="studio-save-btn">Save Changes</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- QUIZ SECTION -->
+            <div id="quiz-section"
+                class="hidden absolute inset-0 bg-white z-20 flex flex-col items-center justify-center p-4 md:p-8 animate-fade-in"
+                style="padding-bottom: max(2rem, env(safe-area-inset-bottom));">
+                <div class="w-full max-w-3xl text-center">
+                    <div
+                        class="flex justify-between items-center text-xs font-bold tracking-wider text-gray-400 mb-4 uppercase">
+                        <span id="quiz-mode-label">Translating</span>
+                        <span id="current-count-text">0 / 0</span>
+                    </div>
+
+                    <!-- Heart Display -->
+                    <div id="hearts-container" class="hidden flex justify-center gap-2 mb-8 h-8">
+                        <i class="fas fa-heart text-red-500 text-2xl animate-pulse"></i>
+                        <i class="fas fa-heart text-red-500 text-2xl animate-pulse"></i>
+                        <i class="fas fa-heart text-red-500 text-2xl animate-pulse"></i>
+                    </div>
+
+                    <div class="w-full h-1.5 bg-gray-100 rounded-full mb-8 md:mb-12 overflow-hidden">
+                        <div id="progress-bar" class="h-full bg-blue-500 w-0 transition-all duration-500 ease-out">
+                        </div>
+                    </div>
+
+                    <div class="relative flex items-center justify-center mb-8 md:mb-12 gap-4">
+                        <h2 id="question-word" class="text-4xl md:text-6xl font-bold text-gray-800 min-h-[1.2em]">...
+                        </h2>
+                        <!-- Replay Audio Button -->
+                        <button onclick="replayAudio()"
+                            class="text-gray-300 hover:text-blue-500 transition p-2 rounded-full hover:bg-blue-50"
+                            title="Replay Audio">
+                            <i class="fas fa-volume-up text-xl"></i>
+                        </button>
+                    </div>
+
+                    <div class="relative max-w-xl mx-auto group min-h-[120px] flex flex-col justify-center">
+                        <!-- TEXT INPUT -->
+                        <div id="text-input-container">
+                            <input type="text" id="answer-input" placeholder="Type answer here..." autocomplete="off"
+                                class="w-full py-4 bg-transparent border-b-2 border-gray-300 text-2xl md:text-3xl text-center focus:outline-none focus:border-blue-500 transition-all">
+                        </div>
+                        <!-- SPEECH INPUT -->
+                        <div id="speech-controls" class="hidden flex flex-col items-center justify-center gap-4">
+                            <button id="mic-btn" onclick="activateSpeech()"
+                                class="relative w-20 h-20 rounded-full bg-gray-100 hover:bg-blue-50 text-blue-500 text-3xl shadow-md border border-gray-200 transition-all active:scale-95 flex items-center justify-center animate-fade-in">
+                                <i id="mic-icon" class="fas fa-microphone"></i>
+                            </button>
+                            <p id="speech-status" class="text-sm text-gray-400 font-mono h-6">Click mic to speak</p>
+                        </div>
+                    </div>
+
+                    <div id="feedback" class="h-10 mt-6 md:mt-8 text-lg font-semibold transition-opacity opacity-0">
+                    </div>
+                    <button onclick="showSection('select')"
+                        class="mt-8 md:mt-12 text-gray-400 hover:text-red-500 text-sm font-medium transition flex items-center gap-2 mx-auto"><i
+                            class="fas fa-stop-circle"></i> Quit Session</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DICTIONARY MODAL -->
+    <div id="dictionary-modal"
+        class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 animate-fade-in">
+        <div class="mac-window w-full max-w-lg rounded-xl border border-white/40 overflow-hidden">
+            <div
+                class="bg-gradient-to-b from-gray-100 to-gray-200 border-b border-gray-300 px-4 py-3 flex justify-between items-center">
+                <span class="font-semibold text-gray-600"><i
+                        class="fas fa-book mr-2 text-purple-500"></i>Dictionary</span>
+                <button onclick="closeDictionary()" class="text-gray-400 hover:text-gray-600 transition"><i
+                        class="fas fa-times"></i></button>
+            </div>
+            <div class="bg-white p-6">
+                <div class="relative mb-4 flex gap-2">
+                    <input type="text" id="dict-search-input" placeholder="Search Jisho..."
+                        class="flex-1 px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition">
+                    <button onclick="lookupWord()"
+                        class="px-4 py-3 bg-purple-500 text-white rounded-xl font-medium hover:bg-purple-600 transition">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                <div id="dict-results" class="min-h-[200px] max-h-[400px] overflow-y-auto">
+                    <p class="text-gray-400 text-center py-8">Enter a word to search</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATIONS -->
+    <div id="toast-container" class="fixed bottom-4 right-4 z-50 flex flex-col gap-2"></div>
+
+    <script src="studio-core.js"></script>
+    <script src="language-configs.js"></script>
+    <script>
+        window.onload = () => {
+            StudioCore.init(window.StudioConfigs.nihongo);
+
+            // Re-bind dictionary logic for Nihongo
+            document.getElementById('dict-search-input')?.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') lookupWord(); // Note: lookupWord etc need to be re-added or handled.
+            });
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && !document.getElementById('dictionary-modal').classList.contains('hidden')) {
+                    document.getElementById('dictionary-modal').classList.add('hidden');
+                }
+            });
+            document.getElementById('dictionary-modal')?.addEventListener('click', (e) => {
+                if (e.target.id === 'dictionary-modal') document.getElementById('dictionary-modal').classList.add('hidden');
+            });
+        };
+
+        // Dictionary functions injected directly for Nihongo
+        function openDictionary(searchTerm = null) {
+            document.getElementById('dictionary-modal').classList.remove('hidden');
+            const input = document.getElementById('dict-search-input');
+            if (searchTerm) {
+                input.value = searchTerm;
+                lookupWord();
+            } else {
+                input.value = '';
+                document.getElementById('dict-results').innerHTML = '<p class="text-gray-400 text-center py-8">Enter a word to search</p>';
+            }
+            input.focus();
+        }
+
+        function closeDictionary() {
+            document.getElementById('dictionary-modal').classList.add('hidden');
+        }
+
+        async function lookupWord() {
+            const input = document.getElementById('dict-search-input');
+            const word = input.value.trim();
+            if (!word) return;
+            const results = document.getElementById('dict-results');
+            results.innerHTML = '<p class="text-gray-400 text-center py-8"><i class="fas fa-spinner fa-spin mr-2"></i>Searching...</p>';
+            try {
+                const res = await fetch(`studio_api.php?lang=nihongo&action=lookup&word=${encodeURIComponent(word)}`);
+                const data = await res.json();
+                if (data.error) { results.innerHTML = `<p class="text-red-500 text-center py-8">${data.error}</p>`; return; }
+                if (!data.data || data.data.length === 0) { results.innerHTML = '<p class="text-gray-400 text-center py-8">No results found</p>'; return; }
+                const entry = data.data[0];
+                const wordText = entry.japanese[0]?.word || entry.japanese[0]?.reading || '';
+                const reading = entry.japanese[0]?.reading || '';
+                const meanings = entry.senses.map(s => s.english_definitions.join(', ')).slice(0, 5);
+                results.innerHTML = `
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4">
+                            <span class="text-4xl font-bold text-gray-800">${wordText}</span>
+                            <button onclick="window.StudioConfigs.nihongo.speakText('${wordText.replace(/'/g, "\\'")}')" 
+                                class="text-purple-500 hover:text-purple-700 p-2 rounded-full hover:bg-purple-50 transition">
+                                <i class="fas fa-volume-up text-xl"></i>
+                            </button>
+                        </div>
+                        ${reading && reading !== wordText ? `<p class="text-xl text-gray-500">${reading}</p>` : ''}
+                        <div class="space-y-2 pt-2 border-t border-gray-100">
+                            ${meanings.map((m, i) => `<p class="text-gray-700"><span class="text-purple-400 font-bold mr-2">${i + 1}.</span>${m}</p>`).join('')}
+                        </div>
+                    </div>`;
+            } catch (e) { results.innerHTML = `<p class="text-red-500 text-center py-8">Error: ${e.message}</p>`; }
+        }
+
+        function handleSearchKeyup(event) {
+            if (event.key === 'Enter') {
+                const term = document.getElementById('list-search').value.trim();
+                if (term) openDictionary(term);
+            } else {
+                // simple search
+                const term = document.getElementById('list-search').value.toLowerCase().trim();
+                document.querySelectorAll('#list-table-body tr').forEach(row => {
+                    row.style.display = (!term || row.innerText.toLowerCase().includes(term)) ? '' : 'none';
+                });
+            }
+        }
+        window.openDictionary = openDictionary;
+        window.closeDictionary = closeDictionary;
+        window.lookupWord = lookupWord;
+        window.handleSearchKeyup = handleSearchKeyup;
+    </script>
+</body>
+
+</html>

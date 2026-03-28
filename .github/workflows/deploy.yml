@@ -1,0 +1,91 @@
+name: Deploy To Namecheap
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: production-deploy
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      FTP_SERVER: ${{ secrets.FTP_SERVER }}
+      FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+      FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install lftp
+        run: sudo apt-get update && sudo apt-get install -y lftp
+
+      - name: Bootstrap runtime files from main site if missing
+        run: |
+          set -euo pipefail
+          mkdir -p runtime-seed
+
+          for file in global_lists.json global_scores.json global_word_stats.json studio_api_config.php; do
+            lftp -u "$FTP_USERNAME","$FTP_PASSWORD" "$FTP_SERVER" <<EOF
+set ftp:ssl-force true
+set ftp:ssl-protect-data true
+set ssl:verify-certificate no
+get /public_html/$file -o runtime-seed/$file
+bye
+EOF
+
+            if lftp -u "$FTP_USERNAME","$FTP_PASSWORD" "$FTP_SERVER" -e "set ftp:ssl-force true; set ftp:ssl-protect-data true; set ssl:verify-certificate no; ls /language.petyabouianov.com/$file; bye" >/dev/null 2>&1; then
+              echo "Keeping existing $file in language.petyabouianov.com"
+            else
+              lftp -u "$FTP_USERNAME","$FTP_PASSWORD" "$FTP_SERVER" <<EOF
+set ftp:ssl-force true
+set ftp:ssl-protect-data true
+set ssl:verify-certificate no
+mkdir -p /language.petyabouianov.com
+put runtime-seed/$file -o /language.petyabouianov.com/$file
+bye
+EOF
+            fi
+          done
+
+      - name: Deploy tracked site files
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
+        with:
+          server: ${{ env.FTP_SERVER }}
+          username: ${{ env.FTP_USERNAME }}
+          password: ${{ env.FTP_PASSWORD }}
+          protocol: ftps
+          port: 21
+          server-dir: /language.petyabouianov.com/
+          dangerous-clean-slate: false
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            **/.DS_Store
+            .ftp-deploy-sync-state.json
+            runtime-seed/**
+            uploads/**
+            newsletter/emails.txt
+            upload_image_config.php
+            studio_api_config.php
+            global_lists.json
+            global_scores.json
+            global_word_stats.json
+            **/*.mp3
+            **/*.wav
+            **/*.flac
+            **/*.ogg
+            **/*.aiff
+            **/*.jpg
+            **/*.jpeg
+            **/*.png
+            **/*.gif
+            **/*.webp
+            **/*.mp4
+            **/*.mov

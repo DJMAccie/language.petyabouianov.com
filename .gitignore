@@ -1,0 +1,23 @@
+.DS_Store
+error_log
+
+# Media files stay on disk/server but are not tracked in Git.
+*.mp3
+*.wav
+*.flac
+*.ogg
+*.aiff
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.webp
+*.mp4
+*.mov
+
+uploads/
+newsletter/emails.txt
+
+.ftp-deploy-sync-state.json
+upload_image_config.php
+studio_api_config.php
