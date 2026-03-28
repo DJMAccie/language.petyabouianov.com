@@ -7,138 +7,56 @@
     <meta name="description" content="Study Japanese, Indonesian, and Italian with Petya Bouianov's language tools.">
     <link rel="canonical" href="https://language.petyabouianov.com/">
     <meta property="og:title" content="Language Studio | Petya Bouianov">
-    <meta property="og:description" content="A compact study hub for Nihongo Studio, Bahasa Studio, and Italia Studio.">
+    <meta property="og:description" content="Study Japanese, Indonesian, and Italian with Petya Bouianov's language tools.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://language.petyabouianov.com/">
     <meta property="og:image" content="https://petyabouianov.com/images/Petya-2.jpg">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Language Studio | Petya Bouianov">
-    <meta name="twitter:description" content="Jump into Japanese, Indonesian, and Italian study tools from one landing page.">
+    <meta name="twitter:description" content="Study Japanese, Indonesian, and Italian with Petya Bouianov's language tools.">
     <meta name="twitter:image" content="https://petyabouianov.com/images/Petya-2.jpg">
     <style>
-        :root {
-            color-scheme: light;
-            --bg: #f4efe7;
-            --paper: rgba(255, 255, 255, 0.84);
-            --ink: #1f2933;
-            --muted: #5f6c75;
-            --line: rgba(31, 41, 51, 0.12);
-            --shadow: 0 24px 60px rgba(31, 41, 51, 0.14);
+        * {
+            box-sizing: border-box;
         }
-
-        * { box-sizing: border-box; }
 
         body {
             margin: 0;
             min-height: 100vh;
-            font-family: "Avenir Next", "Segoe UI", sans-serif;
-            color: var(--ink);
-            background:
-                radial-gradient(circle at top left, rgba(255, 214, 165, 0.75), transparent 38%),
-                radial-gradient(circle at bottom right, rgba(144, 190, 219, 0.65), transparent 35%),
-                linear-gradient(135deg, #f6f1ea 0%, #efe7db 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 2rem;
+            background: #ffffff;
+            color: #111111;
+            font-family: "Courier New", Courier, monospace;
         }
 
-        .shell {
-            width: min(920px, 100%);
-            background: var(--paper);
-            border: 1px solid var(--line);
-            border-radius: 28px;
-            box-shadow: var(--shadow);
-            padding: 2rem;
-            backdrop-filter: blur(16px);
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.85rem;
+            text-align: center;
         }
 
-        .eyebrow {
-            margin: 0 0 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.18em;
-            font-size: 0.74rem;
-            color: var(--muted);
-        }
-
-        h1 {
-            margin: 0;
-            font-size: clamp(2.4rem, 6vw, 4.8rem);
-            line-height: 0.95;
-        }
-
-        .lead {
-            max-width: 42rem;
-            font-size: 1.05rem;
-            line-height: 1.6;
-            color: var(--muted);
-            margin: 1rem 0 2rem;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1rem;
-        }
-
-        .card {
-            display: block;
-            text-decoration: none;
+        a {
             color: inherit;
-            padding: 1.35rem;
-            border-radius: 20px;
-            border: 1px solid var(--line);
-            background: rgba(255, 255, 255, 0.88);
-            transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+            text-decoration: none;
+            font-size: clamp(1.15rem, 2.4vw, 1.5rem);
+            line-height: 1.2;
         }
 
-        .card:hover {
-            transform: translateY(-3px);
-            border-color: rgba(31, 41, 51, 0.22);
-            box-shadow: 0 18px 36px rgba(31, 41, 51, 0.12);
-        }
-
-        .card strong {
-            display: block;
-            font-size: 1.15rem;
-            margin-bottom: 0.45rem;
-        }
-
-        .card span {
-            display: block;
-            color: var(--muted);
-            line-height: 1.5;
-        }
-
-        .footer {
-            margin-top: 1.5rem;
-            color: var(--muted);
-            font-size: 0.95rem;
+        a:hover,
+        a:focus-visible {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <main class="shell">
-        <p class="eyebrow">Language Tools</p>
-        <h1>Study without the clutter.</h1>
-        <p class="lead">A dedicated home for the vocabulary studios. Pick a language, resume your progress, and stay inside the learning flow.</p>
-
-        <section class="grid">
-            <a class="card" href="/nihongo-studio">
-                <strong>Nihongo Studio</strong>
-                <span>Japanese vocabulary, dictionary lookup, quizzes, and speaking practice.</span>
-            </a>
-            <a class="card" href="/bahasa-studio">
-                <strong>Bahasa Studio</strong>
-                <span>Indonesian study sessions with saved lists, speech mode, and review tracking.</span>
-            </a>
-            <a class="card" href="/italia-studio">
-                <strong>Italia Studio</strong>
-                <span>Italian vocabulary drills and saved study collections in the shared studio engine.</span>
-            </a>
-        </section>
-
-        <p class="footer">Main portfolio: <a href="https://petyabouianov.com/">petyabouianov.com</a></p>
+    <main>
+        <a href="/nihongo-studio">Nihongo Studio</a>
+        <a href="/bahasa-studio">Bahasa Studio</a>
+        <a href="/italia-studio">Italia Studio</a>
     </main>
 </body>
 </html>
