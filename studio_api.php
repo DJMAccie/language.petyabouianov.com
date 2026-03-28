@@ -186,6 +186,11 @@ function shouldSeedRuntimeFile($targetPath) {
 function migrateBundledRuntimeSnapshot($targets) {
     $seedDir = __DIR__ . '/runtime-migration';
     $sentinelPath = __DIR__ . '/.runtime-seeded';
+    $seedMap = [
+        'global_lists.json' => 'lists-seed.json',
+        'global_scores.json' => 'scores-seed.json',
+        'global_word_stats.json' => 'stats-seed.json',
+    ];
 
     if (file_exists($sentinelPath) || !is_dir($seedDir)) {
         return;
@@ -195,7 +200,8 @@ function migrateBundledRuntimeSnapshot($targets) {
 
     foreach ($targets as $targetPath) {
         $basename = basename($targetPath);
-        $sourcePath = $seedDir . '/' . $basename;
+        $sourceName = $seedMap[$basename] ?? $basename;
+        $sourcePath = $seedDir . '/' . $sourceName;
 
         if (!file_exists($sourcePath)) {
             continue;
