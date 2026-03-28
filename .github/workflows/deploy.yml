@@ -34,6 +34,7 @@ jobs:
             **/node_modules/**
             **/.DS_Store
             .ftp-deploy-sync-state.json
+            runtime-migration/**
             uploads/**
             newsletter/emails.txt
             upload_image_config.php
@@ -57,7 +58,7 @@ jobs:
       - name: Install lftp
         run: sudo apt-get update && sudo apt-get install -y lftp
 
-      - name: Seed runtime files from main site when missing
+      - name: Seed bundled runtime snapshot once
         run: |
           set -u
 
@@ -66,23 +67,26 @@ jobs:
             exit 0
           fi
 
+          if [ ! -f runtime-migration/global_lists.json ] && [ ! -f runtime-migration/global_scores.json ] && [ ! -f runtime-migration/global_word_stats.json ]; then
+            echo "No bundled runtime snapshot found in the repo."
+            exit 0
+          fi
+
           mkdir -p runtime-seed
           seeded_any=0
 
-          for file in global_lists.json global_scores.json global_word_stats.json studio_api_config.php; do
+          for file in global_lists.json global_scores.json global_word_stats.json; do
+            local_file="runtime-migration/$file"
+            if [ ! -f "$local_file" ]; then
+              echo "Skipping $file because it is not bundled."
+              continue
+            fi
+
             if lftp -u "${{ secrets.FTP_USERNAME }}","${{ secrets.FTP_PASSWORD }}" "${{ secrets.FTP_SERVER }}" <<EOF
 set ftp:ssl-force true
 set ftp:ssl-protect-data true
 set ssl:verify-certificate no
-get /public_html/$file -o runtime-seed/$file
-bye
-EOF
-            then
-              if lftp -u "${{ secrets.FTP_USERNAME }}","${{ secrets.FTP_PASSWORD }}" "${{ secrets.FTP_SERVER }}" <<EOF
-set ftp:ssl-force true
-set ftp:ssl-protect-data true
-set ssl:verify-certificate no
-put runtime-seed/$file -o /language.petyabouianov.com/$file
+put $local_file -o /language.petyabouianov.com/$file
 bye
 EOF
               then
@@ -91,8 +95,6 @@ EOF
               else
                 echo "Warning: failed to migrate $file" >&2
               fi
-            else
-              echo "Warning: could not fetch /public_html/$file for migration" >&2
             fi
           done
 
