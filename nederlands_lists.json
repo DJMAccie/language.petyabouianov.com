@@ -1,364 +1,2482 @@
 {
   "nederlands": {
     "The Morning Routine": [
-      {"jp": "wakker worden", "en": "to wake up"},
-      {"jp": "opstaan", "en": "to stand up / get up"},
-      {"jp": "douchen", "en": "to take a shower"},
-      {"jp": "tandenpoetsen", "en": "to brush teeth"},
-      {"jp": "aankleden", "en": "to get dressed"},
-      {"jp": "ontbijten", "en": "to have breakfast"},
-      {"jp": "boterham", "en": "slice of bread / sandwich"},
-      {"jp": "koffie zetten", "en": "to make coffee"},
-      {"jp": "de krant lezen", "en": "to read the newspaper"},
-      {"jp": "haasten", "en": "to hurry"}
+      {
+        "jp": "wakker worden",
+        "en": "to wake up"
+      },
+      {
+        "jp": "opstaan",
+        "en": "to stand up / get up"
+      },
+      {
+        "jp": "douchen",
+        "en": "to take a shower"
+      },
+      {
+        "jp": "tandenpoetsen",
+        "en": "to brush teeth"
+      },
+      {
+        "jp": "aankleden",
+        "en": "to get dressed"
+      },
+      {
+        "jp": "ontbijten",
+        "en": "to have breakfast"
+      },
+      {
+        "jp": "boterham",
+        "en": "slice of bread / sandwich"
+      },
+      {
+        "jp": "koffie zetten",
+        "en": "to make coffee"
+      },
+      {
+        "jp": "de krant lezen",
+        "en": "to read the newspaper"
+      },
+      {
+        "jp": "haasten",
+        "en": "to hurry"
+      }
     ],
     "At the Office": [
-      {"jp": "kantoor", "en": "office"},
-      {"jp": "vergadering", "en": "meeting"},
-      {"jp": "collega", "en": "colleague"},
-      {"jp": "baas", "en": "boss"},
-      {"jp": "samenwerken", "en": "to collaborate / work together"},
-      {"jp": "project", "en": "project"},
-      {"jp": "werkplek", "en": "workplace"},
-      {"jp": "pauze", "en": "break"},
-      {"jp": "druk", "en": "busy"},
-      {"jp": "succes", "en": "success / good luck"}
+      {
+        "jp": "kantoor",
+        "en": "office"
+      },
+      {
+        "jp": "vergadering",
+        "en": "meeting"
+      },
+      {
+        "jp": "collega",
+        "en": "colleague"
+      },
+      {
+        "jp": "baas",
+        "en": "boss"
+      },
+      {
+        "jp": "samenwerken",
+        "en": "to collaborate / work together"
+      },
+      {
+        "jp": "project",
+        "en": "project"
+      },
+      {
+        "jp": "werkplek",
+        "en": "workplace"
+      },
+      {
+        "jp": "pauze",
+        "en": "break"
+      },
+      {
+        "jp": "druk",
+        "en": "busy"
+      },
+      {
+        "jp": "succes",
+        "en": "success / good luck"
+      }
     ],
     "Digital Communication": [
-      {"jp": "e-mailen", "en": "to email"},
-      {"jp": "bijlage", "en": "attachment"},
-      {"jp": "doorsturen", "en": "to forward"},
-      {"jp": "bericht", "en": "message"},
-      {"jp": "bellen", "en": "to call (phone)"},
-      {"jp": "opslaan", "en": "to save (file)"},
-      {"jp": "verwijderen", "en": "to delete"},
-      {"jp": "wachtwoord", "en": "password"},
-      {"jp": "scherm", "en": "screen"},
-      {"jp": "toetsenbord", "en": "keyboard"}
+      {
+        "jp": "e-mailen",
+        "en": "to email"
+      },
+      {
+        "jp": "bijlage",
+        "en": "attachment"
+      },
+      {
+        "jp": "doorsturen",
+        "en": "to forward"
+      },
+      {
+        "jp": "bericht",
+        "en": "message"
+      },
+      {
+        "jp": "bellen",
+        "en": "to call (phone)"
+      },
+      {
+        "jp": "opslaan",
+        "en": "to save (file)"
+      },
+      {
+        "jp": "verwijderen",
+        "en": "to delete"
+      },
+      {
+        "jp": "wachtwoord",
+        "en": "password"
+      },
+      {
+        "jp": "scherm",
+        "en": "screen"
+      },
+      {
+        "jp": "toetsenbord",
+        "en": "keyboard"
+      }
     ],
     "Ordering at the Cafe": [
-      {"jp": "koffie verkeerd", "en": "latte (coffee with hot milk)"},
-      {"jp": "appeltaart", "en": "apple pie"},
-      {"jp": "slagroom", "en": "whipped cream"},
-      {"jp": "bestellen", "en": "to order"},
-      {"jp": "rekening", "en": "bill / check"},
-      {"jp": "kunt u mij helpen", "en": "can you help me"},
-      {"jp": "ik wil graag", "en": "I would like"},
-      {"jp": "ober", "en": "waiter"},
-      {"jp": "lekker", "en": "tasty / nice"},
-      {"jp": "gezellig", "en": "cozy / pleasant / fun"}
+      {
+        "jp": "koffie verkeerd",
+        "en": "latte (coffee with hot milk)"
+      },
+      {
+        "jp": "appeltaart",
+        "en": "apple pie"
+      },
+      {
+        "jp": "slagroom",
+        "en": "whipped cream"
+      },
+      {
+        "jp": "bestellen",
+        "en": "to order"
+      },
+      {
+        "jp": "rekening",
+        "en": "bill / check"
+      },
+      {
+        "jp": "kunt u mij helpen",
+        "en": "can you help me"
+      },
+      {
+        "jp": "ik wil graag",
+        "en": "I would like"
+      },
+      {
+        "jp": "ober",
+        "en": "waiter"
+      },
+      {
+        "jp": "lekker",
+        "en": "tasty / nice"
+      },
+      {
+        "jp": "gezellig",
+        "en": "cozy / pleasant / fun"
+      }
     ],
     "Restaurant Dining": [
-      {"jp": "menu", "en": "menu"},
-      {"jp": "voorgerecht", "en": "starter / appetizer"},
-      {"jp": "hoofdgerecht", "en": "main course"},
-      {"jp": "nagerecht", "en": "dessert"},
-      {"jp": "reserveren", "en": "to reserve / book"},
-      {"jp": "fles wijn", "en": "bottle of wine"},
-      {"jp": "kraanwater", "en": "tap water"},
-      {"jp": "pittig", "en": "spicy"},
-      {"jp": "zoet", "en": "sweet"},
-      {"jp": "smakelijk eten", "en": "enjoy your meal"}
+      {
+        "jp": "menu",
+        "en": "menu"
+      },
+      {
+        "jp": "voorgerecht",
+        "en": "starter / appetizer"
+      },
+      {
+        "jp": "hoofdgerecht",
+        "en": "main course"
+      },
+      {
+        "jp": "nagerecht",
+        "en": "dessert"
+      },
+      {
+        "jp": "reserveren",
+        "en": "to reserve / book"
+      },
+      {
+        "jp": "fles wijn",
+        "en": "bottle of wine"
+      },
+      {
+        "jp": "kraanwater",
+        "en": "tap water"
+      },
+      {
+        "jp": "pittig",
+        "en": "spicy"
+      },
+      {
+        "jp": "zoet",
+        "en": "sweet"
+      },
+      {
+        "jp": "smakelijk eten",
+        "en": "enjoy your meal"
+      }
     ],
     "Navigating the Supermarket": [
-      {"jp": "supermarkt", "en": "supermarket"},
-      {"jp": "boodschappen", "en": "groceries"},
-      {"jp": "winkelwagen", "en": "shopping cart"},
-      {"jp": "mandje", "en": "basket"},
-      {"jp": "kassa", "en": "checkout register"},
-      {"jp": "bonnetje", "en": "receipt"},
-      {"jp": "tas", "en": "bag"},
-      {"jp": "aanbieding", "en": "sale / special offer"},
-      {"jp": "korting", "en": "discount"},
-      {"jp": "pinnen", "en": "to pay by debit card"}
+      {
+        "jp": "supermarkt",
+        "en": "supermarket"
+      },
+      {
+        "jp": "boodschappen",
+        "en": "groceries"
+      },
+      {
+        "jp": "winkelwagen",
+        "en": "shopping cart"
+      },
+      {
+        "jp": "mandje",
+        "en": "basket"
+      },
+      {
+        "jp": "kassa",
+        "en": "checkout register"
+      },
+      {
+        "jp": "bonnetje",
+        "en": "receipt"
+      },
+      {
+        "jp": "tas",
+        "en": "bag"
+      },
+      {
+        "jp": "aanbieding",
+        "en": "sale / special offer"
+      },
+      {
+        "jp": "korting",
+        "en": "discount"
+      },
+      {
+        "jp": "pinnen",
+        "en": "to pay by debit card"
+      }
     ],
     "Taking the Train (NS)": [
-      {"jp": "trein", "en": "train"},
-      {"jp": "station", "en": "station"},
-      {"jp": "perron", "en": "platform"},
-      {"jp": "spoor", "en": "track"},
-      {"jp": "vertrek", "en": "departure"},
-      {"jp": "aankomst", "en": "arrival"},
-      {"jp": "vertraging", "en": "delay"},
-      {"jp": "ov-chipkaart", "en": "public transport card"},
-      {"jp": "inchecken", "en": "to check in"},
-      {"jp": "overstappen", "en": "to transfer"}
+      {
+        "jp": "trein",
+        "en": "train"
+      },
+      {
+        "jp": "station",
+        "en": "station"
+      },
+      {
+        "jp": "perron",
+        "en": "platform"
+      },
+      {
+        "jp": "spoor",
+        "en": "track"
+      },
+      {
+        "jp": "vertrek",
+        "en": "departure"
+      },
+      {
+        "jp": "aankomst",
+        "en": "arrival"
+      },
+      {
+        "jp": "vertraging",
+        "en": "delay"
+      },
+      {
+        "jp": "ov-chipkaart",
+        "en": "public transport card"
+      },
+      {
+        "jp": "inchecken",
+        "en": "to check in"
+      },
+      {
+        "jp": "overstappen",
+        "en": "to transfer"
+      }
     ],
     "Cycling in the City": [
-      {"jp": "fiets", "en": "bicycle"},
-      {"jp": "fietspad", "en": "bicycle path"},
-      {"jp": "fietsen", "en": "to cycle"},
-      {"jp": "stuur", "en": "handlebars"},
-      {"jp": "band", "en": "tire"},
-      {"jp": "lekke band", "en": "flat tire"},
-      {"jp": "fietspomp", "en": "bicycle pump"},
-      {"jp": "slot", "en": "lock"},
-      {"jp": "voorrang", "en": "right of way"},
-      {"jp": "verkeerslicht", "en": "traffic light"}
+      {
+        "jp": "fiets",
+        "en": "bicycle"
+      },
+      {
+        "jp": "fietspad",
+        "en": "bicycle path"
+      },
+      {
+        "jp": "fietsen",
+        "en": "to cycle"
+      },
+      {
+        "jp": "stuur",
+        "en": "handlebars"
+      },
+      {
+        "jp": "band",
+        "en": "tire"
+      },
+      {
+        "jp": "lekke band",
+        "en": "flat tire"
+      },
+      {
+        "jp": "fietspomp",
+        "en": "bicycle pump"
+      },
+      {
+        "jp": "slot",
+        "en": "lock"
+      },
+      {
+        "jp": "voorrang",
+        "en": "right of way"
+      },
+      {
+        "jp": "verkeerslicht",
+        "en": "traffic light"
+      }
     ],
     "Asking for Directions": [
-      {"jp": "waar is", "en": "where is"},
-      {"jp": "rechtdoor", "en": "straight ahead"},
-      {"jp": "linksaf", "en": "turn left"},
-      {"jp": "rechtsaf", "en": "turn right"},
-      {"jp": "om de hoek", "en": "around the corner"},
-      {"jp": "ver weg", "en": "far away"},
-      {"jp": "dichtbij", "en": "close by"},
-      {"jp": "kruispunt", "en": "intersection"},
-      {"jp": "rotonde", "en": "roundabout"},
-      {"jp": "verdwaald", "en": "lost"}
+      {
+        "jp": "waar is",
+        "en": "where is"
+      },
+      {
+        "jp": "rechtdoor",
+        "en": "straight ahead"
+      },
+      {
+        "jp": "linksaf",
+        "en": "turn left"
+      },
+      {
+        "jp": "rechtsaf",
+        "en": "turn right"
+      },
+      {
+        "jp": "om de hoek",
+        "en": "around the corner"
+      },
+      {
+        "jp": "ver weg",
+        "en": "far away"
+      },
+      {
+        "jp": "dichtbij",
+        "en": "close by"
+      },
+      {
+        "jp": "kruispunt",
+        "en": "intersection"
+      },
+      {
+        "jp": "rotonde",
+        "en": "roundabout"
+      },
+      {
+        "jp": "verdwaald",
+        "en": "lost"
+      }
     ],
     "Making Small Talk": [
-      {"jp": "hoe gaat het?", "en": "how are you?"},
-      {"jp": "goed, bedankt", "en": "good, thanks"},
-      {"jp": "mooi weer hè?", "en": "beautiful weather, right?"},
-      {"jp": "waar kom je vandaan?", "en": "where are you from?"},
-      {"jp": "ik kom uit...", "en": "I come from..."},
-      {"jp": "wat doe je voor werk?", "en": "what do you do for work?"},
-      {"jp": "ik spreek een beetje...", "en": "I speak a little..."},
-      {"jp": "graag gedaan", "en": "you're welcome"},
-      {"jp": "het spijt me", "en": "I'm sorry"},
-      {"jp": "geen probleem", "en": "no problem"}
+      {
+        "jp": "hoe gaat het?",
+        "en": "how are you?"
+      },
+      {
+        "jp": "goed, bedankt",
+        "en": "good, thanks"
+      },
+      {
+        "jp": "mooi weer hè?",
+        "en": "beautiful weather, right?"
+      },
+      {
+        "jp": "waar kom je vandaan?",
+        "en": "where are you from?"
+      },
+      {
+        "jp": "ik kom uit...",
+        "en": "I come from..."
+      },
+      {
+        "jp": "wat doe je voor werk?",
+        "en": "what do you do for work?"
+      },
+      {
+        "jp": "ik spreek een beetje...",
+        "en": "I speak a little..."
+      },
+      {
+        "jp": "graag gedaan",
+        "en": "you're welcome"
+      },
+      {
+        "jp": "het spijt me",
+        "en": "I'm sorry"
+      },
+      {
+        "jp": "geen probleem",
+        "en": "no problem"
+      }
     ],
     "Describing People": [
-      {"jp": "lang", "en": "tall"},
-      {"jp": "klein", "en": "short / small"},
-      {"jp": "jong", "en": "young"},
-      {"jp": "oud", "en": "old"},
-      {"jp": "mooi", "en": "beautiful"},
-      {"jp": "knap", "en": "handsome"},
-      {"jp": "lelijk", "en": "ugly"},
-      {"jp": "aardig", "en": "nice / friendly"},
-      {"jp": "streng", "en": "strict"},
-      {"jp": "grappig", "en": "funny"}
+      {
+        "jp": "lang",
+        "en": "tall"
+      },
+      {
+        "jp": "klein",
+        "en": "short / small"
+      },
+      {
+        "jp": "jong",
+        "en": "young"
+      },
+      {
+        "jp": "oud",
+        "en": "old"
+      },
+      {
+        "jp": "mooi",
+        "en": "beautiful"
+      },
+      {
+        "jp": "knap",
+        "en": "handsome"
+      },
+      {
+        "jp": "lelijk",
+        "en": "ugly"
+      },
+      {
+        "jp": "aardig",
+        "en": "nice / friendly"
+      },
+      {
+        "jp": "streng",
+        "en": "strict"
+      },
+      {
+        "jp": "grappig",
+        "en": "funny"
+      }
     ],
     "Emotions & Feelings": [
-      {"jp": "blij", "en": "happy"},
-      {"jp": "verdrietig", "en": "sad"},
-      {"jp": "boos", "en": "angry"},
-      {"jp": "bang", "en": "scared"},
-      {"jp": "verrast", "en": "surprised"},
-      {"jp": "moe", "en": "tired"},
-      {"jp": "ziek", "en": "sick"},
-      {"jp": "verveeld", "en": "bored"},
-      {"jp": "trots", "en": "proud"},
-      {"jp": "zenuwachtig", "en": "nervous"}
+      {
+        "jp": "blij",
+        "en": "happy"
+      },
+      {
+        "jp": "verdrietig",
+        "en": "sad"
+      },
+      {
+        "jp": "boos",
+        "en": "angry"
+      },
+      {
+        "jp": "bang",
+        "en": "scared"
+      },
+      {
+        "jp": "verrast",
+        "en": "surprised"
+      },
+      {
+        "jp": "moe",
+        "en": "tired"
+      },
+      {
+        "jp": "ziek",
+        "en": "sick"
+      },
+      {
+        "jp": "verveeld",
+        "en": "bored"
+      },
+      {
+        "jp": "trots",
+        "en": "proud"
+      },
+      {
+        "jp": "zenuwachtig",
+        "en": "nervous"
+      }
     ],
     "Health & Body": [
-      {"jp": "gezondheid", "en": "health"},
-      {"jp": "hoofd", "en": "head"},
-      {"jp": "arm", "en": "arm"},
-      {"jp": "been", "en": "leg"},
-      {"jp": "rug", "en": "back"},
-      {"jp": "pijn", "en": "pain"},
-      {"jp": "dokter", "en": "doctor"},
-      {"jp": "apotheek", "en": "pharmacy"},
-      {"jp": "medicijn", "en": "medicine"},
-      {"jp": "beterschap", "en": "get well soon"}
+      {
+        "jp": "gezondheid",
+        "en": "health"
+      },
+      {
+        "jp": "hoofd",
+        "en": "head"
+      },
+      {
+        "jp": "arm",
+        "en": "arm"
+      },
+      {
+        "jp": "been",
+        "en": "leg"
+      },
+      {
+        "jp": "rug",
+        "en": "back"
+      },
+      {
+        "jp": "pijn",
+        "en": "pain"
+      },
+      {
+        "jp": "dokter",
+        "en": "doctor"
+      },
+      {
+        "jp": "apotheek",
+        "en": "pharmacy"
+      },
+      {
+        "jp": "medicijn",
+        "en": "medicine"
+      },
+      {
+        "jp": "beterschap",
+        "en": "get well soon"
+      }
     ],
     "Banking & Money": [
-      {"jp": "bank", "en": "bank"},
-      {"jp": "geld", "en": "money"},
-      {"jp": "betalen", "en": "to pay"},
-      {"jp": "rekeningnummer", "en": "account number"},
-      {"jp": "overschrijven", "en": "to transfer (money)"},
-      {"jp": "contant", "en": "cash"},
-      {"jp": "wisselgeld", "en": "change (money)"},
-      {"jp": "duur", "en": "expensive"},
-      {"jp": "goedkoop", "en": "cheap"},
-      {"jp": "lenen", "en": "to borrow / lend"}
+      {
+        "jp": "bank",
+        "en": "bank"
+      },
+      {
+        "jp": "geld",
+        "en": "money"
+      },
+      {
+        "jp": "betalen",
+        "en": "to pay"
+      },
+      {
+        "jp": "rekeningnummer",
+        "en": "account number"
+      },
+      {
+        "jp": "overschrijven",
+        "en": "to transfer (money)"
+      },
+      {
+        "jp": "contant",
+        "en": "cash"
+      },
+      {
+        "jp": "wisselgeld",
+        "en": "change (money)"
+      },
+      {
+        "jp": "duur",
+        "en": "expensive"
+      },
+      {
+        "jp": "goedkoop",
+        "en": "cheap"
+      },
+      {
+        "jp": "lenen",
+        "en": "to borrow / lend"
+      }
     ],
     "Shopping & Fitting": [
-      {"jp": "kleding", "en": "clothing"},
-      {"jp": "maat", "en": "size"},
-      {"jp": "passen", "en": "to fit / try on"},
-      {"jp": "paskamer", "en": "fitting room"},
-      {"jp": "kleur", "en": "color"},
-      {"jp": "schoenen", "en": "shoes"},
-      {"jp": "broek", "en": "pants"},
-      {"jp": "jas", "en": "jacket / coat"},
-      {"jp": "te groot", "en": "too big"},
-      {"jp": "staat je goed", "en": "looks good on you"}
+      {
+        "jp": "kleding",
+        "en": "clothing"
+      },
+      {
+        "jp": "maat",
+        "en": "size"
+      },
+      {
+        "jp": "passen",
+        "en": "to fit / try on"
+      },
+      {
+        "jp": "paskamer",
+        "en": "fitting room"
+      },
+      {
+        "jp": "kleur",
+        "en": "color"
+      },
+      {
+        "jp": "schoenen",
+        "en": "shoes"
+      },
+      {
+        "jp": "broek",
+        "en": "pants"
+      },
+      {
+        "jp": "jas",
+        "en": "jacket / coat"
+      },
+      {
+        "jp": "te groot",
+        "en": "too big"
+      },
+      {
+        "jp": "staat je goed",
+        "en": "looks good on you"
+      }
     ],
     "Around the House": [
-      {"jp": "huis", "en": "house"},
-      {"jp": "woonkamer", "en": "living room"},
-      {"jp": "slaapkamer", "en": "bedroom"},
-      {"jp": "keuken", "en": "kitchen"},
-      {"jp": "badkamer", "en": "bathroom"},
-      {"jp": "deur", "en": "door"},
-      {"jp": "raam", "en": "window"},
-      {"jp": "sleutel", "en": "key"},
-      {"jp": "trap", "en": "stairs"},
-      {"jp": "tuin", "en": "garden"}
+      {
+        "jp": "huis",
+        "en": "house"
+      },
+      {
+        "jp": "woonkamer",
+        "en": "living room"
+      },
+      {
+        "jp": "slaapkamer",
+        "en": "bedroom"
+      },
+      {
+        "jp": "keuken",
+        "en": "kitchen"
+      },
+      {
+        "jp": "badkamer",
+        "en": "bathroom"
+      },
+      {
+        "jp": "deur",
+        "en": "door"
+      },
+      {
+        "jp": "raam",
+        "en": "window"
+      },
+      {
+        "jp": "sleutel",
+        "en": "key"
+      },
+      {
+        "jp": "trap",
+        "en": "stairs"
+      },
+      {
+        "jp": "tuin",
+        "en": "garden"
+      }
     ],
     "The Dutch Weather": [
-      {"jp": "het regent", "en": "it's raining"},
-      {"jp": "de zon schijnt", "en": "the sun is shining"},
-      {"jp": "wolk", "en": "cloud"},
-      {"jp": "wind", "en": "wind"},
-      {"jp": "het sneeuwt", "en": "it's snowing"},
-      {"jp": "koud", "en": "cold"},
-      {"jp": "warm", "en": "warm"},
-      {"jp": "heet", "en": "hot"},
-      {"jp": "onweer", "en": "thunderstorm"},
-      {"jp": "paraplu", "en": "umbrella"}
+      {
+        "jp": "het regent",
+        "en": "it's raining"
+      },
+      {
+        "jp": "de zon schijnt",
+        "en": "the sun is shining"
+      },
+      {
+        "jp": "wolk",
+        "en": "cloud"
+      },
+      {
+        "jp": "wind",
+        "en": "wind"
+      },
+      {
+        "jp": "het sneeuwt",
+        "en": "it's snowing"
+      },
+      {
+        "jp": "koud",
+        "en": "cold"
+      },
+      {
+        "jp": "warm",
+        "en": "warm"
+      },
+      {
+        "jp": "heet",
+        "en": "hot"
+      },
+      {
+        "jp": "onweer",
+        "en": "thunderstorm"
+      },
+      {
+        "jp": "paraplu",
+        "en": "umbrella"
+      }
     ],
     "Time & Dates": [
-      {"jp": "vandaag", "en": "today"},
-      {"jp": "morgen", "en": "tomorrow"},
-      {"jp": "gisteren", "en": "yesterday"},
-      {"jp": "week", "en": "week"},
-      {"jp": "maand", "en": "month"},
-      {"jp": "jaar", "en": "year"},
-      {"jp": "nu", "en": "now"},
-      {"jp": "later", "en": "later"},
-      {"jp": "ochtend", "en": "morning"},
-      {"jp": "avond", "en": "evening"}
+      {
+        "jp": "vandaag",
+        "en": "today"
+      },
+      {
+        "jp": "morgen",
+        "en": "tomorrow"
+      },
+      {
+        "jp": "gisteren",
+        "en": "yesterday"
+      },
+      {
+        "jp": "week",
+        "en": "week"
+      },
+      {
+        "jp": "maand",
+        "en": "month"
+      },
+      {
+        "jp": "jaar",
+        "en": "year"
+      },
+      {
+        "jp": "nu",
+        "en": "now"
+      },
+      {
+        "jp": "later",
+        "en": "later"
+      },
+      {
+        "jp": "ochtend",
+        "en": "morning"
+      },
+      {
+        "jp": "avond",
+        "en": "evening"
+      }
     ],
     "Family Tree": [
-      {"jp": "familie", "en": "family"},
-      {"jp": "vader", "en": "father"},
-      {"jp": "moeder", "en": "mother"},
-      {"jp": "ouders", "en": "parents"},
-      {"jp": "zoon", "en": "son"},
-      {"jp": "dochter", "en": "daughter"},
-      {"jp": "broer", "en": "brother"},
-      {"jp": "zus", "en": "sister"},
-      {"jp": "opa", "en": "grandfather"},
-      {"jp": "oma", "en": "grandmother"}
+      {
+        "jp": "familie",
+        "en": "family"
+      },
+      {
+        "jp": "vader",
+        "en": "father"
+      },
+      {
+        "jp": "moeder",
+        "en": "mother"
+      },
+      {
+        "jp": "ouders",
+        "en": "parents"
+      },
+      {
+        "jp": "zoon",
+        "en": "son"
+      },
+      {
+        "jp": "dochter",
+        "en": "daughter"
+      },
+      {
+        "jp": "broer",
+        "en": "brother"
+      },
+      {
+        "jp": "zus",
+        "en": "sister"
+      },
+      {
+        "jp": "opa",
+        "en": "grandfather"
+      },
+      {
+        "jp": "oma",
+        "en": "grandmother"
+      }
     ],
     "Hobbies & Free Time": [
-      {"jp": "vrije tijd", "en": "free time / leisure"},
-      {"jp": "lezen", "en": "to read"},
-      {"jp": "muziek luisteren", "en": "to listen to music"},
-      {"jp": "wandelen", "en": "to walk / hike"},
-      {"jp": "koken", "en": "to cook"},
-      {"jp": "fotograferen", "en": "to photograph"},
-      {"jp": "tekenen", "en": "to draw"},
-      {"jp": "film kijken", "en": "to watch a movie"},
-      {"jp": "dansen", "en": "to dance"},
-      {"jp": "zingen", "en": "to sing"}
+      {
+        "jp": "vrije tijd",
+        "en": "free time / leisure"
+      },
+      {
+        "jp": "lezen",
+        "en": "to read"
+      },
+      {
+        "jp": "muziek luisteren",
+        "en": "to listen to music"
+      },
+      {
+        "jp": "wandelen",
+        "en": "to walk / hike"
+      },
+      {
+        "jp": "koken",
+        "en": "to cook"
+      },
+      {
+        "jp": "fotograferen",
+        "en": "to photograph"
+      },
+      {
+        "jp": "tekenen",
+        "en": "to draw"
+      },
+      {
+        "jp": "film kijken",
+        "en": "to watch a movie"
+      },
+      {
+        "jp": "dansen",
+        "en": "to dance"
+      },
+      {
+        "jp": "zingen",
+        "en": "to sing"
+      }
     ],
     "Sports & Fitness": [
-      {"jp": "sporten", "en": "to exercise / do sports"},
-      {"jp": "voetbal", "en": "soccer / football"},
-      {"jp": "zwemmen", "en": "to swim"},
-      {"jp": "hardlopen", "en": "to run / jog"},
-      {"jp": "schaatsen", "en": "to ice skate"},
-      {"jp": "winnen", "en": "to win"},
-      {"jp": "verliezen", "en": "to lose"},
-      {"jp": "team", "en": "team"},
-      {"jp": "wedstrijd", "en": "match / competition"},
-      {"jp": "bal", "en": "ball"}
+      {
+        "jp": "sporten",
+        "en": "to exercise / do sports"
+      },
+      {
+        "jp": "voetbal",
+        "en": "soccer / football"
+      },
+      {
+        "jp": "zwemmen",
+        "en": "to swim"
+      },
+      {
+        "jp": "hardlopen",
+        "en": "to run / jog"
+      },
+      {
+        "jp": "schaatsen",
+        "en": "to ice skate"
+      },
+      {
+        "jp": "winnen",
+        "en": "to win"
+      },
+      {
+        "jp": "verliezen",
+        "en": "to lose"
+      },
+      {
+        "jp": "team",
+        "en": "team"
+      },
+      {
+        "jp": "wedstrijd",
+        "en": "match / competition"
+      },
+      {
+        "jp": "bal",
+        "en": "ball"
+      }
     ],
     "Colors & Shapes": [
-      {"jp": "kleur", "en": "color"},
-      {"jp": "rood", "en": "red"},
-      {"jp": "blauw", "en": "blue"},
-      {"jp": "geel", "en": "yellow"},
-      {"jp": "groen", "en": "green"},
-      {"jp": "zwart", "en": "black"},
-      {"jp": "wit", "en": "white"},
-      {"jp": "rond", "en": "round"},
-      {"jp": "vierkant", "en": "square"},
-      {"jp": "driehoek", "en": "triangle"}
+      {
+        "jp": "kleur",
+        "en": "color"
+      },
+      {
+        "jp": "rood",
+        "en": "red"
+      },
+      {
+        "jp": "blauw",
+        "en": "blue"
+      },
+      {
+        "jp": "geel",
+        "en": "yellow"
+      },
+      {
+        "jp": "groen",
+        "en": "green"
+      },
+      {
+        "jp": "zwart",
+        "en": "black"
+      },
+      {
+        "jp": "wit",
+        "en": "white"
+      },
+      {
+        "jp": "rond",
+        "en": "round"
+      },
+      {
+        "jp": "vierkant",
+        "en": "square"
+      },
+      {
+        "jp": "driehoek",
+        "en": "triangle"
+      }
     ],
     "Nature & Landscapes": [
-      {"jp": "natuur", "en": "nature"},
-      {"jp": "boom", "en": "tree"},
-      {"jp": "bloem", "en": "flower"},
-      {"jp": "gras", "en": "grass"},
-      {"jp": "bos", "en": "forest"},
-      {"jp": "strand", "en": "beach"},
-      {"jp": "zee", "en": "sea"},
-      {"jp": "rivier", "en": "river"},
-      {"jp": "berg", "en": "mountain"},
-      {"jp": "lucht", "en": "sky / air"}
+      {
+        "jp": "natuur",
+        "en": "nature"
+      },
+      {
+        "jp": "boom",
+        "en": "tree"
+      },
+      {
+        "jp": "bloem",
+        "en": "flower"
+      },
+      {
+        "jp": "gras",
+        "en": "grass"
+      },
+      {
+        "jp": "bos",
+        "en": "forest"
+      },
+      {
+        "jp": "strand",
+        "en": "beach"
+      },
+      {
+        "jp": "zee",
+        "en": "sea"
+      },
+      {
+        "jp": "rivier",
+        "en": "river"
+      },
+      {
+        "jp": "berg",
+        "en": "mountain"
+      },
+      {
+        "jp": "lucht",
+        "en": "sky / air"
+      }
     ],
     "Animals & Pets": [
-      {"jp": "dier", "en": "animal"},
-      {"jp": "hond", "en": "dog"},
-      {"jp": "kat", "en": "cat"},
-      {"jp": "vogel", "en": "bird"},
-      {"jp": "vis", "en": "fish"},
-      {"jp": "paard", "en": "horse"},
-      {"jp": "koe", "en": "cow"},
-      {"jp": "varken", "en": "pig"},
-      {"jp": "schaap", "en": "sheep"},
-      {"jp": "muis", "en": "mouse"}
+      {
+        "jp": "dier",
+        "en": "animal"
+      },
+      {
+        "jp": "hond",
+        "en": "dog"
+      },
+      {
+        "jp": "kat",
+        "en": "cat"
+      },
+      {
+        "jp": "vogel",
+        "en": "bird"
+      },
+      {
+        "jp": "vis",
+        "en": "fish"
+      },
+      {
+        "jp": "paard",
+        "en": "horse"
+      },
+      {
+        "jp": "koe",
+        "en": "cow"
+      },
+      {
+        "jp": "varken",
+        "en": "pig"
+      },
+      {
+        "jp": "schaap",
+        "en": "sheep"
+      },
+      {
+        "jp": "muis",
+        "en": "mouse"
+      }
     ],
     "Emergency & Help": [
-      {"jp": "help!", "en": "help!"},
-      {"jp": "politie", "en": "police"},
-      {"jp": "brandweer", "en": "fire brigade"},
-      {"jp": "ziekenhuis", "en": "hospital"},
-      {"jp": "arts", "en": "physician / doctor"},
-      {"jp": "gevaar", "en": "danger"},
-      {"jp": "voorzichtig", "en": "careful"},
-      {"jp": "ik ben verdwaald", "en": "I am lost"},
-      {"jp": "mijn portemonnee is gestolen", "en": "my wallet is stolen"},
-      {"jp": "waar is het toilet?", "en": "where is the toilet?"}
+      {
+        "jp": "help!",
+        "en": "help!"
+      },
+      {
+        "jp": "politie",
+        "en": "police"
+      },
+      {
+        "jp": "brandweer",
+        "en": "fire brigade"
+      },
+      {
+        "jp": "ziekenhuis",
+        "en": "hospital"
+      },
+      {
+        "jp": "arts",
+        "en": "physician / doctor"
+      },
+      {
+        "jp": "gevaar",
+        "en": "danger"
+      },
+      {
+        "jp": "voorzichtig",
+        "en": "careful"
+      },
+      {
+        "jp": "ik ben verdwaald",
+        "en": "I am lost"
+      },
+      {
+        "jp": "mijn portemonnee is gestolen",
+        "en": "my wallet is stolen"
+      },
+      {
+        "jp": "waar is het toilet?",
+        "en": "where is the toilet?"
+      }
     ],
     "Professions & Jobs": [
-      {"jp": "beroep", "en": "profession"},
-      {"jp": "leraar", "en": "teacher"},
-      {"jp": "arts", "en": "doctor"},
-      {"jp": "verpleegkundige", "en": "nurse"},
-      {"jp": "politieagent", "en": "police officer"},
-      {"jp": "kok", "en": "chef / cook"},
-      {"jp": "bakker", "en": "baker"},
-      {"jp": "kapper", "en": "hairdresser"},
-      {"jp": "schrijver", "en": "writer"},
-      {"jp": "boer", "en": "farmer"}
+      {
+        "jp": "beroep",
+        "en": "profession"
+      },
+      {
+        "jp": "leraar",
+        "en": "teacher"
+      },
+      {
+        "jp": "arts",
+        "en": "doctor"
+      },
+      {
+        "jp": "verpleegkundige",
+        "en": "nurse"
+      },
+      {
+        "jp": "politieagent",
+        "en": "police officer"
+      },
+      {
+        "jp": "kok",
+        "en": "chef / cook"
+      },
+      {
+        "jp": "bakker",
+        "en": "baker"
+      },
+      {
+        "jp": "kapper",
+        "en": "hairdresser"
+      },
+      {
+        "jp": "schrijver",
+        "en": "writer"
+      },
+      {
+        "jp": "boer",
+        "en": "farmer"
+      }
     ],
     "Question Words": [
-      {"jp": "wie", "en": "who"},
-      {"jp": "wat", "en": "what"},
-      {"jp": "waar", "en": "where"},
-      {"jp": "wanneer", "en": "when"},
-      {"jp": "waarom", "en": "why"},
-      {"jp": "hoe", "en": "how"},
-      {"jp": "welke", "en": "which"},
-      {"jp": "hoeveel", "en": "how much / how many"},
-      {"jp": "hoe lang", "en": "how long"},
-      {"jp": "wiens", "en": "whose"}
+      {
+        "jp": "wie",
+        "en": "who"
+      },
+      {
+        "jp": "wat",
+        "en": "what"
+      },
+      {
+        "jp": "waar",
+        "en": "where"
+      },
+      {
+        "jp": "wanneer",
+        "en": "when"
+      },
+      {
+        "jp": "waarom",
+        "en": "why"
+      },
+      {
+        "jp": "hoe",
+        "en": "how"
+      },
+      {
+        "jp": "welke",
+        "en": "which"
+      },
+      {
+        "jp": "hoeveel",
+        "en": "how much / how many"
+      },
+      {
+        "jp": "hoe lang",
+        "en": "how long"
+      },
+      {
+        "jp": "wiens",
+        "en": "whose"
+      }
     ],
     "Essential Connectors": [
-      {"jp": "en", "en": "and"},
-      {"jp": "of", "en": "or"},
-      {"jp": "maar", "en": "but"},
-      {"jp": "omdat", "en": "because"},
-      {"jp": "daarom", "en": "therefore"},
-      {"jp": "als", "en": "if / when"},
-      {"jp": "toen", "en": "when (past)"},
-      {"jp": "hoewel", "en": "although"},
-      {"jp": "dus", "en": "so / thus"},
-      {"jp": "ook", "en": "also / too"}
+      {
+        "jp": "en",
+        "en": "and"
+      },
+      {
+        "jp": "of",
+        "en": "or"
+      },
+      {
+        "jp": "maar",
+        "en": "but"
+      },
+      {
+        "jp": "omdat",
+        "en": "because"
+      },
+      {
+        "jp": "daarom",
+        "en": "therefore"
+      },
+      {
+        "jp": "als",
+        "en": "if / when"
+      },
+      {
+        "jp": "toen",
+        "en": "when (past)"
+      },
+      {
+        "jp": "hoewel",
+        "en": "although"
+      },
+      {
+        "jp": "dus",
+        "en": "so / thus"
+      },
+      {
+        "jp": "ook",
+        "en": "also / too"
+      }
     ],
     "Holidays & Celebrations": [
-      {"jp": "feest", "en": "party / celebration"},
-      {"jp": "verjaardag", "en": "birthday"},
-      {"jp": "gefeliciteerd", "en": "congratulations"},
-      {"jp": "cadeau", "en": "gift / present"},
-      {"jp": "taart", "en": "cake"},
-      {"jp": "kerstmis", "en": "Christmas"},
-      {"jp": "nieuwjaar", "en": "New Year"},
-      {"jp": "vakantie", "en": "vacation / holiday"},
-      {"jp": "proost", "en": "cheers"},
-      {"jp": "gezelligheid", "en": "coziness / joviality"}
+      {
+        "jp": "feest",
+        "en": "party / celebration"
+      },
+      {
+        "jp": "verjaardag",
+        "en": "birthday"
+      },
+      {
+        "jp": "gefeliciteerd",
+        "en": "congratulations"
+      },
+      {
+        "jp": "cadeau",
+        "en": "gift / present"
+      },
+      {
+        "jp": "taart",
+        "en": "cake"
+      },
+      {
+        "jp": "kerstmis",
+        "en": "Christmas"
+      },
+      {
+        "jp": "nieuwjaar",
+        "en": "New Year"
+      },
+      {
+        "jp": "vakantie",
+        "en": "vacation / holiday"
+      },
+      {
+        "jp": "proost",
+        "en": "cheers"
+      },
+      {
+        "jp": "gezelligheid",
+        "en": "coziness / joviality"
+      }
     ],
     "Saying Goodbye": [
-      {"jp": "tot ziens", "en": "goodbye / see you"},
-      {"jp": "doei", "en": "bye"},
-      {"jp": "tot morgen", "en": "see you tomorrow"},
-      {"jp": "tot straks", "en": "see you later"},
-      {"jp": "fijne dag", "en": "have a nice day"},
-      {"jp": "werk ze", "en": "good luck with work"},
-      {"jp": "slaap lekker", "en": "sleep well"},
-      {"jp": "prettig weekend", "en": "nice weekend"},
-      {"jp": "kijk uit", "en": "watch out / take care"},
-      {"jp": "bedankt voor alles", "en": "thanks for everything"}
+      {
+        "jp": "tot ziens",
+        "en": "goodbye / see you"
+      },
+      {
+        "jp": "doei",
+        "en": "bye"
+      },
+      {
+        "jp": "tot morgen",
+        "en": "see you tomorrow"
+      },
+      {
+        "jp": "tot straks",
+        "en": "see you later"
+      },
+      {
+        "jp": "fijne dag",
+        "en": "have a nice day"
+      },
+      {
+        "jp": "werk ze",
+        "en": "good luck with work"
+      },
+      {
+        "jp": "slaap lekker",
+        "en": "sleep well"
+      },
+      {
+        "jp": "prettig weekend",
+        "en": "nice weekend"
+      },
+      {
+        "jp": "kijk uit",
+        "en": "watch out / take care"
+      },
+      {
+        "jp": "bedankt voor alles",
+        "en": "thanks for everything"
+      }
+    ],
+    "At the Bakery": [
+      {
+        "jp": "bakkerij",
+        "en": "bakery"
+      },
+      {
+        "jp": "brood",
+        "en": "bread"
+      },
+      {
+        "jp": "stokbrood",
+        "en": "baguette"
+      },
+      {
+        "jp": "croissant",
+        "en": "croissant"
+      },
+      {
+        "jp": "koekje",
+        "en": "cookie"
+      },
+      {
+        "jp": "taart",
+        "en": "cake / pie"
+      },
+      {
+        "jp": "gebakje",
+        "en": "pastry"
+      },
+      {
+        "jp": "afrekenen",
+        "en": "to pay / checkout"
+      },
+      {
+        "jp": "vers",
+        "en": "fresh"
+      },
+      {
+        "jp": "krokant",
+        "en": "crispy"
+      }
+    ],
+    "Beach & Summer": [
+      {
+        "jp": "zomer",
+        "en": "summer"
+      },
+      {
+        "jp": "strand",
+        "en": "beach"
+      },
+      {
+        "jp": "zand",
+        "en": "sand"
+      },
+      {
+        "jp": "zon",
+        "en": "sun"
+      },
+      {
+        "jp": "zwembroek",
+        "en": "swimming trunks"
+      },
+      {
+        "jp": "badpak",
+        "en": "swimsuit"
+      },
+      {
+        "jp": "handdoek",
+        "en": "towel"
+      },
+      {
+        "jp": "zonnebrandcrème",
+        "en": "sunscreen"
+      },
+      {
+        "jp": "zwemmen",
+        "en": "to swim"
+      },
+      {
+        "jp": "golf",
+        "en": "wave"
+      }
+    ],
+    "Winter & Snow": [
+      {
+        "jp": "winter",
+        "en": "winter"
+      },
+      {
+        "jp": "sneeuw",
+        "en": "snow"
+      },
+      {
+        "jp": "ijs",
+        "en": "ice"
+      },
+      {
+        "jp": "schaatsen",
+        "en": "to ice skate"
+      },
+      {
+        "jp": "koud",
+        "en": "cold"
+      },
+      {
+        "jp": "vriezen",
+        "en": "to freeze"
+      },
+      {
+        "jp": "muts",
+        "en": "winter hat"
+      },
+      {
+        "jp": "sjaal",
+        "en": "scarf"
+      },
+      {
+        "jp": "handschoenen",
+        "en": "gloves"
+      },
+      {
+        "jp": "glijden",
+        "en": "to slip / slide"
+      }
+    ],
+    "Nighttime & Sleep": [
+      {
+        "jp": "nacht",
+        "en": "night"
+      },
+      {
+        "jp": "slapen",
+        "en": "to sleep"
+      },
+      {
+        "jp": "bed",
+        "en": "bed"
+      },
+      {
+        "jp": "kussen",
+        "en": "pillow"
+      },
+      {
+        "jp": "deken",
+        "en": "blanket"
+      },
+      {
+        "jp": "dromen",
+        "en": "to dream"
+      },
+      {
+        "jp": "wakker worden",
+        "en": "to wake up"
+      },
+      {
+        "jp": "donker",
+        "en": "dark"
+      },
+      {
+        "jp": "vermoeid",
+        "en": "fatigued / tired"
+      },
+      {
+        "jp": "wekker",
+        "en": "alarm clock"
+      }
+    ],
+    "Physical Traits": [
+      {
+        "jp": "lang",
+        "en": "tall"
+      },
+      {
+        "jp": "kort",
+        "en": "short"
+      },
+      {
+        "jp": "slank",
+        "en": "slim"
+      },
+      {
+        "jp": "dik",
+        "en": "fat / thick"
+      },
+      {
+        "jp": "blond",
+        "en": "blonde"
+      },
+      {
+        "jp": "bruin haar",
+        "en": "brown hair"
+      },
+      {
+        "jp": "sterk",
+        "en": "strong"
+      },
+      {
+        "jp": "zwak",
+        "en": "weak"
+      },
+      {
+        "jp": "mooi",
+        "en": "beautiful"
+      },
+      {
+        "jp": "lelijk",
+        "en": "ugly"
+      }
+    ],
+    "Personality Traits": [
+      {
+        "jp": "aardig",
+        "en": "nice / friendly"
+      },
+      {
+        "jp": "vriendelijk",
+        "en": "friendly"
+      },
+      {
+        "jp": "grappig",
+        "en": "funny"
+      },
+      {
+        "jp": "serieus",
+        "en": "serious"
+      },
+      {
+        "jp": "slim",
+        "en": "smart"
+      },
+      {
+        "jp": "dom",
+        "en": "stupid"
+      },
+      {
+        "jp": "verlegen",
+        "en": "shy"
+      },
+      {
+        "jp": "zelfverzekerd",
+        "en": "confident"
+      },
+      {
+        "jp": "lui",
+        "en": "lazy"
+      },
+      {
+        "jp": "actief",
+        "en": "active"
+      }
+    ],
+    "Office Equipment": [
+      {
+        "jp": "bureau",
+        "en": "desk"
+      },
+      {
+        "jp": "bureaustoel",
+        "en": "office chair"
+      },
+      {
+        "jp": "computer",
+        "en": "computer"
+      },
+      {
+        "jp": "laptop",
+        "en": "laptop"
+      },
+      {
+        "jp": "scherm",
+        "en": "monitor / screen"
+      },
+      {
+        "jp": "toetsenbord",
+        "en": "keyboard"
+      },
+      {
+        "jp": "muis",
+        "en": "mouse"
+      },
+      {
+        "jp": "printer",
+        "en": "printer"
+      },
+      {
+        "jp": "papier",
+        "en": "paper"
+      },
+      {
+        "jp": "pen",
+        "en": "pen"
+      }
+    ],
+    "Digital Devices": [
+      {
+        "jp": "smartphone",
+        "en": "smartphone"
+      },
+      {
+        "jp": "tablet",
+        "en": "tablet"
+      },
+      {
+        "jp": "oplader",
+        "en": "charger"
+      },
+      {
+        "jp": "batterij",
+        "en": "battery"
+      },
+      {
+        "jp": "scherm",
+        "en": "screen"
+      },
+      {
+        "jp": "koptelefoon",
+        "en": "headphones"
+      },
+      {
+        "jp": "oordopjes",
+        "en": "earbuds"
+      },
+      {
+        "jp": "wifi",
+        "en": "wifi"
+      },
+      {
+        "jp": "wachtwoord",
+        "en": "password"
+      },
+      {
+        "jp": "camera",
+        "en": "camera"
+      }
+    ],
+    "Social Media": [
+      {
+        "jp": "internet",
+        "en": "internet"
+      },
+      {
+        "jp": "website",
+        "en": "website"
+      },
+      {
+        "jp": "app",
+        "en": "app"
+      },
+      {
+        "jp": "bericht",
+        "en": "message / post"
+      },
+      {
+        "jp": "delen",
+        "en": "to share"
+      },
+      {
+        "jp": "liken",
+        "en": "to like"
+      },
+      {
+        "jp": "reageren",
+        "en": "to comment / react"
+      },
+      {
+        "jp": "volgen",
+        "en": "to follow"
+      },
+      {
+        "jp": "profiel",
+        "en": "profile"
+      },
+      {
+        "jp": "vrienden",
+        "en": "friends"
+      }
+    ],
+    "Politics & Government": [
+      {
+        "jp": "overheid",
+        "en": "government"
+      },
+      {
+        "jp": "politiek",
+        "en": "politics"
+      },
+      {
+        "jp": "wet",
+        "en": "law"
+      },
+      {
+        "jp": "stemmen",
+        "en": "to vote"
+      },
+      {
+        "jp": "verkiezingen",
+        "en": "elections"
+      },
+      {
+        "jp": "partij",
+        "en": "political party"
+      },
+      {
+        "jp": "burgemeester",
+        "en": "mayor"
+      },
+      {
+        "jp": "minister",
+        "en": "minister"
+      },
+      {
+        "jp": "beslissing",
+        "en": "decision"
+      },
+      {
+        "jp": "debat",
+        "en": "debate"
+      }
+    ],
+    "Law & Order": [
+      {
+        "jp": "rechtbank",
+        "en": "court"
+      },
+      {
+        "jp": "rechter",
+        "en": "judge"
+      },
+      {
+        "jp": "advocaat",
+        "en": "lawyer"
+      },
+      {
+        "jp": "politie",
+        "en": "police"
+      },
+      {
+        "jp": "veiligheid",
+        "en": "security / safety"
+      },
+      {
+        "jp": "misdaad",
+        "en": "crime"
+      },
+      {
+        "jp": "gevangenis",
+        "en": "prison"
+      },
+      {
+        "jp": "schuldig",
+        "en": "guilty"
+      },
+      {
+        "jp": "onschuldig",
+        "en": "innocent"
+      },
+      {
+        "jp": "boete",
+        "en": "fine / penalty"
+      }
+    ],
+    "Geography & Maps": [
+      {
+        "jp": "wereld",
+        "en": "world"
+      },
+      {
+        "jp": "land",
+        "en": "country"
+      },
+      {
+        "jp": "stad",
+        "en": "city / town"
+      },
+      {
+        "jp": "dorp",
+        "en": "village"
+      },
+      {
+        "jp": "straat",
+        "en": "street"
+      },
+      {
+        "jp": "plein",
+        "en": "square"
+      },
+      {
+        "jp": "noorden",
+        "en": "north"
+      },
+      {
+        "jp": "zuiden",
+        "en": "south"
+      },
+      {
+        "jp": "oosten",
+        "en": "east"
+      },
+      {
+        "jp": "westen",
+        "en": "west"
+      }
+    ],
+    "Vehicles & Transport": [
+      {
+        "jp": "auto",
+        "en": "car"
+      },
+      {
+        "jp": "bus",
+        "en": "bus"
+      },
+      {
+        "jp": "trein",
+        "en": "train"
+      },
+      {
+        "jp": "fiets",
+        "en": "bicycle"
+      },
+      {
+        "jp": "motor",
+        "en": "motorcycle"
+      },
+      {
+        "jp": "vrachtwagen",
+        "en": "truck"
+      },
+      {
+        "jp": "vliegtuig",
+        "en": "airplane"
+      },
+      {
+        "jp": "boot",
+        "en": "boat"
+      },
+      {
+        "jp": "tram",
+        "en": "tram"
+      },
+      {
+        "jp": "metro",
+        "en": "subway / metro"
+      }
+    ],
+    "Parts of a Car": [
+      {
+        "jp": "stuur",
+        "en": "steering wheel"
+      },
+      {
+        "jp": "rem",
+        "en": "brake"
+      },
+      {
+        "jp": "gaspedaal",
+        "en": "gas pedal"
+      },
+      {
+        "jp": "motor",
+        "en": "engine"
+      },
+      {
+        "jp": "band",
+        "en": "tire"
+      },
+      {
+        "jp": "deur",
+        "en": "door"
+      },
+      {
+        "jp": "raam",
+        "en": "window"
+      },
+      {
+        "jp": "spiegel",
+        "en": "mirror"
+      },
+      {
+        "jp": "gordel",
+        "en": "seatbelt"
+      },
+      {
+        "jp": "kofferbak",
+        "en": "trunk"
+      }
+    ],
+    "Furniture & Decor": [
+      {
+        "jp": "tafel",
+        "en": "table"
+      },
+      {
+        "jp": "stoel",
+        "en": "chair"
+      },
+      {
+        "jp": "bank",
+        "en": "couch / sofa"
+      },
+      {
+        "jp": "kast",
+        "en": "closet / cabinet"
+      },
+      {
+        "jp": "bed",
+        "en": "bed"
+      },
+      {
+        "jp": "lamp",
+        "en": "lamp"
+      },
+      {
+        "jp": "tapijt",
+        "en": "carpet / rug"
+      },
+      {
+        "jp": "schilderij",
+        "en": "painting"
+      },
+      {
+        "jp": "spiegel",
+        "en": "mirror"
+      },
+      {
+        "jp": "klok",
+        "en": "clock"
+      }
+    ],
+    "Kitchen Utensils": [
+      {
+        "jp": "mes",
+        "en": "knife"
+      },
+      {
+        "jp": "vork",
+        "en": "fork"
+      },
+      {
+        "jp": "lepel",
+        "en": "spoon"
+      },
+      {
+        "jp": "bord",
+        "en": "plate"
+      },
+      {
+        "jp": "glas",
+        "en": "glass"
+      },
+      {
+        "jp": "kopje",
+        "en": "cup"
+      },
+      {
+        "jp": "pan",
+        "en": "pan"
+      },
+      {
+        "jp": "pot",
+        "en": "pot"
+      },
+      {
+        "jp": "koelkast",
+        "en": "fridge"
+      },
+      {
+        "jp": "oven",
+        "en": "oven"
+      }
+    ],
+    "Bathroom Items": [
+      {
+        "jp": "douche",
+        "en": "shower"
+      },
+      {
+        "jp": "bad",
+        "en": "bathtub"
+      },
+      {
+        "jp": "wc / toilet",
+        "en": "toilet"
+      },
+      {
+        "jp": "wastafel",
+        "en": "sink / washbasin"
+      },
+      {
+        "jp": "spiegel",
+        "en": "mirror"
+      },
+      {
+        "jp": "zeep",
+        "en": "soap"
+      },
+      {
+        "jp": "shampoo",
+        "en": "shampoo"
+      },
+      {
+        "jp": "handdoek",
+        "en": "towel"
+      },
+      {
+        "jp": "tandpasta",
+        "en": "toothpaste"
+      },
+      {
+        "jp": "tandenborstel",
+        "en": "toothbrush"
+      }
+    ],
+    "Vegetables": [
+      {
+        "jp": "groente",
+        "en": "vegetable"
+      },
+      {
+        "jp": "tomaat",
+        "en": "tomato"
+      },
+      {
+        "jp": "ui",
+        "en": "onion"
+      },
+      {
+        "jp": "knoflook",
+        "en": "garlic"
+      },
+      {
+        "jp": "wortel",
+        "en": "carrot"
+      },
+      {
+        "jp": "aardappel",
+        "en": "potato"
+      },
+      {
+        "jp": "sla",
+        "en": "lettuce"
+      },
+      {
+        "jp": "komkommer",
+        "en": "cucumber"
+      },
+      {
+        "jp": "paprika",
+        "en": "bell pepper"
+      },
+      {
+        "jp": "champignon",
+        "en": "mushroom"
+      }
+    ],
+    "Fruits": [
+      {
+        "jp": "fruit",
+        "en": "fruit"
+      },
+      {
+        "jp": "appel",
+        "en": "apple"
+      },
+      {
+        "jp": "banaan",
+        "en": "banana"
+      },
+      {
+        "jp": "sinaasappel",
+        "en": "orange"
+      },
+      {
+        "jp": "aardbei",
+        "en": "strawberry"
+      },
+      {
+        "jp": "druif",
+        "en": "grape"
+      },
+      {
+        "jp": "citroen",
+        "en": "lemon"
+      },
+      {
+        "jp": "peer",
+        "en": "pear"
+      },
+      {
+        "jp": "kers",
+        "en": "cherry"
+      },
+      {
+        "jp": "watermeloen",
+        "en": "watermelon"
+      }
+    ],
+    "Meats & Proteins": [
+      {
+        "jp": "vlees",
+        "en": "meat"
+      },
+      {
+        "jp": "kip",
+        "en": "chicken"
+      },
+      {
+        "jp": "varken",
+        "en": "pork / pig"
+      },
+      {
+        "jp": "rundvlees",
+        "en": "beef"
+      },
+      {
+        "jp": "vis",
+        "en": "fish"
+      },
+      {
+        "jp": "ei",
+        "en": "egg"
+      },
+      {
+        "jp": "kaas",
+        "en": "cheese"
+      },
+      {
+        "jp": "worst",
+        "en": "sausage"
+      },
+      {
+        "jp": "gehakt",
+        "en": "minced meat"
+      },
+      {
+        "jp": "boter",
+        "en": "butter"
+      }
+    ],
+    "Dairy & Drinks": [
+      {
+        "jp": "melk",
+        "en": "milk"
+      },
+      {
+        "jp": "water",
+        "en": "water"
+      },
+      {
+        "jp": "koffie",
+        "en": "coffee"
+      },
+      {
+        "jp": "thee",
+        "en": "tea"
+      },
+      {
+        "jp": "bier",
+        "en": "beer"
+      },
+      {
+        "jp": "wijn",
+        "en": "wine"
+      },
+      {
+        "jp": "sap",
+        "en": "juice"
+      },
+      {
+        "jp": "frisdrank",
+        "en": "soda / soft drink"
+      },
+      {
+        "jp": "kaas",
+        "en": "cheese"
+      },
+      {
+        "jp": "yoghurt",
+        "en": "yogurt"
+      }
+    ],
+    "Desserts & Sweets": [
+      {
+        "jp": "toetje",
+        "en": "dessert"
+      },
+      {
+        "jp": "ijs",
+        "en": "ice cream"
+      },
+      {
+        "jp": "taart",
+        "en": "cake"
+      },
+      {
+        "jp": "koekje",
+        "en": "cookie"
+      },
+      {
+        "jp": "chocolade",
+        "en": "chocolate"
+      },
+      {
+        "jp": "snoep",
+        "en": "candy"
+      },
+      {
+        "jp": "pannenkoek",
+        "en": "pancake"
+      },
+      {
+        "jp": "stroopwafel",
+        "en": "syrup waffle"
+      },
+      {
+        "jp": "suiker",
+        "en": "sugar"
+      },
+      {
+        "jp": "zoet",
+        "en": "sweet"
+      }
+    ],
+    "Cooking Verbs": [
+      {
+        "jp": "koken",
+        "en": "to cook / boil"
+      },
+      {
+        "jp": "bakken",
+        "en": "to bake / fry"
+      },
+      {
+        "jp": "braden",
+        "en": "to roast"
+      },
+      {
+        "jp": "snijden",
+        "en": "to cut / slice"
+      },
+      {
+        "jp": "mengen",
+        "en": "to mix"
+      },
+      {
+        "jp": "roeren",
+        "en": "to stir"
+      },
+      {
+        "jp": "toevoegen",
+        "en": "to add"
+      },
+      {
+        "jp": "proeven",
+        "en": "to taste"
+      },
+      {
+        "jp": "serveren",
+        "en": "to serve"
+      },
+      {
+        "jp": "warm maken",
+        "en": "to heat up"
+      }
+    ],
+    "Theater & Concerts": [
+      {
+        "jp": "theater",
+        "en": "theater"
+      },
+      {
+        "jp": "concert",
+        "en": "concert"
+      },
+      {
+        "jp": "muziek",
+        "en": "music"
+      },
+      {
+        "jp": "film",
+        "en": "movie / film"
+      },
+      {
+        "jp": "podium",
+        "en": "stage"
+      },
+      {
+        "jp": "publiek",
+        "en": "audience / public"
+      },
+      {
+        "jp": "kaartje",
+        "en": "ticket"
+      },
+      {
+        "jp": "zingen",
+        "en": "to sing"
+      },
+      {
+        "jp": "dansen",
+        "en": "to dance"
+      },
+      {
+        "jp": "applaus",
+        "en": "applause"
+      }
+    ],
+    "Math & Numbers": [
+      {
+        "jp": "getal",
+        "en": "number"
+      },
+      {
+        "jp": "tellen",
+        "en": "to count"
+      },
+      {
+        "jp": "plus",
+        "en": "plus"
+      },
+      {
+        "jp": "min",
+        "en": "minus"
+      },
+      {
+        "jp": "gelijk aan",
+        "en": "equal to"
+      },
+      {
+        "jp": "de helft",
+        "en": "the half"
+      },
+      {
+        "jp": "kwart",
+        "en": "quarter"
+      },
+      {
+        "jp": "rekenen",
+        "en": "to calculate / math"
+      },
+      {
+        "jp": "veel",
+        "en": "many / much"
+      },
+      {
+        "jp": "weinig",
+        "en": "few / little"
+      }
+    ],
+    "University & Study": [
+      {
+        "jp": "universiteit",
+        "en": "university"
+      },
+      {
+        "jp": "student",
+        "en": "student"
+      },
+      {
+        "jp": "studeren",
+        "en": "to study"
+      },
+      {
+        "jp": "college",
+        "en": "lecture"
+      },
+      {
+        "jp": "professor",
+        "en": "professor"
+      },
+      {
+        "jp": "examen",
+        "en": "exam"
+      },
+      {
+        "jp": "toets",
+        "en": "test"
+      },
+      {
+        "jp": "cijfer",
+        "en": "grade / mark"
+      },
+      {
+        "jp": "slagen",
+        "en": "to pass (exam)"
+      },
+      {
+        "jp": "zakken",
+        "en": "to fail (exam)"
+      }
+    ],
+    "Medical Symptoms": [
+      {
+        "jp": "pijn",
+        "en": "pain"
+      },
+      {
+        "jp": "hoofdpijn",
+        "en": "headache"
+      },
+      {
+        "jp": "buikpijn",
+        "en": "stomach ache"
+      },
+      {
+        "jp": "koorts",
+        "en": "fever"
+      },
+      {
+        "jp": "hoesten",
+        "en": "to cough"
+      },
+      {
+        "jp": "niezen",
+        "en": "to sneeze"
+      },
+      {
+        "jp": "verkouden",
+        "en": "having a cold"
+      },
+      {
+        "jp": "ziek",
+        "en": "sick"
+      },
+      {
+        "jp": "bloed",
+        "en": "blood"
+      },
+      {
+        "jp": "misselijk",
+        "en": "nauseous"
+      }
+    ],
+    "Tourism & Sightseeing": [
+      {
+        "jp": "toerist",
+        "en": "tourist"
+      },
+      {
+        "jp": "vakantie",
+        "en": "vacation / holiday"
+      },
+      {
+        "jp": "reizen",
+        "en": "to travel"
+      },
+      {
+        "jp": "museum",
+        "en": "museum"
+      },
+      {
+        "jp": "rondleiding",
+        "en": "guided tour"
+      },
+      {
+        "jp": "bezienswaardigheid",
+        "en": "sight / attraction"
+      },
+      {
+        "jp": "foto maken",
+        "en": "to take a photo"
+      },
+      {
+        "jp": "souvenir",
+        "en": "souvenir"
+      },
+      {
+        "jp": "kaart",
+        "en": "map"
+      },
+      {
+        "jp": "centrum",
+        "en": "city center"
+      }
+    ],
+    "Romance & Dating": [
+      {
+        "jp": "liefde",
+        "en": "love"
+      },
+      {
+        "jp": "houden van",
+        "en": "to love (someone/something)"
+      },
+      {
+        "jp": "verliefd",
+        "en": "in love"
+      },
+      {
+        "jp": "kussen",
+        "en": "to kiss"
+      },
+      {
+        "jp": "knuffelen",
+        "en": "to hug"
+      },
+      {
+        "jp": "afspraakje / date",
+        "en": "date (romantic)"
+      },
+      {
+        "jp": "vriend / vriendin",
+        "en": "boyfriend / girlfriend"
+      },
+      {
+        "jp": "relatie",
+        "en": "relationship"
+      },
+      {
+        "jp": "mooi",
+        "en": "beautiful"
+      },
+      {
+        "jp": "hart",
+        "en": "heart"
+      }
     ]
   }
 }
