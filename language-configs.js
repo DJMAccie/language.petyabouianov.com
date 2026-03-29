@@ -250,3 +250,79 @@ window.StudioConfigs = {};
         }
     };
 })();
+
+// ==========================================
+// 4. NEDERLANDS (DUTCH) CONFIGURATION
+// ==========================================
+(function () {
+    let bestDutchVoice = null;
+    const quotes = [
+        { jp: "Oost west, thuis best", en: "East west, home's best", reading: "" },
+        { jp: "Een goed begin is het halve werk", en: "A good beginning is half the battle", reading: "" },
+        { jp: "Al draagt een aap een gouden ring, het is en blijft een lelijk ding", en: "Clothes don't make the man", reading: "" }
+    ];
+
+    function normalize(text) {
+        if (!text) return "";
+        return text.toString().toLowerCase().replace(/\s+/g, '').replace(/[.,?!'":;—\-_/\\~]/g, '');
+    }
+
+    function initVoices() {
+        if (!('speechSynthesis' in window)) return;
+        const loadVoices = () => {
+            const voices = speechSynthesis.getVoices();
+            if (voices.length === 0) return;
+            const prefs = ['Google Nederlands', 'Xander', 'Claire', 'Laura'];
+            for (const p of prefs) {
+                const matches = voices.filter(v => v.name.includes(p));
+                if (matches.length > 0) {
+                    bestDutchVoice = matches.find(v => v.name.includes('Premium') || v.name.includes('Enhanced')) || matches[0];
+                    break;
+                }
+            }
+            if (!bestDutchVoice) bestDutchVoice = voices.find(v => v.lang.startsWith('nl'));
+        };
+        loadVoices();
+        if (speechSynthesis.onvoiceschanged !== undefined) speechSynthesis.onvoiceschanged = loadVoices;
+    }
+
+    function speakText(text) {
+        if (!('speechSynthesis' in window)) return;
+        window.speechSynthesis.cancel();
+        let cleanText = text.replace(/[\(\[].*?[\)\]]/g, '').trim();
+        const utterance = new SpeechSynthesisUtterance(cleanText);
+        utterance.lang = 'nl-NL';
+        if (bestDutchVoice) utterance.voice = bestDutchVoice;
+        window.speechSynthesis.speak(utterance);
+    }
+
+    function checkAnswerMatch(user, correct) {
+        const u = normalize(user), c = normalize(correct);
+        const minLength = c.length <= 2 ? 1 : 2;
+        return u.length >= minLength && (c === u || c.includes(u) || u.includes(c));
+    }
+
+    window.StudioConfigs.nederlands = {
+        apiUrl: 'studio_api.php?lang=nederlands',
+        favicon: '🇳🇱',
+        lang: 'nl-NL',
+        streakKey: 'ns_nl',
+        quotes: quotes,
+        normalize: normalize,
+        checkAnswerMatch: checkAnswerMatch,
+        initVoices: initVoices,
+        speakText: speakText,
+        gauntletLabel: "GAUNTLET (EN → NL)",
+        speechLabel: "SPEAKING (EN → NL)",
+        startTraining: function (name) {
+            const loadedLists = window._studio.getLoadedLists();
+            if (!loadedLists[name]) return;
+            StudioCore.setState('currentListName', name + " (Training)");
+            StudioCore.setState('isPurificationSession', false);
+            const allWords = [...loadedLists[name]];
+            const size = Math.min(allWords.length, allWords.length <= 30 ? Math.max(3, Math.ceil(allWords.length * 0.3)) : Math.ceil(allWords.length * 0.1));
+            StudioCore.setState('wordList', allWords.sort(() => Math.random() - 0.5).slice(0, size));
+            StudioCore.startSession();
+        }
+    };
+})();

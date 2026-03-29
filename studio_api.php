@@ -39,7 +39,7 @@ $data = is_array($data) ? $data : [];
 $client_password = $data['password'] ?? '';
 
 // --- ROUTING CONFIG ---
-$listsFile = __DIR__ . '/global_lists.json';
+$listsFile = ($lang === 'nederlands') ? __DIR__ . '/nederlands_lists.json' : __DIR__ . '/global_lists.json';
 $scoresFile = __DIR__ . '/global_scores.json';
 $statsFile = __DIR__ . '/global_word_stats.json';
 
@@ -224,8 +224,8 @@ function migrateBundledRuntimeSnapshot($targets) {
 migrateBundledRuntimeSnapshot([$listsFile, $scoresFile, $statsFile]);
 
 // Create them if missing
-foreach([$listsFile, $scoresFile, $statsFile] as $f) {
-    if (!file_exists($f)) file_put_contents($f, json_encode(['nihongo' => [], 'bahasa' => [], 'italia' => []]));
+foreach([__DIR__ . '/global_lists.json', __DIR__ . '/nederlands_lists.json', $scoresFile, $statsFile] as $f) {
+    if (!file_exists($f)) file_put_contents($f, json_encode(['nihongo' => [], 'bahasa' => [], 'italia' => [], 'nederlands' => []]));
 }
 
 // Ensure files exist
@@ -235,7 +235,7 @@ foreach([$listsFile, $scoresFile, $statsFile] as $f) {
 
 
 // --- MAIN LOGIC ---
-$allowedLangs = ['nihongo', 'bahasa', 'italia'];
+$allowedLangs = ['nihongo', 'bahasa', 'italia', 'nederlands'];
 if (!in_array($lang, $allowedLangs, true)) {
     outputJSON(["error" => "Invalid language"], 400);
 }
