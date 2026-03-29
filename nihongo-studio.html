@@ -226,7 +226,7 @@
                         <h2 id="question-word" class="text-4xl md:text-6xl font-bold text-gray-800 min-h-[1.2em]">...
                         </h2>
                         <!-- Replay Audio Button -->
-                        <button onclick="replayAudio()"
+                        <button type="button" onclick="replayAudio()"
                             class="text-gray-300 hover:text-blue-500 transition p-2 rounded-full hover:bg-blue-50"
                             title="Replay Audio">
                             <i class="fas fa-volume-up text-xl"></i>
@@ -238,14 +238,14 @@
                         <div id="text-input-container" class="relative">
                             <input type="text" id="answer-input" placeholder="Type answer here..." autocomplete="off"
                                 class="w-full py-4 px-12 bg-transparent border-b-2 border-gray-300 text-2xl md:text-3xl text-center focus:outline-none focus:border-blue-500 transition-all">
-                            <button id="kana-toggle-btn" onclick="toggleKanaIME()" title="Toggle Kana Input" 
+                            <button type="button" id="kana-toggle-btn" onclick="toggleKanaIME()" title="Toggle Kana Input" 
                                 class="absolute right-2 top-1/2 transform -translate-y-1/2 w-8 h-8 rounded-full bg-blue-100 text-blue-600 font-bold hover:bg-blue-200 transition-colors flex items-center justify-center text-sm shadow-sm select-none">
                                 あ
                             </button>
                         </div>
                         <!-- SPEECH INPUT -->
                         <div id="speech-controls" class="hidden flex flex-col items-center justify-center gap-4">
-                            <button id="mic-btn" onclick="activateSpeech()"
+                            <button type="button" id="mic-btn" onclick="activateSpeech()"
                                 class="relative w-20 h-20 rounded-full bg-gray-100 hover:bg-blue-50 text-blue-500 text-3xl shadow-md border border-gray-200 transition-all active:scale-95 flex items-center justify-center animate-fade-in">
                                 <i id="mic-icon" class="fas fa-microphone"></i>
                             </button>
