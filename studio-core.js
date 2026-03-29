@@ -124,58 +124,30 @@ const StudioCore = (() => {
     // SRS ENGINE
     // =========================================================
 
-    // Weighted confidence score (0–100). A word is mastered when >= 70.
-    // Designed for quiz-till-right training: tolerates high wrong counts,
-    // rewards recent correct answers and short streaks.
+    // Simple confidence score (0-100) based entirely on correct answers.
+    // Mastered = 10 correct answers.
     function calculateConfidence(stats) {
         if (!stats) return 0;
         const correct = stats.correct || 0;
-        const wrong = stats.wrong || 0;
-        const streak = stats.streak || 0;
-        const total = correct + wrong;
-
-        // Accuracy component (50% weight) — capped so early retries don't destroy it
-        const accuracy = total > 0 ? (correct / total) * 100 : 0;
-        const accuracyPart = accuracy * 0.50;
-
-        // Streak component (30% weight) — full bonus at streak >= 5
-        const streakPart = (Math.min(streak, 5) / 5) * 30;
-
-        // Recency component (20% weight) — decays linearly over 30 days since last review
-        let recencyPart = 0;
-        if (stats.last_review && stats.last_review > 0) {
-            const daysSince = (Date.now() - stats.last_review) / (1000 * 60 * 60 * 24);
-            recencyPart = Math.max(0, 1 - daysSince / 30) * 20;
-        }
-
-        return accuracyPart + streakPart + recencyPart;
+        return Math.min(100, (correct / 10) * 100);
     }
 
     function isMastered(word) {
         const stats = wordStats[word.jp];
         if (!stats) return false;
-        // Require at least one seen/correct to avoid false positives
-        if ((stats.correct || 0) === 0) return false;
-        return calculateConfidence(stats) >= 70;
+        return (stats.correct || 0) >= 10;
     }
 
     function calculatePriority(word) {
         const stats = wordStats[word.jp];
         if (!stats) return 100;
-
-        const now = Date.now();
-        const daysSinceReview = stats.last_review ? (now - stats.last_review) / (1000 * 60 * 60 * 24) : 30;
-        const wrongCount = stats.wrong || 0;
-        const streak = stats.streak || 0;
-
         if (isMastered(word)) return 1;
 
-        let weight = 5 + (daysSinceReview * 2) + (wrongCount * 5) + Math.max(0, (5 - streak) * 3);
+        const wrongCount = stats.wrong || 0;
+        const streak = stats.streak || 0;
+        const correctCount = stats.correct || 0;
 
-        if (stats.next_review && now > stats.next_review) {
-            weight += 20;
-        }
-
+        let weight = 5 + (wrongCount * 5) + Math.max(0, (5 - streak) * 3) + Math.max(0, (10 - correctCount) * 2);
         return Math.max(1, weight);
     }
 
@@ -320,8 +292,8 @@ const StudioCore = (() => {
         const reviewQueue = allUniqueWords.filter(w => {
             const stats = wordStats[w.jp];
             if (!stats) return false;
-            if (!stats.last_review || stats.last_review === 0) return false;
             if ((stats.correct || 0) === 0) return false;
+            if (isMastered(w)) return false;
             return true;
         });
 
@@ -455,8 +427,8 @@ const StudioCore = (() => {
                     seen.add(word.jp);
                     const stats = wordStats[word.jp];
                     if (!stats) return;
-                    if (!stats.last_review || stats.last_review === 0) return;
                     if (!stats.correct || stats.correct === 0) return;
+                    if (isMastered(word)) return;
                     candidates.push(word);
                 }
             });
