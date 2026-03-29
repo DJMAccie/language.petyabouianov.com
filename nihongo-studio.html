@@ -235,9 +235,13 @@
 
                     <div class="relative max-w-xl mx-auto group min-h-[120px] flex flex-col justify-center">
                         <!-- TEXT INPUT -->
-                        <div id="text-input-container">
+                        <div id="text-input-container" class="relative">
                             <input type="text" id="answer-input" placeholder="Type answer here..." autocomplete="off"
-                                class="w-full py-4 bg-transparent border-b-2 border-gray-300 text-2xl md:text-3xl text-center focus:outline-none focus:border-blue-500 transition-all">
+                                class="w-full py-4 px-12 bg-transparent border-b-2 border-gray-300 text-2xl md:text-3xl text-center focus:outline-none focus:border-blue-500 transition-all">
+                            <button id="kana-toggle-btn" onclick="toggleKanaIME()" title="Toggle Kana Input" 
+                                class="absolute right-2 top-1/2 transform -translate-y-1/2 w-8 h-8 rounded-full bg-blue-100 text-blue-600 font-bold hover:bg-blue-200 transition-colors flex items-center justify-center text-sm shadow-sm select-none">
+                                あ
+                            </button>
                         </div>
                         <!-- SPEECH INPUT -->
                         <div id="speech-controls" class="hidden flex flex-col items-center justify-center gap-4">
@@ -292,8 +296,36 @@
     <script src="studio-core.js"></script>
     <script src="language-configs.js"></script>
     <script>
+        let isKanaMode = true;
+        let wanakanaBound = false;
+
+        function toggleKanaIME() {
+            const input = document.getElementById('answer-input');
+            const btn = document.getElementById('kana-toggle-btn');
+            if (isKanaMode) {
+                if (typeof wanakana !== 'undefined' && wanakanaBound) { wanakana.unbind(input); wanakanaBound = false; }
+                btn.innerText = 'A';
+                btn.className = "absolute right-2 top-1/2 transform -translate-y-1/2 w-8 h-8 rounded-full bg-gray-100 text-gray-500 font-bold hover:bg-gray-200 transition-colors flex items-center justify-center text-sm shadow-sm select-none";
+                isKanaMode = false;
+            } else {
+                if (typeof wanakana !== 'undefined') { wanakana.bind(input, { IMEMode: true }); wanakanaBound = true; }
+                btn.innerText = 'あ';
+                btn.className = "absolute right-2 top-1/2 transform -translate-y-1/2 w-8 h-8 rounded-full bg-blue-100 text-blue-600 font-bold hover:bg-blue-200 transition-colors flex items-center justify-center text-sm shadow-sm select-none";
+                isKanaMode = true;
+            }
+            input.focus();
+        }
+
         window.onload = () => {
             StudioCore.init(window.StudioConfigs.nihongo);
+
+            if (typeof wanakana !== 'undefined') {
+                const input = document.getElementById('answer-input');
+                wanakana.bind(input, { IMEMode: true });
+                wanakanaBound = true;
+            } else {
+                document.getElementById('kana-toggle-btn').style.display = 'none';
+            }
 
             // Re-bind dictionary logic for Nihongo
             document.getElementById('dict-search-input')?.addEventListener('keypress', (e) => {
