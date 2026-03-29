@@ -125,17 +125,17 @@ const StudioCore = (() => {
     // =========================================================
 
     // Simple confidence score (0-100) based entirely on correct answers.
-    // Mastered = 10 correct answers.
+    // Mastered = 7 correct answers.
     function calculateConfidence(stats) {
         if (!stats) return 0;
         const correct = stats.correct || 0;
-        return Math.min(100, (correct / 10) * 100);
+        return Math.min(100, (correct / 7) * 100);
     }
 
     function isMastered(word) {
         const stats = wordStats[word.jp];
         if (!stats) return false;
-        return (stats.correct || 0) >= 10;
+        return (stats.correct || 0) >= 7;
     }
 
     function calculatePriority(word) {
@@ -147,7 +147,7 @@ const StudioCore = (() => {
         const streak = stats.streak || 0;
         const correctCount = stats.correct || 0;
 
-        let weight = 5 + (wrongCount * 5) + Math.max(0, (5 - streak) * 3) + Math.max(0, (10 - correctCount) * 2);
+        let weight = 5 + (wrongCount * 5) + Math.max(0, (5 - streak) * 3) + Math.max(0, (7 - correctCount) * 2);
         return Math.max(1, weight);
     }
 
