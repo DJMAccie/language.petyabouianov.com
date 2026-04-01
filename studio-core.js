@@ -102,7 +102,10 @@ const StudioCore = (() => {
 
         // Default to the harder production direction on every fresh load.
         const modeSelect = document.getElementById('global-quiz-mode');
-        if (modeSelect) modeSelect.value = 'en-jp';
+        if (modeSelect) {
+            const defaultMode = config.defaultQuizMode || 'en-jp';
+            modeSelect.value = modeSelect.querySelector(`option[value="${defaultMode}"]`) ? defaultMode : 'en-jp';
+        }
 
         // Run startup
         if (config.initVoices) config.initVoices();

@@ -1,6 +1,6 @@
 <?php
 // studio_api.php
-// Unified API for Language Studios (Nihongo & Bahasa)
+// Unified API for Language Studios
 ob_start();
 
 ini_set('display_errors', 0);
@@ -39,7 +39,15 @@ $data = is_array($data) ? $data : [];
 $client_password = $data['password'] ?? '';
 
 // --- ROUTING CONFIG ---
-$listsFile = ($lang === 'nederlands') ? __DIR__ . '/nederlands_lists.json' : __DIR__ . '/global_lists.json';
+$listsFilesByLang = [
+    'nihongo' => __DIR__ . '/global_lists.json',
+    'bahasa' => __DIR__ . '/global_lists.json',
+    'italia' => __DIR__ . '/global_lists.json',
+    'nederlands' => __DIR__ . '/nederlands_lists.json',
+    'sascha' => __DIR__ . '/sascha_lists.json',
+];
+$allowedLangs = array_keys($listsFilesByLang);
+$listsFile = $listsFilesByLang[$lang] ?? null;
 $scoresFile = __DIR__ . '/global_scores.json';
 $statsFile = __DIR__ . '/global_word_stats.json';
 
@@ -221,24 +229,33 @@ function migrateBundledRuntimeSnapshot($targets) {
     }
 }
 
-migrateBundledRuntimeSnapshot([$listsFile, $scoresFile, $statsFile]);
-
-// Create them if missing
-foreach([__DIR__ . '/global_lists.json', __DIR__ . '/nederlands_lists.json', $scoresFile, $statsFile] as $f) {
-    if (!file_exists($f)) file_put_contents($f, json_encode(['nihongo' => [], 'bahasa' => [], 'italia' => [], 'nederlands' => []]));
+if (!in_array($lang, $allowedLangs, true) || !$listsFile) {
+    outputJSON(["error" => "Invalid language"], 400);
 }
 
-// Ensure files exist
-foreach([$listsFile, $scoresFile, $statsFile] as $f) {
-    if (!file_exists($f)) file_put_contents($f, '{}');
+migrateBundledRuntimeSnapshot([$listsFile, $scoresFile, $statsFile]);
+
+$defaultBuckets = [];
+foreach ($allowedLangs as $allowedLang) {
+    $defaultBuckets[$allowedLang] = [];
+}
+
+$defaultFileContents = [
+    __DIR__ . '/global_lists.json' => ['nihongo' => [], 'bahasa' => [], 'italia' => []],
+    __DIR__ . '/nederlands_lists.json' => ['nederlands' => []],
+    __DIR__ . '/sascha_lists.json' => ['sascha' => []],
+    $scoresFile => $defaultBuckets,
+    $statsFile => $defaultBuckets,
+];
+
+foreach ($defaultFileContents as $path => $defaults) {
+    if (!file_exists($path)) {
+        file_put_contents($path, json_encode($defaults, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+    }
 }
 
 
 // --- MAIN LOGIC ---
-$allowedLangs = ['nihongo', 'bahasa', 'italia', 'nederlands'];
-if (!in_array($lang, $allowedLangs, true)) {
-    outputJSON(["error" => "Invalid language"], 400);
-}
 
 switch ($action) {
     case 'get_lists':

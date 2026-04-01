@@ -1,0 +1,556 @@
+{
+  "Pokopia: Pokémon World": [
+    {
+      "jp": "ゼニガメ Zenigame",
+      "en": "Squirtle"
+    },
+    {
+      "jp": "変身 henshin",
+      "en": "Transformation"
+    },
+    {
+      "jp": "水鉄砲 mizuteppou",
+      "en": "Water Gun (move)"
+    },
+    {
+      "jp": "甲羅 koura",
+      "en": "Shell / Carapace"
+    },
+    {
+      "jp": "手足 teashi",
+      "en": "Limbs (hands and feet)"
+    },
+    {
+      "jp": "命の恩人 inochi no onjin",
+      "en": "Life saver"
+    },
+    {
+      "jp": "草木 kusaki",
+      "en": "Plants and trees"
+    },
+    {
+      "jp": "餌 esa",
+      "en": "Feed / Bait"
+    },
+    {
+      "jp": "水面 suimen",
+      "en": "Water surface"
+    },
+    {
+      "jp": "噴射 funsha",
+      "en": "Jet / Spray"
+    },
+    {
+      "jp": "吹き出し fukidashi",
+      "en": "Speech bubble"
+    },
+    {
+      "jp": "地面 jimen",
+      "en": "Ground / Earth"
+    },
+    {
+      "jp": "活躍 katsuyaku",
+      "en": "Great activity / Efforts"
+    },
+    {
+      "jp": "傷 kizu",
+      "en": "Wound / Scratch"
+    },
+    {
+      "jp": "持ち主 mochinushi",
+      "en": "Owner"
+    }
+  ],
+  "Pokopia: Old & Character Speech": [
+    {
+      "jp": "お主 onushi",
+      "en": "You (archaic)"
+    },
+    {
+      "jp": "おる oru",
+      "en": "To be (old-fashioned)"
+    },
+    {
+      "jp": "のう nou",
+      "en": "Right? (old man style)"
+    },
+    {
+      "jp": "ワシ washi",
+      "en": "I / Me (old man style)"
+    },
+    {
+      "jp": "オイラ oira",
+      "en": "I / Me (casual/rough)"
+    },
+    {
+      "jp": "ほら hora",
+      "en": "Look! / See!"
+    },
+    {
+      "jp": "ねえ nee",
+      "en": "Hey / Isn't it?"
+    },
+    {
+      "jp": "かなあ kanaa",
+      "en": "I wonder"
+    },
+    {
+      "jp": "いやいや iya iya",
+      "en": "No no / Not at all"
+    },
+    {
+      "jp": "ふむふむ fumu fumu",
+      "en": "I see / Hmm hmm"
+    },
+    {
+      "jp": "なんだ nan da",
+      "en": "What is it? / Oh I see"
+    },
+    {
+      "jp": "ちがう chigau",
+      "en": "Different / Wrong"
+    },
+    {
+      "jp": "いったい ittai",
+      "en": "What on earth"
+    },
+    {
+      "jp": "なんか nanka",
+      "en": "Like / Something like / Somehow"
+    }
+  ],
+  "Pokopia: Nature & Life Verbs": [
+    {
+      "jp": "ほる horu",
+      "en": "To dig"
+    },
+    {
+      "jp": "いやす iyasu",
+      "en": "To heal"
+    },
+    {
+      "jp": "荒れ果てる arehateru",
+      "en": "To be desolated / ruined"
+    },
+    {
+      "jp": "まく maku",
+      "en": "To sow / To scatter"
+    },
+    {
+      "jp": "枯れる kareru",
+      "en": "To wither (plants)"
+    },
+    {
+      "jp": "果てる hateru",
+      "en": "To end / To perish"
+    },
+    {
+      "jp": "暮らす kurasu",
+      "en": "To live / To spend time (daily life)"
+    },
+    {
+      "jp": "湧く waku",
+      "en": "To well up / To gush"
+    },
+    {
+      "jp": "鳴る naru",
+      "en": "To ring / To sound"
+    },
+    {
+      "jp": "残る nokoru",
+      "en": "To remain / To stay"
+    },
+    {
+      "jp": "倒れる taoreru",
+      "en": "To fall down / To collapse"
+    },
+    {
+      "jp": "戻る modoru",
+      "en": "To return / To go back"
+    },
+    {
+      "jp": "眠る nemuru",
+      "en": "To sleep"
+    },
+    {
+      "jp": "覚める sameru",
+      "en": "To wake up"
+    },
+    {
+      "jp": "おこす okosu",
+      "en": "To wake someone up / To cause"
+    }
+  ],
+  "Pokopia: Interaction Verbs": [
+    {
+      "jp": "操る ayatsuru",
+      "en": "To manipulate / To control"
+    },
+    {
+      "jp": "伝える tsutaeru",
+      "en": "To convey / To tell"
+    },
+    {
+      "jp": "気づく kizuku",
+      "en": "To notice / To realize"
+    },
+    {
+      "jp": "話しかける hanashikakeru",
+      "en": "To speak to / To approach"
+    },
+    {
+      "jp": "出会う deau",
+      "en": "To meet by chance"
+    },
+    {
+      "jp": "間違える machigaeru",
+      "en": "To make a mistake"
+    },
+    {
+      "jp": "なでる naderu",
+      "en": "To pet / To stroke"
+    },
+    {
+      "jp": "出かける dekakeru",
+      "en": "To go out"
+    },
+    {
+      "jp": "見つかる mitsukaru",
+      "en": "To be found"
+    },
+    {
+      "jp": "引っ込める hikkomeru",
+      "en": "To pull in / To withdraw"
+    },
+    {
+      "jp": "動き出す ugokidasu",
+      "en": "To start moving"
+    },
+    {
+      "jp": "ふきだす fukidasu",
+      "en": "To burst out laughing"
+    },
+    {
+      "jp": "やる yaru",
+      "en": "To do / To give (casual)"
+    },
+    {
+      "jp": "いらっしゃる irassharu",
+      "en": "To be / Come / Go (honorific)"
+    },
+    {
+      "jp": "しれる shireru",
+      "en": "To become known / might be"
+    }
+  ],
+  "Pokopia: Feelings & Qualities": [
+    {
+      "jp": "希望 kibou",
+      "en": "Hope"
+    },
+    {
+      "jp": "興味 kyoumi",
+      "en": "Interest"
+    },
+    {
+      "jp": "賛成 sansei",
+      "en": "Agreement / I agree"
+    },
+    {
+      "jp": "微妙 bibyou",
+      "en": "Subtle / Questionable / Meh"
+    },
+    {
+      "jp": "清潔 seiketsu",
+      "en": "Cleanliness / Hygienic"
+    },
+    {
+      "jp": "様子 yousu",
+      "en": "State / Situation / Appearance"
+    },
+    {
+      "jp": "姿 sugata",
+      "en": "Appearance / Figure"
+    },
+    {
+      "jp": "力 chikara",
+      "en": "Power / Strength"
+    },
+    {
+      "jp": "恰好 kakkou",
+      "en": "Appearance / Shape / Cool"
+    },
+    {
+      "jp": "嬉しそう ureshisou",
+      "en": "Looking happy"
+    },
+    {
+      "jp": "器用 kiyou",
+      "en": "Skillful / Handy / Dexterous"
+    },
+    {
+      "jp": "素朴 soboku",
+      "en": "Simple / Rustic / Unaffected"
+    },
+    {
+      "jp": "美しい utsukushii",
+      "en": "Beautiful"
+    },
+    {
+      "jp": "上手い umai",
+      "en": "Good / Skillful / Clever"
+    },
+    {
+      "jp": "助かる tasukaru",
+      "en": "To be saved / What a relief"
+    }
+  ],
+  "Pokopia: Modern & Tech Life": [
+    {
+      "jp": "自撮り jidori",
+      "en": "Selfie"
+    },
+    {
+      "jp": "起動 kidou",
+      "en": "Startup / Activation"
+    },
+    {
+      "jp": "検知 kenchi",
+      "en": "Detection"
+    },
+    {
+      "jp": "補助バッテリ hojo batteri",
+      "en": "Auxiliary battery"
+    },
+    {
+      "jp": "使い方 tsukaikata",
+      "en": "How to use / Usage"
+    },
+    {
+      "jp": "掘り出し horidashi",
+      "en": "Lucky find / Bargain"
+    },
+    {
+      "jp": "マネ mane",
+      "en": "Imitation / Mimicry"
+    },
+    {
+      "jp": "ダメ dame",
+      "en": "No good / Useless / Not allowed"
+    },
+    {
+      "jp": "キュート kyuuto",
+      "en": "Cute"
+    },
+    {
+      "jp": "ノビ nobi",
+      "en": "Stretching"
+    },
+    {
+      "jp": "ピコピコ piko piko",
+      "en": "Blinking / Beeping"
+    },
+    {
+      "jp": "コーデ koode",
+      "en": "Outfit / Coordination"
+    },
+    {
+      "jp": "トップス toppusu",
+      "en": "Tops (clothing)"
+    },
+    {
+      "jp": "ボトムス botomusu",
+      "en": "Bottoms (clothing)"
+    },
+    {
+      "jp": "アクセサリー akusesarii",
+      "en": "Accessory"
+    }
+  ],
+  "Pokopia: Adverbs & Time": [
+    {
+      "jp": "ずいぶん zuibun",
+      "en": "Quite / Extremely / A lot"
+    },
+    {
+      "jp": "いきなり ikinari",
+      "en": "Suddenly / Out of nowhere"
+    },
+    {
+      "jp": "突然 totsuzen",
+      "en": "Suddenly / All of a sudden"
+    },
+    {
+      "jp": "すっかり sukkari",
+      "en": "Completely / Entirely"
+    },
+    {
+      "jp": "本当に hontou ni",
+      "en": "Really / Truly"
+    },
+    {
+      "jp": "きっと kitto",
+      "en": "Surely / Certainly / I bet"
+    },
+    {
+      "jp": "まるで marude",
+      "en": "Just like / As if"
+    },
+    {
+      "jp": "どうせ douse",
+      "en": "Anyway / After all"
+    },
+    {
+      "jp": "かつて katsute",
+      "en": "Once / Formerly / In the past"
+    },
+    {
+      "jp": "ひょっと hyotto",
+      "en": "Possibly / By chance"
+    },
+    {
+      "jp": "さっき sakki",
+      "en": "A while ago / Just now"
+    },
+    {
+      "jp": "経つ tatsu",
+      "en": "(Time) passes"
+    },
+    {
+      "jp": "生き生き iki iki",
+      "en": "Lively / Vividly / Full of energy"
+    },
+    {
+      "jp": "互いに tagai ni",
+      "en": "Mutually / Each other"
+    },
+    {
+      "jp": "危なく abunaku",
+      "en": "Dangerously / Almost (did something)"
+    }
+  ],
+  "Pokopia: Connectors & Expressions": [
+    {
+      "jp": "それより sore yori",
+      "en": "More than that / More importantly"
+    },
+    {
+      "jp": "それでは sore de wa",
+      "en": "Well then / In that case"
+    },
+    {
+      "jp": "それにしても sore ni shitemo",
+      "en": "Even so / Nevertheless"
+    },
+    {
+      "jp": "どうにか dounika",
+      "en": "Somehow / One way or another"
+    },
+    {
+      "jp": "もしかして moshikashite",
+      "en": "Perhaps / By any chance"
+    },
+    {
+      "jp": "こういう kou iu",
+      "en": "This kind of"
+    },
+    {
+      "jp": "ちゃんと chanto",
+      "en": "Properly / Correctly / For sure"
+    },
+    {
+      "jp": "みたい mitai",
+      "en": "Looks like / Seems like"
+    },
+    {
+      "jp": "あたり atari",
+      "en": "Around / Vicinity"
+    },
+    {
+      "jp": "とたん totan",
+      "en": "The moment that / Just as"
+    },
+    {
+      "jp": "のに noni",
+      "en": "Even though / Despite"
+    },
+    {
+      "jp": "ちゃう chau",
+      "en": "To end up doing (casual shimau)"
+    },
+    {
+      "jp": "すぎる sugiru",
+      "en": "Too much / Exceeds"
+    },
+    {
+      "jp": "はず hazu",
+      "en": "Expected to / Supposed to"
+    },
+    {
+      "jp": "しれる shireru",
+      "en": "Might be / Could possibly"
+    }
+  ],
+  "Pokopia: Essential Nouns": [
+    {
+      "jp": "名前 namae",
+      "en": "Name"
+    },
+    {
+      "jp": "響き hibiki",
+      "en": "Sound / Echo / Resonance"
+    },
+    {
+      "jp": "最後 saigo",
+      "en": "Last / Final"
+    },
+    {
+      "jp": "昼寝 hirune",
+      "en": "Nap"
+    },
+    {
+      "jp": "疲れ tsukare",
+      "en": "Fatigue / Tiredness"
+    },
+    {
+      "jp": "身 mi",
+      "en": "Body / Fruit / Flesh"
+    },
+    {
+      "jp": "ひとり hitori",
+      "en": "One person / Alone"
+    },
+    {
+      "jp": "多く ooku",
+      "en": "Many / Much / A lot of"
+    },
+    {
+      "jp": "等 nado",
+      "en": "Etc. / And so on"
+    },
+    {
+      "jp": "良い yoi",
+      "en": "Good (formal form of いい)"
+    },
+    {
+      "jp": "出会える deaeru",
+      "en": "Can meet / Able to encounter"
+    },
+    {
+      "jp": "バッグ baggu",
+      "en": "Bag"
+    },
+    {
+      "jp": "過ごす sugosu",
+      "en": "To spend time"
+    },
+    {
+      "jp": "髪型 kamigata",
+      "en": "Hairstyle"
+    },
+    {
+      "jp": "詳しく kuwashiku",
+      "en": "In detail / Thoroughly"
+    }
+  ]
+}

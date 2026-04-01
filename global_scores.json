@@ -1,0 +1,548 @@
+{
+    "nihongo": {
+        "24 travel phrases": {
+            "jp-en": 64,
+            "en-jp": 95,
+            "last_activity": 1770293391000
+        },
+        "bar talk": {
+            "jp-en": 95,
+            "en-jp": 100,
+            "last_activity": 1770292608000
+        },
+        "20 simple words": {
+            "jp-en": 95,
+            "en-jp": 95,
+            "last_activity": 1770292504000
+        },
+        "Diagnostic Review": 60,
+        "Real life japanese words": {
+            "jp-en": 92,
+            "en-jp": 100,
+            "last_activity": 1770292211000
+        },
+        "5 basic sentences": 100,
+        "Questions hard": {
+            "jp-en": 100,
+            "en-jp": 100,
+            "last_activity": 1769610395000
+        },
+        "Smart Review": {
+            "jp-en": 100,
+            "en-jp": 100,
+            "last_activity": 1773836878000
+        },
+        "6 basic sentences": {
+            "jp-en": 100,
+            "en-jp": 100,
+            "last_activity": 1768946748000
+        },
+        "Pokemon related list": {
+            "jp-en": 100,
+            "en-jp": 100,
+            "last_activity": 1769163695000
+        },
+        "Y\u014dkai Hunt": {
+            "jp-en": 100,
+            "en-jp": 100,
+            "last_activity": 1769445022000
+        },
+        "Starter Kit": {
+            "jp-en": 0,
+            "en-jp": 94,
+            "last_activity": 1770294697000
+        },
+        "big verb list": {
+            "jp-en": 0,
+            "en-jp": 0,
+            "last_activity": 1770152757000
+        },
+        "50 verbs": {
+            "jp-en": 65,
+            "en-jp": 93,
+            "last_activity": 1768737273000
+        },
+        "Glue words": {
+            "jp-en": 58,
+            "en-jp": 94,
+            "last_activity": 1770295496000
+        },
+        "Random Mix": {
+            "en-jp": 100,
+            "last_activity": 1770020670000,
+            "jp-en": 100
+        },
+        "Starter kit 2": {
+            "jp-en": 0,
+            "en-jp": 82,
+            "last_activity": 1770292415000
+        },
+        "Dagen van de week": {
+            "jp-en": 91,
+            "en-jp": 100,
+            "last_activity": 1768921250000
+        },
+        "6 basic sentences (Training)": {
+            "en-jp": 60,
+            "last_activity": 1769087753000
+        },
+        "Starter kit 2 (Training)": {
+            "en-jp": 92,
+            "last_activity": 1769163616000
+        },
+        "Questions hard (Training)": {
+            "en-jp": 100,
+            "last_activity": 1769158367000
+        },
+        "big verb list (Training)": {
+            "en-jp": 77,
+            "last_activity": 1770152964000
+        },
+        "50 verbs (Training)": {
+            "en-jp": 60,
+            "last_activity": 1769610891000
+        },
+        "Optimized - Set 1": {
+            "jp-en": 0,
+            "en-jp": 95,
+            "last_activity": 1769767494000
+        },
+        "Optimized - Set 1 (Training)": {
+            "en-jp": 75,
+            "last_activity": 1769695472000
+        },
+        "Optimized - Set 2 (Training)": {
+            "jp-en": 67,
+            "last_activity": 1769777766000,
+            "en-jp": 100
+        },
+        "Food taste": {
+            "jp-en": 0,
+            "en-jp": 90,
+            "last_activity": 1770235441000
+        },
+        "Survival booster": {
+            "jp-en": 84,
+            "en-jp": 94,
+            "last_activity": 1770292532000
+        },
+        "Food taste (Training)": {
+            "en-jp": 100,
+            "last_activity": 1770234929000,
+            "jp-en": 86
+        },
+        "Onomatopoeia": {
+            "jp-en": 0,
+            "en-jp": 100,
+            "last_activity": 1769972534000
+        },
+        "Aizuchi": {
+            "jp-en": 0,
+            "en-jp": 91,
+            "last_activity": 1769973671000
+        },
+        "Survival booster (Training)": {
+            "jp-en": 83,
+            "last_activity": 1769786660000,
+            "en-jp": 83
+        },
+        "Onomatopoeia (Training)": {
+            "en-jp": 100,
+            "last_activity": 1769972248000
+        },
+        "Iphone words (Training)": {
+            "jp-en": 100,
+            "last_activity": 1770037380000,
+            "en-jp": 35
+        },
+        "Cure Dolly Sentences": {
+            "jp-en": 0,
+            "en-jp": 97,
+            "last_activity": 1770140230000
+        },
+        "Cure Dolly Sentences (Training)": {
+            "en-jp": 100,
+            "last_activity": 1770139052000,
+            "jp-en": 57
+        },
+        "Practise (Training)": {
+            "en-jp": 20,
+            "last_activity": 1770041096000
+        },
+        "practise (Training)": {
+            "en-jp": 50,
+            "last_activity": 1770044101000
+        },
+        "Nederlandse leenwoorden": {
+            "jp-en": 0,
+            "en-jp": 100,
+            "last_activity": 1770292688000
+        },
+        "Nederlandse leenwoorden (Training)": {
+            "en-jp": 100,
+            "last_activity": 1770196848000
+        },
+        "30 Kanji (Training)": {
+            "jp-en": 90,
+            "last_activity": 1770234076000
+        },
+        "Kanji": {
+            "jp-en": 97,
+            "en-jp": 0,
+            "last_activity": 1770287317000
+        },
+        "News and Society": {
+            "jp-en": 0,
+            "en-jp": 91,
+            "last_activity": 1770296127000
+        },
+        "Numbers": {
+            "jp-en": 0,
+            "en-jp": 100,
+            "last_activity": 1770293987000
+        },
+        "City and Transport": {
+            "jp-en": 0,
+            "en-jp": 100,
+            "last_activity": 1770295683000
+        },
+        "Basic Question Words": {
+            "jp-en": 0,
+            "en-jp": 100,
+            "last_activity": 1770293883000
+        },
+        "General Adjectives": {
+            "jp-en": 0,
+            "en-jp": 100,
+            "last_activity": 1770294902000
+        },
+        "Action Verbs": {
+            "jp-en": 0,
+            "en-jp": 86,
+            "last_activity": 1770297983000
+        },
+        "Body Parts": {
+            "jp-en": 0,
+            "en-jp": 100,
+            "last_activity": 1770294596000
+        },
+        "Nature and Colors": {
+            "jp-en": 0,
+            "en-jp": 100,
+            "last_activity": 1770837968000
+        },
+        "Location": {
+            "jp-en": 0,
+            "en-jp": 100,
+            "last_activity": 1770295399000
+        },
+        "Kenty Lesson 1": {
+            "jp-en": 100,
+            "en-jp": 94,
+            "last_activity": 1770838591000
+        },
+        "Kenty Lesson 1 (Training)": {
+            "jp-en": 100,
+            "last_activity": 1770381305000,
+            "en-jp": 42
+        },
+        "Smart Mix": {
+            "en-jp": 59,
+            "last_activity": 1773091790000,
+            "jp-en": 77
+        },
+        "Notes: Culture & Social Rules": {
+            "jp-en": 0,
+            "en-jp": 100,
+            "last_activity": 1771361420000
+        },
+        "Notes: Ordering & Restaurants": {
+            "jp-en": 0,
+            "en-jp": 100,
+            "last_activity": 1770840270000
+        },
+        "Notes: Basic Conversation": {
+            "jp-en": 0,
+            "en-jp": 84,
+            "last_activity": 1771361172000
+        },
+        "Notes: Grammar & Verbs": {
+            "jp-en": 0,
+            "en-jp": 0,
+            "last_activity": 1770839401000
+        },
+        "Notes: Specific Vocabulary and Phrases": {
+            "jp-en": 0,
+            "en-jp": 0,
+            "last_activity": 1771361982000
+        },
+        "Notes: Basic Conversation (Training)": {
+            "en-jp": 100,
+            "last_activity": 1770841227000
+        },
+        "Kenty Lesson 2": {
+            "jp-en": 0,
+            "en-jp": 87,
+            "last_activity": 1771277200000
+        },
+        "Kenty Lesson 2 (Training)": {
+            "en-jp": 50,
+            "last_activity": 1771275207000
+        },
+        "Specific Vocabulary": {
+            "jp-en": 0,
+            "en-jp": 100,
+            "last_activity": 1771445416000
+        },
+        "Culture & Social Rules": {
+            "en-jp": 100,
+            "last_activity": 1771443491000
+        },
+        "Basic Conversation": {
+            "jp-en": 0,
+            "en-jp": 97,
+            "last_activity": 1771444235000
+        },
+        "Specific Vocabulary (Training)": {
+            "en-jp": 50,
+            "last_activity": 1771444530000
+        },
+        "Grammar & Verbs": {
+            "jp-en": 0,
+            "en-jp": 92,
+            "last_activity": 1771447237000
+        },
+        "Grammar & Verbs (Training)": {
+            "en-jp": 100,
+            "last_activity": 1771446763000
+        },
+        "Travel Essentials": {
+            "jp-en": 0,
+            "en-jp": 0,
+            "last_activity": 1771447336000
+        },
+        "Restaurant & Bar": {
+            "jp-en": 0,
+            "en-jp": 0,
+            "last_activity": 1771447657000
+        },
+        "Extended Body Parts": {
+            "en-jp": 100,
+            "last_activity": 1771792671000
+        },
+        "Clothing": {
+            "en-jp": 100,
+            "last_activity": 1771792410000
+        },
+        "Meals & Tableware": {
+            "en-jp": 100,
+            "last_activity": 1771792103000
+        },
+        "Weather": {
+            "en-jp": 100,
+            "last_activity": 1771792243000
+        },
+        "Home & Rooms": {
+            "en-jp": 100,
+            "last_activity": 1771876551000
+        },
+        "Family System (Training)": {
+            "en-jp": 55,
+            "last_activity": 1771878570000
+        },
+        "Family System": {
+            "en-jp": 95,
+            "last_activity": 1771879561000
+        },
+        "Food Ingredients (Training)": {
+            "en-jp": 83,
+            "last_activity": 1772026169000
+        },
+        "Food Ingredients": {
+            "en-jp": 100,
+            "last_activity": 1772026557000
+        },
+        "People & Occupations (Training)": {
+            "en-jp": 100,
+            "last_activity": 1772027325000
+        },
+        "People & Occupations": {
+            "en-jp": 100,
+            "last_activity": 1772036908000
+        },
+        "Home Greetings (Training)": {
+            "en-jp": 100,
+            "last_activity": 1772961262000
+        },
+        "Kenty Lesson 3 (Training)": {
+            "en-jp": 80,
+            "last_activity": 1772182497000
+        },
+        "Kenty Lesson 3": {
+            "en-jp": 88,
+            "last_activity": 1772183267000
+        },
+        "City Places (Training)": {
+            "en-jp": 71,
+            "last_activity": 1772556694000
+        },
+        "City Places": {
+            "en-jp": 100,
+            "last_activity": 1772556999000
+        },
+        "Kenty Lesson 4 (Training)": {
+            "en-jp": 83,
+            "last_activity": 1772565181000
+        },
+        "Kenty Lesson 4": {
+            "en-jp": 93,
+            "last_activity": 1772568086000
+        },
+        "Counters (Training)": {
+            "en-jp": 100,
+            "last_activity": 1772636459000
+        },
+        "Counters": {
+            "en-jp": 100,
+            "last_activity": 1772647476000
+        },
+        "Calendar Dates (Training)": {
+            "en-jp": 63,
+            "last_activity": 1772647842000
+        },
+        "Calendar Dates": {
+            "en-jp": 100,
+            "last_activity": 1772648158000
+        },
+        "Extended Time (Training)": {
+            "en-jp": 83,
+            "last_activity": 1772883556000
+        },
+        "Extended Time": {
+            "en-jp": 100,
+            "last_activity": 1772884193000
+        },
+        "Extended Adjectives (Training)": {
+            "en-jp": 83,
+            "last_activity": 1772885650000
+        },
+        "Extended Adjectives": {
+            "en-jp": 100,
+            "last_activity": 1772886275000
+        },
+        "Pronouns & Demonstratives (Training)": {
+            "en-jp": 100,
+            "last_activity": 1772895723000
+        },
+        "Pronouns & Demonstratives": {
+            "jp-en": 0,
+            "en-jp": 94,
+            "last_activity": 1772958296000
+        },
+        "Home Greetings": {
+            "en-jp": 59,
+            "last_activity": 1772961425000
+        },
+        "Casual & Slang (Training)": {
+            "en-jp": 90,
+            "last_activity": 1773089792000
+        },
+        "Casual & Slang": {
+            "en-jp": 100,
+            "last_activity": 1773090325000
+        },
+        "Expressing Wants & Needs (Training)": {
+            "en-jp": 67,
+            "last_activity": 1773129536000
+        },
+        "Nature & Outdoors (Training)": {
+            "en-jp": 42,
+            "last_activity": 1773858855000,
+            "jp-en": 100
+        },
+        "Nature & Outdoors": {
+            "jp-en": 100,
+            "en-jp": 100,
+            "last_activity": 1773859005000
+        },
+        "Compliments & Small Talk": {
+            "jp-en": 100,
+            "en-jp": 100,
+            "last_activity": 1773858726000
+        },
+        "Compliments & Small Talk (Training)": {
+            "en-jp": 100,
+            "last_activity": 1774369671000,
+            "jp-en": 100
+        },
+        "Kenty Lesson 5": {
+            "jp-en": 64,
+            "en-jp": 100,
+            "last_activity": 1774598433000
+        },
+        "Kenty Lesson 5 (Training)": {
+            "en-jp": 100,
+            "last_activity": 1773859920000,
+            "jp-en": 80
+        },
+        "Opinions & Reactions": {
+            "en-jp": 100,
+            "last_activity": 1773836566000,
+            "jp-en": 100
+        },
+        "Emotions": {
+            "jp-en": 100,
+            "en-jp": 100,
+            "last_activity": 1773835705000
+        },
+        "Emotions (Training)": {
+            "en-jp": 56,
+            "last_activity": 1773835409000,
+            "jp-en": 56
+        },
+        "Opinions & Reactions (Training)": {
+            "jp-en": 100,
+            "last_activity": 1774369759000
+        },
+        "Kenty Lesson 6": {
+            "jp-en": 0,
+            "en-jp": 94,
+            "last_activity": 1774598790000
+        },
+        "Kenty Lesson 6 (Training)": {
+            "en-jp": 100,
+            "last_activity": 1774596926000
+        },
+        "Describing People": {
+            "en-jp": 100,
+            "last_activity": 1774787805000
+        },
+        "Shopping & Money": {
+            "en-jp": 100,
+            "last_activity": 1774788440000
+        }
+    },
+    "bahasa": {
+        "Set 1": {
+            "jp-en": 34,
+            "en-jp": 0,
+            "last_activity": 1769946312000
+        },
+        "Set 2": {
+            "jp-en": 0,
+            "en-jp": 0,
+            "last_activity": 1769682227000
+        },
+        "Set 3": {
+            "jp-en": 0,
+            "en-jp": 0,
+            "last_activity": 1769682220000
+        },
+        "Set 4": {
+            "jp-en": 0,
+            "en-jp": 0,
+            "last_activity": 1769682224000
+        }
+    },
+    "italia": []
+}
