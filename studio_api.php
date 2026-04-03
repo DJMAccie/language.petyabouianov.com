@@ -121,16 +121,6 @@ function requirePostRequest($requestMethod) {
     }
 }
 
-function requireAdminPassword($clientPassword, $adminPassword, $hasAdminPassword) {
-    if (!$hasAdminPassword) {
-        outputJSON(["error" => "Admin password is not configured"], 503);
-    }
-
-    if (!is_string($clientPassword) || $clientPassword === '' || !hash_equals($adminPassword, $clientPassword)) {
-        outputJSON(["error" => "Unauthorized"], 403);
-    }
-}
-
 function normalizeListName($value) {
     $name = trim((string) $value);
     $name = preg_replace('/\s+/', ' ', $name);
@@ -275,7 +265,6 @@ switch ($action) {
 
     case 'save_list':
         requirePostRequest($requestMethod);
-        requireAdminPassword($client_password, $admin_password, $has_admin_password);
 
         $name = normalizeListName($data['name'] ?? '');
         $rawWords = $data['words'] ?? [];
@@ -332,7 +321,6 @@ switch ($action) {
 
     case 'delete_list':
         requirePostRequest($requestMethod);
-        requireAdminPassword($client_password, $admin_password, $has_admin_password);
 
         $name = normalizeListName($data['name'] ?? '');
         if ($name === '') {

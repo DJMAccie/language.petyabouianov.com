@@ -731,43 +731,8 @@ const StudioCore = (() => {
         return response;
     }
 
-    function getStoredAdminPassword(forcePrompt = false) {
-        const storageKey = 'studio_admin_password';
-        let password = '';
-
-        if (!forcePrompt) {
-            try {
-                password = sessionStorage.getItem(storageKey) || '';
-            } catch (e) {
-                password = '';
-            }
-        }
-
-        if (!password) {
-            password = window.prompt('Admin password required to manage language lists:') || '';
-            password = password.trim();
-        }
-
-        if (password) {
-            try {
-                sessionStorage.setItem(storageKey, password);
-            } catch (e) { }
-        }
-
-        return password;
-    }
-
-    function clearStoredAdminPassword() {
-        try {
-            sessionStorage.removeItem('studio_admin_password');
-        } catch (e) { }
-    }
-
     function handleAdminRequestError(error, fallbackMessage) {
         const message = error?.message || fallbackMessage;
-        if (/unauthorized|password/i.test(message)) {
-            clearStoredAdminPassword();
-        }
         showToast(message || fallbackMessage, 'error');
     }
 
@@ -881,16 +846,11 @@ const StudioCore = (() => {
     // =========================================================
     async function deleteList(name) {
         if (!confirm(`Delete "${name}"?`)) return;
-        const password = getStoredAdminPassword();
-        if (!password) {
-            showToast("Admin password is required to delete lists", "warning");
-            return;
-        }
         try {
             await apiFetch(config.apiUrl + '&action=delete_list', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name: name, password })
+                body: JSON.stringify({ name: name })
             });
             fetchLists();
         } catch (e) {
@@ -910,11 +870,6 @@ const StudioCore = (() => {
         const name = document.getElementById('list-name-input').value.trim();
         const text = document.getElementById('word-input').value;
         if (!name || !text) return;
-        const password = getStoredAdminPassword();
-        if (!password) {
-            showToast("Admin password is required to save lists", "warning");
-            return;
-        }
         let words = text.split('\n').reduce((acc, line) => {
             if (!line.trim()) return acc;
             let match = line.match(/^(.*?),\s*(.*)$/);
@@ -929,13 +884,13 @@ const StudioCore = (() => {
                 await apiFetch(config.apiUrl + '&action=delete_list', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ name: editingOriginalName, password })
+                    body: JSON.stringify({ name: editingOriginalName })
                 });
             }
             await apiFetch(config.apiUrl + '&action=save_list', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name, words, password })
+                body: JSON.stringify({ name, words })
             });
 
             // Reload lists after saving
