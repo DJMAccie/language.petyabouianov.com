@@ -94,9 +94,9 @@
                         class="px-4 py-2 bg-white border border-gray-300 rounded-full text-sm font-medium text-gray-600 shadow-sm hover:bg-gray-50 active:scale-95 transition flex items-center gap-2">
                         <i class="fas fa-plus text-blue-500"></i> New List
                     </button>
-                    <button onclick="openGrammarCorner()"
-                        class="px-4 py-2 bg-gradient-to-b from-amber-50 to-white border border-amber-200 rounded-full text-sm font-medium text-amber-700 shadow-sm hover:from-white hover:to-white active:scale-95 transition flex items-center gap-2">
-                        <i class="fas fa-book-open text-amber-500"></i> Grammar Corner
+                    <button onclick="openGrammarCorner()" aria-label="Open grammar notes" title="Grammar Notes"
+                        class="w-10 h-10 bg-white border border-gray-300 rounded-full text-gray-600 shadow-sm hover:bg-gray-50 active:scale-95 transition flex items-center justify-center shrink-0">
+                        <i class="fas fa-book-open text-amber-500"></i>
                     </button>
                     <!-- MIX BUTTON -->
                     <button onclick="startMixSession()"
@@ -294,25 +294,25 @@
         </div>
     </div>
 
-    <!-- GRAMMAR CORNER MODAL -->
+    <!-- GRAMMAR NOTES MODAL -->
     <div id="grammar-corner-modal"
         class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 animate-fade-in">
         <div class="mac-window w-full max-w-5xl h-[82vh] rounded-xl border border-white/40 overflow-hidden flex flex-col">
             <div
                 class="bg-gradient-to-b from-gray-100 to-gray-200 border-b border-gray-300 px-4 py-3 flex justify-between items-center">
                 <span class="font-semibold text-gray-600"><i
-                        class="fas fa-book-open mr-2 text-amber-500"></i>Grammar Corner</span>
+                        class="fas fa-book-open mr-2 text-amber-500"></i>Grammar Notes</span>
                 <button onclick="closeGrammarCorner()" class="text-gray-400 hover:text-gray-600 transition"><i
                         class="fas fa-times"></i></button>
             </div>
-            <div class="bg-white p-4 border-b border-gray-100">
+            <div class="bg-white p-4 border-b border-gray-200">
                 <div class="flex flex-col gap-3">
                     <p class="text-sm text-gray-500">
-                        Sentence patterns, Cure Dolly examples, and Kenty lesson material you’ve saved from real study sessions.
+                        Saved sentence patterns and lesson examples, kept separate from the main drill lists.
                     </p>
                     <div class="relative">
                         <i class="fas fa-search absolute left-4 top-3.5 text-gray-400"></i>
-                        <input type="text" id="grammar-search-input" placeholder="Search examples, patterns, or lesson names..."
+                        <input type="text" id="grammar-search-input" placeholder="Search notes..."
                             oninput="filterGrammarCorner()"
                             class="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-300 rounded-full text-sm focus:outline-none focus:ring-4 focus:ring-amber-400/20 focus:border-amber-400 shadow-sm transition-all">
                     </div>
@@ -320,7 +320,7 @@
                 </div>
             </div>
             <div id="grammar-corner-results" class="flex-1 overflow-y-auto bg-white p-4 md:p-6">
-                <p class="text-gray-400 text-center py-8">Loading grammar notes...</p>
+                <p class="text-gray-400 text-center py-8">Loading notes...</p>
             </div>
         </div>
     </div>
@@ -432,35 +432,39 @@
 
             if (!sections.length) {
                 nav.innerHTML = '';
-                results.innerHTML = '<p class="text-gray-400 text-center py-8">No grammar lists found yet.</p>';
+                results.innerHTML = '<p class="text-gray-400 text-center py-8">No grammar notes found yet.</p>';
                 return;
             }
 
             nav.innerHTML = sections.map(([name, items], index) => `
                 <button type="button"
                     onclick="document.getElementById('grammar-section-${index}')?.scrollIntoView({ behavior: 'smooth', block: 'start' })"
-                    class="px-3 py-1.5 rounded-full border border-amber-200 bg-amber-50 text-amber-700 text-xs font-semibold hover:bg-amber-100 transition">
+                    class="px-3 py-1.5 rounded-full border border-gray-200 bg-white text-gray-600 text-xs font-medium hover:border-amber-300 hover:text-amber-700 transition">
                     ${grammarEscapeHTML(name)} · ${items.length}
                 </button>
             `).join('');
 
             const total = sections.reduce((sum, [, items]) => sum + items.length, 0);
             results.innerHTML = `
-                <div class="mb-6 rounded-2xl border border-amber-100 bg-gradient-to-br from-amber-50 to-white p-5">
-                    <div class="text-xs font-bold uppercase tracking-[0.18em] text-amber-500 mb-2">Study Notes</div>
-                    <div class="text-lg font-semibold text-gray-800">Your sentence bank and pattern corner</div>
-                    <p class="mt-2 text-sm text-gray-600">Browse saved examples from lessons without mixing them into the main table flow. Use these as pattern reminders and quick grammar references.</p>
-                    <div class="mt-3 text-xs text-gray-400">${sections.length} sections · ${total} saved entries</div>
+                <div class="mb-6 flex flex-col gap-2 border-b border-gray-200 pb-4 md:flex-row md:items-end md:justify-between">
+                    <div>
+                        <div class="text-xs font-semibold uppercase tracking-[0.18em] text-gray-400">Saved Notes</div>
+                        <p class="mt-1 text-sm text-gray-600">Patterns and lesson examples you want to keep nearby without mixing them into active review.</p>
+                    </div>
+                    <div class="text-xs text-gray-400">${sections.length} sections · ${total} entries</div>
+                </div>
+                <div id="grammar-corner-empty" class="hidden py-12 text-center text-sm text-gray-400">
+                    No notes match your search.
                 </div>
                 ${sections.map(([name, items], sectionIndex) => `
                     <section id="grammar-section-${sectionIndex}" class="grammar-corner-section mb-8">
-                        <div class="sticky top-0 z-10 -mx-2 mb-3 px-2 py-3 bg-white/95 backdrop-blur">
-                            <div>
+                        <div class="sticky top-0 z-10 -mx-4 mb-2 border-b border-gray-200 bg-white/95 px-4 py-3 backdrop-blur md:-mx-6 md:px-6">
+                            <div class="flex items-end justify-between gap-4">
                                 <h3 class="text-lg font-semibold text-gray-800">${grammarEscapeHTML(name)}</h3>
                                 <p class="text-xs text-gray-400 uppercase tracking-[0.16em]">${items.length} entries</p>
                             </div>
                         </div>
-                        <div class="space-y-3">
+                        <div class="border-t border-gray-200">
                             ${items.map((item) => {
                                 const jp = item.jp || '';
                                 const en = item.en || '';
@@ -468,13 +472,14 @@
                                 const lookupArg = JSON.stringify(grammarLookupTerm(jp));
                                 const searchBlob = `${name} ${jp} ${en}`.toLowerCase();
                                 return `
-                                    <article class="grammar-corner-card rounded-2xl border border-gray-200 bg-gray-50/80 p-4 shadow-sm" data-search="${grammarEscapeHTML(searchBlob)}">
-                                        <div class="flex items-start justify-between gap-4">
+                                    <div class="grammar-corner-row grid gap-3 border-b border-gray-200 px-1 py-4 md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)_auto] md:items-start md:gap-6 md:px-0" data-search="${grammarEscapeHTML(searchBlob)}">
                                             <div class="min-w-0">
-                                                <div class="text-lg font-semibold text-gray-800 whitespace-pre-line leading-relaxed">${grammarEscapeHTML(jp)}</div>
-                                                <div class="mt-2 text-sm text-gray-500 leading-relaxed">${grammarEscapeHTML(en)}</div>
+                                                <div class="text-lg font-semibold text-gray-800 whitespace-pre-line leading-relaxed break-words">${grammarEscapeHTML(jp)}</div>
                                             </div>
-                                            <div class="shrink-0 flex items-center gap-2">
+                                            <div class="min-w-0">
+                                                <div class="text-sm text-gray-500 leading-relaxed break-words">${grammarEscapeHTML(en)}</div>
+                                            </div>
+                                            <div class="shrink-0 flex items-center gap-2 md:justify-end">
                                                 <button type="button" onclick='window.StudioConfigs.nihongo.speakText(${speakArg})'
                                                     class="w-9 h-9 rounded-full bg-white border border-gray-200 text-amber-600 hover:bg-amber-50 transition"
                                                     title="Speak example">
@@ -486,28 +491,33 @@
                                                     <i class="fas fa-book"></i>
                                                 </button>
                                             </div>
-                                        </div>
-                                    </article>
+                                    </div>
                                 `;
                             }).join('')}
                         </div>
                     </section>
                 `).join('')}
             `;
+
+            filterGrammarCorner();
         }
 
         function filterGrammarCorner() {
             const term = document.getElementById('grammar-search-input')?.value.toLowerCase().trim() || '';
+            let totalVisible = 0;
             document.querySelectorAll('.grammar-corner-section').forEach((section) => {
                 let visibleCount = 0;
-                section.querySelectorAll('.grammar-corner-card').forEach((card) => {
-                    const haystack = card.getAttribute('data-search') || '';
+                section.querySelectorAll('.grammar-corner-row').forEach((row) => {
+                    const haystack = row.getAttribute('data-search') || '';
                     const visible = !term || haystack.includes(term);
-                    card.style.display = visible ? '' : 'none';
+                    row.style.display = visible ? '' : 'none';
                     if (visible) visibleCount++;
                 });
                 section.style.display = visibleCount > 0 ? '' : 'none';
+                totalVisible += visibleCount;
             });
+            const emptyState = document.getElementById('grammar-corner-empty');
+            if (emptyState) emptyState.style.display = totalVisible > 0 ? 'none' : '';
         }
 
         function openGrammarCorner() {
