@@ -297,30 +297,16 @@
     <!-- GRAMMAR NOTES MODAL -->
     <div id="grammar-corner-modal"
         class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 animate-fade-in">
-        <div class="mac-window w-full max-w-5xl h-[82vh] rounded-xl border border-white/40 overflow-hidden flex flex-col">
+        <div class="mac-window w-full max-w-4xl h-[78vh] rounded-xl border border-white/40 overflow-hidden flex flex-col">
             <div
                 class="bg-gradient-to-b from-gray-100 to-gray-200 border-b border-gray-300 px-4 py-3 flex justify-between items-center">
                 <span class="font-semibold text-gray-600"><i
-                        class="fas fa-book-open mr-2 text-amber-500"></i>Grammar Notes</span>
+                        class="fas fa-book-open mr-2 text-amber-500"></i>Grammar</span>
                 <button onclick="closeGrammarCorner()" class="text-gray-400 hover:text-gray-600 transition"><i
                         class="fas fa-times"></i></button>
             </div>
-            <div class="bg-white p-4 border-b border-gray-200">
-                <div class="flex flex-col gap-3">
-                    <p class="text-sm text-gray-500">
-                        Saved sentence patterns and lesson examples, kept separate from the main drill lists.
-                    </p>
-                    <div class="relative">
-                        <i class="fas fa-search absolute left-4 top-3.5 text-gray-400"></i>
-                        <input type="text" id="grammar-search-input" placeholder="Search notes..."
-                            oninput="filterGrammarCorner()"
-                            class="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-300 rounded-full text-sm focus:outline-none focus:ring-4 focus:ring-amber-400/20 focus:border-amber-400 shadow-sm transition-all">
-                    </div>
-                    <div id="grammar-corner-nav" class="flex flex-wrap gap-2"></div>
-                </div>
-            </div>
             <div id="grammar-corner-results" class="flex-1 overflow-y-auto bg-white p-4 md:p-6">
-                <p class="text-gray-400 text-center py-8">Loading notes...</p>
+                <p class="text-gray-400 text-center py-8">Loading grammar...</p>
             </div>
         </div>
     </div>
@@ -405,132 +391,65 @@
             return div.innerHTML;
         }
 
-        function grammarLookupTerm(text) {
-            return (text || '').replace(/\s+[A-Za-z].*$/, '').trim();
+        function getGrammarRows() {
+            const loadedLists = window._studio?.getLoadedLists?.() || {};
+            return loadedLists['Grammar Patterns'] || [];
         }
 
-        function getGrammarCornerSections() {
-            const loadedLists = window._studio?.getLoadedLists?.() || {};
-            return Object.entries(loadedLists)
-                .filter(([name]) => name === 'Grammar Patterns' || name === 'Cure Dolly Sentences' || /^Kenty Lesson \d+$/.test(name))
-                .sort((a, b) => {
-                    const priority = (name) => {
-                        if (name === 'Grammar Patterns') return 0;
-                        if (name === 'Cure Dolly Sentences') return 1;
-                        const lessonMatch = name.match(/^Kenty Lesson (\d+)$/);
-                        if (lessonMatch) return 10 + Number(lessonMatch[1]);
-                        return 999;
-                    };
-                    return priority(a[0]) - priority(b[0]);
-                });
+        function parseGrammarPoint(meaning) {
+            const match = (meaning || '').match(/\[([^\]]+)\]\s*$/);
+            return match ? match[1].trim() : 'Grammar point';
+        }
+
+        function stripGrammarPoint(meaning) {
+            return (meaning || '').replace(/\s*\[[^\]]+\]\s*$/, '').trim();
         }
 
         function renderGrammarCorner() {
-            const nav = document.getElementById('grammar-corner-nav');
             const results = document.getElementById('grammar-corner-results');
-            const sections = getGrammarCornerSections();
+            const rows = getGrammarRows();
 
-            if (!sections.length) {
-                nav.innerHTML = '';
-                results.innerHTML = '<p class="text-gray-400 text-center py-8">No grammar notes found yet.</p>';
+            if (!rows.length) {
+                results.innerHTML = '<p class="text-gray-400 text-center py-8">No grammar points found yet.</p>';
                 return;
             }
 
-            nav.innerHTML = sections.map(([name, items], index) => `
-                <button type="button"
-                    onclick="document.getElementById('grammar-section-${index}')?.scrollIntoView({ behavior: 'smooth', block: 'start' })"
-                    class="px-3 py-1.5 rounded-full border border-gray-200 bg-white text-gray-600 text-xs font-medium hover:border-amber-300 hover:text-amber-700 transition">
-                    ${grammarEscapeHTML(name)} · ${items.length}
-                </button>
-            `).join('');
-
-            const total = sections.reduce((sum, [, items]) => sum + items.length, 0);
             results.innerHTML = `
-                <div class="mb-6 flex flex-col gap-2 border-b border-gray-200 pb-4 md:flex-row md:items-end md:justify-between">
+                <div class="mb-4 flex items-end justify-between gap-4 border-b border-gray-200 pb-3">
                     <div>
-                        <div class="text-xs font-semibold uppercase tracking-[0.18em] text-gray-400">Saved Notes</div>
-                        <p class="mt-1 text-sm text-gray-600">Patterns and lesson examples you want to keep nearby without mixing them into active review.</p>
+                        <div class="text-xs font-semibold tracking-[0.12em] text-gray-400">Grammar Points</div>
                     </div>
-                    <div class="text-xs text-gray-400">${sections.length} sections · ${total} entries</div>
+                    <div class="text-xs text-gray-400">${rows.length} entries</div>
                 </div>
-                <div id="grammar-corner-empty" class="hidden py-12 text-center text-sm text-gray-400">
-                    No notes match your search.
-                </div>
-                ${sections.map(([name, items], sectionIndex) => `
-                    <section id="grammar-section-${sectionIndex}" class="grammar-corner-section mb-8">
-                        <div class="sticky top-0 z-10 -mx-4 mb-2 border-b border-gray-200 bg-white/95 px-4 py-3 backdrop-blur md:-mx-6 md:px-6">
-                            <div class="flex items-end justify-between gap-4">
-                                <h3 class="text-lg font-semibold text-gray-800">${grammarEscapeHTML(name)}</h3>
-                                <p class="text-xs text-gray-400 uppercase tracking-[0.16em]">${items.length} entries</p>
+                <div class="border-t border-gray-200">
+                    ${rows.map((item) => {
+                        const jp = item.jp || '';
+                        const en = item.en || '';
+                        const grammarPoint = parseGrammarPoint(en);
+                        const explanation = stripGrammarPoint(en);
+                        return `
+                            <div class="grid gap-1 border-b border-gray-200 px-1 py-3 md:grid-cols-[minmax(0,220px)_minmax(0,1fr)] md:gap-6 md:px-0 md:items-start">
+                                <div class="min-w-0">
+                                    <div class="text-[11px] font-semibold tracking-[0.08em] text-gray-400">${grammarEscapeHTML(grammarPoint)}</div>
+                                </div>
+                                <div class="min-w-0">
+                                    <div class="text-sm font-medium text-gray-700 whitespace-pre-line leading-relaxed break-words">${grammarEscapeHTML(jp)}</div>
+                                    <div class="mt-1 text-xs text-gray-500 leading-relaxed break-words">${grammarEscapeHTML(explanation)}</div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="border-t border-gray-200">
-                            ${items.map((item) => {
-                                const jp = item.jp || '';
-                                const en = item.en || '';
-                                const speakArg = JSON.stringify(jp);
-                                const lookupArg = JSON.stringify(grammarLookupTerm(jp));
-                                const searchBlob = `${name} ${jp} ${en}`.toLowerCase();
-                                return `
-                                    <div class="grammar-corner-row grid gap-3 border-b border-gray-200 px-1 py-4 md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)_auto] md:items-start md:gap-6 md:px-0" data-search="${grammarEscapeHTML(searchBlob)}">
-                                            <div class="min-w-0">
-                                                <div class="text-lg font-semibold text-gray-800 whitespace-pre-line leading-relaxed break-words">${grammarEscapeHTML(jp)}</div>
-                                            </div>
-                                            <div class="min-w-0">
-                                                <div class="text-sm text-gray-500 leading-relaxed break-words">${grammarEscapeHTML(en)}</div>
-                                            </div>
-                                            <div class="shrink-0 flex items-center gap-2 md:justify-end">
-                                                <button type="button" onclick='window.StudioConfigs.nihongo.speakText(${speakArg})'
-                                                    class="w-9 h-9 rounded-full bg-white border border-gray-200 text-amber-600 hover:bg-amber-50 transition"
-                                                    title="Speak example">
-                                                    <i class="fas fa-volume-up"></i>
-                                                </button>
-                                                <button type="button" onclick='openDictionary(${lookupArg})'
-                                                    class="w-9 h-9 rounded-full bg-white border border-gray-200 text-purple-600 hover:bg-purple-50 transition"
-                                                    title="Open in dictionary">
-                                                    <i class="fas fa-book"></i>
-                                                </button>
-                                            </div>
-                                    </div>
-                                `;
-                            }).join('')}
-                        </div>
-                    </section>
-                `).join('')}
+                        `;
+                    }).join('')}
+                </div>
             `;
-
-            filterGrammarCorner();
-        }
-
-        function filterGrammarCorner() {
-            const term = document.getElementById('grammar-search-input')?.value.toLowerCase().trim() || '';
-            let totalVisible = 0;
-            document.querySelectorAll('.grammar-corner-section').forEach((section) => {
-                let visibleCount = 0;
-                section.querySelectorAll('.grammar-corner-row').forEach((row) => {
-                    const haystack = row.getAttribute('data-search') || '';
-                    const visible = !term || haystack.includes(term);
-                    row.style.display = visible ? '' : 'none';
-                    if (visible) visibleCount++;
-                });
-                section.style.display = visibleCount > 0 ? '' : 'none';
-                totalVisible += visibleCount;
-            });
-            const emptyState = document.getElementById('grammar-corner-empty');
-            if (emptyState) emptyState.style.display = totalVisible > 0 ? 'none' : '';
         }
 
         function openGrammarCorner() {
             renderGrammarCorner();
             document.getElementById('grammar-corner-modal').classList.remove('hidden');
-            document.getElementById('grammar-search-input')?.focus();
         }
 
         function closeGrammarCorner() {
             document.getElementById('grammar-corner-modal').classList.add('hidden');
-            const input = document.getElementById('grammar-search-input');
-            if (input) input.value = '';
-            filterGrammarCorner();
         }
 
         async function lookupWord() {

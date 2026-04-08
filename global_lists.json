@@ -1,357 +1,5 @@
 {
     "nihongo": {
-        "Trip Priority: Speak": [
-            {
-                "jp": "すみません Sumimasen",
-                "en": "Excuse me / Sorry"
-            },
-            {
-                "jp": "お願いします Onegaishimasu",
-                "en": "Please"
-            },
-            {
-                "jp": "はい Hai",
-                "en": "Yes"
-            },
-            {
-                "jp": "いいえ Iie",
-                "en": "No"
-            },
-            {
-                "jp": "大丈夫です Daijoubu desu",
-                "en": "It's fine / No thank you"
-            },
-            {
-                "jp": "わかりません Wakarimasen",
-                "en": "I don't understand"
-            },
-            {
-                "jp": "もう一度お願いします Mou ichido onegaishimasu",
-                "en": "One more time please"
-            },
-            {
-                "jp": "もう少しゆっくりお願いします Mou sukoshi yukkuri onegaishimasu",
-                "en": "Please speak a little more slowly"
-            },
-            {
-                "jp": "英語は話せますか Eigo wa hanasemasu ka",
-                "en": "Do you speak English?"
-            },
-            {
-                "jp": "これは何ですか Kore wa nan desu ka",
-                "en": "What is this?"
-            },
-            {
-                "jp": "〜はどこですか ~ wa doko desu ka",
-                "en": "Where is ~?"
-            },
-            {
-                "jp": "〜をください ~ o kudasai",
-                "en": "Please give me ~"
-            },
-            {
-                "jp": "いくらですか Ikura desu ka",
-                "en": "How much is it?"
-            },
-            {
-                "jp": "カードは使えますか Kaado wa tsukaemasu ka",
-                "en": "Can I use card?"
-            },
-            {
-                "jp": "現金で払います Genkin de haraimasu",
-                "en": "I'll pay in cash"
-            },
-            {
-                "jp": "トイレはどこですか Toire wa doko desu ka",
-                "en": "Where is the toilet?"
-            },
-            {
-                "jp": "お会計お願いします Okaikei onegaishimasu",
-                "en": "The bill please"
-            },
-            {
-                "jp": "おすすめは何ですか Osusume wa nan desu ka",
-                "en": "What do you recommend?"
-            },
-            {
-                "jp": "水をください Mizu o kudasai",
-                "en": "Water please"
-            },
-            {
-                "jp": "アレルギーがあります Arerugii ga arimasu",
-                "en": "I have an allergy"
-            },
-            {
-                "jp": "辛いのは苦手です Karai no wa nigate desu",
-                "en": "I'm not good with spicy food"
-            },
-            {
-                "jp": "持ち帰りで Mochikaeri de",
-                "en": "To go / takeaway"
-            },
-            {
-                "jp": "別々でお願いします Betsubetsu de onegaishimasu",
-                "en": "Separate bills please"
-            },
-            {
-                "jp": "予約しています Yoyaku shite imasu",
-                "en": "I have a reservation"
-            },
-            {
-                "jp": "チェックインしたいです Chekkuin shitai desu",
-                "en": "I'd like to check in"
-            },
-            {
-                "jp": "パスポートです Pasupooto desu",
-                "en": "Here is my passport"
-            }
-        ],
-        "Trip Priority: Hear Back": [
-            {
-                "jp": "いらっしゃいませ Irasshaimase",
-                "en": "Welcome"
-            },
-            {
-                "jp": "何名様ですか Nanmei sama desu ka",
-                "en": "How many people?"
-            },
-            {
-                "jp": "ご予約はありますか Goyoyaku wa arimasu ka",
-                "en": "Do you have a reservation?"
-            },
-            {
-                "jp": "こちらへどうぞ Kochira e douzo",
-                "en": "This way please"
-            },
-            {
-                "jp": "少々お待ちください Shoushou omachi kudasai",
-                "en": "Please wait a moment"
-            },
-            {
-                "jp": "袋は要りますか Fukuro wa irimasu ka",
-                "en": "Do you need a bag?"
-            },
-            {
-                "jp": "レシートは要りますか Reshiito wa irimasu ka",
-                "en": "Do you need the receipt?"
-            },
-            {
-                "jp": "温めますか Atatamemasu ka",
-                "en": "Shall I heat it up?"
-            },
-            {
-                "jp": "ポイントカードはありますか Pointo kaado wa arimasu ka",
-                "en": "Do you have a point card?"
-            },
-            {
-                "jp": "店内でお召し上がりですか Tennai de omeshiagari desu ka",
-                "en": "For here?"
-            },
-            {
-                "jp": "お持ち帰りですか Omochikaeri desu ka",
-                "en": "To go?"
-            },
-            {
-                "jp": "現金のみです Genkin nomi desu",
-                "en": "Cash only"
-            },
-            {
-                "jp": "〜円です ~ en desu",
-                "en": "It's ~ yen"
-            },
-            {
-                "jp": "おつりです Otsuri desu",
-                "en": "Here is your change"
-            },
-            {
-                "jp": "こちらでよろしいですか Kochira de yoroshii desu ka",
-                "en": "Is this okay?"
-            },
-            {
-                "jp": "パスポートをお願いします Pasupooto o onegaishimasu",
-                "en": "Passport please"
-            },
-            {
-                "jp": "朝食付きです Choushoku-tsuki desu",
-                "en": "Breakfast is included"
-            },
-            {
-                "jp": "禁煙です Kinen desu",
-                "en": "Non-smoking"
-            },
-            {
-                "jp": "少しお待ちください Sukoshi omachi kudasai",
-                "en": "Please wait a little"
-            },
-            {
-                "jp": "次の方どうぞ Tsugi no kata douzo",
-                "en": "Next person please"
-            }
-        ],
-        "Trip Priority: Transport": [
-            {
-                "jp": "改札 Kaisatsu",
-                "en": "Ticket gate"
-            },
-            {
-                "jp": "ホーム Hoomu",
-                "en": "Platform"
-            },
-            {
-                "jp": "何番線ですか Nanbansen desu ka",
-                "en": "Which platform is it?"
-            },
-            {
-                "jp": "乗り換え Norikae",
-                "en": "Transfer"
-            },
-            {
-                "jp": "出口 Deguchi",
-                "en": "Exit"
-            },
-            {
-                "jp": "入口 Iriguchi",
-                "en": "Entrance"
-            },
-            {
-                "jp": "切符 Kippu",
-                "en": "Ticket"
-            },
-            {
-                "jp": "ICカード IC kaado",
-                "en": "IC card"
-            },
-            {
-                "jp": "チャージ Chaaji",
-                "en": "Top up / recharge"
-            },
-            {
-                "jp": "各駅 Kakueki",
-                "en": "Local train"
-            },
-            {
-                "jp": "急行 Kyuukou",
-                "en": "Express train"
-            },
-            {
-                "jp": "特急 Tokkyuu",
-                "en": "Limited express"
-            },
-            {
-                "jp": "遅れています Okurete imasu",
-                "en": "It is delayed"
-            },
-            {
-                "jp": "運休です Unkyuu desu",
-                "en": "It is cancelled"
-            },
-            {
-                "jp": "まもなく電車がまいります Mamonaku densha ga mairimasu",
-                "en": "The train will arrive shortly"
-            },
-            {
-                "jp": "この電車は〜に行きますか Kono densha wa ~ ni ikimasu ka",
-                "en": "Does this train go to ~?"
-            },
-            {
-                "jp": "〜までお願いします ~ made onegaishimasu",
-                "en": "To ~ please"
-            },
-            {
-                "jp": "ここで降ります Koko de orimasu",
-                "en": "I get off here"
-            },
-            {
-                "jp": "迷いました Mayoimashita",
-                "en": "I got lost"
-            },
-            {
-                "jp": "地図を見せてください Chizu o misete kudasai",
-                "en": "Please show me the map"
-            }
-        ],
-        "Trip Priority: Food And Stores": [
-            {
-                "jp": "これをください Kore o kudasai",
-                "en": "This one please"
-            },
-            {
-                "jp": "おすすめは何ですか Osusume wa nan desu ka",
-                "en": "What do you recommend?"
-            },
-            {
-                "jp": "これは何ですか Kore wa nan desu ka",
-                "en": "What is this?"
-            },
-            {
-                "jp": "お会計お願いします Okaikei onegaishimasu",
-                "en": "The bill please"
-            },
-            {
-                "jp": "別々でお願いします Betsubetsu de onegaishimasu",
-                "en": "Separate bills please"
-            },
-            {
-                "jp": "持ち帰りで Mochikaeri de",
-                "en": "To go / takeaway"
-            },
-            {
-                "jp": "店内で Tennai de",
-                "en": "For here"
-            },
-            {
-                "jp": "袋は大丈夫です Fukuro wa daijoubu desu",
-                "en": "I don't need a bag"
-            },
-            {
-                "jp": "レシートは大丈夫です Reshiito wa daijoubu desu",
-                "en": "I don't need the receipt"
-            },
-            {
-                "jp": "温めてください Atatamete kudasai",
-                "en": "Please heat it up"
-            },
-            {
-                "jp": "水をください Mizu o kudasai",
-                "en": "Water please"
-            },
-            {
-                "jp": "お水 Omizu",
-                "en": "Water"
-            },
-            {
-                "jp": "辛いですか Karai desu ka",
-                "en": "Is it spicy?"
-            },
-            {
-                "jp": "辛いのは苦手です Karai no wa nigate desu",
-                "en": "I'm not good with spicy food"
-            },
-            {
-                "jp": "アレルギーがあります Arerugii ga arimasu",
-                "en": "I have an allergy"
-            },
-            {
-                "jp": "現金 Genkin",
-                "en": "Cash"
-            },
-            {
-                "jp": "クレジットカード Kurejitto kaado",
-                "en": "Credit card"
-            },
-            {
-                "jp": "おつり Otsuri",
-                "en": "Change"
-            },
-            {
-                "jp": "売り切れ Urikire",
-                "en": "Sold out"
-            },
-            {
-                "jp": "大丈夫です Daijoubu desu",
-                "en": "It's fine / No thank you"
-            }
-        ],
         "Starter Kit": [
             {
                 "jp": "初めまして Hajimemashite",
@@ -5356,73 +5004,425 @@
                 "en": "probably different / probably wrong"
             }
         ],
+        "Trip Priority: Speak": [
+            {
+                "jp": "すみません Sumimasen",
+                "en": "Excuse me / Sorry"
+            },
+            {
+                "jp": "お願いします Onegaishimasu",
+                "en": "Please"
+            },
+            {
+                "jp": "はい Hai",
+                "en": "Yes"
+            },
+            {
+                "jp": "いいえ Iie",
+                "en": "No"
+            },
+            {
+                "jp": "大丈夫です Daijoubu desu",
+                "en": "It's fine / No thank you"
+            },
+            {
+                "jp": "わかりません Wakarimasen",
+                "en": "I don't understand"
+            },
+            {
+                "jp": "もう一度お願いします Mou ichido onegaishimasu",
+                "en": "One more time please"
+            },
+            {
+                "jp": "もう少しゆっくりお願いします Mou sukoshi yukkuri onegaishimasu",
+                "en": "Please speak a little more slowly"
+            },
+            {
+                "jp": "英語は話せますか Eigo wa hanasemasu ka",
+                "en": "Do you speak English?"
+            },
+            {
+                "jp": "これは何ですか Kore wa nan desu ka",
+                "en": "What is this?"
+            },
+            {
+                "jp": "〜はどこですか ~ wa doko desu ka",
+                "en": "Where is ~?"
+            },
+            {
+                "jp": "〜をください ~ o kudasai",
+                "en": "Please give me ~"
+            },
+            {
+                "jp": "いくらですか Ikura desu ka",
+                "en": "How much is it?"
+            },
+            {
+                "jp": "カードは使えますか Kaado wa tsukaemasu ka",
+                "en": "Can I use card?"
+            },
+            {
+                "jp": "現金で払います Genkin de haraimasu",
+                "en": "I'll pay in cash"
+            },
+            {
+                "jp": "トイレはどこですか Toire wa doko desu ka",
+                "en": "Where is the toilet?"
+            },
+            {
+                "jp": "お会計お願いします Okaikei onegaishimasu",
+                "en": "The bill please"
+            },
+            {
+                "jp": "おすすめは何ですか Osusume wa nan desu ka",
+                "en": "What do you recommend?"
+            },
+            {
+                "jp": "水をください Mizu o kudasai",
+                "en": "Water please"
+            },
+            {
+                "jp": "アレルギーがあります Arerugii ga arimasu",
+                "en": "I have an allergy"
+            },
+            {
+                "jp": "辛いのは苦手です Karai no wa nigate desu",
+                "en": "I'm not good with spicy food"
+            },
+            {
+                "jp": "持ち帰りで Mochikaeri de",
+                "en": "To go / takeaway"
+            },
+            {
+                "jp": "別々でお願いします Betsubetsu de onegaishimasu",
+                "en": "Separate bills please"
+            },
+            {
+                "jp": "予約しています Yoyaku shite imasu",
+                "en": "I have a reservation"
+            },
+            {
+                "jp": "チェックインしたいです Chekkuin shitai desu",
+                "en": "I'd like to check in"
+            },
+            {
+                "jp": "パスポートです Pasupooto desu",
+                "en": "Here is my passport"
+            }
+        ],
+        "Trip Priority: Hear Back": [
+            {
+                "jp": "いらっしゃいませ Irasshaimase",
+                "en": "Welcome"
+            },
+            {
+                "jp": "何名様ですか Nanmei sama desu ka",
+                "en": "How many people?"
+            },
+            {
+                "jp": "ご予約はありますか Goyoyaku wa arimasu ka",
+                "en": "Do you have a reservation?"
+            },
+            {
+                "jp": "こちらへどうぞ Kochira e douzo",
+                "en": "This way please"
+            },
+            {
+                "jp": "少々お待ちください Shoushou omachi kudasai",
+                "en": "Please wait a moment"
+            },
+            {
+                "jp": "袋は要りますか Fukuro wa irimasu ka",
+                "en": "Do you need a bag?"
+            },
+            {
+                "jp": "レシートは要りますか Reshiito wa irimasu ka",
+                "en": "Do you need the receipt?"
+            },
+            {
+                "jp": "温めますか Atatamemasu ka",
+                "en": "Shall I heat it up?"
+            },
+            {
+                "jp": "ポイントカードはありますか Pointo kaado wa arimasu ka",
+                "en": "Do you have a point card?"
+            },
+            {
+                "jp": "店内でお召し上がりですか Tennai de omeshiagari desu ka",
+                "en": "For here?"
+            },
+            {
+                "jp": "お持ち帰りですか Omochikaeri desu ka",
+                "en": "To go?"
+            },
+            {
+                "jp": "現金のみです Genkin nomi desu",
+                "en": "Cash only"
+            },
+            {
+                "jp": "〜円です ~ en desu",
+                "en": "It's ~ yen"
+            },
+            {
+                "jp": "おつりです Otsuri desu",
+                "en": "Here is your change"
+            },
+            {
+                "jp": "こちらでよろしいですか Kochira de yoroshii desu ka",
+                "en": "Is this okay?"
+            },
+            {
+                "jp": "パスポートをお願いします Pasupooto o onegaishimasu",
+                "en": "Passport please"
+            },
+            {
+                "jp": "朝食付きです Choushoku-tsuki desu",
+                "en": "Breakfast is included"
+            },
+            {
+                "jp": "禁煙です Kinen desu",
+                "en": "Non-smoking"
+            },
+            {
+                "jp": "少しお待ちください Sukoshi omachi kudasai",
+                "en": "Please wait a little"
+            },
+            {
+                "jp": "次の方どうぞ Tsugi no kata douzo",
+                "en": "Next person please"
+            }
+        ],
+        "Trip Priority: Transport": [
+            {
+                "jp": "改札 Kaisatsu",
+                "en": "Ticket gate"
+            },
+            {
+                "jp": "ホーム Hoomu",
+                "en": "Platform"
+            },
+            {
+                "jp": "何番線ですか Nanbansen desu ka",
+                "en": "Which platform is it?"
+            },
+            {
+                "jp": "乗り換え Norikae",
+                "en": "Transfer"
+            },
+            {
+                "jp": "出口 Deguchi",
+                "en": "Exit"
+            },
+            {
+                "jp": "入口 Iriguchi",
+                "en": "Entrance"
+            },
+            {
+                "jp": "切符 Kippu",
+                "en": "Ticket"
+            },
+            {
+                "jp": "ICカード IC kaado",
+                "en": "IC card"
+            },
+            {
+                "jp": "チャージ Chaaji",
+                "en": "Top up / recharge"
+            },
+            {
+                "jp": "各駅 Kakueki",
+                "en": "Local train"
+            },
+            {
+                "jp": "急行 Kyuukou",
+                "en": "Express train"
+            },
+            {
+                "jp": "特急 Tokkyuu",
+                "en": "Limited express"
+            },
+            {
+                "jp": "遅れています Okurete imasu",
+                "en": "It is delayed"
+            },
+            {
+                "jp": "運休です Unkyuu desu",
+                "en": "It is cancelled"
+            },
+            {
+                "jp": "まもなく電車がまいります Mamonaku densha ga mairimasu",
+                "en": "The train will arrive shortly"
+            },
+            {
+                "jp": "この電車は〜に行きますか Kono densha wa ~ ni ikimasu ka",
+                "en": "Does this train go to ~?"
+            },
+            {
+                "jp": "〜までお願いします ~ made onegaishimasu",
+                "en": "To ~ please"
+            },
+            {
+                "jp": "ここで降ります Koko de orimasu",
+                "en": "I get off here"
+            },
+            {
+                "jp": "迷いました Mayoimashita",
+                "en": "I got lost"
+            },
+            {
+                "jp": "地図を見せてください Chizu o misete kudasai",
+                "en": "Please show me the map"
+            }
+        ],
+        "Trip Priority: Food And Stores": [
+            {
+                "jp": "これをください Kore o kudasai",
+                "en": "This one please"
+            },
+            {
+                "jp": "おすすめは何ですか Osusume wa nan desu ka",
+                "en": "What do you recommend?"
+            },
+            {
+                "jp": "これは何ですか Kore wa nan desu ka",
+                "en": "What is this?"
+            },
+            {
+                "jp": "お会計お願いします Okaikei onegaishimasu",
+                "en": "The bill please"
+            },
+            {
+                "jp": "別々でお願いします Betsubetsu de onegaishimasu",
+                "en": "Separate bills please"
+            },
+            {
+                "jp": "持ち帰りで Mochikaeri de",
+                "en": "To go / takeaway"
+            },
+            {
+                "jp": "店内で Tennai de",
+                "en": "For here"
+            },
+            {
+                "jp": "袋は大丈夫です Fukuro wa daijoubu desu",
+                "en": "I don't need a bag"
+            },
+            {
+                "jp": "レシートは大丈夫です Reshiito wa daijoubu desu",
+                "en": "I don't need the receipt"
+            },
+            {
+                "jp": "温めてください Atatamete kudasai",
+                "en": "Please heat it up"
+            },
+            {
+                "jp": "水をください Mizu o kudasai",
+                "en": "Water please"
+            },
+            {
+                "jp": "お水 Omizu",
+                "en": "Water"
+            },
+            {
+                "jp": "辛いですか Karai desu ka",
+                "en": "Is it spicy?"
+            },
+            {
+                "jp": "辛いのは苦手です Karai no wa nigate desu",
+                "en": "I'm not good with spicy food"
+            },
+            {
+                "jp": "アレルギーがあります Arerugii ga arimasu",
+                "en": "I have an allergy"
+            },
+            {
+                "jp": "現金 Genkin",
+                "en": "Cash"
+            },
+            {
+                "jp": "クレジットカード Kurejitto kaado",
+                "en": "Credit card"
+            },
+            {
+                "jp": "おつり Otsuri",
+                "en": "Change"
+            },
+            {
+                "jp": "売り切れ Urikire",
+                "en": "Sold out"
+            },
+            {
+                "jp": "大丈夫です Daijoubu desu",
+                "en": "It's fine / No thank you"
+            }
+        ],
         "Grammar Patterns": [
             {
-                "jp": "AじからBじまで (activity) をします\nA-ji kara B-ji made (activity) o shimasu",
+                "jp": "AじからBじまで (activity) をします A-ji kara B-ji made (activity) o shimasu",
                 "en": "I do (activity) from A o'clock to B. [time range + を]"
             },
             {
-                "jp": "(activity) をしたことがあります\n(activity) o shita koto ga arimasu",
+                "jp": "(activity) をしたことがあります (activity) o shita koto ga arimasu",
                 "en": "I have done (activity) before. [experience: たことがある]"
             },
             {
-                "jp": "これも (A) の (thing) です\nkore mo (A) no (thing) desu",
+                "jp": "これも (A) の (thing) です kore mo (A) no (thing) desu",
                 "en": "This is also a (thing) by / from (A). [も + possessive の]"
             },
             {
-                "jp": "(thing) がどこにでもあります\n(thing) ga dokonidemo arimasu",
+                "jp": "(thing) がどこにでもあります (thing) ga dokonidemo arimasu",
                 "en": "(thing) is everywhere. [どこにでも pattern]"
             },
             {
-                "jp": "(place) にすんでいます\n(place) ni sunde imasu",
+                "jp": "(place) にすんでいます (place) ni sunde imasu",
                 "en": "I live in (place). [住んでいます]"
             },
             {
-                "jp": "どのくらい (place) にすんでいますか？\ndono kurai (place) ni sunde imasu ka?",
+                "jp": "どのくらい (place) にすんでいますか？ dono kurai (place) ni sunde imasu ka?",
                 "en": "How long have you been living in (place)? [どのくらい + ている question]"
             },
             {
-                "jp": "(place) のちゅうしんいがいはゆっくりしています\n(place) no chuushin igai wa yukkuri shite imasu",
+                "jp": "(place) のちゅうしんいがいはゆっくりしています (place) no chuushin igai wa yukkuri shite imasu",
                 "en": "It's relaxed everywhere except the center of (place). [以外 = except]"
             },
             {
-                "jp": "(A) と (B) はにています\n(A) to (B) wa nite imasu",
+                "jp": "(A) と (B) はにています (A) to (B) wa nite imasu",
                 "en": "(A) and (B) are similar. [似ている comparison]"
             },
             {
-                "jp": "よく (place) にいきますか？\nyoku (place) ni ikimasu ka?",
+                "jp": "よく (place) にいきますか？ yoku (place) ni ikimasu ka?",
                 "en": "Do you go to (place) often? [よく + frequency question]"
             },
             {
-                "jp": "(A) のほうが (B) より (thing) がおおいです\n(A) no hou ga (B) yori (thing) ga ooi desu",
+                "jp": "(A) のほうが (B) より (thing) がおおいです (A) no hou ga (B) yori (thing) ga ooi desu",
                 "en": "(A) has more (thing) than (B). [AのほうがBより comparison]"
             },
             {
-                "jp": "(A) のほうが (B) よりにんきです\n(A) no hou ga (B) yori ninki desu",
+                "jp": "(A) のほうが (B) よりにんきです (A) no hou ga (B) yori ninki desu",
                 "en": "(A) is more popular than (B). [popularity comparison]"
             },
             {
-                "jp": "(period) (place) にいった\n(period) (place) ni itta",
+                "jp": "(period) (place) にいった (period) (place) ni itta",
                 "en": "I went to / was in (place) for (period). [duration + destination past]"
             },
             {
-                "jp": "(place) にひっこします\n(place) ni hikkoshimasu",
+                "jp": "(place) にひっこします (place) ni hikkoshimasu",
                 "en": "I am moving to (place). [引っ越す]"
             },
             {
-                "jp": "(thing) がたのしみです\n(thing) ga tanoshimi desu",
+                "jp": "(thing) がたのしみです (thing) ga tanoshimi desu",
                 "en": "I am looking forward to (thing). [楽しみです]"
             },
             {
-                "jp": "(thing) をうえにのせる\n(thing) o ue ni noseru",
+                "jp": "(thing) をうえにのせる (thing) o ue ni noseru",
                 "en": "Put (thing) on top. [上に乗せる placement]"
             },
             {
-                "jp": "(person) といっしょに (place) にいく\n(person) to isshoni (place) ni iku",
+                "jp": "(person) といっしょに (place) にいく (person) to isshoni (place) ni iku",
                 "en": "Go to (place) together with (person). [一緒に]"
             },
             {
-                "jp": "(place) の (thing) はきたないです\n(place) no (thing) wa kitanai desu",
+                "jp": "(place) の (thing) はきたないです (place) no (thing) wa kitanai desu",
                 "en": "The (thing) in (place) is dirty/unclean. [descriptive noun phrase]"
             }
         ]
