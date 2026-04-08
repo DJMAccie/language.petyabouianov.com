@@ -16,9 +16,9 @@
     <meta name="twitter:title" content="Bahasa Studio | Indonesian Study Tool">
     <meta name="twitter:description" content="Practice Indonesian vocabulary and track your study progress in Bahasa Studio.">
     <meta name="twitter:image" content="https://petyabouianov.com/images/Petya-2.jpg">
-    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="studio.css?v=20260408d">
+    <link rel="stylesheet" href="tailwind.generated.css?v=20260408f">
+    <link rel="stylesheet" href="studio.css?v=20260408f">
     <style>
         /* --- Scrollbar --- */
         ::-webkit-scrollbar {
@@ -67,13 +67,13 @@
 
     <!-- MAIN WINDOW -->
     <div
-        class="mac-window w-full max-w-6xl md:h-[85vh] h-[100dvh] md:rounded-xl rounded-none md:border border-white/40 border-none overflow-hidden flex flex-col relative">
+        class="mac-window studio-window-frame w-full max-w-6xl md:h-[85vh] h-[100dvh] md:rounded-xl rounded-none md:border border-white/40 border-none overflow-hidden flex flex-col relative">
 
         <!-- HEADER -->
         <div data-studio-header
-            class="bg-gradient-to-b from-gray-100 to-gray-200 border-b border-gray-300 h-10 flex items-center px-4 justify-between shrink-0 select-none relative z-50">
+            class="studio-window-header bg-gradient-to-b from-gray-100 to-gray-200 border-b border-gray-300 h-10 flex items-center px-4 justify-between shrink-0 select-none relative z-50">
             <div class="w-10" data-studio-header-left></div>
-            <div class="text-sm font-semibold text-gray-600 flex items-center gap-2">
+            <div class="studio-window-title text-sm font-semibold text-gray-600 flex items-center gap-2">
                 <i class="fas fa-flag text-red-500"></i> Bahasa Indonesia
             </div>
             <div class="w-10" data-studio-header-right></div>
@@ -84,7 +84,7 @@
 
         <!-- TOOLBAR -->
         <div id="system-bar"
-            class="bg-gray-50/80 p-4 md:p-6 border-b border-gray-200 shrink-0 flex flex-col items-center justify-center gap-3 transition-all duration-300 ease-in-out relative z-10">
+            class="studio-shell-toolbar bg-gray-50/80 p-4 md:p-6 border-b border-gray-200 shrink-0 flex flex-col items-center justify-center gap-3 transition-all duration-300 ease-in-out relative z-10">
             <div class="w-full flex flex-col md:flex-row justify-between items-center gap-3 md:gap-0 max-w-5xl">
                 <!-- Action Buttons -->
                 <div class="studio-toolbar-actions w-full md:w-auto justify-center md:justify-start">
@@ -99,20 +99,20 @@
                     </button>
                 </div>
                 <!-- Simple Search -->
-                <div class="relative w-full md:w-96 group">
-                    <i class="fas fa-search absolute left-4 top-3.5 text-gray-400 group-focus-within:text-blue-500"></i>
+                <div class="studio-toolbar-search-shell relative w-full md:w-96 group">
+                    <i class="studio-toolbar-search-icon fas fa-search absolute left-4 top-3.5 text-gray-400 group-focus-within:text-blue-500"></i>
                     <input type="text" id="list-search" placeholder="Search lists..." onkeyup="filterLists()" aria-label="Search lists"
-                        class="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-300 rounded-full text-sm focus:outline-none focus:ring-4 focus:ring-blue-400/30 focus:border-blue-400 shadow-sm transition-all search-input">
+                        class="studio-toolbar-search w-full pl-10 pr-4 py-2.5 bg-white border border-gray-300 rounded-full text-sm focus:outline-none focus:ring-4 focus:ring-blue-400/30 focus:border-blue-400 shadow-sm transition-all">
                 </div>
                 <!-- Mode Toggle -->
                 <div class="relative w-full md:w-auto">
                     <select id="global-quiz-mode" onchange="renderTable(loadedLists, loadedScores)" aria-label="Quiz mode"
-                        class="w-full md:w-auto appearance-none bg-white border border-gray-300 text-gray-600 py-2 pl-4 pr-10 rounded-full text-sm font-medium shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 cursor-pointer">
+                        class="studio-toolbar-select w-full md:w-auto appearance-none bg-white border border-gray-300 text-gray-600 py-2 pl-4 pr-10 rounded-full text-sm font-medium shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 cursor-pointer">
                         <option value="en-jp" selected>Eng → Indo</option>
                         <option value="jp-en">Indo → Eng</option>
                         <option value="speech">🗣 Bicara</option>
                     </select>
-                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-400">
+                    <div class="studio-toolbar-chevron pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-400">
                         <i class="fas fa-chevron-down text-xs"></i>
                     </div>
                 </div>
@@ -120,13 +120,13 @@
         </div>
 
         <!-- CONTENT -->
-        <div class="flex-1 min-h-0 bg-white relative flex flex-col z-0" data-studio-content>
+        <div class="studio-content-shell flex-1 min-h-0 bg-white relative flex flex-col z-0" data-studio-content>
 
             <!-- TABLE SECTION -->
             <div id="select-section" class="flex-1 overflow-auto animate-fade-in flex flex-col">
                 <div class="flex-1 overflow-auto">
                     <table class="w-full text-left border-collapse finder-table">
-                        <thead class="bg-white sticky top-0 border-b border-gray-200 shadow-sm z-10">
+                        <thead class="studio-table-head bg-white sticky top-0 border-b border-gray-200 shadow-sm z-10">
                             <tr>
                                 <th class="p-3 pl-6 text-xs font-medium text-gray-500 uppercase w-1/3">List Name</th>
                                 <th class="p-3 text-xs font-medium text-gray-500 uppercase">Words</th>
@@ -145,8 +145,8 @@
                 </div>
                 <!-- FOOTER -->
                 <div
-                    class="bg-gray-50 border-t border-gray-200 py-2 px-4 shrink-0 flex justify-between items-center select-none relative h-10">
-                    <div class="flex items-center gap-2 text-[11px] text-gray-400 font-medium z-10 relative">
+                    class="studio-footer-bar bg-gray-50 border-t border-gray-200 py-2 px-4 shrink-0 flex justify-between items-center select-none relative h-10">
+                    <div class="studio-footer-meta flex items-center gap-2 text-[11px] text-gray-400 font-medium z-10 relative">
                         <span id="total-lists-count">0 lists</span>
                         <span>•</span>
                         <span id="total-words-count">0 words</span>
@@ -158,7 +158,7 @@
                         <!-- JS injects quote here -->
                     </div>
 
-                    <div class="flex items-center gap-1.5 text-[11px] text-gray-400 font-medium hover:text-gray-600 transition-colors cursor-default z-10 relative"
+                    <div class="studio-footer-meta flex items-center gap-1.5 text-[11px] text-gray-400 font-medium hover:text-gray-600 transition-colors cursor-default z-10 relative"
                         title="Your current study streak">
                         <i id="streak-icon" class="fas fa-fire text-gray-300 transition-colors"></i>
                         <span id="streak-text">0 Day Streak</span>
@@ -167,39 +167,39 @@
             </div>
 
             <!-- SETUP SECTION (Create/Edit) -->
-            <div id="setup-section" class="hidden absolute inset-0 bg-white z-20 flex flex-col animate-fade-in">
-                <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex justify-between items-center shrink-0">
-                    <h2 class="font-semibold text-gray-700">Edit Collection</h2>
+            <div id="setup-section" class="studio-section-shell hidden absolute inset-0 bg-white z-20 flex flex-col animate-fade-in">
+                <div class="studio-section-header bg-gray-50 px-6 py-4 border-b border-gray-200 flex justify-between items-center shrink-0">
+                    <h2 class="studio-section-title font-semibold text-gray-700">Edit Collection</h2>
                     <button type="button" onclick="showSection('select')" class="text-gray-400 hover:text-gray-600 transition" aria-label="Close editor"><i
                             class="fas fa-times text-lg"></i></button>
                 </div>
                 <div class="flex-1 overflow-y-auto p-6 w-full max-w-3xl mx-auto">
                     <div class="space-y-6">
                         <div>
-                            <label class="block text-xs font-bold text-gray-500 uppercase mb-2">List Name</label>
+                            <label class="studio-form-label block text-xs font-bold text-gray-500 uppercase mb-2">List Name</label>
                             <input type="text" id="list-name-input" maxlength="100"
-                                class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition shadow-sm">
+                                class="studio-form-control w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition shadow-sm">
                         </div>
                         <div>
-                            <label class="block text-xs font-bold text-gray-500 uppercase mb-2">Words <span
-                                    class="text-gray-400 font-normal normal-case ml-1">(Format: Indo Word, English
+                            <label class="studio-form-label block text-xs font-bold text-gray-500 uppercase mb-2">Words <span
+                                    class="studio-form-label-note text-gray-400 font-normal normal-case ml-1">(Format: Indo Word, English
                                     Meaning)</span></label>
                             <textarea id="word-input" spellcheck="false"
-                                class="w-full h-64 px-4 py-3 bg-gray-50 border border-gray-300 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition resize-none font-mono text-sm shadow-sm leading-relaxed"></textarea>
+                                class="studio-form-control studio-form-control--textarea w-full h-64 px-4 py-3 bg-gray-50 border border-gray-300 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition resize-none font-mono text-sm shadow-sm leading-relaxed"></textarea>
                         </div>
                     </div>
                 </div>
                 <div class="p-6 border-t border-gray-200 bg-white shrink-0 z-10"
                     style="padding-bottom: max(1.5rem, env(safe-area-inset-bottom));">
                     <div class="max-w-3xl mx-auto studio-save-row">
-                        <button onclick="saveListToServer()" class="studio-save-btn">Save Changes</button>
+                        <button type="button" onclick="saveListToServer()" class="studio-save-btn">Save Changes</button>
                     </div>
                 </div>
             </div>
 
             <!-- QUIZ SECTION -->
             <div id="quiz-section"
-                class="hidden absolute inset-0 bg-white z-20 flex flex-col items-center justify-center p-4 md:p-8 animate-fade-in"
+                class="studio-section-shell hidden absolute inset-0 bg-white z-20 flex flex-col items-center justify-center p-4 md:p-8 animate-fade-in"
                 style="padding-bottom: max(2rem, env(safe-area-inset-bottom));">
                 <div class="w-full max-w-3xl text-center">
                     <div
@@ -225,7 +225,7 @@
                         </h2>
                         <!-- Replay Audio Button -->
                         <button type="button" onclick="replayAudio()" aria-label="Replay pronunciation"
-                            class="text-gray-300 hover:text-blue-500 transition p-2 rounded-full hover:bg-blue-50"
+                            class="studio-replay-btn text-gray-300 hover:text-blue-500 transition p-2 rounded-full hover:bg-blue-50"
                             title="Replay Audio">
                             <i class="fas fa-volume-up text-xl"></i>
                         </button>
@@ -240,7 +240,7 @@
                         <!-- SPEECH INPUT -->
                         <div id="speech-controls" class="hidden flex flex-col items-center justify-center gap-4">
                             <button type="button" id="mic-btn" onclick="activateSpeech()" aria-label="Start speech input"
-                                class="relative w-20 h-20 rounded-full bg-gray-100 hover:bg-blue-50 text-blue-500 text-3xl shadow-md border border-gray-200 transition-all active:scale-95 flex items-center justify-center animate-fade-in">
+                                class="studio-quiz-mic-btn relative w-20 h-20 rounded-full bg-gray-100 hover:bg-blue-50 text-blue-500 text-3xl shadow-md border border-gray-200 transition-all active:scale-95 flex items-center justify-center animate-fade-in">
                                 <i id="mic-icon" class="fas fa-microphone"></i>
                             </button>
                             <p id="speech-status" class="text-sm text-gray-400 font-mono h-6">Click mic to speak</p>
@@ -260,7 +260,7 @@
     <!-- TOAST NOTIFICATIONS -->
     <div id="toast-container" class="fixed bottom-4 right-4 z-50 flex flex-col gap-2" role="status" aria-live="polite" aria-atomic="true"></div>
 
-    <script src="studio-core.js?v=20260408d"></script>
+    <script src="studio-core.js?v=20260408f"></script>
     <script src="language-configs.js"></script>
     <script>
         window.onload = () => {
