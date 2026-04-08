@@ -17,10 +17,13 @@ const StudioCore = (() => {
     let currentIndex = 0;
     let score = 0;
     let isProcessing = false;
+    let isSavingList = false;
     let sessionResults = [];
 
     let isPurificationSession = false;
     let gauntletLives = 3;
+    let activeDialogState = null;
+    let confettiLoader = null;
 
     // === CONFIG (set by init) ===
     let config = {};
@@ -33,6 +36,158 @@ const StudioCore = (() => {
         const div = document.createElement('div');
         div.textContent = str;
         return div.innerHTML;
+    }
+
+    function getFocusableElements(container) {
+        if (!container) return [];
+        return Array.from(container.querySelectorAll('a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'))
+            .filter(el => !el.hasAttribute('hidden') && el.getAttribute('aria-hidden') !== 'true' && el.getClientRects().length > 0);
+    }
+
+    function onDialogKeydown(event) {
+        if (!activeDialogState?.dialog) return;
+
+        if (event.key === 'Escape') {
+            event.preventDefault();
+            activeDialogState.onRequestClose?.();
+            return;
+        }
+
+        if (event.key !== 'Tab') return;
+
+        const focusable = getFocusableElements(activeDialogState.dialog);
+        if (!focusable.length) {
+            event.preventDefault();
+            activeDialogState.dialog.focus();
+            return;
+        }
+
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        const activeElement = document.activeElement;
+
+        if (event.shiftKey && activeElement === first) {
+            event.preventDefault();
+            last.focus();
+        } else if (!event.shiftKey && activeElement === last) {
+            event.preventDefault();
+            first.focus();
+        }
+    }
+
+    function isDialogOpen() {
+        return !!activeDialogState?.dialog && !activeDialogState.dialog.classList.contains('hidden');
+    }
+
+    function openDialog(dialog, options = {}) {
+        if (!dialog) return;
+
+        const {
+            initialFocusSelector,
+            onRequestClose,
+            restoreFocus = true,
+            labelId,
+            label
+        } = options;
+
+        if (!document.body.dataset.studioDialogBound) {
+            document.addEventListener('keydown', onDialogKeydown, true);
+            document.body.dataset.studioDialogBound = 'true';
+        }
+
+        if (activeDialogState?.dialog && activeDialogState.dialog !== dialog) {
+            closeDialog(activeDialogState.dialog, { restoreFocus: false });
+        }
+
+        dialog.setAttribute('role', 'dialog');
+        dialog.setAttribute('aria-modal', 'true');
+        dialog.setAttribute('tabindex', '-1');
+        if (labelId) {
+            dialog.setAttribute('aria-labelledby', labelId);
+            dialog.removeAttribute('aria-label');
+        } else if (label) {
+            dialog.setAttribute('aria-label', label);
+            dialog.removeAttribute('aria-labelledby');
+        }
+
+        const previousFocus = restoreFocus ? document.activeElement : null;
+        dialog.setAttribute('aria-hidden', 'false');
+        dialog.classList.remove('hidden');
+
+        activeDialogState = {
+            dialog,
+            previousFocus,
+            onRequestClose: onRequestClose || (() => closeDialog(dialog))
+        };
+
+        requestAnimationFrame(() => {
+            const initialTarget = (initialFocusSelector && dialog.querySelector(initialFocusSelector))
+                || getFocusableElements(dialog)[0]
+                || dialog;
+            initialTarget.focus();
+        });
+    }
+
+    function closeDialog(dialog, options = {}) {
+        if (!dialog) return;
+
+        const { restoreFocus = true } = options;
+        dialog.setAttribute('aria-hidden', 'true');
+        dialog.classList.add('hidden');
+
+        if (activeDialogState?.dialog === dialog) {
+            const previousFocus = activeDialogState.previousFocus;
+            activeDialogState = null;
+            if (restoreFocus && previousFocus && document.contains(previousFocus) && typeof previousFocus.focus === 'function') {
+                requestAnimationFrame(() => previousFocus.focus());
+            }
+        }
+    }
+
+    function ensureConfettiLoaded() {
+        if (typeof window.confetti === 'function') return Promise.resolve(window.confetti);
+        if (!confettiLoader) {
+            confettiLoader = new Promise((resolve, reject) => {
+                const script = document.createElement('script');
+                script.src = 'https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js';
+                script.async = true;
+                script.onload = () => resolve(window.confetti);
+                script.onerror = () => reject(new Error('Failed to load celebration effect'));
+                document.head.appendChild(script);
+            });
+        }
+        return confettiLoader;
+    }
+
+    function getScoreTone(score, successThreshold = 80, warningThreshold = 50) {
+        if (score >= successThreshold) return 'tone-success';
+        if (score >= warningThreshold) return 'tone-warning';
+        return 'tone-danger';
+    }
+
+    function getModeProgress(mode, scoreSet) {
+        const jpScore = scoreSet?.['jp-en'] || 0;
+        const enScore = scoreSet?.['en-jp'] || 0;
+        const speechScore = scoreSet?.['speech'] || 0;
+
+        if (mode === 'jp-en') {
+            return {
+                value: jpScore,
+                badgeClass: 'bg-blue-100 text-blue-700',
+            };
+        }
+
+        if (mode === 'speech') {
+            return {
+                value: speechScore,
+                badgeClass: 'bg-blue-100 text-blue-700',
+            };
+        }
+
+        return {
+            value: enScore,
+            badgeClass: 'bg-blue-100 text-blue-700',
+        };
     }
 
     // =========================================================
@@ -81,6 +236,11 @@ const StudioCore = (() => {
         window.showStats = showStats;
         window.closeStats = closeStats;
         window.startNeedsWork = startNeedsWork;
+        window.StudioUI = {
+            openDialog,
+            closeDialog,
+            isDialogOpen
+        };
 
         // Training mode (nihongo-only but safe to expose)
         if (config.startTraining) {
@@ -231,8 +391,8 @@ const StudioCore = (() => {
         // Hide feature overlays
         const ro = document.getElementById('studio-results-overlay');
         const so = document.getElementById('studio-stats-overlay');
-        if (ro) ro.classList.add('hidden');
-        if (so) so.classList.add('hidden');
+        if (ro) closeDialog(ro, { restoreFocus: false });
+        if (so) closeDialog(so, { restoreFocus: false });
         const sysBar = document.getElementById('system-bar');
         sysBar.style.marginTop = (id === 'quiz') ? '-130px' : '0px';
         if (id === 'select') {
@@ -278,7 +438,7 @@ const StudioCore = (() => {
     // =========================================================
     function renderTable(lists, scores) {
         const tbody = document.getElementById('list-table-body');
-        tbody.innerHTML = '';
+        const rows = [];
         let count = 0;
         const currentMode = document.getElementById('global-quiz-mode').value;
 
@@ -306,20 +466,20 @@ const StudioCore = (() => {
         const sessionBatch = shuffledQueue.slice(0, 10);
 
         if (sessionBatch.length > 0) {
-            tbody.innerHTML += `
+            rows.push(`
             <tr class="border-b border-gray-100 transition cursor-default bg-blue-50/50 hover:bg-blue-500 group">
                 <td class="p-3 pl-6 font-bold text-blue-600 group-hover:text-white"><i class="fas fa-brain mr-3"></i>Smart Review</td>
                 <td class="p-3 text-blue-600 group-hover:text-white font-medium">${sessionBatch.length} words</td>
                 <td class="p-3 text-blue-400 group-hover:text-white text-xs hidden md:table-cell">--</td>
-                <td class="p-3 hidden md:table-cell"><div class="flex items-center gap-2"><div class="w-2.5 h-2.5 rounded-full bg-blue-500 animate-pulse border border-blue-600"></div><span class="text-blue-600 group-hover:text-white text-xs font-bold uppercase"></span></div></td>
-                <td class="p-3 pr-6 text-right"><button onclick="startSmartReview()" class="bg-blue-600 text-white px-4 py-1.5 rounded-full text-xs font-bold shadow-sm group-hover:bg-white group-hover:text-blue-600 transition">Start Session</button></td>
-            </tr>`;
+                <td class="p-3 hidden md:table-cell"><div class="flex items-center gap-2"><div class="w-2.5 h-2.5 rounded-full bg-blue-500 animate-pulse border border-blue-600"></div><span class="text-blue-600 group-hover:text-white text-xs font-bold uppercase">Queued</span></div></td>
+                <td class="p-3 pr-6 text-right"><button type="button" onclick="startSmartReview()" class="studio-table-start-btn" aria-label="Start smart review session">Start Session</button></td>
+            </tr>`);
         }
 
         // --- CUSTOM TABLE EXTRAS (e.g. Hantu Hunt for Bahasa) ---
         if (config.renderTableExtras) {
             const extraHTML = config.renderTableExtras(lists, allUniqueWords, wordStats);
-            if (extraHTML) tbody.innerHTML += extraHTML;
+            if (extraHTML) rows.push(extraHTML);
         }
 
         // --- MAIN LISTS ---
@@ -335,52 +495,50 @@ const StudioCore = (() => {
         sortedKeys.forEach(name => {
             count++;
             const words = lists[name];
-            let jpScore = 0; let enScore = 0; let speechScore = 0;
-            if (scores[name]) {
-                if (typeof scores[name] === 'object') {
-                    jpScore = scores[name]['jp-en'] || 0;
-                    enScore = scores[name]['en-jp'] || 0;
-                    speechScore = scores[name]['speech'] || 0;
-                } else { jpScore = scores[name]; }
-            }
+            const rawScoreSet = scores[name];
+            const scoreSet = typeof rawScoreSet === 'object'
+                ? rawScoreSet
+                : (typeof rawScoreSet === 'number' ? { 'jp-en': rawScoreSet } : {});
+            const progress = getModeProgress(currentMode, scoreSet);
+            const activeScore = progress.value || 0;
 
-            let badgeHTML = ''; let dotColor = "bg-gray-300"; let statusText = "New";
-            if (currentMode === 'jp-en') {
-                badgeHTML = `<span class="badge bg-blue-100 text-blue-700 px-2 py-0.5 rounded text-xs font-bold">${jpScore}%</span>`;
-                if (jpScore > 80) { dotColor = "bg-green-500"; statusText = "Mastered"; } else if (jpScore > 0) { dotColor = "bg-yellow-400"; statusText = "Learning"; }
-            } else if (currentMode === 'en-jp') {
-                badgeHTML = `<span class="badge bg-purple-100 text-purple-700 px-2 py-0.5 rounded text-xs font-bold">${enScore}%</span>`;
-                if (enScore > 80) { dotColor = "bg-green-500"; statusText = "Mastered"; } else if (enScore > 0) { dotColor = "bg-yellow-400"; statusText = "Learning"; }
-            } else if (currentMode === 'speech') {
-                badgeHTML = `<span class="badge bg-indigo-100 text-indigo-700 px-2 py-0.5 rounded text-xs font-bold">${speechScore}%</span>`;
-                if (speechScore > 80) { dotColor = "bg-green-500"; statusText = "Mastered"; } else if (speechScore > 0) { dotColor = "bg-yellow-400"; statusText = "Learning"; }
+            let dotColor = "bg-gray-300";
+            let statusText = "New";
+            if (activeScore > 80) {
+                dotColor = "bg-green-500";
+                statusText = "Mastered";
+            } else if (activeScore > 0) {
+                dotColor = "bg-yellow-400";
+                statusText = "Learning";
             }
 
             // Build action buttons — training only for nihongo
             const safeName = escapeAttr(name);
             let actionButtons = `
-                <button onclick="editList('${safeName}')" class="text-gray-400 hover:text-blue-600 transition" title="Edit"><i class="fas fa-edit"></i></button>
-                <button onclick="deleteList('${safeName}')" class="text-gray-400 hover:text-red-500 transition" title="Delete"><i class="fas fa-trash"></i></button>`;
+                <button type="button" onclick="editList('${safeName}')" class="studio-table-icon-btn" title="Edit ${safeName}" aria-label="Edit ${safeName}"><i class="fas fa-edit"></i></button>
+                <button type="button" onclick="deleteList('${safeName}')" class="studio-table-icon-btn danger" title="Delete ${safeName}" aria-label="Delete ${safeName}"><i class="fas fa-trash"></i></button>`;
 
             if (config.startTraining) {
                 actionButtons += `
-                <button onclick="startTraining('${safeName}')" class="text-gray-400 hover:text-green-600 transition" title="Training"><i class="fas fa-dumbbell"></i></button>`;
+                <button type="button" onclick="startTraining('${safeName}')" class="studio-table-icon-btn" title="Training for ${safeName}" aria-label="Start training for ${safeName}"><i class="fas fa-dumbbell"></i></button>`;
             }
 
             actionButtons += `
-                <button onclick="startQuiz('${safeName}')" class="text-blue-600 font-bold hover:underline">Start Quiz</button>`;
+                <button type="button" onclick="startQuiz('${safeName}')" class="studio-table-start-btn" aria-label="Start quiz for ${safeName}">Start Quiz</button>`;
 
-            tbody.innerHTML += `
+            rows.push(`
             <tr class="border-b border-gray-100 transition cursor-default group">
                 <td class="p-3 pl-6 font-medium text-gray-800"><i class="fas fa-list-ul mr-3 text-gray-400 group-hover:text-white"></i>${escapeHTML(name)}</td>
                 <td class="p-3 text-gray-500">${words.length} words</td>
-                <td class="p-3 hidden md:table-cell">${badgeHTML}</td>
+                <td class="p-3 hidden md:table-cell"><span class="badge ${progress.badgeClass} px-2 py-0.5 rounded text-xs font-bold">${activeScore}%</span></td>
                 <td class="p-3 hidden md:table-cell"><div class="flex items-center gap-2"><div class="w-2.5 h-2.5 rounded-full ${dotColor} shadow-sm"></div><span class="text-gray-500">${statusText}</span></div></td>
-                <td class="p-3 pr-6 text-right font-mono text-xs flex justify-end items-center gap-4">
-                    ${actionButtons}
+                <td class="p-3 pr-6 text-right font-mono text-xs">
+                    <div class="studio-table-action-bar">${actionButtons}</div>
                 </td>
-            </tr>`;
+            </tr>`);
         });
+
+        tbody.innerHTML = rows.join('');
 
         // Update footer counts
         let uniqueWords = new Set();
@@ -767,8 +925,14 @@ const StudioCore = (() => {
         saveSessionHistory({ listName: currentListName, mode, score: pct, wordCount: wordList.length, date: Date.now() });
 
         // Confetti on perfect score
-        if (pct === 100 && typeof confetti === 'function') {
-            confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
+        if (pct === 100) {
+            ensureConfettiLoaded()
+                .then((confettiFn) => {
+                    if (typeof confettiFn === 'function') {
+                        confettiFn({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
+                    }
+                })
+                .catch(() => { });
         }
 
         // Collect wrong answers (deduplicate)
@@ -794,15 +958,13 @@ const StudioCore = (() => {
         const overlay = document.getElementById('studio-results-overlay');
         if (!overlay) return;
 
-        const scoreColor = pct >= 80 ? '#34c759' : (pct >= 50 ? '#ff9f0a' : '#ff3b30');
+        const scoreTone = getScoreTone(pct);
 
         let wrongHTML = '';
         if (wrongWords.length > 0) {
             wrongHTML = `
                 <div class="results-wrong-list">
-                    <div style="font-size:0.65rem; text-transform:uppercase; letter-spacing:0.08em; color:#8e8e93; font-weight:600; margin-bottom:0.5rem;">
-                        Missed ${wrongWords.length}
-                    </div>
+                    <div class="results-label">Missed ${wrongWords.length}</div>
                     ${wrongWords.map(w => `
                         <div class="results-wrong-item">
                             <span>${escapeHTML(w.jp)}</span>
@@ -813,18 +975,26 @@ const StudioCore = (() => {
         }
 
         overlay.innerHTML = `
-            <div style="text-align:center; padding-top:3rem; max-width:440px; width:100%;">
-                <div class="results-score" style="color:${scoreColor}">${pct}%</div>
-                <div style="font-size:0.8rem; color:#8e8e93; font-weight:400; margin-top:0.25rem;">${escapeHTML(currentListName)} · ${mode.toUpperCase()}</div>
+            <div class="results-panel">
+                <div id="studio-results-title" class="results-label">Session Results</div>
+                <div class="results-score ${scoreTone}">${pct}%</div>
+                <div class="results-meta">${escapeHTML(currentListName)} · ${mode.toUpperCase()}</div>
                 ${wrongHTML}
-                <button onclick="document.getElementById('studio-results-overlay').classList.add('hidden'); showSection('select');"
-                    style="margin-top:2rem; padding:0.5rem 1.5rem; background:none; border:1px solid #d1d5db; border-radius:980px; font-size:0.8rem; font-weight:500; color:#3b82f6; cursor:pointer; transition:all 0.15s;">
+                <button type="button" onclick="window.StudioUI.closeDialog(document.getElementById('studio-results-overlay'), { restoreFocus: false }); showSection('select');"
+                    class="results-done-btn" style="margin-top:2rem;" aria-label="Close results">
                     Done
                 </button>
             </div>
         `;
 
-        overlay.classList.remove('hidden');
+        openDialog(overlay, {
+            initialFocusSelector: '.results-done-btn',
+            labelId: 'studio-results-title',
+            onRequestClose: () => {
+                closeDialog(overlay, { restoreFocus: false });
+                showSection('select');
+            }
+        });
     }
 
     // =========================================================
@@ -867,9 +1037,13 @@ const StudioCore = (() => {
     }
 
     async function saveListToServer() {
+        if (isSavingList) return;
         const name = document.getElementById('list-name-input').value.trim();
         const text = document.getElementById('word-input').value;
-        if (!name || !text) return;
+        if (!name || !text) {
+            showToast("Add a list name and at least one word pair before saving.", "warning");
+            return;
+        }
         let words = text.split('\n').reduce((acc, line) => {
             if (!line.trim()) return acc;
             let match = line.match(/^(.*?),\s*(.*)$/);
@@ -878,8 +1052,20 @@ const StudioCore = (() => {
             }
             return acc;
         }, []);
+        if (!words.length) {
+            showToast("Use the format “word, meaning” on each line.", "warning");
+            return;
+        }
+
+        const saveButton = document.querySelector('#setup-section .studio-save-btn');
 
         try {
+            isSavingList = true;
+            if (saveButton) {
+                saveButton.disabled = true;
+                saveButton.setAttribute('aria-busy', 'true');
+                saveButton.textContent = 'Saving...';
+            }
             if (editingOriginalName && editingOriginalName !== name) {
                 await apiFetch(config.apiUrl + '&action=delete_list', {
                     method: 'POST',
@@ -899,6 +1085,13 @@ const StudioCore = (() => {
         } catch (e) {
             console.error(e);
             handleAdminRequestError(e, "Failed to save list");
+        } finally {
+            isSavingList = false;
+            if (saveButton) {
+                saveButton.disabled = false;
+                saveButton.removeAttribute('aria-busy');
+                saveButton.textContent = 'Save Changes';
+            }
         }
     }
 
@@ -1029,59 +1222,58 @@ const StudioCore = (() => {
         const total = allWords.length || 1;
         const masteredPct = (totalMastered / total) * 100;
         const learningPct = (totalLearning / total) * 100;
+        const accuracyTone = avgAccuracy >= 70 ? 'tone-success' : 'tone-warning';
 
         const sparklineHTML = recentScores.length > 1 ? `
-            <div class="sparkline-container">
+            <div class="sparkline-container" aria-hidden="true">
                 ${recentScores.map(s => {
             const h = Math.max(3, (s.score / 100) * 28);
-            const color = s.score >= 80 ? '#34c759' : (s.score >= 50 ? '#ff9f0a' : '#ff3b30');
-            return `<div class="sparkline-bar" style="height:${h}px;background:${color};"></div>`;
+            return `<div class="sparkline-bar ${getScoreTone(s.score)}" style="height:${h}px;"></div>`;
         }).join('')}
             </div>` : '';
 
         const sessionsHTML = history.slice(0, 8).map(s => {
             const d = new Date(s.date);
             const dateStr = d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
-            const scoreColor = s.score >= 80 ? '#34c759' : (s.score >= 50 ? '#ff9f0a' : '#ff3b30');
             return `<div class="session-item">
                 <span>${escapeHTML(s.listName)}</span>
-                <span style="color:${scoreColor};font-weight:500;">${s.score}%</span>
-                <span style="color:#8e8e93;font-size:0.7rem;">${dateStr}</span>
+                <span class="session-score ${getScoreTone(s.score)}">${s.score}%</span>
+                <span class="session-meta">${dateStr}</span>
             </div>`;
         }).join('');
 
         const weakHTML = weakWords.slice(0, 10).map(w => `
             <tr>
                 <td>${escapeHTML(w.word.jp)}</td>
-                <td style="color:#8e8e93;">${escapeHTML(w.word.en)}</td>
-                <td style="color:${w.accuracy >= 50 ? '#ff9f0a' : '#ff3b30'};font-weight:500;">${w.accuracy}%</td>
-                <td style="color:#8e8e93;">${w.total}</td>
+                <td class="cell-muted">${escapeHTML(w.word.en)}</td>
+                <td class="cell-score ${w.accuracy >= 50 ? 'tone-warning' : 'tone-danger'}">${w.accuracy}%</td>
+                <td class="cell-muted">${w.total}</td>
             </tr>
         `).join('');
 
         overlay.innerHTML = `
             <div class="stats-header">
-                <span style="font-weight:600;font-size:0.85rem;color:#8e8e93;">Stats</span>
-                <button onclick="closeStats()" style="color:#8e8e93;font-size:1rem;cursor:pointer;background:none;border:none;padding:0;">
+                <span id="studio-stats-title" class="stats-header-title">Stats</span>
+                <button type="button" onclick="closeStats()" class="studio-overlay-close-btn" aria-label="Close statistics">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
 
             <div class="stats-grid">
                 <div class="stat-card">
-                    <div class="stat-value" style="color:#3b82f6;">${allWords.length}</div>
+                    <div class="stat-value tone-accent">${allWords.length}</div>
                     <div class="stat-label">Words</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value" style="color:#34c759;">${totalMastered}</div>
+                    <div class="stat-value tone-success">${totalMastered}</div>
                     <div class="stat-label">Mastered</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value" style="color:#ff9f0a;">${totalLearning}</div>
+                    <div class="stat-value tone-warning">${totalLearning}</div>
                     <div class="stat-label">Learning</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value" style="color:${avgAccuracy >= 70 ? '#34c759' : '#ff9f0a'};">${avgAccuracy}%</div>
+                    <div class="stat-value ${accuracyTone}">${avgAccuracy}%</div>
                     <div class="stat-label">Accuracy</div>
                 </div>
             </div>
@@ -1091,15 +1283,16 @@ const StudioCore = (() => {
                     <div class="bar-mastered" style="width:${masteredPct}%"></div>
                     <div class="bar-learning" style="width:${learningPct}%"></div>
                 </div>
+                <div class="stats-summary-note">${totalNew} still new to the system.</div>
             </div>
 
             ${recentScores.length > 1 ? `<div class="stats-section"><div class="stats-label">Recent</div>${sparklineHTML}</div>` : ''}
 
             ${weakWords.length > 0 ? `
             <div class="stats-section">
-                <div class="stats-label" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-                    <span>Needs Work</span>
-                    <button onclick="startNeedsWork()" class="bg-indigo-50 text-indigo-600 px-3 py-1.5 rounded-full text-xs font-bold hover:bg-indigo-100 transition shadow-sm" style="display:flex; align-items:center; gap:6px; cursor:pointer;">
+                <div class="stats-section-header">
+                    <div class="stats-label" style="margin-bottom:0;">Needs Work</div>
+                    <button type="button" onclick="startNeedsWork()" class="studio-inline-action" aria-label="Start practice focus session">
                         <i class="fas fa-dumbbell"></i> Practice Focus
                     </button>
                 </div>
@@ -1116,12 +1309,15 @@ const StudioCore = (() => {
             </div>` : ''}
         `;
 
-        overlay.classList.remove('hidden');
+        openDialog(overlay, {
+            initialFocusSelector: '.studio-inline-action, .studio-overlay-close-btn',
+            labelId: 'studio-stats-title'
+        });
     }
 
     function closeStats() {
         const overlay = document.getElementById('studio-stats-overlay');
-        if (overlay) overlay.classList.add('hidden');
+        if (overlay) closeDialog(overlay);
     }
 
     // =========================================================
@@ -1129,6 +1325,8 @@ const StudioCore = (() => {
     // =========================================================
     function setupKeyboardShortcuts() {
         document.addEventListener('keydown', (e) => {
+            if (isDialogOpen()) return;
+
             // Don't trigger when typing in inputs
             const tag = document.activeElement?.tagName;
             if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') {
@@ -1142,7 +1340,7 @@ const StudioCore = (() => {
                     const resultsOverlay = document.getElementById('studio-results-overlay');
                     const statsOverlay = document.getElementById('studio-stats-overlay');
                     if (resultsOverlay && !resultsOverlay.classList.contains('hidden')) {
-                        resultsOverlay.classList.add('hidden');
+                        closeDialog(resultsOverlay);
                         showSection('select');
                     } else if (statsOverlay && !statsOverlay.classList.contains('hidden')) {
                         closeStats();
@@ -1200,26 +1398,27 @@ const StudioCore = (() => {
     }
 
     function injectToolbarButtons() {
-        // Find the header bar (first child of mac-window)
-        const header = document.querySelector('.mac-window > div:first-child');
+        const header = document.querySelector('[data-studio-header]');
         if (!header) return;
 
         // Left side: Stats icon
-        const leftSlot = header.querySelector('div:first-child');
+        const leftSlot = header.querySelector('[data-studio-header-left]');
         if (leftSlot) {
             leftSlot.innerHTML = '';
             leftSlot.style.display = 'flex';
             leftSlot.style.alignItems = 'center';
             const statsBtn = document.createElement('button');
+            statsBtn.type = 'button';
             statsBtn.className = 'header-icon-btn';
             statsBtn.onclick = () => showStats();
             statsBtn.title = 'Stats (S)';
+            statsBtn.setAttribute('aria-label', 'Open statistics');
             statsBtn.innerHTML = '<i class="fas fa-chart-pie"></i>';
             leftSlot.appendChild(statsBtn);
         }
 
         // Right side: Dark mode toggle
-        const rightSlot = header.querySelector('div:last-child');
+        const rightSlot = header.querySelector('[data-studio-header-right]');
         if (rightSlot) {
             rightSlot.innerHTML = '';
             rightSlot.style.display = 'flex';
@@ -1230,7 +1429,8 @@ const StudioCore = (() => {
             toggleLabel.title = 'Dark Mode (D)';
             const isDark = localStorage.getItem('studio_dark_mode') === 'true';
             toggleLabel.innerHTML = `
-                <input type="checkbox" id="dark-mode-checkbox" ${isDark ? 'checked' : ''}>
+                <span class="sr-only">Toggle dark mode</span>
+                <input type="checkbox" id="dark-mode-checkbox" aria-label="Toggle dark mode" ${isDark ? 'checked' : ''}>
                 <span class="slider"></span>
             `;
             toggleLabel.querySelector('input').addEventListener('change', toggleDarkMode);
@@ -1239,19 +1439,21 @@ const StudioCore = (() => {
     }
 
     function injectOverlays() {
-        const contentArea = document.querySelector('.flex-1.overflow-hidden.bg-white.relative');
+        const contentArea = document.querySelector('[data-studio-content]') || document.querySelector('.flex-1.overflow-hidden.bg-white.relative');
         if (!contentArea) return;
 
         // Results overlay
         const resultsOverlay = document.createElement('div');
         resultsOverlay.id = 'studio-results-overlay';
         resultsOverlay.className = 'studio-results-overlay hidden';
+        resultsOverlay.setAttribute('aria-hidden', 'true');
         contentArea.appendChild(resultsOverlay);
 
         // Stats overlay
         const statsOverlay = document.createElement('div');
         statsOverlay.id = 'studio-stats-overlay';
         statsOverlay.className = 'studio-stats-overlay hidden';
+        statsOverlay.setAttribute('aria-hidden', 'true');
         contentArea.appendChild(statsOverlay);
     }
 
