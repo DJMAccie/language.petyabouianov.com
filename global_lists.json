@@ -4232,18 +4232,6 @@
         ],
         "Travel Situations": [
             {
-                "jp": "パスポート Pasupooto",
-                "en": "Passport"
-            },
-            {
-                "jp": "にゅうこく Nyuukoku",
-                "en": "Immigration / Entry"
-            },
-            {
-                "jp": "ぜいかん Zeikan",
-                "en": "Customs"
-            },
-            {
                 "jp": "にもつ Nimotsu",
                 "en": "Luggage"
             },
@@ -4262,18 +4250,6 @@
             {
                 "jp": "みやげ Miyage",
                 "en": "Souvenir"
-            },
-            {
-                "jp": "りょかん Ryokan",
-                "en": "Japanese inn"
-            },
-            {
-                "jp": "おんせん Onsen",
-                "en": "Hot spring"
-            },
-            {
-                "jp": "まっぷ Mappu",
-                "en": "Map"
             },
             {
                 "jp": "ちかみち Chikamichi",
@@ -4452,26 +4428,6 @@
                 "en": "Smartphone"
             },
             {
-                "jp": "アプリ Apuri",
-                "en": "App"
-            },
-            {
-                "jp": "インターネット Intaanetto",
-                "en": "Internet"
-            },
-            {
-                "jp": "メッセージ Messeeji",
-                "en": "Message"
-            },
-            {
-                "jp": "ダウンロード Daunroodo",
-                "en": "Download"
-            },
-            {
-                "jp": "パスワード Pasuwaado",
-                "en": "Password"
-            },
-            {
                 "jp": "じゅうでん Juuden",
                 "en": "Charging (battery)"
             },
@@ -4490,10 +4446,6 @@
             {
                 "jp": "こうかんする Koukanする",
                 "en": "Exchange (info/contacts)"
-            },
-            {
-                "jp": "ワイファイ Wi-Fi",
-                "en": "Wi-Fi"
             },
             {
                 "jp": "なんのアプリ Nan no apuri",
@@ -5014,18 +4966,6 @@
                 "en": "Please"
             },
             {
-                "jp": "はい Hai",
-                "en": "Yes"
-            },
-            {
-                "jp": "いいえ Iie",
-                "en": "No"
-            },
-            {
-                "jp": "大丈夫です Daijoubu desu",
-                "en": "It's fine / No thank you"
-            },
-            {
                 "jp": "わかりません Wakarimasen",
                 "en": "I don't understand"
             },
@@ -5292,10 +5232,6 @@
                 "en": "The bill please"
             },
             {
-                "jp": "別々でお願いします Betsubetsu de onegaishimasu",
-                "en": "Separate bills please"
-            },
-            {
                 "jp": "持ち帰りで Mochikaeri de",
                 "en": "To go / takeaway"
             },
@@ -5338,10 +5274,6 @@
             {
                 "jp": "現金 Genkin",
                 "en": "Cash"
-            },
-            {
-                "jp": "クレジットカード Kurejitto kaado",
-                "en": "Credit card"
             },
             {
                 "jp": "おつり Otsuri",
@@ -5424,6 +5356,68 @@
             {
                 "jp": "(place) の (thing) はきたないです (place) no (thing) wa kitanai desu",
                 "en": "The (thing) in (place) is dirty/unclean. [descriptive noun phrase]"
+            }
+        ],
+        "Yojijukugo 四字熟語": [
+            {
+                "jp": "和魂漢才 Wakon kansai",
+                "en": "Learn from abroad while keeping a Japanese soul."
+            },
+            {
+                "jp": "花鳥風月 Kachofugetsu",
+                "en": "Flowers, birds, wind, and moon — savoring nature and the seasons."
+            },
+            {
+                "jp": "鏡花水月 Kyoka suigetsu",
+                "en": "Beauty you can perceive but never grasp; the ephemeral and inexpressible."
+            },
+            {
+                "jp": "一水四見 Issui shiken",
+                "en": "One water, four views — the same thing seen differently by different people."
+            },
+            {
+                "jp": "桜梅桃李 Oubai touri",
+                "en": "Cherry, plum, peach, and apricot — each person blooms in their own way."
+            },
+            {
+                "jp": "一期一会 Ichigo ichie",
+                "en": "A once-in-a-lifetime encounter; treasure the moment because it will never recur in exactly the same way."
+            },
+            {
+                "jp": "以心伝心 Ishin denshin",
+                "en": "Heart-to-heart understanding without words."
+            },
+            {
+                "jp": "行雲流水 Koun ryusui",
+                "en": "Clouds and flowing water — living naturally, without clinging."
+            },
+            {
+                "jp": "明鏡止水 Meikyo shisui",
+                "en": "A clear mirror and still water — a calm, undisturbed mind."
+            },
+            {
+                "jp": "山紫水明 Sanshi suimei",
+                "en": "Purple mountains and clear water — beautiful natural scenery."
+            },
+            {
+                "jp": "雲外蒼天 Ungai souten",
+                "en": "Beyond the clouds lies blue sky — hope after hardship."
+            },
+            {
+                "jp": "森羅万象 Shinra bansho",
+                "en": "All things in nature; the whole universe."
+            },
+            {
+                "jp": "百花繚乱 Hyakka ryoran",
+                "en": "A hundred flowers in bloom — brilliant variety and many standout talents."
+            },
+            {
+                "jp": "水天一色 Suiten isshoku",
+                "en": "Water and sky as one color — a seamless, vast scene."
+            },
+            {
+                "jp": "温故知新 Onko chishin",
+                "en": "Review the old and discover the new."
             }
         ]
     },
