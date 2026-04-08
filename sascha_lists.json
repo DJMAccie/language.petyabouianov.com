@@ -1,214 +1,214 @@
 {
-  "sascha": {
-    "Arrival & Basic Politeness": [
-      {
-        "jp": "こんにちは konnichiwa",
-        "en": "hello / good afternoon"
-      },
-      {
-        "jp": "おはようございます ohayou gozaimasu",
-        "en": "good morning"
-      },
-      {
-        "jp": "こんばんは konbanwa",
-        "en": "good evening"
-      },
-      {
-        "jp": "ありがとうございます arigatou gozaimasu",
-        "en": "thank you very much"
-      },
-      {
-        "jp": "すみません sumimasen",
-        "en": "excuse me / sorry"
-      },
-      {
-        "jp": "はじめまして hajimemashite",
-        "en": "nice to meet you"
-      },
-      {
-        "jp": "お願いします onegaishimasu",
-        "en": "please / please do"
-      },
-      {
-        "jp": "はい hai",
-        "en": "yes"
-      },
-      {
-        "jp": "いいえ iie",
-        "en": "no"
-      },
-      {
-        "jp": "日本語があまり話せません nihongo ga amari hanasemasen",
-        "en": "I don't speak much Japanese"
-      }
-    ],
-    "Transport & Directions": [
-      {
-        "jp": "駅はどこですか？ eki wa doko desu ka",
-        "en": "where is the station?"
-      },
-      {
-        "jp": "この電車は東京に行きますか？ kono densha wa Toukyou ni ikimasu ka",
-        "en": "does this train go to Tokyo?"
-      },
-      {
-        "jp": "切符を一枚ください kippu o ichimai kudasai",
-        "en": "one ticket, please"
-      },
-      {
-        "jp": "何番線ですか？ nanbansen desu ka",
-        "en": "which platform is it?"
-      },
-      {
-        "jp": "次で降ります tsugi de orimasu",
-        "en": "I'll get off at the next stop"
-      },
-      {
-        "jp": "ここで止まりますか？ koko de tomarimasu ka",
-        "en": "does it stop here?"
-      },
-      {
-        "jp": "タクシー乗り場はどこですか？ takushii noriba wa doko desu ka",
-        "en": "where is the taxi stand?"
-      },
-      {
-        "jp": "空港までお願いします kuukou made onegaishimasu",
-        "en": "to the airport, please"
-      },
-      {
-        "jp": "右に曲がってください migi ni magatte kudasai",
-        "en": "please turn right"
-      },
-      {
-        "jp": "まっすぐ行ってください massugu itte kudasai",
-        "en": "please go straight"
-      }
-    ],
-    "Hotel & Check-In": [
-      {
-        "jp": "予約しています yoyaku shiteimasu",
-        "en": "I have a reservation"
-      },
-      {
-        "jp": "チェックインをしたいです chekkuin o shitai desu",
-        "en": "I'd like to check in"
-      },
-      {
-        "jp": "パスポートです pasupooto desu",
-        "en": "here is my passport"
-      },
-      {
-        "jp": "一泊です ippaku desu",
-        "en": "it's for one night"
-      },
-      {
-        "jp": "朝食はありますか？ choushoku wa arimasu ka",
-        "en": "is breakfast included?"
-      },
-      {
-        "jp": "Wi-Fiはありますか？ wai-fai wa arimasu ka",
-        "en": "is there Wi-Fi?"
-      },
-      {
-        "jp": "鍵をなくしました kagi o nakushimashita",
-        "en": "I lost the key"
-      },
-      {
-        "jp": "チェックアウトは何時ですか？ chekkuauto wa nanji desu ka",
-        "en": "what time is check-out?"
-      },
-      {
-        "jp": "荷物を預けたいです nimotsu o azuketai desu",
-        "en": "I'd like to leave my luggage"
-      },
-      {
-        "jp": "もう一枚タオルをください mou ichimai taoru o kudasai",
-        "en": "one more towel, please"
-      }
-    ],
-    "Food & Restaurants": [
-      {
-        "jp": "メニューをください menyuu o kudasai",
-        "en": "menu, please"
-      },
-      {
-        "jp": "おすすめは何ですか？ osusume wa nan desu ka",
-        "en": "what do you recommend?"
-      },
-      {
-        "jp": "これは何ですか？ kore wa nan desu ka",
-        "en": "what is this?"
-      },
-      {
-        "jp": "水をください mizu o kudasai",
-        "en": "water, please"
-      },
-      {
-        "jp": "ベジタリアンです bejitarian desu",
-        "en": "I am vegetarian"
-      },
-      {
-        "jp": "肉は食べません niku wa tabemasen",
-        "en": "I don't eat meat"
-      },
-      {
-        "jp": "辛くしないでください karaku shinaide kudasai",
-        "en": "please don't make it spicy"
-      },
-      {
-        "jp": "お会計お願いします okaikei onegaishimasu",
-        "en": "bill, please"
-      },
-      {
-        "jp": "とてもおいしいです totemo oishii desu",
-        "en": "it's very delicious"
-      },
-      {
-        "jp": "持ち帰りできますか？ mochikaeri dekimasu ka",
-        "en": "can I take it to go?"
-      }
-    ],
-    "Shopping, Help & Emergencies": [
-      {
-        "jp": "いくらですか？ ikura desu ka",
-        "en": "how much is it?"
-      },
-      {
-        "jp": "カードは使えますか？ kaado wa tsukaemasu ka",
-        "en": "can I pay by card?"
-      },
-      {
-        "jp": "もう少し安くなりますか？ mou sukoshi yasuku narimasu ka",
-        "en": "can it be a little cheaper?"
-      },
-      {
-        "jp": "これをください kore o kudasai",
-        "en": "I'll take this one"
-      },
-      {
-        "jp": "袋はいりません fukuro wa irimasen",
-        "en": "I don't need a bag"
-      },
-      {
-        "jp": "トイレはどこですか？ toire wa doko desu ka",
-        "en": "where is the toilet?"
-      },
-      {
-        "jp": "助けてください tasukete kudasai",
-        "en": "please help me"
-      },
-      {
-        "jp": "警察を呼んでください keisatsu o yonde kudasai",
-        "en": "please call the police"
-      },
-      {
-        "jp": "病院はどこですか？ byouin wa doko desu ka",
-        "en": "where is the hospital?"
-      },
-      {
-        "jp": "道に迷いました michi ni mayoimashita",
-        "en": "I'm lost"
-      }
-    ]
-  }
+    "sascha": {
+        "Arrival & Basic Politeness": [
+            {
+                "jp": "こんにちは konnichiwa",
+                "en": "hello / good afternoon"
+            },
+            {
+                "jp": "おはようございます ohayou gozaimasu",
+                "en": "good morning"
+            },
+            {
+                "jp": "こんばんは konbanwa",
+                "en": "good evening"
+            },
+            {
+                "jp": "ありがとうございます arigatou gozaimasu",
+                "en": "thank you very much"
+            },
+            {
+                "jp": "すみません sumimasen",
+                "en": "excuse me / sorry"
+            },
+            {
+                "jp": "はじめまして hajimemashite",
+                "en": "nice to meet you"
+            },
+            {
+                "jp": "お願いします onegaishimasu",
+                "en": "please / please do"
+            },
+            {
+                "jp": "はい hai",
+                "en": "yes"
+            },
+            {
+                "jp": "いいえ iie",
+                "en": "no"
+            },
+            {
+                "jp": "日本語があまり話せません nihongo ga amari hanasemasen",
+                "en": "I don't speak much Japanese"
+            }
+        ],
+        "Transport & Directions": [
+            {
+                "jp": "駅はどこですか？ eki wa doko desu ka",
+                "en": "where is the station?"
+            },
+            {
+                "jp": "この電車は東京に行きますか？ kono densha wa Toukyou ni ikimasu ka",
+                "en": "does this train go to Tokyo?"
+            },
+            {
+                "jp": "切符を一枚ください kippu o ichimai kudasai",
+                "en": "one ticket, please"
+            },
+            {
+                "jp": "何番線ですか？ nanbansen desu ka",
+                "en": "which platform is it?"
+            },
+            {
+                "jp": "次で降ります tsugi de orimasu",
+                "en": "I'll get off at the next stop"
+            },
+            {
+                "jp": "ここで止まりますか？ koko de tomarimasu ka",
+                "en": "does it stop here?"
+            },
+            {
+                "jp": "タクシー乗り場はどこですか？ takushii noriba wa doko desu ka",
+                "en": "where is the taxi stand?"
+            },
+            {
+                "jp": "空港までお願いします kuukou made onegaishimasu",
+                "en": "to the airport, please"
+            },
+            {
+                "jp": "右に曲がってください migi ni magatte kudasai",
+                "en": "please turn right"
+            },
+            {
+                "jp": "まっすぐ行ってください massugu itte kudasai",
+                "en": "please go straight"
+            }
+        ],
+        "Hotel & Check-In": [
+            {
+                "jp": "予約しています yoyaku shiteimasu",
+                "en": "I have a reservation"
+            },
+            {
+                "jp": "チェックインをしたいです chekkuin o shitai desu",
+                "en": "I'd like to check in"
+            },
+            {
+                "jp": "パスポートです pasupooto desu",
+                "en": "here is my passport"
+            },
+            {
+                "jp": "一泊です ippaku desu",
+                "en": "it's for one night"
+            },
+            {
+                "jp": "朝食はありますか？ choushoku wa arimasu ka",
+                "en": "is breakfast included?"
+            },
+            {
+                "jp": "Wi-Fiはありますか？ wai-fai wa arimasu ka",
+                "en": "is there Wi-Fi?"
+            },
+            {
+                "jp": "鍵をなくしました kagi o nakushimashita",
+                "en": "I lost the key"
+            },
+            {
+                "jp": "チェックアウトは何時ですか？ chekkuauto wa nanji desu ka",
+                "en": "what time is check-out?"
+            },
+            {
+                "jp": "荷物を預けたいです nimotsu o azuketai desu",
+                "en": "I'd like to leave my luggage"
+            },
+            {
+                "jp": "もう一枚タオルをください mou ichimai taoru o kudasai",
+                "en": "one more towel, please"
+            }
+        ],
+        "Food & Restaurants": [
+            {
+                "jp": "メニューをください menyuu o kudasai",
+                "en": "menu, please"
+            },
+            {
+                "jp": "おすすめは何ですか？ osusume wa nan desu ka",
+                "en": "what do you recommend?"
+            },
+            {
+                "jp": "これは何ですか？ kore wa nan desu ka",
+                "en": "what is this?"
+            },
+            {
+                "jp": "水をください mizu o kudasai",
+                "en": "water, please"
+            },
+            {
+                "jp": "ベジタリアンです bejitarian desu",
+                "en": "I am vegetarian"
+            },
+            {
+                "jp": "肉は食べません niku wa tabemasen",
+                "en": "I don't eat meat"
+            },
+            {
+                "jp": "辛くしないでください karaku shinaide kudasai",
+                "en": "please don't make it spicy"
+            },
+            {
+                "jp": "お会計お願いします okaikei onegaishimasu",
+                "en": "bill, please"
+            },
+            {
+                "jp": "とてもおいしいです totemo oishii desu",
+                "en": "it's very delicious"
+            },
+            {
+                "jp": "持ち帰りできますか？ mochikaeri dekimasu ka",
+                "en": "can I take it to go?"
+            }
+        ],
+        "Shopping, Help & Emergencies": [
+            {
+                "jp": "いくらですか？ ikura desu ka",
+                "en": "how much is it?"
+            },
+            {
+                "jp": "カードは使えますか？ kaado wa tsukaemasu ka",
+                "en": "can I pay by card?"
+            },
+            {
+                "jp": "もう少し安くなりますか？ mou sukoshi yasuku narimasu ka",
+                "en": "can it be a little cheaper?"
+            },
+            {
+                "jp": "これをください kore o kudasai",
+                "en": "I'll take this one"
+            },
+            {
+                "jp": "袋はいりません fukuro wa irimasen",
+                "en": "I don't need a bag"
+            },
+            {
+                "jp": "トイレはどこですか？ toire wa doko desu ka",
+                "en": "where is the toilet?"
+            },
+            {
+                "jp": "助けてください tasukete kudasai",
+                "en": "please help me"
+            },
+            {
+                "jp": "警察を呼んでください keisatsu o yonde kudasai",
+                "en": "please call the police"
+            },
+            {
+                "jp": "病院はどこですか？ byouin wa doko desu ka",
+                "en": "where is the hospital?"
+            },
+            {
+                "jp": "道に迷いました michi ni mayoimashita",
+                "en": "I'm lost"
+            }
+        ]
+    }
 }

@@ -30,7 +30,7 @@
         "Smart Review": {
             "jp-en": 100,
             "en-jp": 100,
-            "last_activity": 1773836878000
+            "last_activity": 1775596409000
         },
         "6 basic sentences": {
             "jp-en": 100,
@@ -42,7 +42,7 @@
             "en-jp": 100,
             "last_activity": 1769163695000
         },
-        "Y\u014dkai Hunt": {
+        "Yōkai Hunt": {
             "jp-en": 100,
             "en-jp": 100,
             "last_activity": 1769445022000
@@ -519,7 +519,48 @@
         },
         "Shopping & Money": {
             "en-jp": 100,
-            "last_activity": 1774788440000
+            "last_activity": 1774791857000
+        },
+        "Time & Frequency": {
+            "en-jp": 43,
+            "last_activity": 1774990474000
+        },
+        "Kenty Lesson 7": {
+            "jp-en": 0,
+            "en-jp": 95,
+            "last_activity": 1775205890000
+        },
+        "Kenty Lesson 7 (Training)": {
+            "en-jp": 55,
+            "last_activity": 1775204310000
+        },
+        "Kenty Lesson 8": {
+            "jp-en": 0,
+            "en-jp": 84,
+            "last_activity": 1775464319000
+        },
+        "Kenty Lesson 8 (Training)": {
+            "en-jp": 89,
+            "last_activity": 1775463733000
+        },
+        "Practice Focus": {
+            "en-jp": 40,
+            "last_activity": 1775596831000
+        },
+        "Technology & Modern Life": {
+            "jp-en": 0,
+            "en-jp": 0,
+            "last_activity": 1775644968000
+        },
+        "Useful Connectors": {
+            "jp-en": 0,
+            "en-jp": 0,
+            "last_activity": 1775644975000
+        },
+        "Expressing Wants & Needs": {
+            "jp-en": 0,
+            "en-jp": 0,
+            "last_activity": 1775645012000
         }
     },
     "bahasa": {
@@ -544,5 +585,12 @@
             "last_activity": 1769682224000
         }
     },
-    "italia": []
+    "italia": [],
+    "nederlands": [],
+    "sascha": {
+        "Arrival & Basic Politeness (Training)": {
+            "jp-en": 43,
+            "last_activity": 1775049724000
+        }
+    }
 }

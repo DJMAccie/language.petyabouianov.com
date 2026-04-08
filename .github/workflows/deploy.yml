@@ -18,6 +18,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+
+      - name: Pull live runtime JSON from Namecheap
+        env:
+          STUDIO_SYNC_BASE_URL: https://language.petyabouianov.com/studio_api.php
+        run: php .github/scripts/sync-namecheap-runtime.php
+
       - name: Deploy tracked site files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
@@ -31,6 +41,8 @@ jobs:
           exclude: |
             **/.git*
             **/.git*/**
+            .github/**
+            **/.github/**
             **/node_modules/**
             **/.DS_Store
             .ftp-deploy-sync-state.json
@@ -39,9 +51,6 @@ jobs:
             newsletter/emails.txt
             upload_image_config.php
             studio_api_config.php
-            global_lists.json
-            global_scores.json
-            global_word_stats.json
             **/*.mp3
             **/*.wav
             **/*.flac
