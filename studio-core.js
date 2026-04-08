@@ -582,7 +582,7 @@ const StudioCore = (() => {
             <tr class="border-b border-gray-100 transition cursor-default group">
                 <td class="p-3 pl-6 font-medium text-gray-800"><i class="fas fa-list-ul mr-3 text-gray-400 group-hover:text-white"></i>${escapeHTML(name)}</td>
                 <td class="p-3 text-gray-500">${words.length} words</td>
-                <td class="p-3 hidden md:table-cell text-sm font-semibold text-gray-600">${activeScore}%</td>
+                <td class="p-3 hidden md:table-cell text-gray-500">${activeScore}%</td>
                 <td class="p-3 hidden md:table-cell"><div class="flex items-center gap-2"><div class="w-2.5 h-2.5 rounded-full ${dotColor} shadow-sm"></div><span class="text-gray-500">${statusText}</span></div></td>
                 <td class="p-3 pr-6 text-right font-mono text-xs">
                     <div class="studio-table-action-bar">${actionButtons}</div>

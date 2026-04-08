@@ -5010,30 +5010,6 @@
                 "en": "Where is the toilet?"
             },
             {
-                "jp": "お会計お願いします Okaikei onegaishimasu",
-                "en": "The bill please"
-            },
-            {
-                "jp": "おすすめは何ですか Osusume wa nan desu ka",
-                "en": "What do you recommend?"
-            },
-            {
-                "jp": "水をください Mizu o kudasai",
-                "en": "Water please"
-            },
-            {
-                "jp": "アレルギーがあります Arerugii ga arimasu",
-                "en": "I have an allergy"
-            },
-            {
-                "jp": "辛いのは苦手です Karai no wa nigate desu",
-                "en": "I'm not good with spicy food"
-            },
-            {
-                "jp": "持ち帰りで Mochikaeri de",
-                "en": "To go / takeaway"
-            },
-            {
                 "jp": "別々でお願いします Betsubetsu de onegaishimasu",
                 "en": "Separate bills please"
             },
@@ -5242,6 +5218,10 @@
             {
                 "jp": "袋は大丈夫です Fukuro wa daijoubu desu",
                 "en": "I don't need a bag"
+            },
+            {
+                "jp": "ポイントカードは持っていません Pointo kaado wa motte imasen",
+                "en": "I don't have a point card"
             },
             {
                 "jp": "レシートは大丈夫です Reshiito wa daijoubu desu",
