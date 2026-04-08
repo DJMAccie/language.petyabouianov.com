@@ -584,7 +584,7 @@ const StudioCore = (() => {
                 <td class="p-3 text-gray-500">${words.length} words</td>
                 <td class="p-3 hidden md:table-cell text-gray-500">${activeScore}%</td>
                 <td class="p-3 hidden md:table-cell"><div class="flex items-center gap-2"><div class="w-2.5 h-2.5 rounded-full ${dotColor} shadow-sm"></div><span class="text-gray-500">${statusText}</span></div></td>
-                <td class="p-3 pr-6 text-right font-mono text-xs">
+                <td class="p-3 pr-6 text-right">
                     <div class="studio-table-action-bar">${actionButtons}</div>
                 </td>
             </tr>`);
