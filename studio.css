@@ -77,12 +77,6 @@ body {
     color: white !important;
 }
 
-/* Adjust badge background on hover */
-.finder-table tr:hover .badge {
-    background-color: rgba(255, 255, 255, 0.25) !important;
-    color: white !important;
-}
-
 /* Search Input Focus Ring */
 .search-input:focus {
     outline: none;
