@@ -24,6 +24,7 @@ const StudioCore = (() => {
     let gauntletLives = 3;
     let activeDialogState = null;
     let confettiLoader = null;
+    let tableStatusSortDirection = null;
 
     // === CONFIG (set by init) ===
     let config = {};
@@ -187,6 +188,42 @@ const StudioCore = (() => {
         };
     }
 
+    function getScoreSet(scores, key) {
+        const rawScoreSet = scores[key];
+        return typeof rawScoreSet === 'object'
+            ? rawScoreSet
+            : (typeof rawScoreSet === 'number' ? { 'jp-en': rawScoreSet } : {});
+    }
+
+    function getStatusRank(activeScore) {
+        if (activeScore > 80) return 2;
+        if (activeScore > 0) return 1;
+        return 0;
+    }
+
+    function syncStatusSortUI() {
+        const header = document.getElementById('status-sort-header');
+        const trigger = document.getElementById('status-sort-trigger');
+        if (!header || !trigger) return;
+
+        const ariaSort = tableStatusSortDirection === 'asc'
+            ? 'ascending'
+            : tableStatusSortDirection === 'desc'
+                ? 'descending'
+                : 'none';
+        header.setAttribute('aria-sort', ariaSort);
+
+        const nextDirection = tableStatusSortDirection === 'desc' ? 'new first' : 'mastered first';
+        trigger.setAttribute('aria-label', `Sort lists by status, ${nextDirection}`);
+        trigger.setAttribute('title', `Sort status: ${nextDirection}`);
+    }
+
+    function toggleStatusSort() {
+        tableStatusSortDirection = tableStatusSortDirection === 'desc' ? 'asc' : 'desc';
+        syncStatusSortUI();
+        renderTable(loadedLists, loadedScores);
+    }
+
     // =========================================================
     // PUBLIC: Initialization
     // =========================================================
@@ -233,6 +270,7 @@ const StudioCore = (() => {
         window.showStats = showStats;
         window.closeStats = closeStats;
         window.startNeedsWork = startNeedsWork;
+        window.toggleStatusSort = toggleStatusSort;
         window.StudioUI = {
             openDialog,
             closeDialog,
@@ -263,6 +301,8 @@ const StudioCore = (() => {
             const defaultMode = config.defaultQuizMode || 'en-jp';
             modeSelect.value = modeSelect.querySelector(`option[value="${defaultMode}"]`) ? defaultMode : 'en-jp';
         }
+
+        syncStatusSortUI();
 
         // Run startup
         if (config.initVoices) config.initVoices();
@@ -480,22 +520,37 @@ const StudioCore = (() => {
         }
 
         // --- MAIN LISTS ---
+        const getTs = (key) => {
+            if (!scores[key]) return 0;
+            if (typeof scores[key] === 'object') return scores[key].last_activity || 0;
+            return 0;
+        };
+        const compareByRecent = (a, b) => {
+            const recentDiff = getTs(b) - getTs(a);
+            if (recentDiff !== 0) return recentDiff;
+            return a.localeCompare(b);
+        };
+
         const sortedKeys = Object.keys(lists).sort((a, b) => {
-            const getTs = (key) => {
-                if (!scores[key]) return 0;
-                if (typeof scores[key] === 'object') return scores[key].last_activity || 0;
-                return 0;
-            };
-            return getTs(b) - getTs(a);
+            if (!tableStatusSortDirection) {
+                return compareByRecent(a, b);
+            }
+
+            const aScore = getModeProgress(currentMode, getScoreSet(scores, a)).value || 0;
+            const bScore = getModeProgress(currentMode, getScoreSet(scores, b)).value || 0;
+            const aRank = getStatusRank(aScore);
+            const bRank = getStatusRank(bScore);
+            const direction = tableStatusSortDirection === 'asc' ? 1 : -1;
+            const rankDiff = (aRank - bRank) * direction;
+
+            if (rankDiff !== 0) return rankDiff;
+            return compareByRecent(a, b);
         });
 
         sortedKeys.forEach(name => {
             count++;
             const words = lists[name];
-            const rawScoreSet = scores[name];
-            const scoreSet = typeof rawScoreSet === 'object'
-                ? rawScoreSet
-                : (typeof rawScoreSet === 'number' ? { 'jp-en': rawScoreSet } : {});
+            const scoreSet = getScoreSet(scores, name);
             const progress = getModeProgress(currentMode, scoreSet);
             const activeScore = progress.value || 0;
 
@@ -536,6 +591,9 @@ const StudioCore = (() => {
         });
 
         tbody.innerHTML = rows.join('');
+        if (typeof window.filterLists === 'function') {
+            window.filterLists();
+        }
 
         // Update footer counts
         let uniqueWords = new Set();

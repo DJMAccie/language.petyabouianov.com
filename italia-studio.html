@@ -18,7 +18,7 @@
     <meta name="twitter:image" content="https://petyabouianov.com/images/Petya-2.jpg">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="studio.css">
+    <link rel="stylesheet" href="studio.css?v=20260408b">
     <style>
         /* --- Scrollbar --- */
         ::-webkit-scrollbar {
@@ -132,7 +132,8 @@
                                 <th class="p-3 text-xs font-medium text-gray-500 uppercase">Words</th>
                                 <th class="p-3 text-xs font-medium text-gray-500 uppercase hidden md:table-cell">
                                     Accuracy</th>
-                                <th class="p-3 text-xs font-medium text-gray-500 uppercase hidden md:table-cell">Status
+                                <th id="status-sort-header" aria-sort="none" class="p-3 text-xs font-medium text-gray-500 uppercase hidden md:table-cell">
+                                    <button id="status-sort-trigger" type="button" onclick="toggleStatusSort()" class="studio-table-sort-btn">Status</button>
                                 </th>
                                 <th class="p-3 pr-6 text-xs font-medium text-gray-500 uppercase text-right">Actions</th>
                             </tr>
@@ -259,7 +260,7 @@
     <!-- TOAST NOTIFICATIONS -->
     <div id="toast-container" class="fixed bottom-4 right-4 z-50 flex flex-col gap-2" role="status" aria-live="polite" aria-atomic="true"></div>
 
-    <script src="studio-core.js"></script>
+    <script src="studio-core.js?v=20260408b"></script>
     <script src="language-configs.js"></script>
     <script>
         window.onload = () => {

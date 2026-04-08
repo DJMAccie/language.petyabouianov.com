@@ -291,6 +291,24 @@ body {
     flex-wrap: wrap;
 }
 
+.studio-table-sort-btn {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    text-transform: inherit;
+    letter-spacing: inherit;
+    cursor: pointer;
+    transition: color 0.16s ease;
+}
+
+.studio-table-sort-btn:hover,
+.studio-table-sort-btn:focus-visible {
+    color: var(--studio-text-strong);
+    outline: none;
+}
+
 .studio-table-icon-btn {
     display: inline-flex;
     align-items: center;
