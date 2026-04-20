@@ -257,6 +257,48 @@ const StudioCore = (() => {
         return words;
     }
 
+    function getKanjiWordsForListNames(lists, listNames) {
+        const words = [];
+        const seen = new Set();
+        const listMap = lists || {};
+        const names = Array.isArray(listNames) ? listNames : [];
+
+        names.forEach((name) => {
+            const list = Array.isArray(listMap[name]) ? listMap[name] : [];
+            list.forEach((word) => {
+                if (!word || !word.jp || seen.has(word.jp)) return;
+                seen.add(word.jp);
+                words.push(word);
+            });
+        });
+
+        return words;
+    }
+
+    function getKanjiSelectionStorageKey() {
+        const prefix = config.streakKey || 'studio';
+        return `${prefix}_kanji_corner_lists`;
+    }
+
+    function getSavedKanjiSelection(availableNames) {
+        try {
+            const raw = localStorage.getItem(getKanjiSelectionStorageKey());
+            const parsed = JSON.parse(raw || '[]');
+            if (!Array.isArray(parsed)) return [];
+            return parsed.filter(name => availableNames.includes(name));
+        } catch (e) {
+            return [];
+        }
+    }
+
+    function saveKanjiSelection(names) {
+        try {
+            localStorage.setItem(getKanjiSelectionStorageKey(), JSON.stringify(names));
+        } catch (e) {
+            // Ignore storage failures in private mode/quota errors.
+        }
+    }
+
     function getNonKanjiLists(lists) {
         const allEntries = Object.entries(lists || {});
         if (!config.enableKanjiCorner) return allEntries;
@@ -374,27 +416,27 @@ const StudioCore = (() => {
         shell.className = 'hidden mt-4 md:mt-6';
         shell.innerHTML = `
             <div class="flex justify-end">
-                <button id="kanji-hint-toggle" type="button" class="rounded-full border border-amber-300 bg-amber-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.08em] text-amber-700 hover:bg-amber-100 transition">
-                    Hint
+                <button id="kanji-hint-toggle" type="button" class="text-xs font-semibold uppercase tracking-[0.08em] text-gray-500 transition-colors hover:text-gray-700">
+                    Show hint
                 </button>
             </div>
-            <div id="kanji-hint-panel" class="hidden mt-3 rounded-xl border border-amber-200 bg-amber-50/70 p-4 text-left">
-                <div class="text-[11px] font-semibold uppercase tracking-[0.12em] text-amber-500">Mnemonic</div>
+            <div id="kanji-hint-panel" class="hidden mt-2 rounded-lg border border-gray-200 bg-white/90 p-4 text-left">
+                <div class="text-[11px] font-semibold uppercase tracking-[0.12em] text-gray-400">Mnemonic</div>
                 <p id="kanji-hint-mnemonic" class="mt-1 text-sm leading-relaxed text-gray-700"></p>
                 <div class="mt-3 grid gap-2 md:grid-cols-2">
                     <div>
-                        <div class="text-[11px] font-semibold uppercase tracking-[0.08em] text-amber-500">Reading Cue</div>
+                        <div class="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-400">Reading Cue</div>
                         <div id="kanji-hint-reading" class="mt-1 text-sm text-gray-700"></div>
                     </div>
                     <div>
-                        <div class="text-[11px] font-semibold uppercase tracking-[0.08em] text-amber-500">Travel Context</div>
+                        <div class="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-400">Travel Context</div>
                         <div id="kanji-hint-context" class="mt-1 text-sm text-gray-700"></div>
                     </div>
                 </div>
-                <div id="kanji-hint-image-wrap" class="mt-3 flex items-center gap-3 rounded-lg border border-amber-100 bg-white px-3 py-2">
-                    <img id="kanji-hint-image" class="h-12 w-12 rounded-md object-cover" alt="Mnemonic hint image">
-                    <span id="kanji-hint-emoji" class="hidden text-3xl leading-none">🧠</span>
-                    <div class="text-xs text-gray-500">Visual anchor</div>
+                <div id="kanji-hint-image-wrap" class="mt-3 flex items-center gap-3 border-t border-gray-200 pt-3">
+                    <img id="kanji-hint-image" class="h-12 w-12 rounded-md border border-gray-200 bg-white object-cover" alt="Mnemonic hint image">
+                    <span id="kanji-hint-emoji" class="hidden inline-flex h-12 w-12 items-center justify-center rounded-md border border-gray-200 bg-gray-100 text-2xl leading-none">🧠</span>
+                    <div class="text-xs uppercase tracking-[0.08em] text-gray-400">Visual cue</div>
                 </div>
             </div>
         `;
@@ -430,16 +472,15 @@ const StudioCore = (() => {
 
         shell.classList.remove('hidden');
         panel.classList.toggle('hidden', !kanjiHintVisible);
-        toggle.textContent = kanjiHintVisible ? 'Hide Hint' : 'Hint';
+        toggle.textContent = kanjiHintVisible ? 'Hide hint' : 'Show hint';
 
         const pair = wordList[currentIndex];
-        kanjiHintVisible = false;
         const entry = getMnemonicEntry(pair);
         const fallbackReading = parseKanjiReadingFallback(pair);
 
-        const mnemonicText = entry?.mnemonic || 'No mnemonic yet for this kanji.';
-        const readingText = entry?.reading_cue || (fallbackReading ? `Try saying: ${fallbackReading}` : 'No reading cue yet.');
-        const contextText = entry?.travel_context || 'You can add context in kanji_mnemonics.json.';
+        const mnemonicText = entry?.mnemonic || 'No mnemonic saved yet for this kanji.';
+        const readingText = entry?.reading_cue || (fallbackReading ? `Try saying: ${fallbackReading}` : 'No reading cue saved yet.');
+        const contextText = entry?.travel_context || 'No travel context saved yet.';
         const emojiText = entry?.emoji || '🧠';
 
         mnemonicEl.textContent = mnemonicText;
@@ -787,14 +828,14 @@ const StudioCore = (() => {
         }
 
         if (config.enableKanjiCorner && kanjiWords.length > 0) {
-            const kanjiActiveCount = kanjiWords.filter(word => !isMastered(word)).length;
-            const queueCount = kanjiActiveCount > 0 ? kanjiActiveCount : kanjiWords.length;
+            const kanjiDueCount = kanjiWords.filter(word => !isMastered(word)).length;
+            const kanjiCountLabel = `${kanjiDueCount} due · ${kanjiWords.length} total`;
             rows.push(`
             <tr class="border-b border-gray-100 transition cursor-default bg-amber-50/70 hover:bg-amber-500 group">
                 <td class="p-3 pl-6 font-bold text-amber-700 group-hover:text-white"><i class="fas fa-torii-gate mr-3"></i>Kanji Corner</td>
-                <td class="p-3 text-amber-700 group-hover:text-white font-medium">${queueCount} kanji</td>
-                <td class="p-3 text-amber-400 group-hover:text-white text-xs hidden md:table-cell">JP → Meaning/Reading</td>
-                <td class="p-3 hidden md:table-cell"><div class="flex items-center gap-2"><div class="w-2.5 h-2.5 rounded-full bg-amber-500 animate-pulse border border-amber-600"></div><span class="text-amber-700 group-hover:text-white text-xs font-bold uppercase">Dedicated</span></div></td>
+                <td class="p-3 text-amber-700 group-hover:text-white font-medium">${kanjiCountLabel}</td>
+                <td class="p-3 text-amber-400 group-hover:text-white text-xs hidden md:table-cell">--</td>
+                <td class="p-3 hidden md:table-cell"><span class="text-amber-400 group-hover:text-white text-xs">--</span></td>
                 <td class="p-3 pr-6 text-right"><button type="button" onclick="startKanjiCorner()" class="studio-table-start-btn" aria-label="Start kanji corner session">Start Session</button></td>
             </tr>`);
         }
@@ -951,14 +992,157 @@ const StudioCore = (() => {
     }
 
     function startKanjiCorner() {
-        const kanjiWords = getKanjiWords(loadedLists);
-
-        if (kanjiWords.length === 0) {
+        const kanjiListNames = getKanjiListNames(loadedLists);
+        if (kanjiListNames.length === 0) {
             alert("No kanji list found.");
             return;
         }
 
-        currentListName = "Kanji Corner";
+        if (config.enableKanjiCornerListPicker && kanjiListNames.length > 1) {
+            showKanjiCornerPicker(kanjiListNames);
+            return;
+        }
+
+        startKanjiCornerSession(kanjiListNames);
+    }
+
+    function showKanjiCornerPicker(kanjiListNames) {
+        const overlay = document.getElementById('studio-kanji-picker-overlay');
+        if (!overlay) {
+            startKanjiCornerSession(kanjiListNames);
+            return;
+        }
+
+        const available = (kanjiListNames || []).filter(name => Array.isArray(loadedLists[name]) && loadedLists[name].length > 0);
+        if (available.length === 0) {
+            alert("No kanji list found.");
+            return;
+        }
+
+        const saved = getSavedKanjiSelection(available);
+        const defaultSelection = saved.length > 0 ? saved : [...available];
+        const selectedSet = new Set(defaultSelection);
+
+        const listRows = available.map((name) => {
+            const words = Array.isArray(loadedLists[name]) ? loadedLists[name] : [];
+            const uniqueWords = getKanjiWordsForListNames(loadedLists, [name]);
+            const dueCount = uniqueWords.filter(word => !isMastered(word)).length;
+            return `
+                <label class="flex items-center justify-between gap-3 rounded-lg border border-gray-200 bg-white px-3 py-2">
+                    <span class="flex min-w-0 items-center gap-3">
+                        <input type="checkbox" class="kanji-picker-checkbox h-4 w-4 shrink-0 accent-blue-500" value="${escapeAttr(name)}" ${selectedSet.has(name) ? 'checked' : ''}>
+                        <span class="truncate text-sm font-medium text-gray-700">${escapeHTML(name)}</span>
+                    </span>
+                    <span class="shrink-0 text-xs text-gray-500">${dueCount} due · ${words.length}</span>
+                </label>
+            `;
+        }).join('');
+
+        overlay.innerHTML = `
+            <div class="stats-header">
+                <span id="studio-kanji-picker-title" class="stats-header-title">Kanji Corner</span>
+                <button type="button" id="kanji-picker-close" class="studio-overlay-close-btn" aria-label="Close kanji list picker">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="stats-section" style="padding-top:1rem;">
+                <p class="stats-summary-note">Choose the kanji packs to practice (5 kanji per list).</p>
+                <div class="studio-table-action-bar" style="margin-top:0.75rem; margin-bottom:0.75rem;">
+                    <button type="button" id="kanji-picker-all" class="studio-inline-action">Select All</button>
+                    <button type="button" id="kanji-picker-none" class="studio-inline-action">Clear</button>
+                </div>
+                <div class="space-y-2">${listRows}</div>
+                <div id="kanji-picker-summary" class="stats-summary-note" style="margin-top:1rem;"></div>
+                <div class="studio-table-action-bar" style="margin-top:1rem;">
+                    <button type="button" id="kanji-picker-start" class="studio-table-start-btn">Start Session</button>
+                </div>
+            </div>
+        `;
+
+        const closeButton = overlay.querySelector('#kanji-picker-close');
+        const selectAllButton = overlay.querySelector('#kanji-picker-all');
+        const clearButton = overlay.querySelector('#kanji-picker-none');
+        const startButton = overlay.querySelector('#kanji-picker-start');
+        const summary = overlay.querySelector('#kanji-picker-summary');
+        const checkboxes = Array.from(overlay.querySelectorAll('.kanji-picker-checkbox'));
+
+        const getSelectedNames = () => checkboxes.filter(cb => cb.checked).map(cb => cb.value);
+        const setSelection = (enabled) => {
+            checkboxes.forEach(cb => { cb.checked = enabled; });
+        };
+        const refreshSummary = () => {
+            const selectedNames = getSelectedNames();
+            const selectedWords = getKanjiWordsForListNames(loadedLists, selectedNames);
+            const dueCount = selectedWords.filter(word => !isMastered(word)).length;
+            if (summary) {
+                summary.textContent = `${selectedNames.length} lists selected · ${dueCount} due · ${selectedWords.length} total`;
+            }
+            if (startButton) {
+                startButton.disabled = selectedNames.length === 0;
+            }
+        };
+
+        if (closeButton) {
+            closeButton.addEventListener('click', () => closeDialog(overlay));
+        }
+
+        if (selectAllButton) {
+            selectAllButton.addEventListener('click', () => {
+                setSelection(true);
+                refreshSummary();
+            });
+        }
+
+        if (clearButton) {
+            clearButton.addEventListener('click', () => {
+                setSelection(false);
+                refreshSummary();
+            });
+        }
+
+        checkboxes.forEach((checkbox) => {
+            checkbox.addEventListener('change', refreshSummary);
+        });
+
+        if (startButton) {
+            startButton.addEventListener('click', () => {
+                const selectedNames = getSelectedNames();
+                if (selectedNames.length === 0) {
+                    showToast("Pick at least one kanji list.", "warning");
+                    return;
+                }
+                saveKanjiSelection(selectedNames);
+                closeDialog(overlay);
+                startKanjiCornerSession(selectedNames);
+            });
+        }
+
+        refreshSummary();
+
+        openDialog(overlay, {
+            initialFocusSelector: '#kanji-picker-start',
+            labelId: 'studio-kanji-picker-title'
+        });
+    }
+
+    function startKanjiCornerSession(selectedListNames = null) {
+        const availableKanjiNames = getKanjiListNames(loadedLists);
+        let selectedNames = Array.isArray(selectedListNames) && selectedListNames.length > 0
+            ? selectedListNames.filter(name => availableKanjiNames.includes(name))
+            : availableKanjiNames;
+        if (selectedNames.length === 0) {
+            selectedNames = availableKanjiNames;
+        }
+
+        const kanjiWords = getKanjiWordsForListNames(loadedLists, selectedNames);
+        if (kanjiWords.length === 0) {
+            alert("No kanji found in selected lists.");
+            return;
+        }
+
+        currentListName = selectedNames.length === 1
+            ? `Kanji Corner · ${selectedNames[0]}`
+            : `Kanji Corner (${selectedNames.length} lists)`;
         isPurificationSession = false;
 
         let candidates = kanjiWords.filter(word => !isMastered(word));
@@ -1837,6 +2021,12 @@ const StudioCore = (() => {
         statsOverlay.className = 'studio-stats-overlay hidden';
         statsOverlay.setAttribute('aria-hidden', 'true');
         contentArea.appendChild(statsOverlay);
+
+        const kanjiPickerOverlay = document.createElement('div');
+        kanjiPickerOverlay.id = 'studio-kanji-picker-overlay';
+        kanjiPickerOverlay.className = 'studio-stats-overlay hidden';
+        kanjiPickerOverlay.setAttribute('aria-hidden', 'true');
+        contentArea.appendChild(kanjiPickerOverlay);
     }
 
     // === PUBLIC API ===

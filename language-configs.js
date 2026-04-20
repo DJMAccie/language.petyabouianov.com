@@ -85,6 +85,7 @@ window.StudioConfigs = {};
         gauntletLabel: "GAUNTLET (EN → JP)",
         speechLabel: "SPEAKING (EN → JP)",
         enableKanjiCorner: true,
+        enableKanjiCornerListPicker: true,
         kanjiListName: 'Kanji',
         kanjiListPrefix: 'Kanji ',
         startTraining: function (name) {
