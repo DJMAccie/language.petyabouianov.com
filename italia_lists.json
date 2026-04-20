@@ -1,0 +1,4144 @@
+{
+    "italia": {
+        "Greetings & Politeness": [
+            {
+                "jp": "ciao",
+                "en": "hi / bye"
+            },
+            {
+                "jp": "salve",
+                "en": "hello"
+            },
+            {
+                "jp": "buongiorno",
+                "en": "good morning / good day"
+            },
+            {
+                "jp": "buonasera",
+                "en": "good evening"
+            },
+            {
+                "jp": "buonanotte",
+                "en": "good night"
+            },
+            {
+                "jp": "arrivederci",
+                "en": "goodbye"
+            },
+            {
+                "jp": "grazie",
+                "en": "thank you"
+            },
+            {
+                "jp": "prego",
+                "en": "you are welcome / please"
+            },
+            {
+                "jp": "per favore",
+                "en": "please"
+            },
+            {
+                "jp": "scusa",
+                "en": "sorry / excuse me (informal)"
+            },
+            {
+                "jp": "scusi",
+                "en": "sorry / excuse me (formal)"
+            },
+            {
+                "jp": "come stai?",
+                "en": "how are you?"
+            }
+        ],
+        "Conversation Fillers": [
+            {
+                "jp": "non capisco",
+                "en": "i do not understand"
+            },
+            {
+                "jp": "sì",
+                "en": "yes"
+            },
+            {
+                "jp": "no",
+                "en": "no"
+            },
+            {
+                "jp": "forse",
+                "en": "maybe"
+            },
+            {
+                "jp": "così così",
+                "en": "so-so"
+            },
+            {
+                "jp": "mah",
+                "en": "well / not sure"
+            },
+            {
+                "jp": "capito",
+                "en": "understood / got it"
+            },
+            {
+                "jp": "allora",
+                "en": "so / well then"
+            },
+            {
+                "jp": "ecco",
+                "en": "here / there you go"
+            },
+            {
+                "jp": "beh",
+                "en": "well"
+            },
+            {
+                "jp": "magari",
+                "en": "maybe / if only"
+            },
+            {
+                "jp": "comunque",
+                "en": "anyway"
+            },
+            {
+                "jp": "dunque",
+                "en": "so / therefore"
+            },
+            {
+                "jp": "ovviamente",
+                "en": "obviously"
+            },
+            {
+                "jp": "perfetto",
+                "en": "perfect"
+            },
+            {
+                "jp": "esatto",
+                "en": "exactly"
+            },
+            {
+                "jp": "d'accordo",
+                "en": "okay / agreed"
+            }
+        ],
+        "Pronouns & Demonstratives": [
+            {
+                "jp": "questo",
+                "en": "this"
+            },
+            {
+                "jp": "quello",
+                "en": "one"
+            },
+            {
+                "jp": "nessuno",
+                "en": "nobody"
+            },
+            {
+                "jp": "loro",
+                "en": "their"
+            },
+            {
+                "jp": "io",
+                "en": "i"
+            },
+            {
+                "jp": "tu",
+                "en": "you (informal)"
+            },
+            {
+                "jp": "lui",
+                "en": "he / him"
+            },
+            {
+                "jp": "lei",
+                "en": "she / her"
+            },
+            {
+                "jp": "noi",
+                "en": "we / us"
+            },
+            {
+                "jp": "voi",
+                "en": "you (plural)"
+            },
+            {
+                "jp": "mi",
+                "en": "me / myself"
+            },
+            {
+                "jp": "ti",
+                "en": "you / yourself"
+            },
+            {
+                "jp": "ci",
+                "en": "us / ourselves"
+            },
+            {
+                "jp": "vi",
+                "en": "you / yourselves"
+            },
+            {
+                "jp": "si",
+                "en": "oneself / oneself"
+            },
+            {
+                "jp": "qualcosa",
+                "en": "something"
+            },
+            {
+                "jp": "qualcuno",
+                "en": "someone"
+            }
+        ],
+        "Articles & Determiners": [
+            {
+                "jp": "tuo",
+                "en": "your"
+            },
+            {
+                "jp": "suo",
+                "en": "his"
+            },
+            {
+                "jp": "mio",
+                "en": "my"
+            },
+            {
+                "jp": "vostro",
+                "en": "your"
+            },
+            {
+                "jp": "nostro",
+                "en": "our"
+            },
+            {
+                "jp": "il",
+                "en": "the (masculine singular)"
+            },
+            {
+                "jp": "lo",
+                "en": "the (special masculine singular)"
+            },
+            {
+                "jp": "la",
+                "en": "the (feminine singular)"
+            },
+            {
+                "jp": "i",
+                "en": "the (masculine plural)"
+            },
+            {
+                "jp": "gli",
+                "en": "the (masculine plural special)"
+            },
+            {
+                "jp": "le",
+                "en": "the (feminine plural)"
+            },
+            {
+                "jp": "un",
+                "en": "a / an (masculine)"
+            },
+            {
+                "jp": "uno",
+                "en": "a / one"
+            },
+            {
+                "jp": "una",
+                "en": "a / an (feminine)"
+            }
+        ],
+        "Question Words": [
+            {
+                "jp": "cosa",
+                "en": "thing"
+            },
+            {
+                "jp": "quale",
+                "en": "which"
+            },
+            {
+                "jp": "quanto",
+                "en": "how much"
+            },
+            {
+                "jp": "chi",
+                "en": "who"
+            },
+            {
+                "jp": "dove",
+                "en": "where"
+            },
+            {
+                "jp": "quando",
+                "en": "when"
+            },
+            {
+                "jp": "come",
+                "en": "how"
+            },
+            {
+                "jp": "perché",
+                "en": "why / because"
+            }
+        ],
+        "Prepositions": [
+            {
+                "jp": "di",
+                "en": "of / from"
+            },
+            {
+                "jp": "a",
+                "en": "to / at"
+            },
+            {
+                "jp": "da",
+                "en": "from / by"
+            },
+            {
+                "jp": "in",
+                "en": "in / into"
+            },
+            {
+                "jp": "con",
+                "en": "with"
+            },
+            {
+                "jp": "per",
+                "en": "for / by"
+            },
+            {
+                "jp": "su",
+                "en": "on / about"
+            },
+            {
+                "jp": "tra",
+                "en": "between / among"
+            },
+            {
+                "jp": "fra",
+                "en": "between / among"
+            },
+            {
+                "jp": "senza",
+                "en": "without"
+            },
+            {
+                "jp": "verso",
+                "en": "toward"
+            },
+            {
+                "jp": "sotto",
+                "en": "under"
+            },
+            {
+                "jp": "sopra",
+                "en": "above / on top of"
+            },
+            {
+                "jp": "dentro",
+                "en": "inside"
+            },
+            {
+                "jp": "fuori",
+                "en": "outside"
+            },
+            {
+                "jp": "prima",
+                "en": "before"
+            },
+            {
+                "jp": "dopo",
+                "en": "after"
+            },
+            {
+                "jp": "durante",
+                "en": "during"
+            }
+        ],
+        "Conjunctions": [
+            {
+                "jp": "e",
+                "en": "and"
+            },
+            {
+                "jp": "ma",
+                "en": "but"
+            },
+            {
+                "jp": "o",
+                "en": "or"
+            },
+            {
+                "jp": "se",
+                "en": "if"
+            },
+            {
+                "jp": "mentre",
+                "en": "while"
+            },
+            {
+                "jp": "però",
+                "en": "however / but"
+            },
+            {
+                "jp": "quindi",
+                "en": "so / therefore"
+            },
+            {
+                "jp": "tuttavia",
+                "en": "however"
+            },
+            {
+                "jp": "oppure",
+                "en": "or else"
+            },
+            {
+                "jp": "né",
+                "en": "neither / nor"
+            }
+        ],
+        "Quantifiers": [
+            {
+                "jp": "più",
+                "en": "more"
+            },
+            {
+                "jp": "alcuno",
+                "en": "any"
+            },
+            {
+                "jp": "tutto",
+                "en": "all"
+            },
+            {
+                "jp": "troppo",
+                "en": "too much"
+            },
+            {
+                "jp": "tanto",
+                "en": "much"
+            },
+            {
+                "jp": "poco",
+                "en": "little"
+            },
+            {
+                "jp": "molto",
+                "en": "very"
+            },
+            {
+                "jp": "ogni",
+                "en": "every"
+            },
+            {
+                "jp": "solo",
+                "en": "only"
+            },
+            {
+                "jp": "qualche",
+                "en": "some"
+            },
+            {
+                "jp": "ciascuno",
+                "en": "each"
+            },
+            {
+                "jp": "meno",
+                "en": "less"
+            },
+            {
+                "jp": "abbastanza",
+                "en": "enough / quite"
+            },
+            {
+                "jp": "soltanto",
+                "en": "only"
+            },
+            {
+                "jp": "almeno",
+                "en": "at least"
+            },
+            {
+                "jp": "circa",
+                "en": "about / approximately"
+            }
+        ],
+        "Numbers": [
+            {
+                "jp": "mezzo",
+                "en": "half"
+            },
+            {
+                "jp": "metà",
+                "en": "half"
+            },
+            {
+                "jp": "due",
+                "en": "two"
+            },
+            {
+                "jp": "tre",
+                "en": "three"
+            },
+            {
+                "jp": "quattro",
+                "en": "four"
+            },
+            {
+                "jp": "cinque",
+                "en": "five"
+            },
+            {
+                "jp": "sei",
+                "en": "six"
+            },
+            {
+                "jp": "sette",
+                "en": "seven"
+            },
+            {
+                "jp": "otto",
+                "en": "eight"
+            },
+            {
+                "jp": "nove",
+                "en": "nine"
+            },
+            {
+                "jp": "dieci",
+                "en": "ten"
+            },
+            {
+                "jp": "cento",
+                "en": "hundred"
+            },
+            {
+                "jp": "mille",
+                "en": "thousand"
+            }
+        ],
+        "Time & Calendar (1/2)": [
+            {
+                "jp": "anno",
+                "en": "year"
+            },
+            {
+                "jp": "notte",
+                "en": "night"
+            },
+            {
+                "jp": "giorno",
+                "en": "day"
+            },
+            {
+                "jp": "sera",
+                "en": "evening"
+            },
+            {
+                "jp": "ora",
+                "en": "now"
+            },
+            {
+                "jp": "momento",
+                "en": "moment"
+            },
+            {
+                "jp": "mese",
+                "en": "month"
+            },
+            {
+                "jp": "periodo",
+                "en": "period"
+            },
+            {
+                "jp": "maggio",
+                "en": "may"
+            },
+            {
+                "jp": "epoca",
+                "en": "era"
+            },
+            {
+                "jp": "generale",
+                "en": "general"
+            }
+        ],
+        "Time & Calendar (2/2)": [
+            {
+                "jp": "inverno",
+                "en": "winter"
+            },
+            {
+                "jp": "mattino",
+                "en": "morning"
+            },
+            {
+                "jp": "attimo",
+                "en": "moment"
+            },
+            {
+                "jp": "mattina",
+                "en": "morning"
+            },
+            {
+                "jp": "giornata",
+                "en": "day"
+            },
+            {
+                "jp": "settimana",
+                "en": "week"
+            },
+            {
+                "jp": "pomeriggio",
+                "en": "afternoon"
+            },
+            {
+                "jp": "estate",
+                "en": "summer"
+            },
+            {
+                "jp": "giugno",
+                "en": "june"
+            },
+            {
+                "jp": "Domenica",
+                "en": "sunday"
+            },
+            {
+                "jp": "medio",
+                "en": "average"
+            }
+        ],
+        "Family & People (1/3)": [
+            {
+                "jp": "figlio",
+                "en": "son"
+            },
+            {
+                "jp": "uomo",
+                "en": "man"
+            },
+            {
+                "jp": "amico",
+                "en": "friend"
+            },
+            {
+                "jp": "donna",
+                "en": "woman"
+            },
+            {
+                "jp": "gente",
+                "en": "people"
+            },
+            {
+                "jp": "signore",
+                "en": "mr."
+            },
+            {
+                "jp": "padre",
+                "en": "father"
+            },
+            {
+                "jp": "famiglia",
+                "en": "family"
+            },
+            {
+                "jp": "persona",
+                "en": "person"
+            },
+            {
+                "jp": "signora",
+                "en": "mrs"
+            },
+            {
+                "jp": "soldato",
+                "en": "soldier"
+            },
+            {
+                "jp": "sorella",
+                "en": "sister"
+            },
+            {
+                "jp": "ministro",
+                "en": "minister"
+            },
+            {
+                "jp": "bambino",
+                "en": "child"
+            },
+            {
+                "jp": "madre",
+                "en": "mother"
+            },
+            {
+                "jp": "popolo",
+                "en": "people"
+            },
+            {
+                "jp": "figlia",
+                "en": "daughter"
+            }
+        ],
+        "Family & People (2/3)": [
+            {
+                "jp": "moglie",
+                "en": "wife"
+            },
+            {
+                "jp": "ragazzo",
+                "en": "boy"
+            },
+            {
+                "jp": "professore",
+                "en": "teacher"
+            },
+            {
+                "jp": "marito",
+                "en": "husband"
+            },
+            {
+                "jp": "ragazza",
+                "en": "girl"
+            },
+            {
+                "jp": "compagno",
+                "en": "partner"
+            },
+            {
+                "jp": "dottore",
+                "en": "doctor"
+            },
+            {
+                "jp": "mamma",
+                "en": "mom"
+            },
+            {
+                "jp": "zia",
+                "en": "aunt"
+            },
+            {
+                "jp": "signorina",
+                "en": "young lady"
+            },
+            {
+                "jp": "segretario",
+                "en": "secretary"
+            },
+            {
+                "jp": "operaio",
+                "en": "worker"
+            },
+            {
+                "jp": "principe",
+                "en": "prince"
+            },
+            {
+                "jp": "fratello",
+                "en": "brother"
+            },
+            {
+                "jp": "direttore",
+                "en": "director"
+            },
+            {
+                "jp": "maestro",
+                "en": "master"
+            },
+            {
+                "jp": "padrone",
+                "en": "master"
+            }
+        ],
+        "Family & People (3/3)": [
+            {
+                "jp": "bambina",
+                "en": "child"
+            },
+            {
+                "jp": "papà",
+                "en": "dad"
+            },
+            {
+                "jp": "zio",
+                "en": "uncle"
+            },
+            {
+                "jp": "avvocato",
+                "en": "lawyer"
+            },
+            {
+                "jp": "giovanotto",
+                "en": "young man"
+            },
+            {
+                "jp": "poeta",
+                "en": "poet"
+            },
+            {
+                "jp": "medico",
+                "en": "doctor"
+            },
+            {
+                "jp": "poesia",
+                "en": "poetry"
+            },
+            {
+                "jp": "attore",
+                "en": "actor"
+            },
+            {
+                "jp": "romano",
+                "en": "roman"
+            },
+            {
+                "jp": "umano",
+                "en": "human"
+            },
+            {
+                "jp": "tedesco",
+                "en": "german"
+            },
+            {
+                "jp": "cittadino",
+                "en": "citizen"
+            },
+            {
+                "jp": "bravo",
+                "en": "good boy"
+            },
+            {
+                "jp": "contadino",
+                "en": "farmer"
+            },
+            {
+                "jp": "nonno",
+                "en": "grandfather"
+            }
+        ],
+        "Body & Health (1/2)": [
+            {
+                "jp": "mano",
+                "en": "hand"
+            },
+            {
+                "jp": "occhio",
+                "en": "eye"
+            },
+            {
+                "jp": "testa",
+                "en": "head"
+            },
+            {
+                "jp": "capo",
+                "en": "head"
+            },
+            {
+                "jp": "piede",
+                "en": "foot"
+            },
+            {
+                "jp": "dito",
+                "en": "finger"
+            },
+            {
+                "jp": "volto",
+                "en": "face"
+            },
+            {
+                "jp": "malattia",
+                "en": "disease"
+            },
+            {
+                "jp": "dente",
+                "en": "tooth"
+            },
+            {
+                "jp": "quadro",
+                "en": "painting"
+            },
+            {
+                "jp": "braccio",
+                "en": "arm"
+            },
+            {
+                "jp": "cuore",
+                "en": "heart"
+            },
+            {
+                "jp": "faccia",
+                "en": "face"
+            },
+            {
+                "jp": "corpo",
+                "en": "body"
+            },
+            {
+                "jp": "dolore",
+                "en": "ache"
+            }
+        ],
+        "Body & Health (2/2)": [
+            {
+                "jp": "lingua",
+                "en": "tongue"
+            },
+            {
+                "jp": "gamba",
+                "en": "leg"
+            },
+            {
+                "jp": "odore",
+                "en": "smell"
+            },
+            {
+                "jp": "viso",
+                "en": "face"
+            },
+            {
+                "jp": "pelle",
+                "en": "skin"
+            },
+            {
+                "jp": "bocca",
+                "en": "mouth"
+            },
+            {
+                "jp": "sangue",
+                "en": "blood"
+            },
+            {
+                "jp": "collo",
+                "en": "neck"
+            },
+            {
+                "jp": "orecchio",
+                "en": "ear"
+            },
+            {
+                "jp": "sonno",
+                "en": "sleep"
+            },
+            {
+                "jp": "calcio",
+                "en": "football / kick"
+            },
+            {
+                "jp": "fame",
+                "en": "hunger"
+            },
+            {
+                "jp": "caro",
+                "en": "dear / expensive"
+            },
+            {
+                "jp": "salute",
+                "en": "health"
+            },
+            {
+                "jp": "stomaco",
+                "en": "stomach"
+            }
+        ],
+        "Food & Drink": [
+            {
+                "jp": "acqua",
+                "en": "water"
+            },
+            {
+                "jp": "vino",
+                "en": "wine"
+            },
+            {
+                "jp": "gusto",
+                "en": "taste"
+            },
+            {
+                "jp": "carne",
+                "en": "meat"
+            },
+            {
+                "jp": "caffè",
+                "en": "coffee"
+            },
+            {
+                "jp": "pranzo",
+                "en": "lunch"
+            },
+            {
+                "jp": "pane",
+                "en": "bread"
+            },
+            {
+                "jp": "frutto",
+                "en": "fruit"
+            },
+            {
+                "jp": "latte",
+                "en": "milk"
+            }
+        ],
+        "Home & Household (1/2)": [
+            {
+                "jp": "bagno",
+                "en": "bathroom / bath"
+            },
+            {
+                "jp": "casa",
+                "en": "home"
+            },
+            {
+                "jp": "sala",
+                "en": "room, hall"
+            },
+            {
+                "jp": "porta",
+                "en": "door"
+            },
+            {
+                "jp": "giardino",
+                "en": "garden"
+            },
+            {
+                "jp": "parete",
+                "en": "wall"
+            },
+            {
+                "jp": "letto",
+                "en": "bed"
+            },
+            {
+                "jp": "camera",
+                "en": "room"
+            },
+            {
+                "jp": "scala",
+                "en": "ladder"
+            },
+            {
+                "jp": "patria",
+                "en": "homeland"
+            }
+        ],
+        "Home & Household (2/2)": [
+            {
+                "jp": "cucina",
+                "en": "kitchen"
+            },
+            {
+                "jp": "chiave",
+                "en": "key"
+            },
+            {
+                "jp": "finestra",
+                "en": "window"
+            },
+            {
+                "jp": "palazzo",
+                "en": "palace"
+            },
+            {
+                "jp": "muro",
+                "en": "wall"
+            },
+            {
+                "jp": "stanza",
+                "en": "room"
+            },
+            {
+                "jp": "villa",
+                "en": "villa"
+            },
+            {
+                "jp": "tavola",
+                "en": "table"
+            },
+            {
+                "jp": "tavolo",
+                "en": "table"
+            }
+        ],
+        "Clothing & Appearance": [
+            {
+                "jp": "capello",
+                "en": "hair"
+            },
+            {
+                "jp": "abito",
+                "en": "dress"
+            },
+            {
+                "jp": "bellezza",
+                "en": "beauty"
+            },
+            {
+                "jp": "vestito",
+                "en": "dress"
+            },
+            {
+                "jp": "aspetto",
+                "en": "appearance"
+            }
+        ],
+        "City & Places (1/2)": [
+            {
+                "jp": "strada",
+                "en": "street"
+            },
+            {
+                "jp": "paese",
+                "en": "country, town"
+            },
+            {
+                "jp": "città",
+                "en": "city"
+            },
+            {
+                "jp": "via",
+                "en": "street"
+            },
+            {
+                "jp": "piazza",
+                "en": "square"
+            },
+            {
+                "jp": "campagna",
+                "en": "countryside"
+            },
+            {
+                "jp": "zona",
+                "en": "area"
+            },
+            {
+                "jp": "provincia",
+                "en": "province"
+            },
+            {
+                "jp": "chiesa",
+                "en": "church"
+            },
+            {
+                "jp": "posto",
+                "en": "place"
+            },
+            {
+                "jp": "luogo",
+                "en": "place"
+            }
+        ],
+        "City & Places (2/2)": [
+            {
+                "jp": "fronte",
+                "en": "front"
+            },
+            {
+                "jp": "centro",
+                "en": "center"
+            },
+            {
+                "jp": "regione",
+                "en": "region"
+            },
+            {
+                "jp": "ponte",
+                "en": "bridge"
+            },
+            {
+                "jp": "territorio",
+                "en": "territory"
+            },
+            {
+                "jp": "lato",
+                "en": "side"
+            },
+            {
+                "jp": "riva",
+                "en": "shore"
+            },
+            {
+                "jp": "presidente",
+                "en": "president"
+            },
+            {
+                "jp": "angolo",
+                "en": "angle"
+            },
+            {
+                "jp": "fianco",
+                "en": "side"
+            }
+        ],
+        "Transport & Directions (1/2)": [
+            {
+                "jp": "sud",
+                "en": "south"
+            },
+            {
+                "jp": "occasione",
+                "en": "opportunity"
+            },
+            {
+                "jp": "importanza",
+                "en": "importance"
+            },
+            {
+                "jp": "direzione",
+                "en": "direction"
+            },
+            {
+                "jp": "distanza",
+                "en": "distance"
+            },
+            {
+                "jp": "chilometro",
+                "en": "kilometer"
+            },
+            {
+                "jp": "nave",
+                "en": "ship"
+            },
+            {
+                "jp": "stazione",
+                "en": "railway station"
+            },
+            {
+                "jp": "treno",
+                "en": "train"
+            },
+            {
+                "jp": "relazione",
+                "en": "report"
+            },
+            {
+                "jp": "ritorno",
+                "en": "return"
+            },
+            {
+                "jp": "nord",
+                "en": "north"
+            }
+        ],
+        "Transport & Directions (2/2)": [
+            {
+                "jp": "linea",
+                "en": "line"
+            },
+            {
+                "jp": "rapporto",
+                "en": "relationship"
+            },
+            {
+                "jp": "giro",
+                "en": "round"
+            },
+            {
+                "jp": "automobile",
+                "en": "car"
+            },
+            {
+                "jp": "macchina",
+                "en": "machine"
+            },
+            {
+                "jp": "metro",
+                "en": "meter"
+            },
+            {
+                "jp": "cura",
+                "en": "care"
+            },
+            {
+                "jp": "porto",
+                "en": "port / i carry"
+            },
+            {
+                "jp": "autobus",
+                "en": "bus"
+            },
+            {
+                "jp": "aeroporto",
+                "en": "airport"
+            },
+            {
+                "jp": "fermo",
+                "en": "stationary"
+            }
+        ],
+        "Travel & Emergencies": [
+            {
+                "jp": "aiuto!",
+                "en": "help!"
+            },
+            {
+                "jp": "biglietto",
+                "en": "ticket"
+            },
+            {
+                "jp": "entrata",
+                "en": "entrance"
+            },
+            {
+                "jp": "uscita",
+                "en": "exit"
+            },
+            {
+                "jp": "guerra",
+                "en": "war"
+            },
+            {
+                "jp": "nemico",
+                "en": "enemy"
+            },
+            {
+                "jp": "pena",
+                "en": "punishment"
+            },
+            {
+                "jp": "guardia",
+                "en": "guard"
+            },
+            {
+                "jp": "regno",
+                "en": "kingdom"
+            },
+            {
+                "jp": "polizia",
+                "en": "police"
+            },
+            {
+                "jp": "arma",
+                "en": "weapon"
+            },
+            {
+                "jp": "albergo",
+                "en": "hotel"
+            },
+            {
+                "jp": "rivoluzione",
+                "en": "revolution"
+            },
+            {
+                "jp": "battaglia",
+                "en": "battle"
+            },
+            {
+                "jp": "aiuto",
+                "en": "help"
+            },
+            {
+                "jp": "viaggio",
+                "en": "travel"
+            },
+            {
+                "jp": "pericolo",
+                "en": "danger"
+            },
+            {
+                "jp": "ospedale",
+                "en": "hospital"
+            }
+        ],
+        "Work & School (1/5)": [
+            {
+                "jp": "volta",
+                "en": "time"
+            },
+            {
+                "jp": "parte",
+                "en": "part"
+            },
+            {
+                "jp": "forza",
+                "en": "power"
+            },
+            {
+                "jp": "punto",
+                "en": "point"
+            },
+            {
+                "jp": "lavoro",
+                "en": "work"
+            },
+            {
+                "jp": "governo",
+                "en": "government"
+            },
+            {
+                "jp": "opera",
+                "en": "work / opera"
+            },
+            {
+                "jp": "prova",
+                "en": "test"
+            },
+            {
+                "jp": "politica",
+                "en": "policy"
+            },
+            {
+                "jp": "processo",
+                "en": "process"
+            },
+            {
+                "jp": "ufficio",
+                "en": "office"
+            },
+            {
+                "jp": "sviluppo",
+                "en": "development"
+            },
+            {
+                "jp": "ricerca",
+                "en": "research"
+            },
+            {
+                "jp": "commissione",
+                "en": "commission"
+            },
+            {
+                "jp": "programma",
+                "en": "program"
+            },
+            {
+                "jp": "scienza",
+                "en": "science"
+            },
+            {
+                "jp": "conseguenza",
+                "en": "result"
+            }
+        ],
+        "Work & School (2/5)": [
+            {
+                "jp": "istituto",
+                "en": "institute"
+            },
+            {
+                "jp": "controllo",
+                "en": "control"
+            },
+            {
+                "jp": "spazio",
+                "en": "space"
+            },
+            {
+                "jp": "massa",
+                "en": "mass"
+            },
+            {
+                "jp": "forma",
+                "en": "form"
+            },
+            {
+                "jp": "società",
+                "en": "society"
+            },
+            {
+                "jp": "esempio",
+                "en": "example"
+            },
+            {
+                "jp": "studio",
+                "en": "study"
+            },
+            {
+                "jp": "legge",
+                "en": "law"
+            },
+            {
+                "jp": "scuola",
+                "en": "school"
+            },
+            {
+                "jp": "necessità",
+                "en": "need"
+            },
+            {
+                "jp": "scena",
+                "en": "scene"
+            },
+            {
+                "jp": "produzione",
+                "en": "production"
+            },
+            {
+                "jp": "presenza",
+                "en": "presence"
+            },
+            {
+                "jp": "principio",
+                "en": "principle"
+            },
+            {
+                "jp": "materia",
+                "en": "matter"
+            }
+        ],
+        "Work & School (3/5)": [
+            {
+                "jp": "università",
+                "en": "university"
+            },
+            {
+                "jp": "autorità",
+                "en": "authority"
+            },
+            {
+                "jp": "classe",
+                "en": "class"
+            },
+            {
+                "jp": "crisi",
+                "en": "crisis"
+            },
+            {
+                "jp": "civiltà",
+                "en": "civilization"
+            },
+            {
+                "jp": "esame",
+                "en": "exam"
+            },
+            {
+                "jp": "operazione",
+                "en": "operation"
+            },
+            {
+                "jp": "repubblica",
+                "en": "republic"
+            },
+            {
+                "jp": "cortile",
+                "en": "courtyard"
+            },
+            {
+                "jp": "proposta",
+                "en": "proposal"
+            },
+            {
+                "jp": "colore",
+                "en": "color"
+            },
+            {
+                "jp": "corso",
+                "en": "course"
+            },
+            {
+                "jp": "sistema",
+                "en": "system"
+            },
+            {
+                "jp": "servizio",
+                "en": "service"
+            },
+            {
+                "jp": "età",
+                "en": "age"
+            },
+            {
+                "jp": "carta",
+                "en": "paper"
+            }
+        ],
+        "Work & School (4/5)": [
+            {
+                "jp": "labbro",
+                "en": "lip"
+            },
+            {
+                "jp": "realtà",
+                "en": "reality"
+            },
+            {
+                "jp": "industria",
+                "en": "industry"
+            },
+            {
+                "jp": "esercito",
+                "en": "army"
+            },
+            {
+                "jp": "pubblico",
+                "en": "public"
+            },
+            {
+                "jp": "strumento",
+                "en": "tool"
+            },
+            {
+                "jp": "collina",
+                "en": "hill"
+            },
+            {
+                "jp": "giustizia",
+                "en": "justice"
+            },
+            {
+                "jp": "congresso",
+                "en": "congress"
+            },
+            {
+                "jp": "decisione",
+                "en": "decision"
+            },
+            {
+                "jp": "folla",
+                "en": "crowd"
+            },
+            {
+                "jp": "popolazione",
+                "en": "population"
+            },
+            {
+                "jp": "concetto",
+                "en": "concept"
+            },
+            {
+                "jp": "istante",
+                "en": "instant"
+            },
+            {
+                "jp": "meglio",
+                "en": "better"
+            },
+            {
+                "jp": "secondo",
+                "en": "second"
+            }
+        ],
+        "Work & School (5/5)": [
+            {
+                "jp": "lezione",
+                "en": "lesson"
+            },
+            {
+                "jp": "studente",
+                "en": "student"
+            },
+            {
+                "jp": "insegnante",
+                "en": "teacher"
+            },
+            {
+                "jp": "biblioteca",
+                "en": "library"
+            },
+            {
+                "jp": "quaderno",
+                "en": "notebook"
+            },
+            {
+                "jp": "penna",
+                "en": "pen"
+            },
+            {
+                "jp": "matita",
+                "en": "pencil"
+            },
+            {
+                "jp": "lavagna",
+                "en": "blackboard"
+            },
+            {
+                "jp": "aula",
+                "en": "classroom"
+            },
+            {
+                "jp": "riunione",
+                "en": "meeting"
+            },
+            {
+                "jp": "compito",
+                "en": "homework / task"
+            },
+            {
+                "jp": "inutile",
+                "en": "useless"
+            },
+            {
+                "jp": "fresco",
+                "en": "fresh"
+            },
+            {
+                "jp": "economico",
+                "en": "cheap"
+            },
+            {
+                "jp": "storico",
+                "en": "historical"
+            },
+            {
+                "jp": "migliore",
+                "en": "best"
+            }
+        ],
+        "Shopping & Money": [
+            {
+                "jp": "prezzo",
+                "en": "price"
+            },
+            {
+                "jp": "denaro",
+                "en": "money"
+            },
+            {
+                "jp": "conto",
+                "en": "bill"
+            },
+            {
+                "jp": "costa",
+                "en": "it costs"
+            },
+            {
+                "jp": "spesa",
+                "en": "expense"
+            },
+            {
+                "jp": "valore",
+                "en": "value"
+            },
+            {
+                "jp": "oro",
+                "en": "gold"
+            },
+            {
+                "jp": "mercato",
+                "en": "market"
+            },
+            {
+                "jp": "affare",
+                "en": "deal"
+            },
+            {
+                "jp": "peso",
+                "en": "weight"
+            },
+            {
+                "jp": "ricchezza",
+                "en": "wealth"
+            }
+        ],
+        "Technology & Communication (1/5)": [
+            {
+                "jp": "voce",
+                "en": "voice"
+            },
+            {
+                "jp": "vita",
+                "en": "life"
+            },
+            {
+                "jp": "modo",
+                "en": "way"
+            },
+            {
+                "jp": "parola",
+                "en": "word"
+            },
+            {
+                "jp": "caso",
+                "en": "case"
+            },
+            {
+                "jp": "questione",
+                "en": "question"
+            },
+            {
+                "jp": "esperienza",
+                "en": "experience"
+            },
+            {
+                "jp": "ricordo",
+                "en": "memory"
+            },
+            {
+                "jp": "sogno",
+                "en": "dream"
+            },
+            {
+                "jp": "vista",
+                "en": "view"
+            },
+            {
+                "jp": "causa",
+                "en": "cause"
+            },
+            {
+                "jp": "effetto",
+                "en": "effect"
+            },
+            {
+                "jp": "base",
+                "en": "basis"
+            },
+            {
+                "jp": "carattere",
+                "en": "character"
+            },
+            {
+                "jp": "spettacolo",
+                "en": "show"
+            },
+            {
+                "jp": "titolo",
+                "en": "title"
+            },
+            {
+                "jp": "comunicazione",
+                "en": "communication"
+            }
+        ],
+        "Technology & Communication (2/5)": [
+            {
+                "jp": "memoria",
+                "en": "memory"
+            },
+            {
+                "jp": "stampa",
+                "en": "press"
+            },
+            {
+                "jp": "autore",
+                "en": "author"
+            },
+            {
+                "jp": "origine",
+                "en": "origin"
+            },
+            {
+                "jp": "resto",
+                "en": "rest"
+            },
+            {
+                "jp": "libro",
+                "en": "book"
+            },
+            {
+                "jp": "bisogno",
+                "en": "need"
+            },
+            {
+                "jp": "segno",
+                "en": "sign"
+            },
+            {
+                "jp": "lettera",
+                "en": "letter"
+            },
+            {
+                "jp": "numero",
+                "en": "number"
+            },
+            {
+                "jp": "pagina",
+                "en": "page"
+            },
+            {
+                "jp": "discorso",
+                "en": "speech"
+            },
+            {
+                "jp": "musica",
+                "en": "music"
+            },
+            {
+                "jp": "teatro",
+                "en": "theater"
+            },
+            {
+                "jp": "elemento",
+                "en": "element"
+            },
+            {
+                "jp": "pezzo",
+                "en": "piece"
+            }
+        ],
+        "Technology & Communication (3/5)": [
+            {
+                "jp": "articolo",
+                "en": "article"
+            },
+            {
+                "jp": "argomento",
+                "en": "topic"
+            },
+            {
+                "jp": "sforzo",
+                "en": "effort"
+            },
+            {
+                "jp": "sorriso",
+                "en": "smile"
+            },
+            {
+                "jp": "frase",
+                "en": "phrase"
+            },
+            {
+                "jp": "errore",
+                "en": "error"
+            },
+            {
+                "jp": "cultura",
+                "en": "culture"
+            },
+            {
+                "jp": "ambiente",
+                "en": "environment"
+            },
+            {
+                "jp": "spalla",
+                "en": "shoulder"
+            },
+            {
+                "jp": "ombra",
+                "en": "shadow"
+            },
+            {
+                "jp": "consiglio",
+                "en": "advice / council"
+            },
+            {
+                "jp": "genere",
+                "en": "kind"
+            },
+            {
+                "jp": "giornale",
+                "en": "newspaper"
+            },
+            {
+                "jp": "milione",
+                "en": "million"
+            },
+            {
+                "jp": "lotta",
+                "en": "fight"
+            },
+            {
+                "jp": "compagnia",
+                "en": "company"
+            }
+        ],
+        "Technology & Communication (4/5)": [
+            {
+                "jp": "espressione",
+                "en": "expression"
+            },
+            {
+                "jp": "notizia",
+                "en": "news"
+            },
+            {
+                "jp": "personaggio",
+                "en": "character"
+            },
+            {
+                "jp": "immagine",
+                "en": "image"
+            },
+            {
+                "jp": "domanda",
+                "en": "question"
+            },
+            {
+                "jp": "film",
+                "en": "movie"
+            },
+            {
+                "jp": "commercio",
+                "en": "business"
+            },
+            {
+                "jp": "messa",
+                "en": "mass"
+            },
+            {
+                "jp": "fantasia",
+                "en": "fantasy"
+            },
+            {
+                "jp": "fiducia",
+                "en": "confidence"
+            },
+            {
+                "jp": "qualità",
+                "en": "quality"
+            },
+            {
+                "jp": "sacrificio",
+                "en": "sacrifice"
+            },
+            {
+                "jp": "mestiere",
+                "en": "craft"
+            },
+            {
+                "jp": "ultimo",
+                "en": "last"
+            },
+            {
+                "jp": "primo",
+                "en": "first"
+            },
+            {
+                "jp": "lontano",
+                "en": "far"
+            }
+        ],
+        "Technology & Communication (5/5)": [
+            {
+                "jp": "telefono",
+                "en": "telephone"
+            },
+            {
+                "jp": "messaggio",
+                "en": "message"
+            },
+            {
+                "jp": "internet",
+                "en": "internet"
+            },
+            {
+                "jp": "computer",
+                "en": "computer"
+            },
+            {
+                "jp": "email",
+                "en": "email"
+            },
+            {
+                "jp": "radio",
+                "en": "radio"
+            },
+            {
+                "jp": "televisione",
+                "en": "television"
+            },
+            {
+                "jp": "schermo",
+                "en": "screen"
+            },
+            {
+                "jp": "rete",
+                "en": "network"
+            },
+            {
+                "jp": "video",
+                "en": "video"
+            },
+            {
+                "jp": "francese",
+                "en": "french"
+            },
+            {
+                "jp": "nazionale",
+                "en": "national"
+            },
+            {
+                "jp": "militare",
+                "en": "military"
+            },
+            {
+                "jp": "felice",
+                "en": "happy"
+            },
+            {
+                "jp": "superiore",
+                "en": "higher"
+            },
+            {
+                "jp": "buio",
+                "en": "darkness / dark"
+            }
+        ],
+        "Nature & Weather (1/2)": [
+            {
+                "jp": "aria",
+                "en": "air"
+            },
+            {
+                "jp": "mare",
+                "en": "sea"
+            },
+            {
+                "jp": "sole",
+                "en": "sun"
+            },
+            {
+                "jp": "albero",
+                "en": "tree"
+            },
+            {
+                "jp": "fiore",
+                "en": "flower"
+            },
+            {
+                "jp": "natura",
+                "en": "nature"
+            },
+            {
+                "jp": "specie",
+                "en": "species"
+            },
+            {
+                "jp": "cane",
+                "en": "dog"
+            },
+            {
+                "jp": "isola",
+                "en": "island"
+            },
+            {
+                "jp": "fuoco",
+                "en": "fire"
+            },
+            {
+                "jp": "inizio",
+                "en": "beginning / start"
+            },
+            {
+                "jp": "terreno",
+                "en": "ground"
+            },
+            {
+                "jp": "animale",
+                "en": "animal"
+            },
+            {
+                "jp": "luna",
+                "en": "moon"
+            },
+            {
+                "jp": "stella",
+                "en": "star"
+            },
+            {
+                "jp": "erba",
+                "en": "grass"
+            },
+            {
+                "jp": "fondo",
+                "en": "background"
+            }
+        ],
+        "Nature & Weather (2/2)": [
+            {
+                "jp": "campo",
+                "en": "field"
+            },
+            {
+                "jp": "cielo",
+                "en": "sky"
+            },
+            {
+                "jp": "pietra",
+                "en": "stone"
+            },
+            {
+                "jp": "monte",
+                "en": "mountain"
+            },
+            {
+                "jp": "gatto",
+                "en": "cat"
+            },
+            {
+                "jp": "bosco",
+                "en": "wood"
+            },
+            {
+                "jp": "prato",
+                "en": "meadow"
+            },
+            {
+                "jp": "bestia",
+                "en": "beast"
+            },
+            {
+                "jp": "vento",
+                "en": "wind"
+            },
+            {
+                "jp": "cavallo",
+                "en": "horse"
+            },
+            {
+                "jp": "montagna",
+                "en": "mountain"
+            },
+            {
+                "jp": "sede",
+                "en": "seat"
+            },
+            {
+                "jp": "fiume",
+                "en": "river"
+            },
+            {
+                "jp": "stagione",
+                "en": "season"
+            },
+            {
+                "jp": "lago",
+                "en": "lake"
+            },
+            {
+                "jp": "cattolico",
+                "en": "catholic"
+            }
+        ],
+        "Colors & Physical Descriptors (1/2)": [
+            {
+                "jp": "fatto",
+                "en": "fact / done thing"
+            },
+            {
+                "jp": "luce",
+                "en": "light"
+            },
+            {
+                "jp": "piccolo",
+                "en": "small"
+            },
+            {
+                "jp": "grande",
+                "en": "great"
+            },
+            {
+                "jp": "alto",
+                "en": "tall"
+            },
+            {
+                "jp": "lungo",
+                "en": "long"
+            },
+            {
+                "jp": "pieno",
+                "en": "full"
+            },
+            {
+                "jp": "nero",
+                "en": "black"
+            },
+            {
+                "jp": "caldo",
+                "en": "hot"
+            },
+            {
+                "jp": "estero",
+                "en": "abroad"
+            },
+            {
+                "jp": "largo",
+                "en": "wide"
+            }
+        ],
+        "Colors & Physical Descriptors (2/2)": [
+            {
+                "jp": "verde",
+                "en": "green"
+            },
+            {
+                "jp": "grosso",
+                "en": "big"
+            },
+            {
+                "jp": "basso",
+                "en": "bass"
+            },
+            {
+                "jp": "freddo",
+                "en": "cold"
+            },
+            {
+                "jp": "vuoto",
+                "en": "empty"
+            },
+            {
+                "jp": "breve",
+                "en": "short"
+            },
+            {
+                "jp": "profondo",
+                "en": "deep"
+            },
+            {
+                "jp": "intero",
+                "en": "full"
+            },
+            {
+                "jp": "leggero",
+                "en": "light"
+            },
+            {
+                "jp": "stanco",
+                "en": "tired"
+            },
+            {
+                "jp": "azzurro",
+                "en": "light blue"
+            }
+        ],
+        "Emotions & Opinions (1/5)": [
+            {
+                "jp": "nome",
+                "en": "name"
+            },
+            {
+                "jp": "tempo",
+                "en": "time"
+            },
+            {
+                "jp": "amore",
+                "en": "love"
+            },
+            {
+                "jp": "ragione",
+                "en": "reason"
+            },
+            {
+                "jp": "figura",
+                "en": "figure"
+            },
+            {
+                "jp": "prodotto",
+                "en": "product"
+            },
+            {
+                "jp": "motivo",
+                "en": "reason"
+            },
+            {
+                "jp": "misura",
+                "en": "measure"
+            },
+            {
+                "jp": "successo",
+                "en": "success"
+            },
+            {
+                "jp": "mente",
+                "en": "mind"
+            },
+            {
+                "jp": "libertà",
+                "en": "freedom"
+            },
+            {
+                "jp": "dubbio",
+                "en": "doubt"
+            },
+            {
+                "jp": "passione",
+                "en": "passion"
+            },
+            {
+                "jp": "volontà",
+                "en": "will"
+            },
+            {
+                "jp": "destino",
+                "en": "destiny"
+            },
+            {
+                "jp": "funzione",
+                "en": "function"
+            },
+            {
+                "jp": "voglia",
+                "en": "wish"
+            }
+        ],
+        "Emotions & Opinions (2/5)": [
+            {
+                "jp": "impressione",
+                "en": "impression"
+            },
+            {
+                "jp": "passato",
+                "en": "past"
+            },
+            {
+                "jp": "corsa",
+                "en": "run / race"
+            },
+            {
+                "jp": "soluzione",
+                "en": "solution"
+            },
+            {
+                "jp": "pensiero",
+                "en": "thought"
+            },
+            {
+                "jp": "pace",
+                "en": "peace"
+            },
+            {
+                "jp": "morte",
+                "en": "death"
+            },
+            {
+                "jp": "paura",
+                "en": "fear"
+            },
+            {
+                "jp": "idea",
+                "en": "idea"
+            },
+            {
+                "jp": "verità",
+                "en": "truth"
+            },
+            {
+                "jp": "secolo",
+                "en": "century"
+            },
+            {
+                "jp": "colpa",
+                "en": "fault"
+            },
+            {
+                "jp": "sentimento",
+                "en": "feeling"
+            },
+            {
+                "jp": "rispetto",
+                "en": "respect"
+            },
+            {
+                "jp": "speranza",
+                "en": "hope"
+            },
+            {
+                "jp": "maniera",
+                "en": "way"
+            }
+        ],
+        "Emotions & Opinions (3/5)": [
+            {
+                "jp": "gioia",
+                "en": "joy"
+            },
+            {
+                "jp": "confronto",
+                "en": "comparison"
+            },
+            {
+                "jp": "gesto",
+                "en": "gesture"
+            },
+            {
+                "jp": "opinione",
+                "en": "opinion"
+            },
+            {
+                "jp": "pietà",
+                "en": "pity"
+            },
+            {
+                "jp": "fretta",
+                "en": "hurry"
+            },
+            {
+                "jp": "giudizio",
+                "en": "judgement"
+            },
+            {
+                "jp": "fatica",
+                "en": "fatigue"
+            },
+            {
+                "jp": "animo",
+                "en": "mind"
+            },
+            {
+                "jp": "azione",
+                "en": "action"
+            },
+            {
+                "jp": "arte",
+                "en": "art"
+            },
+            {
+                "jp": "anima",
+                "en": "soul"
+            },
+            {
+                "jp": "passo",
+                "en": "step"
+            },
+            {
+                "jp": "atto",
+                "en": "act"
+            },
+            {
+                "jp": "fortuna",
+                "en": "luck"
+            },
+            {
+                "jp": "minuto",
+                "en": "minute"
+            }
+        ],
+        "Emotions & Opinions (4/5)": [
+            {
+                "jp": "desiderio",
+                "en": "desire"
+            },
+            {
+                "jp": "visita",
+                "en": "visit"
+            },
+            {
+                "jp": "coraggio",
+                "en": "courage"
+            },
+            {
+                "jp": "pianta",
+                "en": "plant"
+            },
+            {
+                "jp": "fede",
+                "en": "faith"
+            },
+            {
+                "jp": "uso",
+                "en": "use"
+            },
+            {
+                "jp": "fabbrica",
+                "en": "factory"
+            },
+            {
+                "jp": "disposizione",
+                "en": "layout"
+            },
+            {
+                "jp": "croce",
+                "en": "cross"
+            },
+            {
+                "jp": "pianura",
+                "en": "plain"
+            },
+            {
+                "jp": "roba",
+                "en": "stuff"
+            },
+            {
+                "jp": "merito",
+                "en": "merit"
+            },
+            {
+                "jp": "attesa",
+                "en": "waiting"
+            },
+            {
+                "jp": "altro",
+                "en": "other"
+            },
+            {
+                "jp": "maggiore",
+                "en": "greater"
+            },
+            {
+                "jp": "vicino",
+                "en": "close"
+            }
+        ],
+        "Emotions & Opinions (5/5)": [
+            {
+                "jp": "felicità",
+                "en": "happiness"
+            },
+            {
+                "jp": "tristezza",
+                "en": "sadness"
+            },
+            {
+                "jp": "rabbia",
+                "en": "anger"
+            },
+            {
+                "jp": "calma",
+                "en": "calm"
+            },
+            {
+                "jp": "ansia",
+                "en": "anxiety"
+            },
+            {
+                "jp": "orgoglio",
+                "en": "pride"
+            },
+            {
+                "jp": "vergogna",
+                "en": "shame"
+            },
+            {
+                "jp": "gelosia",
+                "en": "jealousy"
+            },
+            {
+                "jp": "sollievo",
+                "en": "relief"
+            },
+            {
+                "jp": "curiosità",
+                "en": "curiosity"
+            },
+            {
+                "jp": "vivo",
+                "en": "alive / living"
+            },
+            {
+                "jp": "numeroso",
+                "en": "numerous"
+            },
+            {
+                "jp": "comune",
+                "en": "common"
+            },
+            {
+                "jp": "tranquillo",
+                "en": "quiet"
+            },
+            {
+                "jp": "inglese",
+                "en": "english"
+            },
+            {
+                "jp": "facile",
+                "en": "easy"
+            }
+        ],
+        "Core Verbs (1/10)": [
+            {
+                "jp": "dovere",
+                "en": "to have to / must"
+            },
+            {
+                "jp": "potere",
+                "en": "to be able to / can"
+            },
+            {
+                "jp": "essere",
+                "en": "to be"
+            },
+            {
+                "jp": "sembrare",
+                "en": "to seem, to look like"
+            },
+            {
+                "jp": "avere",
+                "en": "to have"
+            },
+            {
+                "jp": "tenere",
+                "en": "to keep"
+            },
+            {
+                "jp": "dire",
+                "en": "to say"
+            },
+            {
+                "jp": "morire",
+                "en": "to die"
+            },
+            {
+                "jp": "volere",
+                "en": "want"
+            },
+            {
+                "jp": "chiamare",
+                "en": "to call"
+            },
+            {
+                "jp": "sapere",
+                "en": "to know"
+            },
+            {
+                "jp": "stare",
+                "en": "to stay"
+            },
+            {
+                "jp": "rimanere",
+                "en": "to stay"
+            },
+            {
+                "jp": "vedere",
+                "en": "to see"
+            },
+            {
+                "jp": "cercare",
+                "en": "to search for"
+            },
+            {
+                "jp": "andare",
+                "en": "to go"
+            },
+            {
+                "jp": "venire",
+                "en": "to come"
+            }
+        ],
+        "Core Verbs (2/10)": [
+            {
+                "jp": "vivere",
+                "en": "to live"
+            },
+            {
+                "jp": "dare",
+                "en": "to give"
+            },
+            {
+                "jp": "trovare",
+                "en": "to find"
+            },
+            {
+                "jp": "lasciare",
+                "en": "to leave"
+            },
+            {
+                "jp": "cominciare",
+                "en": "to begin"
+            },
+            {
+                "jp": "prendere",
+                "en": "to take"
+            },
+            {
+                "jp": "aspettare",
+                "en": "to wait"
+            },
+            {
+                "jp": "mettere",
+                "en": "to put"
+            },
+            {
+                "jp": "riuscire",
+                "en": "to succeed"
+            },
+            {
+                "jp": "passare",
+                "en": "to pass"
+            },
+            {
+                "jp": "finire",
+                "en": "to finish"
+            },
+            {
+                "jp": "parere",
+                "en": "to seem"
+            },
+            {
+                "jp": "restare",
+                "en": "to remain"
+            },
+            {
+                "jp": "seguire",
+                "en": "to follow"
+            },
+            {
+                "jp": "esprimere",
+                "en": "to express"
+            },
+            {
+                "jp": "bastare",
+                "en": "to suffice"
+            },
+            {
+                "jp": "perdere",
+                "en": "to lose"
+            }
+        ],
+        "Core Verbs (3/10)": [
+            {
+                "jp": "salutare",
+                "en": "to greet"
+            },
+            {
+                "jp": "rendere",
+                "en": "to make (big, small..)"
+            },
+            {
+                "jp": "difendere",
+                "en": "to stick up for"
+            },
+            {
+                "jp": "salvare",
+                "en": "to save"
+            },
+            {
+                "jp": "dirigere",
+                "en": "to direct"
+            },
+            {
+                "jp": "cantare",
+                "en": "to sing"
+            },
+            {
+                "jp": "costruire",
+                "en": "to build"
+            },
+            {
+                "jp": "assicurare",
+                "en": "to ensure"
+            },
+            {
+                "jp": "ritrovare",
+                "en": "to find again"
+            },
+            {
+                "jp": "assumere",
+                "en": "to hire"
+            },
+            {
+                "jp": "durare",
+                "en": "to last"
+            },
+            {
+                "jp": "tendere",
+                "en": "to tend"
+            },
+            {
+                "jp": "dividere",
+                "en": "to divide"
+            },
+            {
+                "jp": "evitare",
+                "en": "to avoid"
+            },
+            {
+                "jp": "mantenere",
+                "en": "to maintain"
+            },
+            {
+                "jp": "ridurre",
+                "en": "to reduce"
+            },
+            {
+                "jp": "ritenere",
+                "en": "to consider"
+            }
+        ],
+        "Core Verbs (4/10)": [
+            {
+                "jp": "contenere",
+                "en": "to contain"
+            },
+            {
+                "jp": "concludere",
+                "en": "to conclude"
+            },
+            {
+                "jp": "fissare",
+                "en": "to fix"
+            },
+            {
+                "jp": "saltare",
+                "en": "to jump"
+            },
+            {
+                "jp": "costringere",
+                "en": "to force"
+            },
+            {
+                "jp": "stabilire",
+                "en": "to establish"
+            },
+            {
+                "jp": "nascere",
+                "en": "to be born"
+            },
+            {
+                "jp": "presentare",
+                "en": "to introduce"
+            },
+            {
+                "jp": "compiere",
+                "en": "to fulfill"
+            },
+            {
+                "jp": "trattare",
+                "en": "to deal"
+            },
+            {
+                "jp": "toccare",
+                "en": "to touch"
+            },
+            {
+                "jp": "considerare",
+                "en": "to consider"
+            },
+            {
+                "jp": "continuare",
+                "en": "to continue"
+            },
+            {
+                "jp": "servire",
+                "en": "to serve"
+            },
+            {
+                "jp": "stringere",
+                "en": "to tighten"
+            },
+            {
+                "jp": "mandare",
+                "en": "to send"
+            }
+        ],
+        "Core Verbs (5/10)": [
+            {
+                "jp": "fermare",
+                "en": "to stop"
+            },
+            {
+                "jp": "apparire",
+                "en": "to appear"
+            },
+            {
+                "jp": "amare",
+                "en": "to love"
+            },
+            {
+                "jp": "decidere",
+                "en": "to decide"
+            },
+            {
+                "jp": "esistere",
+                "en": "to exist"
+            },
+            {
+                "jp": "ricevere",
+                "en": "to receive"
+            },
+            {
+                "jp": "permettere",
+                "en": "to allow"
+            },
+            {
+                "jp": "mancare",
+                "en": "to miss"
+            },
+            {
+                "jp": "avvenire",
+                "en": "to occur"
+            },
+            {
+                "jp": "raccogliere",
+                "en": "to collect"
+            },
+            {
+                "jp": "ottenere",
+                "en": "to obtain"
+            },
+            {
+                "jp": "rompere",
+                "en": "to break"
+            },
+            {
+                "jp": "offrire",
+                "en": "to offer"
+            },
+            {
+                "jp": "godere",
+                "en": "to enjoy"
+            },
+            {
+                "jp": "mostrare",
+                "en": "to exhibit"
+            },
+            {
+                "jp": "imporre",
+                "en": "to impose"
+            }
+        ],
+        "Core Verbs (6/10)": [
+            {
+                "jp": "accompagnare",
+                "en": "to accompany"
+            },
+            {
+                "jp": "dimenticare",
+                "en": "to forget"
+            },
+            {
+                "jp": "desiderare",
+                "en": "to desire"
+            },
+            {
+                "jp": "pregare",
+                "en": "to pray"
+            },
+            {
+                "jp": "produrre",
+                "en": "to produce"
+            },
+            {
+                "jp": "cambiare",
+                "en": "to change"
+            },
+            {
+                "jp": "avvicinare",
+                "en": "to approach"
+            },
+            {
+                "jp": "dimostrare",
+                "en": "to demonstrate"
+            },
+            {
+                "jp": "sperare",
+                "en": "to hope"
+            },
+            {
+                "jp": "ordinare",
+                "en": "to sort"
+            },
+            {
+                "jp": "sposare",
+                "en": "to marry"
+            },
+            {
+                "jp": "invitare",
+                "en": "to invite"
+            },
+            {
+                "jp": "ammettere",
+                "en": "to admit"
+            },
+            {
+                "jp": "discutere",
+                "en": "to discuss"
+            },
+            {
+                "jp": "sbagliare",
+                "en": "to make a mistake"
+            },
+            {
+                "jp": "liberare",
+                "en": "to free"
+            }
+        ],
+        "Core Verbs (7/10)": [
+            {
+                "jp": "badare",
+                "en": "to look after"
+            },
+            {
+                "jp": "tagliare",
+                "en": "to cut"
+            },
+            {
+                "jp": "svegliare",
+                "en": "to wake up"
+            },
+            {
+                "jp": "pubblicare",
+                "en": "to publish"
+            },
+            {
+                "jp": "capitare",
+                "en": "to happen"
+            },
+            {
+                "jp": "attaccare",
+                "en": "to attack"
+            },
+            {
+                "jp": "posare",
+                "en": "to place"
+            },
+            {
+                "jp": "impedire",
+                "en": "to prevent"
+            },
+            {
+                "jp": "prevedere",
+                "en": "to forecast"
+            },
+            {
+                "jp": "gettare",
+                "en": "to throw"
+            },
+            {
+                "jp": "spegnere",
+                "en": "to switch off"
+            },
+            {
+                "jp": "distinguere",
+                "en": "to distinguish"
+            },
+            {
+                "jp": "annunciare",
+                "en": "to announce"
+            },
+            {
+                "jp": "offendere",
+                "en": "to offend"
+            },
+            {
+                "jp": "baciare",
+                "en": "to kiss"
+            },
+            {
+                "jp": "esporre",
+                "en": "to expose"
+            }
+        ],
+        "Core Verbs (8/10)": [
+            {
+                "jp": "incontrare",
+                "en": "to meet"
+            },
+            {
+                "jp": "fornire",
+                "en": "to provide"
+            },
+            {
+                "jp": "segnare",
+                "en": "to mark"
+            },
+            {
+                "jp": "provare",
+                "en": "to try"
+            },
+            {
+                "jp": "formare",
+                "en": "to form"
+            },
+            {
+                "jp": "rivedere",
+                "en": "to review"
+            },
+            {
+                "jp": "uccidere",
+                "en": "to kill"
+            },
+            {
+                "jp": "tirare",
+                "en": "to pull"
+            },
+            {
+                "jp": "ammazzare",
+                "en": "to kill"
+            },
+            {
+                "jp": "accogliere",
+                "en": "to receive"
+            },
+            {
+                "jp": "aggiungere",
+                "en": "to add"
+            },
+            {
+                "jp": "preoccupare",
+                "en": "to worry"
+            },
+            {
+                "jp": "succedere",
+                "en": "to happen"
+            },
+            {
+                "jp": "riempire",
+                "en": "to fill"
+            },
+            {
+                "jp": "tentare",
+                "en": "to attempt"
+            },
+            {
+                "jp": "partecipare",
+                "en": "to take part"
+            }
+        ],
+        "Core Verbs (9/10)": [
+            {
+                "jp": "accadere",
+                "en": "to happen"
+            },
+            {
+                "jp": "piantare",
+                "en": "to plant"
+            },
+            {
+                "jp": "importare",
+                "en": "to import"
+            },
+            {
+                "jp": "pesare",
+                "en": "to weigh"
+            },
+            {
+                "jp": "richiedere",
+                "en": "to request"
+            },
+            {
+                "jp": "nascondere",
+                "en": "to hide"
+            },
+            {
+                "jp": "accettare",
+                "en": "to accept"
+            },
+            {
+                "jp": "scoprire",
+                "en": "to discover"
+            },
+            {
+                "jp": "buttare",
+                "en": "to throw"
+            },
+            {
+                "jp": "scorrere",
+                "en": "to slide"
+            },
+            {
+                "jp": "interessare",
+                "en": "to interest"
+            },
+            {
+                "jp": "rappresentare",
+                "en": "to represent"
+            },
+            {
+                "jp": "riprendere",
+                "en": "to resume"
+            },
+            {
+                "jp": "condurre",
+                "en": "to conduct"
+            },
+            {
+                "jp": "costituire",
+                "en": "to constitute"
+            },
+            {
+                "jp": "disporre",
+                "en": "to have"
+            }
+        ],
+        "Core Verbs (10/10)": [
+            {
+                "jp": "unire",
+                "en": "to merge"
+            },
+            {
+                "jp": "elevare",
+                "en": "to raise"
+            },
+            {
+                "jp": "promettere",
+                "en": "to promise"
+            },
+            {
+                "jp": "scomparire",
+                "en": "to disappear"
+            },
+            {
+                "jp": "trarre",
+                "en": "to draw"
+            },
+            {
+                "jp": "levare",
+                "en": "to lift"
+            },
+            {
+                "jp": "soffrire",
+                "en": "to suffer"
+            },
+            {
+                "jp": "distruggere",
+                "en": "to destroy"
+            },
+            {
+                "jp": "meritare",
+                "en": "to deserve"
+            },
+            {
+                "jp": "riguardare",
+                "en": "to concern"
+            },
+            {
+                "jp": "dedicare",
+                "en": "to devote"
+            },
+            {
+                "jp": "iniziare",
+                "en": "to start"
+            },
+            {
+                "jp": "tacere",
+                "en": "to be silent"
+            },
+            {
+                "jp": "occorrere",
+                "en": "to take"
+            },
+            {
+                "jp": "trasformare",
+                "en": "to commute"
+            },
+            {
+                "jp": "porre",
+                "en": "to place"
+            }
+        ],
+        "Daily Action Verbs (1/2)": [
+            {
+                "jp": "aprire",
+                "en": "to open"
+            },
+            {
+                "jp": "guardare",
+                "en": "to look"
+            },
+            {
+                "jp": "chiudere",
+                "en": "to close"
+            },
+            {
+                "jp": "scrivere",
+                "en": "to write"
+            },
+            {
+                "jp": "vestire",
+                "en": "to dress"
+            },
+            {
+                "jp": "scusare",
+                "en": "to excuse"
+            },
+            {
+                "jp": "ascoltare",
+                "en": "to listen"
+            },
+            {
+                "jp": "ridere",
+                "en": "to laugh"
+            },
+            {
+                "jp": "divertire",
+                "en": "to amuse"
+            },
+            {
+                "jp": "bere",
+                "en": "to drink"
+            },
+            {
+                "jp": "diffondere",
+                "en": "to spread"
+            },
+            {
+                "jp": "vendere",
+                "en": "to sell"
+            }
+        ],
+        "Daily Action Verbs (2/2)": [
+            {
+                "jp": "provocare",
+                "en": "to cause"
+            },
+            {
+                "jp": "pagare",
+                "en": "to pay"
+            },
+            {
+                "jp": "creare",
+                "en": "to create"
+            },
+            {
+                "jp": "usare",
+                "en": "to use"
+            },
+            {
+                "jp": "ripetere",
+                "en": "to repeat"
+            },
+            {
+                "jp": "battere",
+                "en": "to beat"
+            },
+            {
+                "jp": "sorridere",
+                "en": "to smile"
+            },
+            {
+                "jp": "aiutare",
+                "en": "to help"
+            },
+            {
+                "jp": "piangere",
+                "en": "to cry"
+            },
+            {
+                "jp": "recare",
+                "en": "to cause"
+            },
+            {
+                "jp": "studiare",
+                "en": "to study"
+            },
+            {
+                "jp": "giocare",
+                "en": "to play"
+            }
+        ],
+        "Movement & Location Verbs (1/2)": [
+            {
+                "jp": "tornare",
+                "en": "to return"
+            },
+            {
+                "jp": "entrare",
+                "en": "to come in"
+            },
+            {
+                "jp": "uscire",
+                "en": "to go out"
+            },
+            {
+                "jp": "arrivare",
+                "en": "to arrive"
+            },
+            {
+                "jp": "portare",
+                "en": "to bring"
+            },
+            {
+                "jp": "diventare",
+                "en": "to become"
+            },
+            {
+                "jp": "spingere",
+                "en": "to push"
+            },
+            {
+                "jp": "correre",
+                "en": "to run"
+            },
+            {
+                "jp": "sorgere",
+                "en": "to rise"
+            },
+            {
+                "jp": "camminare",
+                "en": "to walk"
+            },
+            {
+                "jp": "accendere",
+                "en": "to turn on"
+            },
+            {
+                "jp": "scendere",
+                "en": "to alight"
+            },
+            {
+                "jp": "partire",
+                "en": "to leave"
+            },
+            {
+                "jp": "muovere",
+                "en": "to move"
+            },
+            {
+                "jp": "giungere",
+                "en": "to reach"
+            },
+            {
+                "jp": "salire",
+                "en": "to go up"
+            }
+        ],
+        "Movement & Location Verbs (2/2)": [
+            {
+                "jp": "rimettere",
+                "en": "to return"
+            },
+            {
+                "jp": "volgere",
+                "en": "to turn"
+            },
+            {
+                "jp": "ritornare",
+                "en": "to return"
+            },
+            {
+                "jp": "fuggire",
+                "en": "to run away"
+            },
+            {
+                "jp": "scappare",
+                "en": "to run away"
+            },
+            {
+                "jp": "superare",
+                "en": "to overcome"
+            },
+            {
+                "jp": "allontanare",
+                "en": "to remove"
+            },
+            {
+                "jp": "togliere",
+                "en": "to remove"
+            },
+            {
+                "jp": "voltare",
+                "en": "to turn"
+            },
+            {
+                "jp": "rientrare",
+                "en": "to re-enter"
+            },
+            {
+                "jp": "girare",
+                "en": "to turn"
+            },
+            {
+                "jp": "rivolgere",
+                "en": "to turn"
+            },
+            {
+                "jp": "sorprendere",
+                "en": "to surprise"
+            },
+            {
+                "jp": "volare",
+                "en": "to fly"
+            },
+            {
+                "jp": "divenire",
+                "en": "to become"
+            }
+        ],
+        "Speech & Mental Verbs (1/2)": [
+            {
+                "jp": "capire",
+                "en": "to understand"
+            },
+            {
+                "jp": "conoscere",
+                "en": "to know"
+            },
+            {
+                "jp": "chiedere",
+                "en": "to ask"
+            },
+            {
+                "jp": "parlare",
+                "en": "to speak"
+            },
+            {
+                "jp": "ricordare",
+                "en": "to remember"
+            },
+            {
+                "jp": "sentire",
+                "en": "to feel, to hear"
+            },
+            {
+                "jp": "rispondere",
+                "en": "to answer, to reply"
+            },
+            {
+                "jp": "pensare",
+                "en": "to think"
+            },
+            {
+                "jp": "credere",
+                "en": "to believe"
+            },
+            {
+                "jp": "udire",
+                "en": "to hear"
+            },
+            {
+                "jp": "immaginare",
+                "en": "to imagine"
+            },
+            {
+                "jp": "domandare",
+                "en": "to ask"
+            }
+        ],
+        "Speech & Mental Verbs (2/2)": [
+            {
+                "jp": "intendere",
+                "en": "to hear"
+            },
+            {
+                "jp": "osservare",
+                "en": "to observe"
+            },
+            {
+                "jp": "spiegare",
+                "en": "to explain"
+            },
+            {
+                "jp": "significare",
+                "en": "to mean"
+            },
+            {
+                "jp": "raccontare",
+                "en": "to tell"
+            },
+            {
+                "jp": "giudicare",
+                "en": "to judge"
+            },
+            {
+                "jp": "riferire",
+                "en": "to report"
+            },
+            {
+                "jp": "imparare",
+                "en": "to learn"
+            },
+            {
+                "jp": "accorgersi",
+                "en": "to notice"
+            },
+            {
+                "jp": "notare",
+                "en": "to notice"
+            },
+            {
+                "jp": "indicare",
+                "en": "to indicate"
+            }
+        ],
+        "Common Adjectives (1/2)": [
+            {
+                "jp": "difficoltà",
+                "en": "difficulty"
+            },
+            {
+                "jp": "sicurezza",
+                "en": "safety"
+            },
+            {
+                "jp": "buono",
+                "en": "good"
+            },
+            {
+                "jp": "vecchio",
+                "en": "old"
+            },
+            {
+                "jp": "giovane",
+                "en": "young"
+            },
+            {
+                "jp": "diverso",
+                "en": "different"
+            },
+            {
+                "jp": "stesso",
+                "en": "same"
+            },
+            {
+                "jp": "povero",
+                "en": "poor"
+            },
+            {
+                "jp": "bello",
+                "en": "beautiful"
+            },
+            {
+                "jp": "possibile",
+                "en": "possible"
+            },
+            {
+                "jp": "nuovo",
+                "en": "new"
+            },
+            {
+                "jp": "certo",
+                "en": "of course"
+            },
+            {
+                "jp": "vero",
+                "en": "true"
+            },
+            {
+                "jp": "ricco",
+                "en": "rich"
+            }
+        ],
+        "Common Adjectives (2/2)": [
+            {
+                "jp": "necessario",
+                "en": "necessary"
+            },
+            {
+                "jp": "libero",
+                "en": "free"
+            },
+            {
+                "jp": "moderno",
+                "en": "modern"
+            },
+            {
+                "jp": "semplice",
+                "en": "simple"
+            },
+            {
+                "jp": "grave",
+                "en": "serious"
+            },
+            {
+                "jp": "difficile",
+                "en": "difficult"
+            },
+            {
+                "jp": "pronto",
+                "en": "ready"
+            },
+            {
+                "jp": "serio",
+                "en": "serious"
+            },
+            {
+                "jp": "strano",
+                "en": "strange"
+            },
+            {
+                "jp": "cattivo",
+                "en": "bad"
+            },
+            {
+                "jp": "brutto",
+                "en": "ugly"
+            },
+            {
+                "jp": "famoso",
+                "en": "famous"
+            },
+            {
+                "jp": "utile",
+                "en": "helpful"
+            },
+            {
+                "jp": "speciale",
+                "en": "special"
+            }
+        ],
+        "Common Adverbs (1/2)": [
+            {
+                "jp": "male",
+                "en": "badly / badly / unwell"
+            },
+            {
+                "jp": "bene",
+                "en": "well / good"
+            },
+            {
+                "jp": "presente",
+                "en": "present / here"
+            },
+            {
+                "jp": "già",
+                "en": "already"
+            },
+            {
+                "jp": "ancora",
+                "en": "still / again"
+            },
+            {
+                "jp": "sempre",
+                "en": "always"
+            },
+            {
+                "jp": "spesso",
+                "en": "often"
+            },
+            {
+                "jp": "presto",
+                "en": "soon / early"
+            },
+            {
+                "jp": "tardi",
+                "en": "late"
+            },
+            {
+                "jp": "adesso",
+                "en": "now / right now"
+            }
+        ],
+        "Common Adverbs (2/2)": [
+            {
+                "jp": "subito",
+                "en": "immediately"
+            },
+            {
+                "jp": "insieme",
+                "en": "together"
+            },
+            {
+                "jp": "davvero",
+                "en": "really"
+            },
+            {
+                "jp": "infatti",
+                "en": "in fact"
+            },
+            {
+                "jp": "piuttosto",
+                "en": "rather"
+            },
+            {
+                "jp": "qui",
+                "en": "here"
+            },
+            {
+                "jp": "lì",
+                "en": "there"
+            },
+            {
+                "jp": "là",
+                "en": "there"
+            },
+            {
+                "jp": "qua",
+                "en": "here"
+            }
+        ],
+        "Social Situations (1/5)": [
+            {
+                "jp": "piacere",
+                "en": "nice to meet you / pleasure"
+            },
+            {
+                "jp": "storia",
+                "en": "history"
+            },
+            {
+                "jp": "mondo",
+                "en": "world"
+            },
+            {
+                "jp": "stato",
+                "en": "state"
+            },
+            {
+                "jp": "senso",
+                "en": "sense"
+            },
+            {
+                "jp": "festa",
+                "en": "party"
+            },
+            {
+                "jp": "gioco",
+                "en": "game"
+            },
+            {
+                "jp": "posizione",
+                "en": "position"
+            },
+            {
+                "jp": "movimento",
+                "en": "movement"
+            },
+            {
+                "jp": "risultato",
+                "en": "result"
+            },
+            {
+                "jp": "dio",
+                "en": "god"
+            },
+            {
+                "jp": "attività",
+                "en": "activities"
+            },
+            {
+                "jp": "coscienza",
+                "en": "consciousness"
+            },
+            {
+                "jp": "eccellenza",
+                "en": "excellence"
+            },
+            {
+                "jp": "ferro",
+                "en": "iron"
+            },
+            {
+                "jp": "punta",
+                "en": "tip"
+            },
+            {
+                "jp": "differenza",
+                "en": "difference"
+            }
+        ],
+        "Social Situations (2/5)": [
+            {
+                "jp": "grazia",
+                "en": "grace"
+            },
+            {
+                "jp": "attenzione",
+                "en": "attention"
+            },
+            {
+                "jp": "problema",
+                "en": "problem"
+            },
+            {
+                "jp": "fine",
+                "en": "end"
+            },
+            {
+                "jp": "ordine",
+                "en": "order"
+            },
+            {
+                "jp": "condizione",
+                "en": "condition"
+            },
+            {
+                "jp": "diritto",
+                "en": "right"
+            },
+            {
+                "jp": "nazione",
+                "en": "nation"
+            },
+            {
+                "jp": "gruppo",
+                "en": "group"
+            },
+            {
+                "jp": "scopo",
+                "en": "purpose"
+            },
+            {
+                "jp": "tipo",
+                "en": "type / guy"
+            },
+            {
+                "jp": "oggetto",
+                "en": "object"
+            },
+            {
+                "jp": "possibilità",
+                "en": "possibility"
+            },
+            {
+                "jp": "proposito",
+                "en": "purpose"
+            },
+            {
+                "jp": "termine",
+                "en": "term"
+            },
+            {
+                "jp": "costruzione",
+                "en": "construction"
+            }
+        ],
+        "Social Situations (3/5)": [
+            {
+                "jp": "sguardo",
+                "en": "look"
+            },
+            {
+                "jp": "potenza",
+                "en": "power"
+            },
+            {
+                "jp": "ufficiale",
+                "en": "official"
+            },
+            {
+                "jp": "limite",
+                "en": "limit"
+            },
+            {
+                "jp": "contatto",
+                "en": "contact"
+            },
+            {
+                "jp": "intenzione",
+                "en": "intention"
+            },
+            {
+                "jp": "valle",
+                "en": "valley"
+            },
+            {
+                "jp": "interesse",
+                "en": "interest"
+            },
+            {
+                "jp": "silenzio",
+                "en": "silence"
+            },
+            {
+                "jp": "corrente",
+                "en": "current"
+            },
+            {
+                "jp": "piano",
+                "en": "slowly / softly"
+            },
+            {
+                "jp": "spirito",
+                "en": "spirit"
+            },
+            {
+                "jp": "situazione",
+                "en": "situation"
+            },
+            {
+                "jp": "colpo",
+                "en": "blow"
+            },
+            {
+                "jp": "partito",
+                "en": "party"
+            },
+            {
+                "jp": "tratto",
+                "en": "stretch"
+            }
+        ],
+        "Social Situations (4/5)": [
+            {
+                "jp": "serie",
+                "en": "series"
+            },
+            {
+                "jp": "grado",
+                "en": "degree"
+            },
+            {
+                "jp": "risposta",
+                "en": "reply"
+            },
+            {
+                "jp": "energia",
+                "en": "energy"
+            },
+            {
+                "jp": "seguito",
+                "en": "following"
+            },
+            {
+                "jp": "scrittore",
+                "en": "writer"
+            },
+            {
+                "jp": "difesa",
+                "en": "defence"
+            },
+            {
+                "jp": "tono",
+                "en": "tone"
+            },
+            {
+                "jp": "matrimonio",
+                "en": "marriage"
+            },
+            {
+                "jp": "filo",
+                "en": "wire"
+            },
+            {
+                "jp": "favore",
+                "en": "favor"
+            },
+            {
+                "jp": "atteggiamento",
+                "en": "attitude"
+            },
+            {
+                "jp": "foglia",
+                "en": "leaf"
+            },
+            {
+                "jp": "tale",
+                "en": "such"
+            },
+            {
+                "jp": "proprio",
+                "en": "own"
+            },
+            {
+                "jp": "saluto",
+                "en": "greeting"
+            }
+        ],
+        "Social Situations (5/5)": [
+            {
+                "jp": "abbraccio",
+                "en": "hug"
+            },
+            {
+                "jp": "stretta di mano",
+                "en": "handshake"
+            },
+            {
+                "jp": "invito",
+                "en": "invitation"
+            },
+            {
+                "jp": "appuntamento",
+                "en": "appointment"
+            },
+            {
+                "jp": "chiacchierata",
+                "en": "chat"
+            },
+            {
+                "jp": "conversazione",
+                "en": "conversation"
+            },
+            {
+                "jp": "discussione",
+                "en": "discussion"
+            },
+            {
+                "jp": "litigio",
+                "en": "argument / quarrel"
+            },
+            {
+                "jp": "cortesia",
+                "en": "courtesy"
+            },
+            {
+                "jp": "presentazione",
+                "en": "introduction"
+            },
+            {
+                "jp": "principale",
+                "en": "principal / main"
+            },
+            {
+                "jp": "simile",
+                "en": "similar"
+            },
+            {
+                "jp": "americano",
+                "en": "american"
+            },
+            {
+                "jp": "contento",
+                "en": "happy"
+            },
+            {
+                "jp": "solito",
+                "en": "usual"
+            },
+            {
+                "jp": "terzo",
+                "en": "third"
+            }
+        ]
+    }
+}

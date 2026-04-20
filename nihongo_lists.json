@@ -1,0 +1,5692 @@
+{
+    "nihongo": {
+        "Starter Kit": [
+            {
+                "jp": "初めまして Hajimemashite",
+                "en": "Nice to meet you"
+            },
+            {
+                "jp": "いただけますか Itadakemasu ka?",
+                "en": "Can I have a...? / Could I receive...?"
+            },
+            {
+                "jp": "いいね Ii ne",
+                "en": "Nice! / That's good"
+            },
+            {
+                "jp": "少し Sukoshi",
+                "en": "A little"
+            },
+            {
+                "jp": "お会計お願いします O kaikei onegaishimasu",
+                "en": "Can I have the bill please"
+            },
+            {
+                "jp": "こんにちは Konnichiwa",
+                "en": "Hello / Good afternoon"
+            },
+            {
+                "jp": "おはようございます Ohayou gozaimasu",
+                "en": "Good morning"
+            },
+            {
+                "jp": "こんばんは Konbanwa",
+                "en": "Good evening"
+            },
+            {
+                "jp": "ごめんなさい Gomen nasai",
+                "en": "I'm sorry"
+            },
+            {
+                "jp": "さようなら Sayounara",
+                "en": "Goodbye"
+            },
+            {
+                "jp": "私 Watashi",
+                "en": "I"
+            },
+            {
+                "jp": "あなた Anata",
+                "en": "You"
+            },
+            {
+                "jp": "それ Sore",
+                "en": "That (near you)"
+            },
+            {
+                "jp": "あれ Are",
+                "en": "That (over there)"
+            },
+            {
+                "jp": "大きい Ookii",
+                "en": "Big"
+            },
+            {
+                "jp": "小さい Chiisai",
+                "en": "Small"
+            },
+            {
+                "jp": "悪い Warui",
+                "en": "Bad"
+            },
+            {
+                "jp": "新しい Atarashii",
+                "en": "New"
+            },
+            {
+                "jp": "古い Furui",
+                "en": "Old"
+            },
+            {
+                "jp": "暑い Atsui",
+                "en": "Hot"
+            },
+            {
+                "jp": "寒い Samui",
+                "en": "Cold"
+            },
+            {
+                "jp": "難しい Muzukashii",
+                "en": "Difficult"
+            },
+            {
+                "jp": "優しい Yasashii",
+                "en": "Easy / Kind"
+            },
+            {
+                "jp": "高い Takai",
+                "en": "Expensive / High"
+            },
+            {
+                "jp": "安い Yasui",
+                "en": "Cheap"
+            },
+            {
+                "jp": "楽しい Tanoshii",
+                "en": "Fun / Enjoyable"
+            },
+            {
+                "jp": "忙しい Isogashii",
+                "en": "Busy"
+            },
+            {
+                "jp": "今 Ima",
+                "en": "Now"
+            },
+            {
+                "jp": "今日 Kyou",
+                "en": "Today"
+            },
+            {
+                "jp": "明日 Ashita",
+                "en": "Tomorrow"
+            },
+            {
+                "jp": "昨日 Kinou",
+                "en": "Yesterday"
+            },
+            {
+                "jp": "時間 Jikan",
+                "en": "Time"
+            },
+            {
+                "jp": "時 Toki",
+                "en": "Time / Moment"
+            },
+            {
+                "jp": "内 Uchi",
+                "en": "Home / House"
+            },
+            {
+                "jp": "学校 Gakkou",
+                "en": "School"
+            },
+            {
+                "jp": "店 Mise",
+                "en": "Shop / Store"
+            },
+            {
+                "jp": "町 Machi",
+                "en": "Town / City"
+            },
+            {
+                "jp": "人 Hito",
+                "en": "Person"
+            },
+            {
+                "jp": "子供 Kodomo",
+                "en": "Child"
+            },
+            {
+                "jp": "友達 Tomodachi",
+                "en": "Friend"
+            },
+            {
+                "jp": "家族 Kazoku",
+                "en": "Family"
+            },
+            {
+                "jp": "お母さん Okaasan",
+                "en": "Mother"
+            },
+            {
+                "jp": "お父さん Otousan",
+                "en": "Father"
+            },
+            {
+                "jp": "先生 Sensei",
+                "en": "Teacher"
+            },
+            {
+                "jp": "水 Mizu",
+                "en": "Water"
+            },
+            {
+                "jp": "お茶 Ocha",
+                "en": "Tea (Green tea)"
+            },
+            {
+                "jp": "ご飯 Gohan",
+                "en": "Rice / Meal"
+            },
+            {
+                "jp": "食べ物 Tabemono",
+                "en": "Food"
+            },
+            {
+                "jp": "飲み物 Nomimono",
+                "en": "Drink"
+            },
+            {
+                "jp": "本 Hon",
+                "en": "Book"
+            },
+            {
+                "jp": "車 Kuruma",
+                "en": "Car"
+            },
+            {
+                "jp": "猫 Neko",
+                "en": "Cat"
+            },
+            {
+                "jp": "犬 Inu",
+                "en": "Dog"
+            },
+            {
+                "jp": "電話 Denwa",
+                "en": "Phone"
+            },
+            {
+                "jp": "もっと Motto",
+                "en": "More"
+            },
+            {
+                "jp": "全部 Zenbu",
+                "en": "Everything / All"
+            },
+            {
+                "jp": "とても Totemo",
+                "en": "Very"
+            },
+            {
+                "jp": "だけ Dake",
+                "en": "Only / Just"
+            },
+            {
+                "jp": "も Mo",
+                "en": "Also / Too"
+            },
+            {
+                "jp": "の No",
+                "en": "Possessive particle (like 's)"
+            },
+            {
+                "jp": "か Ka",
+                "en": "Question particle"
+            },
+            {
+                "jp": "ホテル Hoteru",
+                "en": "Hotel"
+            },
+            {
+                "jp": "レストラン Resutoran",
+                "en": "Restaurant"
+            },
+            {
+                "jp": "コーヒー Koohi",
+                "en": "Coffee"
+            },
+            {
+                "jp": "ビール Biiru",
+                "en": "Beer"
+            },
+            {
+                "jp": "タクシー Takushii",
+                "en": "Taxi"
+            },
+            {
+                "jp": "いただきます Itadakimasu",
+                "en": "Bon appetit / Let's eat"
+            },
+            {
+                "jp": "写真 Shashin",
+                "en": "Photo"
+            },
+            {
+                "jp": "眼鏡 Megane",
+                "en": "Glasses"
+            },
+            {
+                "jp": "病気 Byouki",
+                "en": "Illness / Sick"
+            },
+            {
+                "jp": "薬 Kusuri",
+                "en": "Medicine"
+            },
+            {
+                "jp": "鍵 Kagi",
+                "en": "Key"
+            },
+            {
+                "jp": "傘 Kasa",
+                "en": "Umbrella"
+            },
+            {
+                "jp": "財布 Saifu",
+                "en": "Wallet"
+            }
+        ],
+        "Basic Question Words": [
+            {
+                "jp": "これは何ですか？ Kore wa nan desu ka?",
+                "en": "What"
+            },
+            {
+                "jp": "駅はどこですか？ Eki wa doko desu ka?",
+                "en": "Where"
+            },
+            {
+                "jp": "あれは誰ですか？ Are wa dare desu ka?",
+                "en": "Who"
+            },
+            {
+                "jp": "バスはいつですか？ Basu wa itsu desu ka?",
+                "en": "When"
+            },
+            {
+                "jp": "どうして高いですか？ Doushite takai desu ka?",
+                "en": "Why"
+            },
+            {
+                "jp": "味はどうですか？ Aji wa dou desu ka?",
+                "en": "How"
+            },
+            {
+                "jp": "これはどうやって食べますか？ Kore wa douyatte tabemasu ka?",
+                "en": "How (method)"
+            },
+            {
+                "jp": "これはいくらですか？ Kore wa ikura desu ka?",
+                "en": "How much"
+            },
+            {
+                "jp": "いくつありますか？ Ikutsu arimasu ka?",
+                "en": "How many"
+            },
+            {
+                "jp": "どっちですか？ Docchi desu ka?",
+                "en": "Which one (of two)"
+            },
+            {
+                "jp": "どれですか？ Dore desu ka?",
+                "en": "Which one (of many)"
+            },
+            {
+                "jp": "どんな音楽ですか？ Donna ongaku desu ka?",
+                "en": "What kind"
+            }
+        ],
+        "Body Parts": [
+            {
+                "jp": "目 Me",
+                "en": "Eye"
+            },
+            {
+                "jp": "耳 Mimi",
+                "en": "Ear"
+            },
+            {
+                "jp": "口 Kuchi",
+                "en": "Mouth"
+            },
+            {
+                "jp": "手 Te",
+                "en": "Hand"
+            },
+            {
+                "jp": "足 Ashi",
+                "en": "Foot / Leg"
+            },
+            {
+                "jp": "頭 Atama",
+                "en": "Head"
+            },
+            {
+                "jp": "顔 Kao",
+                "en": "Face"
+            },
+            {
+                "jp": "心 Kokoro",
+                "en": "Heart / Spirit"
+            },
+            {
+                "jp": "体 Karada",
+                "en": "Body"
+            }
+        ],
+        "Nature and Colors": [
+            {
+                "jp": "赤 Aka",
+                "en": "Red"
+            },
+            {
+                "jp": "青 Ao",
+                "en": "Blue"
+            },
+            {
+                "jp": "白 Shiro",
+                "en": "White"
+            },
+            {
+                "jp": "黒 Kuro",
+                "en": "Black"
+            },
+            {
+                "jp": "黄色 Kiiro",
+                "en": "Yellow"
+            },
+            {
+                "jp": "緑 Midori",
+                "en": "Green"
+            },
+            {
+                "jp": "空 Sora",
+                "en": "Sky"
+            },
+            {
+                "jp": "海 Umi",
+                "en": "Sea / Ocean"
+            },
+            {
+                "jp": "山 Yama",
+                "en": "Mountain"
+            },
+            {
+                "jp": "川 Kawa",
+                "en": "River"
+            },
+            {
+                "jp": "花 Hana",
+                "en": "Flower"
+            },
+            {
+                "jp": "雨 Ame",
+                "en": "Rain"
+            },
+            {
+                "jp": "雪 Yuki",
+                "en": "Snow"
+            },
+            {
+                "jp": "風 Kaze",
+                "en": "Wind"
+            },
+            {
+                "jp": "太陽 Taiyou",
+                "en": "Sun"
+            }
+        ],
+        "City and Transport": [
+            {
+                "jp": "切符 Kippu",
+                "en": "Ticket"
+            },
+            {
+                "jp": "駅 Eki",
+                "en": "Station"
+            },
+            {
+                "jp": "飛行機 Hikouki",
+                "en": "Airplane"
+            },
+            {
+                "jp": "空港 Kuukou",
+                "en": "Airport"
+            },
+            {
+                "jp": "地下鉄 Chikatetsu",
+                "en": "Subway"
+            },
+            {
+                "jp": "自転車 Jitensha",
+                "en": "Bicycle"
+            },
+            {
+                "jp": "荷物 Nimotsu",
+                "en": "Luggage / Baggage"
+            }
+        ],
+        "General Adjectives": [
+            {
+                "jp": "長い Nagai",
+                "en": "Long"
+            },
+            {
+                "jp": "短い Mijikai",
+                "en": "Short"
+            },
+            {
+                "jp": "静か Shizuka",
+                "en": "Quiet"
+            },
+            {
+                "jp": "暇 Hima",
+                "en": "Free time / Not busy"
+            },
+            {
+                "jp": "好き Suki",
+                "en": "To like"
+            },
+            {
+                "jp": "嫌い Kirai",
+                "en": "To dislike / Hate"
+            },
+            {
+                "jp": "お金 Okane",
+                "en": "Money"
+            },
+            {
+                "jp": "一緒に Issho ni",
+                "en": "Together"
+            },
+            {
+                "jp": "賑やか Nigiyaka",
+                "en": "Lively / Busy (place)"
+            },
+            {
+                "jp": "有名 Yuumei",
+                "en": "Famous"
+            }
+        ],
+        "News and Society": [
+            {
+                "jp": "重要 Juuyou",
+                "en": "Important / Essential"
+            },
+            {
+                "jp": "上がる Agaru",
+                "en": "Go up / Rise"
+            },
+            {
+                "jp": "ほとんど Hotondo",
+                "en": "Almost / Hardly"
+            },
+            {
+                "jp": "利用 Riyou",
+                "en": "Utilization / Usage"
+            },
+            {
+                "jp": "よく Yoku",
+                "en": "Well"
+            },
+            {
+                "jp": "明らか Akiraka",
+                "en": "Clear / Obvious"
+            },
+            {
+                "jp": "一部 Ichibu",
+                "en": "Part"
+            },
+            {
+                "jp": "一方 Ippou",
+                "en": "One way"
+            },
+            {
+                "jp": "必要 Hitsuyou",
+                "en": "Need / Necessity"
+            },
+            {
+                "jp": "意味 Imi",
+                "en": "Meaning / Significance"
+            },
+            {
+                "jp": "ドル Doru",
+                "en": "Dollar"
+            },
+            {
+                "jp": "声 Koe",
+                "en": "Voice / Sound"
+            },
+            {
+                "jp": "価格 Kakaku",
+                "en": "Price / Cost"
+            }
+        ],
+        "Essential Verbs": [
+            {
+                "jp": "いる Iru",
+                "en": "To exist (living things) / To stay"
+            },
+            {
+                "jp": "ある Aru",
+                "en": "To exist (inanimate objects) / To have"
+            },
+            {
+                "jp": "なる Naru",
+                "en": "To become"
+            },
+            {
+                "jp": "する Suru",
+                "en": "To do"
+            },
+            {
+                "jp": "行く Iku",
+                "en": "To go"
+            },
+            {
+                "jp": "来る Kuru",
+                "en": "To come"
+            },
+            {
+                "jp": "帰る Kaeru",
+                "en": "To return home"
+            },
+            {
+                "jp": "歩く Aruku",
+                "en": "To walk"
+            },
+            {
+                "jp": "走る Hashiru",
+                "en": "To run"
+            },
+            {
+                "jp": "飛ぶ Tobu",
+                "en": "To fly / To jump"
+            },
+            {
+                "jp": "登る Noboru",
+                "en": "To climb"
+            },
+            {
+                "jp": "入る Hairu",
+                "en": "To enter"
+            },
+            {
+                "jp": "出る Deru",
+                "en": "To exit / To leave / To appear"
+            },
+            {
+                "jp": "着く Tsuku",
+                "en": "To arrive"
+            },
+            {
+                "jp": "渡る Wataru",
+                "en": "To cross"
+            },
+            {
+                "jp": "曲がる Magaru",
+                "en": "To turn"
+            },
+            {
+                "jp": "止まる Tomaru",
+                "en": "To stop (movement)"
+            },
+            {
+                "jp": "動く Ugoku",
+                "en": "To move"
+            },
+            {
+                "jp": "食べる Taberu",
+                "en": "To eat"
+            },
+            {
+                "jp": "飲む Nomu",
+                "en": "To drink"
+            },
+            {
+                "jp": "寝る Neru",
+                "en": "To sleep"
+            },
+            {
+                "jp": "起きる Okiru",
+                "en": "To wake up / To occur"
+            },
+            {
+                "jp": "買う Kau",
+                "en": "To buy"
+            },
+            {
+                "jp": "売る Uru",
+                "en": "To sell"
+            },
+            {
+                "jp": "払う Harau",
+                "en": "To pay"
+            },
+            {
+                "jp": "着る Kiru",
+                "en": "To wear (upper body)"
+            },
+            {
+                "jp": "脱ぐ Nugu",
+                "en": "To take off (clothes)"
+            },
+            {
+                "jp": "住む Sumu",
+                "en": "To live / To reside"
+            },
+            {
+                "jp": "遊ぶ Asobu",
+                "en": "To play / To hang out"
+            },
+            {
+                "jp": "働く Hataraku",
+                "en": "To work"
+            },
+            {
+                "jp": "休む Yasumu",
+                "en": "To rest / To be absent"
+            },
+            {
+                "jp": "浴びる Abiru",
+                "en": "To take a shower / To bathe"
+            },
+            {
+                "jp": "洗う Arau",
+                "en": "To wash"
+            },
+            {
+                "jp": "話す Hanasu",
+                "en": "To speak"
+            },
+            {
+                "jp": "言う Iu",
+                "en": "To say"
+            },
+            {
+                "jp": "聞く Kiku",
+                "en": "To listen / To ask"
+            },
+            {
+                "jp": "見る Miru",
+                "en": "To see / To watch"
+            },
+            {
+                "jp": "会う Au",
+                "en": "To meet"
+            },
+            {
+                "jp": "呼ぶ Yobu",
+                "en": "To call"
+            },
+            {
+                "jp": "書く Kaku",
+                "en": "To write"
+            },
+            {
+                "jp": "読む Yomu",
+                "en": "To read"
+            },
+            {
+                "jp": "教える Oshieru",
+                "en": "To teach"
+            },
+            {
+                "jp": "質問する Shitsumon suru",
+                "en": "To ask a question"
+            },
+            {
+                "jp": "思う Omou",
+                "en": "To think"
+            },
+            {
+                "jp": "考える Kangaeru",
+                "en": "To think about / To consider"
+            },
+            {
+                "jp": "分かる Wakaru",
+                "en": "To understand"
+            },
+            {
+                "jp": "知る Shiru",
+                "en": "To know"
+            },
+            {
+                "jp": "覚える Oboeru",
+                "en": "To remember / To memorize"
+            },
+            {
+                "jp": "忘れる Wasureru",
+                "en": "To forget"
+            },
+            {
+                "jp": "困る Komaru",
+                "en": "To be troubled / To be bothered"
+            },
+            {
+                "jp": "楽しむ Tanoshimu",
+                "en": "To enjoy"
+            },
+            {
+                "jp": "疲れる Tsukareru",
+                "en": "To get tired"
+            },
+            {
+                "jp": "空く Suku",
+                "en": "To get empty / To get hungry"
+            },
+            {
+                "jp": "開ける Akeru",
+                "en": "To open (something)"
+            },
+            {
+                "jp": "開く Aku",
+                "en": "To open (by itself)"
+            },
+            {
+                "jp": "閉める Shimeru",
+                "en": "To close (something)"
+            },
+            {
+                "jp": "閉まる Shimaru",
+                "en": "To close (by itself)"
+            },
+            {
+                "jp": "つける Tsukeru",
+                "en": "To turn on / To attach"
+            },
+            {
+                "jp": "つく Tsuku",
+                "en": "To turn on (by itself)"
+            },
+            {
+                "jp": "消す Kesu",
+                "en": "To turn off / To erase"
+            },
+            {
+                "jp": "始める Hajimeru",
+                "en": "To start (something)"
+            },
+            {
+                "jp": "始まる Hajimaru",
+                "en": "To begin (by itself)"
+            },
+            {
+                "jp": "終わる Owaru",
+                "en": "To finish"
+            },
+            {
+                "jp": "止める Tomeru",
+                "en": "To stop (something)"
+            },
+            {
+                "jp": "壊す Kowasu",
+                "en": "To break (something)"
+            },
+            {
+                "jp": "壊れる Kowareru",
+                "en": "To break (by itself)"
+            },
+            {
+                "jp": "あげる Ageru",
+                "en": "To give (to someone else)"
+            },
+            {
+                "jp": "くれる Kureru",
+                "en": "To give (to me)"
+            },
+            {
+                "jp": "もらう Morau",
+                "en": "To receive"
+            },
+            {
+                "jp": "貸す Kasu",
+                "en": "To lend"
+            },
+            {
+                "jp": "借りる Kariru",
+                "en": "To borrow"
+            },
+            {
+                "jp": "返す Kaesu",
+                "en": "To return (an object)"
+            },
+            {
+                "jp": "作る Tsukuru",
+                "en": "To make"
+            },
+            {
+                "jp": "使う Tsukau",
+                "en": "To use"
+            },
+            {
+                "jp": "持つ Motsu",
+                "en": "To hold / To carry / To own"
+            },
+            {
+                "jp": "取る Toru",
+                "en": "To take / To pass"
+            },
+            {
+                "jp": "置く Oku",
+                "en": "To put / To place"
+            },
+            {
+                "jp": "乗る Noru",
+                "en": "To ride / To get on"
+            },
+            {
+                "jp": "降りる Oriru",
+                "en": "To get off (a vehicle)"
+            },
+            {
+                "jp": "待つ Matsu",
+                "en": "To wait"
+            },
+            {
+                "jp": "探す Sagasu",
+                "en": "To search for"
+            },
+            {
+                "jp": "見つける Mitsukeru",
+                "en": "To find"
+            },
+            {
+                "jp": "手伝う Tetsudau",
+                "en": "To help"
+            },
+            {
+                "jp": "直す Naosu",
+                "en": "To fix / To repair"
+            },
+            {
+                "jp": "送る Okuru",
+                "en": "To send"
+            },
+            {
+                "jp": "切る Kiru",
+                "en": "To cut"
+            },
+            {
+                "jp": "吸う Suu",
+                "en": "To smoke / To suck / To inhale"
+            },
+            {
+                "jp": "捨てる Suteru",
+                "en": "To throw away"
+            },
+            {
+                "jp": "押す Osu",
+                "en": "To push"
+            },
+            {
+                "jp": "引く Hiku",
+                "en": "To pull"
+            }
+        ],
+        "Action Verbs": [
+            {
+                "jp": "きをつける Ki wo tsukeru",
+                "en": "To be careful"
+            },
+            {
+                "jp": "すわる Suwaru",
+                "en": "To sit"
+            },
+            {
+                "jp": "ちゅうもんする Chuumon suru",
+                "en": "To order"
+            },
+            {
+                "jp": "ふる Furu",
+                "en": "To shake / To swing"
+            },
+            {
+                "jp": "わたす Watasu",
+                "en": "To pass / To hand over"
+            },
+            {
+                "jp": "あじわう Ajiwau",
+                "en": "To taste"
+            },
+            {
+                "jp": "かたづける Katadukeru",
+                "en": "To put away / To clean up"
+            },
+            {
+                "jp": "しらべる Shiraberu",
+                "en": "To search / To investigate"
+            },
+            {
+                "jp": "つかむ Tsukamu",
+                "en": "To grab / To hold"
+            },
+            {
+                "jp": "かける Kakeru",
+                "en": "To wear (glasses)"
+            },
+            {
+                "jp": "はく Haku",
+                "en": "To wear (lower body)"
+            },
+            {
+                "jp": "かぶる Kaburu",
+                "en": "To wear (head/hat)"
+            },
+            {
+                "jp": "しちゃくする Shichaku suru",
+                "en": "To try on"
+            },
+            {
+                "jp": "しまう Shimau",
+                "en": "To put away"
+            },
+            {
+                "jp": "ひらく Hiraku",
+                "en": "To open"
+            },
+            {
+                "jp": "さわる Sawaru",
+                "en": "To touch"
+            },
+            {
+                "jp": "とりだす Toridasu",
+                "en": "To take out"
+            },
+            {
+                "jp": "かぞえる Kazoeru",
+                "en": "To count"
+            },
+            {
+                "jp": "おとす Otosu",
+                "en": "To drop"
+            },
+            {
+                "jp": "ひろう Hirou",
+                "en": "To pick up"
+            },
+            {
+                "jp": "まよう Mayou",
+                "en": "To get lost / To be indecisive"
+            },
+            {
+                "jp": "勉強する Benkyou suru",
+                "en": "To study"
+            },
+            {
+                "jp": "泳ぐ Oyogu",
+                "en": "To swim"
+            }
+        ],
+        "Glue words": [
+            {
+                "jp": "でも Demo",
+                "en": "But / However"
+            },
+            {
+                "jp": "だから Dakara",
+                "en": "So / Therefore"
+            },
+            {
+                "jp": "そして Soshite",
+                "en": "And then"
+            },
+            {
+                "jp": "あと Ato",
+                "en": "Also / And"
+            },
+            {
+                "jp": "から ...kara",
+                "en": "Because (put after the reason)"
+            },
+            {
+                "jp": "まだ Mada",
+                "en": "Not yet / Still"
+            },
+            {
+                "jp": "もう Mou",
+                "en": "Already / Anymore"
+            },
+            {
+                "jp": "いつも Itsumo",
+                "en": "Always"
+            },
+            {
+                "jp": "全然 Zenzen",
+                "en": "Not at all (use with negative verbs)"
+            },
+            {
+                "jp": "ときどき Tokidoki",
+                "en": "Sometimes"
+            },
+            {
+                "jp": "すぐ Sugu",
+                "en": "Immediately / Soon"
+            },
+            {
+                "jp": "あとで Atode",
+                "en": "Later"
+            },
+            {
+                "jp": "速い / 早い Hayai",
+                "en": "Fast / Early"
+            },
+            {
+                "jp": "遅い Osoi",
+                "en": "Slow / Late"
+            },
+            {
+                "jp": "よかった Yokatta",
+                "en": "Thank goodness / I'm glad"
+            },
+            {
+                "jp": "たくさん Takusan",
+                "en": "A lot / Many"
+            },
+            {
+                "jp": "ちょっと Chotto",
+                "en": "A little bit"
+            }
+        ],
+        "Numbers": [
+            {
+                "jp": "一 Ichi",
+                "en": "1 One"
+            },
+            {
+                "jp": "二 Ni",
+                "en": "2 Two"
+            },
+            {
+                "jp": "三 San",
+                "en": "3 Three"
+            },
+            {
+                "jp": "四 Yon",
+                "en": "4 Four"
+            },
+            {
+                "jp": "五 Go",
+                "en": "5 Five"
+            },
+            {
+                "jp": "六 Roku",
+                "en": "6 Six"
+            },
+            {
+                "jp": "七 Nana",
+                "en": "7 Seven"
+            },
+            {
+                "jp": "八 Hachi",
+                "en": "8 Eight"
+            },
+            {
+                "jp": "九 Kyuu",
+                "en": "9 Nine"
+            },
+            {
+                "jp": "十 Juu",
+                "en": "10 Ten"
+            },
+            {
+                "jp": "一人の Hitori no",
+                "en": "1 person"
+            },
+            {
+                "jp": "二人の Futari no",
+                "en": "2 people"
+            },
+            {
+                "jp": "三人の Sannin no",
+                "en": "3 people"
+            },
+            {
+                "jp": "いくつかの Ikutsu ka no",
+                "en": "How many"
+            }
+        ],
+        "Travel Essentials": [
+            {
+                "jp": "ありがとうございます Arigatou gozaimasu",
+                "en": "Thank you (polite)"
+            },
+            {
+                "jp": "すみません Sumimasen",
+                "en": "Excuse me / I'm sorry"
+            },
+            {
+                "jp": "はい、お願いします Hai onegaishimasu",
+                "en": "yes please"
+            },
+            {
+                "jp": "いいえ、大丈夫です Ie daijoubu desu",
+                "en": "no im good"
+            },
+            {
+                "jp": "英語がわかりますか Eigo wa wakarimasu ka?",
+                "en": "Do you understand English?"
+            },
+            {
+                "jp": "わかりません Wakarimasen",
+                "en": "I don’t understand"
+            },
+            {
+                "jp": "わかりました Wakarimashita",
+                "en": "I understood / I got it"
+            },
+            {
+                "jp": "ちょっと待ってください Chotto matte kudasai",
+                "en": "Please wait a moment"
+            },
+            {
+                "jp": "[Place] はどこですか Tokyo wa doko desu ka?",
+                "en": "Where is Tokyo?"
+            },
+            {
+                "jp": "[Item] はありますか Ringo wa arimasu ka?",
+                "en": "Do you have apples?"
+            },
+            {
+                "jp": "WiFiのパスワードは何ですか Waifai no pasuwaado wa nan desu ka?",
+                "en": "can i have the wifi password"
+            },
+            {
+                "jp": "[Place] までお願いします Tokyo made onegaishimasu",
+                "en": "To Tokyo please"
+            },
+            {
+                "jp": "[Place] に行きたいです Sapporo ni ikitai desu",
+                "en": "I want to go to Sapporo"
+            },
+            {
+                "jp": "このバスは [Place] に行きますか Kono basu wa Osaka ni ikimasu ka?",
+                "en": "Does this bus go to Osaka?"
+            },
+            {
+                "jp": "これはいくらですか Kore wa ikura desu ka?",
+                "en": "How much is this?"
+            },
+            {
+                "jp": "クレジットカード使えますか Kurejitto kaado tsukaemasu ka?",
+                "en": "Can I use credit card?"
+            },
+            {
+                "jp": "いらっしゃいませ Irasshaimase",
+                "en": "Welcome (staff greeting)"
+            },
+            {
+                "jp": "何名様ですか Nanmeisama desu ka?",
+                "en": "How many people?"
+            },
+            {
+                "jp": "[Item] をください ramen o kudasai",
+                "en": "Please give me ramen"
+            },
+            {
+                "jp": "ごちそうさまでした Gochisousama deshita",
+                "en": "Thank you for the meal"
+            },
+            {
+                "jp": "助けて Tasukete",
+                "en": "Help!"
+            },
+            {
+                "jp": "コンビニ Konbini",
+                "en": "Convenience store"
+            },
+            {
+                "jp": "乗り場 Noriba",
+                "en": "Platform / Stop"
+            },
+            {
+                "jp": "出口 Deguchi",
+                "en": "Exit"
+            },
+            {
+                "jp": "入口 Iriguchi",
+                "en": "Entrance"
+            },
+            {
+                "jp": "忘れ物 Wasuremono",
+                "en": "Lost item"
+            },
+            {
+                "jp": "禁煙 Kinen",
+                "en": "Non smoking"
+            },
+            {
+                "jp": "喫煙 Kitsuen",
+                "en": "Smoking"
+            },
+            {
+                "jp": "薬局 Yakkyoku",
+                "en": "Pharmacy"
+            },
+            {
+                "jp": "レシート Reshiito",
+                "en": "Receipt"
+            },
+            {
+                "jp": "お手洗い Otearai",
+                "en": "Restroom / Bathroom"
+            },
+            {
+                "jp": "地図 Chizu",
+                "en": "Map"
+            },
+            {
+                "jp": "予約 Yoyaku",
+                "en": "Reservation"
+            },
+            {
+                "jp": "改札 Kaisatsu",
+                "en": "Ticket gate"
+            },
+            {
+                "jp": "エーティーエム Ee tii em",
+                "en": "ATM"
+            }
+        ],
+        "Restaurant & Bar": [
+            {
+                "jp": "... お願いします ... onegaishimasu",
+                "en": "... please"
+            },
+            {
+                "jp": "すごい Sugoi!",
+                "en": "Wow! / Amazing!"
+            },
+            {
+                "jp": "おいしい Oishii!",
+                "en": "Delicious!"
+            },
+            {
+                "jp": "マジで？ Maji de?",
+                "en": "Really? / Seriously?"
+            },
+            {
+                "jp": "そうそう Sou sou",
+                "en": "yeah yeah right"
+            },
+            {
+                "jp": "乾杯 Kanpai!",
+                "en": "Cheers!"
+            },
+            {
+                "jp": "大丈夫 Daijoubu",
+                "en": "It's okay / No thank you / I'm good"
+            },
+            {
+                "jp": "やばい Yabai!",
+                "en": "Crazy / Insane / Oh no"
+            },
+            {
+                "jp": "かわいい Kawaii",
+                "en": "Cute"
+            },
+            {
+                "jp": "ごめん Gomen",
+                "en": "Sorry (Casual)"
+            },
+            {
+                "jp": "おすすめは？ Osusume wa?",
+                "en": "What do you recommend?"
+            },
+            {
+                "jp": "これ何？ Kore nani?",
+                "en": "what is this"
+            },
+            {
+                "jp": "お会計 O kaikei kudasai",
+                "en": "The check please / The bill please"
+            },
+            {
+                "jp": "... はどこ？ ... wa doko?",
+                "en": "Where is ...?"
+            },
+            {
+                "jp": "日本語少し Nihongo sukoshi",
+                "en": "(I speak) a little Japanese"
+            },
+            {
+                "jp": "ええと Eeto...",
+                "en": "Um... / Uh..."
+            },
+            {
+                "jp": "一番おすすめは？ Ichiban osusume wa?",
+                "en": "What is the best thing you have?"
+            },
+            {
+                "jp": "おなかいっぱい Onaka ippai",
+                "en": "I'm full!"
+            },
+            {
+                "jp": "ごちそうさまでした Gochisou sama deshita",
+                "en": "Thank you for the delicious meal."
+            },
+            {
+                "jp": "おしぼり Oshibori",
+                "en": "Wet towel."
+            },
+            {
+                "jp": "おつまみ Otsumami",
+                "en": "Bar snack."
+            },
+            {
+                "jp": "おかわりお願いします Okawari onegaishimasu",
+                "en": "Another one please / Refill please."
+            },
+            {
+                "jp": "はらへった Hara hetta",
+                "en": "I'm starving (0% full)."
+            },
+            {
+                "jp": "腹八分 Hara hachi bu",
+                "en": "Eating until 80% full (Healthy)."
+            },
+            {
+                "jp": "いつもの Itsumono",
+                "en": "The usual (order)."
+            }
+        ],
+        "Casual & Slang": [
+            {
+                "jp": "きれい Kirei",
+                "en": "Beautiful / Clean"
+            },
+            {
+                "jp": "うそ Uso",
+                "en": "No way / Lie"
+            },
+            {
+                "jp": "でしょう Deshou",
+                "en": "Right? / Don't you agree?"
+            },
+            {
+                "jp": "さいこう Saikou",
+                "en": "The best / Awesome"
+            },
+            {
+                "jp": "なつかしい Natsukashii",
+                "en": "Nostalgic"
+            },
+            {
+                "jp": "めんどくさい Mendokusai",
+                "en": "Bothersome / A pain"
+            },
+            {
+                "jp": "でかい Dekai",
+                "en": "Huge / Big"
+            },
+            {
+                "jp": "うまい Umai",
+                "en": "Delicious / Tasty (Casual)"
+            },
+            {
+                "jp": "めずらしい Mezurashii",
+                "en": "Rare / Unusual"
+            },
+            {
+                "jp": "ねむい Nemui",
+                "en": "Sleepy"
+            },
+            {
+                "jp": "あつ Atsu",
+                "en": "Hot! (Exclamation)"
+            },
+            {
+                "jp": "いたい Itai",
+                "en": "Painful / Ouch"
+            },
+            {
+                "jp": "つまらない Tsumaranai",
+                "en": "Boring"
+            },
+            {
+                "jp": "ださい Dasai",
+                "en": "Uncool / Tacky"
+            },
+            {
+                "jp": "かっこいい Kakkoii",
+                "en": "Cool / Handsome"
+            },
+            {
+                "jp": "うるさい Urusai",
+                "en": "Noisy / Shut up"
+            },
+            {
+                "jp": "まずい Mazui",
+                "en": "Disgusting / Bad tasting"
+            },
+            {
+                "jp": "つかれた Tsukareta",
+                "en": "Tired / Exhausted"
+            },
+            {
+                "jp": "むずい Muzui",
+                "en": "Difficult"
+            },
+            {
+                "jp": "おもしろい Omoshiroi",
+                "en": "Funny / Interesting"
+            },
+            {
+                "jp": "気持ち悪い Kimochiwarui",
+                "en": "I feel sick / Nauseous (Standard)"
+            },
+            {
+                "jp": "ちっちゃい Chicchai",
+                "en": "Tiny"
+            },
+            {
+                "jp": "イケメン Ikemen",
+                "en": "Hunk (for faces)"
+            },
+            {
+                "jp": "本当ですか？ Hontou desu ka?",
+                "en": "Really? / Is that true?"
+            },
+            {
+                "jp": "それな！ Sore na!",
+                "en": "Exactly! / That's it! / I know"
+            },
+            {
+                "jp": "ハマってる Hamatteru",
+                "en": "I'm hooked on... / I'm obsessed with..."
+            },
+            {
+                "jp": "めっちゃ Meccha",
+                "en": "Super / Very / Insanely"
+            },
+            {
+                "jp": "ぶっちゃけ Bucchake",
+                "en": "To be honest... / Real talk..."
+            },
+            {
+                "jp": "ドンマイ Donmai",
+                "en": "Don't mind / No worries / Shake it off"
+            },
+            {
+                "jp": "おしゃれ Oshare",
+                "en": "Stylish / Fashionable / Cool vibe"
+            }
+        ],
+        "Pokemon related list": [
+            {
+                "jp": "電気 Denki",
+                "en": "Electricity / Lights"
+            },
+            {
+                "jp": "不思議 Fushigi",
+                "en": "Mysterious / Strange"
+            },
+            {
+                "jp": "草 Kusa",
+                "en": "Grass / LOL (Internet Slang)"
+            },
+            {
+                "jp": "守る Mamoru",
+                "en": "To Protect"
+            },
+            {
+                "jp": "逃げる Nigeru",
+                "en": "To Run Away"
+            },
+            {
+                "jp": "効果 Kouka",
+                "en": "Effect"
+            },
+            {
+                "jp": "仲間 Nakama",
+                "en": "Comrade / Buddy"
+            },
+            {
+                "jp": "世界 Sekai",
+                "en": "World"
+            },
+            {
+                "jp": "元気 Genki",
+                "en": "Energy / Health"
+            }
+        ],
+        "Food taste": [
+            {
+                "jp": "甘い Amai",
+                "en": "Sweet"
+            },
+            {
+                "jp": "辛い Karai",
+                "en": "Spicy / Hot"
+            },
+            {
+                "jp": "しょっぱい Shoppai",
+                "en": "Salty"
+            },
+            {
+                "jp": "酸っぱい Suppai",
+                "en": "Sour"
+            },
+            {
+                "jp": "苦い Nigai",
+                "en": "Bitter"
+            },
+            {
+                "jp": "濃い Koi",
+                "en": "Strong flavor / Rich"
+            },
+            {
+                "jp": "薄い Usui",
+                "en": "Weak flavor / Bland"
+            },
+            {
+                "jp": "脂っこい Aburakkoi",
+                "en": "Greasy / Oily"
+            },
+            {
+                "jp": "柔らかい Yawaraka(i)",
+                "en": "Soft (General adjective)"
+            },
+            {
+                "jp": "ふわふわ Fuwa fuwa",
+                "en": "Fluffy/Airy (Like a cloud)"
+            },
+            {
+                "jp": "とろとろ Toro toro",
+                "en": "Melty/Gooey (Like melted cheese or a soft"
+            },
+            {
+                "jp": "サクサク Saku saku",
+                "en": "Lightly crunchy/Crispy (Like tempura or a biscuit)"
+            },
+            {
+                "jp": "パリパリ Pari pari",
+                "en": "Shatter crisp/Brittle (Like potato chips or seaweed)"
+            },
+            {
+                "jp": "ボリボリ Bori bori",
+                "en": "Hard crunch (Like a raw carrot or a thick cracker)"
+            },
+            {
+                "jp": "カリカリ Kari kari",
+                "en": "Crunchy/Crisp (Like well done bacon or toast)"
+            },
+            {
+                "jp": "もちもち Mochi mochi",
+                "en": "Chewy/Doughy/Elastic (The texture of mochi)"
+            },
+            {
+                "jp": "しこしこ Shiko shiko",
+                "en": "Firm/Springy (Specifically for the \"bite\" of noodles)"
+            },
+            {
+                "jp": "粘り強い Nebari tsuyoi",
+                "en": "Sticky/Chewy (Used for things like natto or sticky rice)"
+            }
+        ],
+        "Onomatopoeia": [
+            {
+                "jp": "ドキドキ Doki doki",
+                "en": "Heart pounding / Nervous"
+            },
+            {
+                "jp": "ワクワク Waku waku",
+                "en": "Excited / Thrilled"
+            },
+            {
+                "jp": "イライラ Ira ira",
+                "en": "Irritated / Annoyed"
+            },
+            {
+                "jp": "ニコニコ Niko niko",
+                "en": "Smiling"
+            },
+            {
+                "jp": "ペコペコ Peko peko",
+                "en": "Starving / Hungry"
+            },
+            {
+                "jp": "ぐっすり Gussuri",
+                "en": "Sound asleep / Deep sleep"
+            },
+            {
+                "jp": "ウトウト Uto uto",
+                "en": "Dozing off / Napping"
+            },
+            {
+                "jp": "ガッカリ Gakkari",
+                "en": "Disappointed"
+            },
+            {
+                "jp": "ビックリ Bikkuri",
+                "en": "Surprised"
+            },
+            {
+                "jp": "ピカピカ Pika pika",
+                "en": "Shiny / Polished"
+            },
+            {
+                "jp": "キラキラ Kira kira",
+                "en": "Sparkling / Glittering"
+            },
+            {
+                "jp": "ツルツル Tsuru tsuru",
+                "en": "Smooth / Slippery"
+            },
+            {
+                "jp": "ボロボロ Boro boro",
+                "en": "Worn out / Tattered"
+            },
+            {
+                "jp": "ペラペラ Pera pera",
+                "en": "Fluent / Thin"
+            },
+            {
+                "jp": "ギリギリ Giri giri",
+                "en": "Just in time / Barely"
+            },
+            {
+                "jp": "ゴロゴロ Goro goro",
+                "en": "Rolling / Lazy / Thunder"
+            },
+            {
+                "jp": "シーン Shiin",
+                "en": "Silence / Quiet"
+            },
+            {
+                "jp": "ザーザー Zaa zaa",
+                "en": "Heavy rain"
+            },
+            {
+                "jp": "モグモグ Mogu mogu",
+                "en": "Chewing / Eating"
+            }
+        ],
+        "Aizuchi": [
+            {
+                "jp": "そうですね Sou desu ne",
+                "en": "That's right / Indeed"
+            },
+            {
+                "jp": "そうですか Sou desu ka",
+                "en": "Is that so? / I see"
+            },
+            {
+                "jp": "へえ Hee",
+                "en": "Wow / Really?"
+            },
+            {
+                "jp": "ふうん Fuun",
+                "en": "Hmm / I see"
+            },
+            {
+                "jp": "確かに Tashikani",
+                "en": "Certainly / That is true"
+            },
+            {
+                "jp": "多分 Tabun",
+                "en": "Maybe / Probably"
+            },
+            {
+                "jp": "やっぱり Yappari",
+                "en": "I thought so / As expected"
+            },
+            {
+                "jp": "なるほど Naruhodo",
+                "en": "I see / That makes sense"
+            },
+            {
+                "jp": "いいですね Ii desu ne",
+                "en": "That sounds good / Nice"
+            },
+            {
+                "jp": "嘘！ Uso!",
+                "en": "No way! / You're kidding!"
+            }
+        ],
+        "Cure Dolly Sentences": [
+            {
+                "jp": "さくら が あるく Sakura ga aruku",
+                "en": "Sakura walks."
+            },
+            {
+                "jp": "さくら は にほんじん だ Sakura wa nihonjin da",
+                "en": "Sakura is Japanese."
+            },
+            {
+                "jp": "ペン が あかい Pen ga akai",
+                "en": "The pen is red."
+            },
+            {
+                "jp": "ケーキ を たべる Keeki wo taberu",
+                "en": "(I) eat cake."
+            },
+            {
+                "jp": "わたし は アメリカじん だ Watashi wa amerikajin da",
+                "en": "As for me im american"
+            },
+            {
+                "jp": "わたし は うなぎ だ Watashi wa unagi da",
+                "en": "As for me ill have the eel"
+            },
+            {
+                "jp": "わたし が ボール を さくら に なげる Watashi ga booru wo sakura ni nageru",
+                "en": "I throw the ball to Sakura."
+            },
+            {
+                "jp": "ボール は わたし が さくら に なげる Booru wa watashi ga sakura ni nageru",
+                "en": "As for the ball I throw it to Sakura."
+            },
+            {
+                "jp": "いぬ が たべる Inu ga taberu",
+                "en": "The dog eats / The dog will eat."
+            },
+            {
+                "jp": "いぬ が たべて いる Inu ga tabete iru",
+                "en": "The dog is eating."
+            },
+            {
+                "jp": "いぬ が たべた Inu ga tabeta",
+                "en": "The dog ate."
+            },
+            {
+                "jp": "あした ケーキ を たべる Ashita keeki wo taberu",
+                "en": "Tomorrow (I) will eat cake."
+            },
+            {
+                "jp": "かようび に ケーキ を たべる Kayoubi ni keeki wo taberu",
+                "en": "On Tuesday (I) will eat cake."
+            },
+            {
+                "jp": "いぬ が あそんだ Inu ga asonda",
+                "en": "The dog played."
+            },
+            {
+                "jp": "ボール を とった Booru wo totta",
+                "en": "(I) took the ball."
+            },
+            {
+                "jp": "さくら が あるいた Sakura ga aruita",
+                "en": "Sakura walked."
+            },
+            {
+                "jp": "さくら が いった Sakura ga itta",
+                "en": "Sakura went."
+            },
+            {
+                "jp": "さくら が きた Sakura ga kita",
+                "en": "Sakura came."
+            },
+            {
+                "jp": "さくら が した Sakura ga shita",
+                "en": "Sakura did it."
+            },
+            {
+                "jp": "あかい ペン が ちいさい Akai pen ga chiisai",
+                "en": "The red pen is small."
+            },
+            {
+                "jp": "うたった しょうじょ が ねて いる Utatta shoujo ga nete iru",
+                "en": "The girl who sang is sleeping."
+            },
+            {
+                "jp": "じしょ を たべた いぬ が やんちゃ だ Jisho wo tabeta inu ga yancha da",
+                "en": "The dog who ate the dictionary is naughty."
+            },
+            {
+                "jp": "やんちゃ な いぬ が ねて いる Yancha na inu ga nete iru",
+                "en": "The naughty dog is sleeping."
+            },
+            {
+                "jp": "ピンクいろ の ドレス だ Pinku iro no doresu da",
+                "en": "Its a pink dress."
+            },
+            {
+                "jp": "ペン が ない Pen ga nai",
+                "en": "There is no pen."
+            },
+            {
+                "jp": "これ は ペン で は ない Kore wa pen de wa nai",
+                "en": "This is not a pen."
+            },
+            {
+                "jp": "さくら が はしらない Sakura ga hashiranai",
+                "en": "Sakura does not run."
+            },
+            {
+                "jp": "ケーキ を かわない Keeki wo kawanai",
+                "en": "(I) wont buy cake."
+            },
+            {
+                "jp": "ペン が あかくない Pen ga akakunai",
+                "en": "The pen is not red."
+            },
+            {
+                "jp": "さくら が はしらなかった Sakura ga hashiranakatta",
+                "en": "Sakura did not run."
+            }
+        ],
+        "Nederlandse leenwoorden": [
+            {
+                "jp": "コップ Koppu",
+                "en": "Cup/Glass (From Kop)"
+            },
+            {
+                "jp": "ガラス Garasu",
+                "en": "Glass material (From Glas)"
+            },
+            {
+                "jp": "ゴム Gomu",
+                "en": "Rubber/Eraser (From Gom)"
+            },
+            {
+                "jp": "ブリキ Buriki",
+                "en": "Tin/Tinplate (From Blik)"
+            },
+            {
+                "jp": "スコップ Sukoppu",
+                "en": "Shovel/Trowel (From Schop)"
+            },
+            {
+                "jp": "カバン Kaban",
+                "en": "Bag/Satchel (From Kabas)"
+            },
+            {
+                "jp": "おてんば Otenba",
+                "en": "Tomboy/Wild girl (From Ontembbaar)"
+            },
+            {
+                "jp": "メス Mesu",
+                "en": "Scalpel (From Mes)"
+            },
+            {
+                "jp": "スポイト Supoito",
+                "en": "Syringe/Dropper (From Spuit)"
+            },
+            {
+                "jp": "ポルダー Porudaa",
+                "en": "Polder/Reclaimed land (From Polder)"
+            },
+            {
+                "jp": "モルヒネ Moruhine",
+                "en": "Morphine (From Morfine)"
+            },
+            {
+                "jp": "カラン Karan",
+                "en": "Faucet/Tap (From Kraan)"
+            },
+            {
+                "jp": "コンパス Konpasu",
+                "en": "Compass (From Kompas)"
+            },
+            {
+                "jp": "コロッケ Korokke",
+                "en": "Croquette (From Kroket)"
+            },
+            {
+                "jp": "シロップ Shiroppu",
+                "en": "Syrup (From Siroop)"
+            }
+        ],
+        "Dagen van de week": [
+            {
+                "jp": "月曜日 Getsuyoubi",
+                "en": "Monday"
+            },
+            {
+                "jp": "火曜日 Kayoubi",
+                "en": "Tuesday"
+            },
+            {
+                "jp": "水曜日 Suiyoubi",
+                "en": "Wednesday"
+            },
+            {
+                "jp": "木曜日 Mokuyoubi",
+                "en": "Thursday"
+            },
+            {
+                "jp": "金曜日 Kinyoubi",
+                "en": "Friday"
+            },
+            {
+                "jp": "土曜日 Doyoubi",
+                "en": "Saturday"
+            },
+            {
+                "jp": "日曜日 Nichiyoubi",
+                "en": "Sunday"
+            },
+            {
+                "jp": "週 Shuu",
+                "en": "Week"
+            },
+            {
+                "jp": "月 Tsuki",
+                "en": "Month / Moon"
+            },
+            {
+                "jp": "年 Toshi",
+                "en": "Year"
+            }
+        ],
+        "Location": [
+            {
+                "jp": "前 Mae",
+                "en": "the front (is dirty) / Before (I was a student)"
+            },
+            {
+                "jp": "後ろ Ushiro",
+                "en": "Back / Behind"
+            },
+            {
+                "jp": "前に Maeni",
+                "en": "At the front / At a time before"
+            },
+            {
+                "jp": "右 Migi",
+                "en": "Right"
+            },
+            {
+                "jp": "左 Hidari",
+                "en": "Left"
+            },
+            {
+                "jp": "上 Ue",
+                "en": "Up / Above"
+            },
+            {
+                "jp": "下 Shita",
+                "en": "Down / Below"
+            },
+            {
+                "jp": "中 Naka",
+                "en": "Inside"
+            },
+            {
+                "jp": "外 Soto",
+                "en": "Outside"
+            },
+            {
+                "jp": "近く Chikaku",
+                "en": "Near"
+            },
+            {
+                "jp": "遠い Tooi",
+                "en": "Far"
+            },
+            {
+                "jp": "隣 Tonari",
+                "en": "Next to"
+            },
+            {
+                "jp": "まっすぐ Massugu",
+                "en": "Straight ahead"
+            }
+        ],
+        "Basic Conversation": [
+            {
+                "jp": "オランダから来ました。 Oranda kara kimashita",
+                "en": "Im from Holland"
+            },
+            {
+                "jp": "ミュージシャンです。 Myuujishan desu",
+                "en": "Im a musician"
+            },
+            {
+                "jp": "今、日本を旅行しています。 Ima Nihon o ryokou shiteimasu",
+                "en": "Im traveling through Japan"
+            },
+            {
+                "jp": "よろしくお願いします！ Yoroshiku onegaishimasu",
+                "en": "Nice to meet you / Please treat me well"
+            },
+            {
+                "jp": "これ、めっちゃ美味しい！ Kore meccha oishii!",
+                "en": "This is super delicious!"
+            },
+            {
+                "jp": "なま、 ひとつ、 を ください。Nama hitotsu o kudasai",
+                "en": "One beer please"
+            },
+            {
+                "jp": "わたしはオランダじんです Watashi wa Orandajin desu",
+                "en": "Im Dutch."
+            },
+            {
+                "jp": "…はどこですか？ ...wa doko desu ka?",
+                "en": "Where is ...?"
+            },
+            {
+                "jp": "英語 Eigo",
+                "en": "English (language)."
+            },
+            {
+                "jp": "イギリス人 Igirisujin",
+                "en": "British person."
+            },
+            {
+                "jp": "イギリス人の友達 Igirisujin no tomodachi",
+                "en": "My British friend."
+            },
+            {
+                "jp": "なつかしい！ Natsukashii!",
+                "en": "That takes me back! / Nostalgic!"
+            },
+            {
+                "jp": "いいえ Iie",
+                "en": "No (Note: often sounds like 'ye' or 'ya' in speech)."
+            },
+            {
+                "jp": "と To",
+                "en": "And."
+            },
+            {
+                "jp": "日本語が少しわかります Nihongo ga sukoshi wakarimasu",
+                "en": "I understand a little Japanese."
+            },
+            {
+                "jp": "わたしたちは友達！ Watashi tachi wa tomodachi!",
+                "en": "We are friends!"
+            },
+            {
+                "jp": "わたしの友達です Watashi no tomodachi desu",
+                "en": "This is my friend."
+            },
+            {
+                "jp": "まだまだです Mada mada desu",
+                "en": "Not yet / I still have a long way to go."
+            },
+            {
+                "jp": "次 Tsugi",
+                "en": "Next."
+            },
+            {
+                "jp": "てめぇ Temee",
+                "en": "You bastard (extremely rude)."
+            },
+            {
+                "jp": "後で Ato de",
+                "en": "Later!"
+            },
+            {
+                "jp": "またね Mata ne",
+                "en": "See you / See you again."
+            },
+            {
+                "jp": "じゃあね Ja ne",
+                "en": "See ya / Bye."
+            },
+            {
+                "jp": "日本語でなんと呼びますか？ Nihongo de nanto iimasu ka?",
+                "en": "How do you say that in Japanese?"
+            },
+            {
+                "jp": "もう一度お願いします Mou ichido onegai shimasu",
+                "en": "One more time please."
+            },
+            {
+                "jp": "愛してるよ Ai shiteru yo",
+                "en": "I love you."
+            },
+            {
+                "jp": "ぼくは二十九歳です Boku wa nijuukyuusai desu",
+                "en": "I am 29 years old."
+            },
+            {
+                "jp": "元気ですか？ Genki desu ka?",
+                "en": "Are you well? / How are you?"
+            },
+            {
+                "jp": "最近どう？ Saikin dou?",
+                "en": "How have you been lately?"
+            },
+            {
+                "jp": "そんなことないです Sonna koto nai desu",
+                "en": "That’s not the case / No it's not that good."
+            }
+        ],
+        "Grammar & Verbs": [
+            {
+                "jp": "ない Nai",
+                "en": "There isn't (for inanimate objects)."
+            },
+            {
+                "jp": "いない Inai",
+                "en": "There isn't (for living beings)."
+            },
+            {
+                "jp": "いません Imasen",
+                "en": "There isn't (polite for living beings)."
+            },
+            {
+                "jp": "オランダ人がいません Orandajin ga imasen",
+                "en": "There are no Dutch people."
+            },
+            {
+                "jp": "ジムに行きます Jimu ni ikimasu",
+                "en": "I go to the gym (Polite)."
+            },
+            {
+                "jp": "ジムに行く Jimu ni iku",
+                "en": "I go to the gym (Casual)."
+            },
+            {
+                "jp": "ジム行く Jimu iku",
+                "en": "I'm going to the gym (Slang)."
+            },
+            {
+                "jp": "できる Dekiru",
+                "en": "I can do it."
+            },
+            {
+                "jp": "できない Dekinai",
+                "en": "I can't do it."
+            },
+            {
+                "jp": "テニスはできますか？ Tennis wa dekimasu ka?",
+                "en": "Can you play tennis?"
+            },
+            {
+                "jp": "日本語はできますか？ Nihongo wa dekimasu ka?",
+                "en": "Can you speak Japanese?"
+            },
+            {
+                "jp": "だれと？ Dare to?",
+                "en": "With whom?"
+            },
+            {
+                "jp": "だれと行ったの？ Dare to itta no?",
+                "en": "Who did you go with?"
+            },
+            {
+                "jp": "映画見ました Eiga mimashita",
+                "en": "I saw a movie (Polite)."
+            },
+            {
+                "jp": "何飲んだ？ Nani nonda?",
+                "en": "What did you drink?"
+            },
+            {
+                "jp": "何人行った？ Nannin itta?",
+                "en": "How many people went?"
+            },
+            {
+                "jp": "三人行ったよ Sannin itta yo",
+                "en": "Three people went."
+            },
+            {
+                "jp": "もの Mono",
+                "en": "Physical object."
+            },
+            {
+                "jp": "こと Koto",
+                "en": "Abstract thing/concept."
+            },
+            {
+                "jp": "どこで会う？ Doko de au?",
+                "en": "Where shall we meet?"
+            }
+        ],
+        "Culture & Social Rules": [
+            {
+                "jp": "とりあえずビール Toriaezu biiru",
+                "en": "(Cultural Rule) Always order a beer first when going to a bar."
+            },
+            {
+                "jp": "タクシーのドア Takushii no doa",
+                "en": "(Cultural Rule) Never open or close the taxi door yourself (it's automatic)."
+            },
+            {
+                "jp": "ごはんにしょうゆ Gohan ni shouyu",
+                "en": "(Cultural Rule) Never pour soy sauce directly onto your white rice."
+            },
+            {
+                "jp": "うざい / きもい Uzai / Kimoi",
+                "en": "(Warning) \"Annoying\" or \"Gross.\" Very rude; do not say this to someone's face."
+            },
+            {
+                "jp": "うける Ukeru",
+                "en": "That cracks me up! (Use this when someone tells a joke)."
+            }
+        ],
+        "Specific Vocabulary": [
+            {
+                "jp": "洋食 Yoshoku",
+                "en": "Western"
+            },
+            {
+                "jp": "ロック Rokku",
+                "en": "Rock (music)."
+            },
+            {
+                "jp": "サイケデリック・ロック Saikederikku Rokku",
+                "en": "Psychedelic Rock."
+            },
+            {
+                "jp": "ポケモンは懐かしいです Pokemon wa natsukashii desu",
+                "en": "Pokemon is nostalgic."
+            },
+            {
+                "jp": "日本のポケモンカードを集めています Nihon no Pokemon kaado o atsumete imasu",
+                "en": "I collect Japanese Pokemon cards."
+            },
+            {
+                "jp": "ジャズ喫茶 Jazu Kissa",
+                "en": "Jazz Cafe."
+            },
+            {
+                "jp": "啜る Susuru",
+                "en": "To slurp."
+            },
+            {
+                "jp": "ズルズル Zuru zuru",
+                "en": "Slurping sound."
+            },
+            {
+                "jp": "今から寝ますね Ima kara nemasu ne",
+                "en": "I'm off to bed now."
+            },
+            {
+                "jp": "日本語にはまってる Nihongo ni hamatteru",
+                "en": "I'm hooked on Japanese."
+            },
+            {
+                "jp": "ミュージシャンです Myuujishan desu",
+                "en": "I am a musician."
+            },
+            {
+                "jp": "飲み会 Nomikai",
+                "en": "Drinking party/gathering."
+            },
+            {
+                "jp": "二次会 Nijikai",
+                "en": "The after party / the second venue of the night."
+            },
+            {
+                "jp": "コンビニに行く Konbini ni iku",
+                "en": "Going to the convenience store."
+            },
+            {
+                "jp": "ぼくは日本語を(X)ヶ月勉強しています Boku wa nihongo o (X) kagetsu benkyou shite imasu",
+                "en": "I have been studying Japanese for (X) months."
+            }
+        ],
+        "Kenty Lesson 1": [
+            {
+                "jp": "ポケモンの アニメを みました Pokemon no anime o mimashita",
+                "en": "I watched the Pokemon anime."
+            },
+            {
+                "jp": "こどもの とき kodomo no toki",
+                "en": "When I was a child."
+            },
+            {
+                "jp": "にんき ninki",
+                "en": "Popular."
+            },
+            {
+                "jp": "あとー ato",
+                "en": "Also / And then / Additionally."
+            },
+            {
+                "jp": "かんたん\tkantan",
+                "en": "Easy / Simple."
+            },
+            {
+                "jp": "よみやすい yomiyasui",
+                "en": "Easy to read."
+            },
+            {
+                "jp": "みやすい\tmiyasui",
+                "en": "Easy to see / Easy to watch."
+            },
+            {
+                "jp": "わかりやすい\twakariyasui",
+                "en": "Easy to understand."
+            },
+            {
+                "jp": "あいずち\taizuchi",
+                "en": "Conversational filler / Back"
+            },
+            {
+                "jp": "いままで\tima made",
+                "en": "Until now / So far."
+            },
+            {
+                "jp": "〜から 〜まで ...kara ...made",
+                "en": "From... until..."
+            },
+            {
+                "jp": "はなした ことが あります\thanashita koto ga arimasu",
+                "en": "I have spoken (about it) before."
+            },
+            {
+                "jp": "ポケモンの ゲームを する\tPokemon no gemu o suru",
+                "en": "To play Pokemon games."
+            },
+            {
+                "jp": "ぼくは ロシアに いった ことが あります\tboku wa Roshia ni itta koto ga arimasu",
+                "en": "I have been to Russia."
+            },
+            {
+                "jp": "ロシアに たくさんの ゆきが あります Roshia ni takusan no yuki ga arimasu",
+                "en": "There is a lot of snow in Russia."
+            },
+            {
+                "jp": "スマホ\tsumaho",
+                "en": "Smartphone."
+            }
+        ],
+        "Kenty Lesson 2": [
+            {
+                "jp": "どうやって douyatte",
+                "en": "How"
+            },
+            {
+                "jp": "こえ koe",
+                "en": "voice"
+            },
+            {
+                "jp": "おと oto",
+                "en": "sound"
+            },
+            {
+                "jp": "だいがくで アルバイトを しました daigaku de arubaito o shimashita",
+                "en": "I worked a part time job at university"
+            },
+            {
+                "jp": "アルバイトをする arubaito o suru",
+                "en": "to work a part time job"
+            },
+            {
+                "jp": "はたらく hataraku",
+                "en": "to work"
+            },
+            {
+                "jp": "あたらしい atarashii",
+                "en": "new"
+            },
+            {
+                "jp": "しごと shigoto",
+                "en": "work (noun)"
+            },
+            {
+                "jp": "こんしゅう konshuu",
+                "en": "this week"
+            },
+            {
+                "jp": "つまらなくない tsumaranakunai",
+                "en": "not boring"
+            },
+            {
+                "jp": "おいしくない oishikunai",
+                "en": "not delicious"
+            },
+            {
+                "jp": "まずい mazui",
+                "en": "bad tasting"
+            },
+            {
+                "jp": "おいしくないです oishikunai desu",
+                "en": "It is not delicious"
+            },
+            {
+                "jp": "つかう tsukau",
+                "en": "to use"
+            },
+            {
+                "jp": "つかいますか？ tsukaimasu ka?",
+                "en": "Do you use it?"
+            },
+            {
+                "jp": "おなじ onaji",
+                "en": "same"
+            },
+            {
+                "jp": "しつもん shitsumon",
+                "en": "question"
+            },
+            {
+                "jp": "だいがくせい daigakusei",
+                "en": "university student"
+            },
+            {
+                "jp": "ぼくは だいがくせい の とき boku wa daigakusei no toki",
+                "en": "When I was a university student"
+            },
+            {
+                "jp": "１０だい juudai",
+                "en": "teenager / in one's teens"
+            },
+            {
+                "jp": "ギター gitaa",
+                "en": "guitar"
+            },
+            {
+                "jp": "いまも ima mo",
+                "en": "even now / still"
+            },
+            {
+                "jp": "たくさん takusan",
+                "en": "a lot (for verb/noun)"
+            },
+            {
+                "jp": "とても totemo",
+                "en": "very (for adjective)"
+            },
+            {
+                "jp": "６がつ rokugatsu",
+                "en": "June"
+            },
+            {
+                "jp": "たしかに tashikani",
+                "en": "Yes that's right / certainly"
+            },
+            {
+                "jp": "きおん kion",
+                "en": "outside temperature"
+            },
+            {
+                "jp": "なんど nando",
+                "en": "what temperature / how many degrees"
+            },
+            {
+                "jp": "あめがザーザーふる ame ga zaazaa furu",
+                "en": "raining heavily (pouring)"
+            },
+            {
+                "jp": "あめがふる ame ga furu",
+                "en": "to rain"
+            },
+            {
+                "jp": "あめが たくさん ふる ame ga takusan furu",
+                "en": "it rains a lot"
+            },
+            {
+                "jp": "たくさんのポケモンカード takusan no pokemon kaado",
+                "en": "many Pokemon cards"
+            },
+            {
+                "jp": "とり tori",
+                "en": "bird"
+            },
+            {
+                "jp": "から まで kara made",
+                "en": "from... until..."
+            },
+            {
+                "jp": "はなした ことがあります hanashita koto ga arimasu",
+                "en": "I have spoken before"
+            }
+        ],
+        "Home & Rooms": [
+            {
+                "jp": "家 Ie",
+                "en": "House (the physical building)"
+            },
+            {
+                "jp": "部屋 Heya",
+                "en": "Room"
+            },
+            {
+                "jp": "玄関 Genkan",
+                "en": "Entrance hall / Where shoes are removed"
+            },
+            {
+                "jp": "台所 Daidokoro",
+                "en": "Kitchen"
+            },
+            {
+                "jp": "居間 Ima",
+                "en": "Living room"
+            },
+            {
+                "jp": "お風呂 Ofuro",
+                "en": "Bath / Bathtub"
+            },
+            {
+                "jp": "窓 Mado",
+                "en": "Window"
+            },
+            {
+                "jp": "ドア Doa",
+                "en": "Door"
+            },
+            {
+                "jp": "机 Tsukue",
+                "en": "Desk"
+            },
+            {
+                "jp": "椅子 Isu",
+                "en": "Chair"
+            },
+            {
+                "jp": "ベッド Beddo",
+                "en": "Bed"
+            },
+            {
+                "jp": "布団 Futon",
+                "en": "Traditional floor bedding"
+            },
+            {
+                "jp": "冷蔵庫 Reizouko",
+                "en": "Refrigerator"
+            }
+        ],
+        "City Places": [
+            {
+                "jp": "電車 Densha",
+                "en": "Train (electric)"
+            },
+            {
+                "jp": "新幹線 Shinkansen",
+                "en": "Bullet train / High speed train"
+            },
+            {
+                "jp": "銀行 Ginkou",
+                "en": "Bank"
+            },
+            {
+                "jp": "病院 Byouin",
+                "en": "Hospital"
+            },
+            {
+                "jp": "スーパー Suupaa",
+                "en": "Supermarket"
+            },
+            {
+                "jp": "デパート Depaato",
+                "en": "Department store"
+            },
+            {
+                "jp": "公園 Kouen",
+                "en": "Park"
+            },
+            {
+                "jp": "映画館 Eigakan",
+                "en": "Cinema"
+            },
+            {
+                "jp": "図書館 Toshokan",
+                "en": "Library"
+            },
+            {
+                "jp": "会社 Kaisha",
+                "en": "Company / Office"
+            },
+            {
+                "jp": "郵便局 Yuubinkyoku",
+                "en": "Post office"
+            },
+            {
+                "jp": "交番 Kouban",
+                "en": "Police box (small local police station)"
+            },
+            {
+                "jp": "道 Michi",
+                "en": "Road / Street"
+            },
+            {
+                "jp": "信号 Shingou",
+                "en": "Traffic light"
+            },
+            {
+                "jp": "角 Kado",
+                "en": "Corner (of a street)"
+            }
+        ],
+        "Family System": [
+            {
+                "jp": "父 Chichi",
+                "en": "Father (humble, referring to your own)"
+            },
+            {
+                "jp": "母 Haha",
+                "en": "Mother (humble, referring to your own)"
+            },
+            {
+                "jp": "兄 Ani",
+                "en": "Older brother (humble, your own)"
+            },
+            {
+                "jp": "姉 Ane",
+                "en": "Older sister (humble, your own)"
+            },
+            {
+                "jp": "弟 Otouto",
+                "en": "Younger brother (humble, your own)"
+            },
+            {
+                "jp": "妹 Imouto",
+                "en": "Younger sister (humble, your own)"
+            },
+            {
+                "jp": "祖父 Sofu",
+                "en": "Grandfather (humble, your own)"
+            },
+            {
+                "jp": "祖母 Sobo",
+                "en": "Grandmother (humble, your own)"
+            },
+            {
+                "jp": "おじいさん Ojiisan",
+                "en": "Grandfather (honorific, someone else's)"
+            },
+            {
+                "jp": "おばあさん Obaasan",
+                "en": "Grandmother (honorific, someone else's)"
+            },
+            {
+                "jp": "お兄さん Oniisan",
+                "en": "Older brother (honorific, someone else's)"
+            },
+            {
+                "jp": "お姉さん Oneesan",
+                "en": "Older sister (honorific, someone else's)"
+            },
+            {
+                "jp": "夫 Otto",
+                "en": "Husband (humble, your own)"
+            },
+            {
+                "jp": "妻 Tsuma",
+                "en": "Wife (humble, your own)"
+            },
+            {
+                "jp": "ご主人 Goshujin",
+                "en": "Husband (honorific, someone else's)"
+            },
+            {
+                "jp": "奥さん Okusan",
+                "en": "Wife (honorific, someone else's)"
+            },
+            {
+                "jp": "孫 Mago",
+                "en": "Grandchild"
+            },
+            {
+                "jp": "両親 Ryoushin",
+                "en": "Parents (your own)"
+            },
+            {
+                "jp": "彼 Kare",
+                "en": "He / Boyfriend"
+            },
+            {
+                "jp": "彼女 Kanojo",
+                "en": "She / Girlfriend"
+            }
+        ],
+        "Extended Time": [
+            {
+                "jp": "一昨日 Ototoi",
+                "en": "Day before yesterday"
+            },
+            {
+                "jp": "明後日 Asatte",
+                "en": "Day after tomorrow"
+            },
+            {
+                "jp": "毎日 Mainichi",
+                "en": "Every day"
+            },
+            {
+                "jp": "毎朝 Maasa",
+                "en": "Every morning"
+            },
+            {
+                "jp": "毎晩 Maiban",
+                "en": "Every evening"
+            },
+            {
+                "jp": "先週 Senshuu",
+                "en": "Last week"
+            },
+            {
+                "jp": "来週 Raishuu",
+                "en": "Next week"
+            },
+            {
+                "jp": "今月 Kongetsu",
+                "en": "This month"
+            },
+            {
+                "jp": "先月 Sengetsu",
+                "en": "Last month"
+            },
+            {
+                "jp": "来月 Raigetsu",
+                "en": "Next month"
+            },
+            {
+                "jp": "今年 Kotoshi",
+                "en": "This year"
+            },
+            {
+                "jp": "去年 Kyonen",
+                "en": "Last year"
+            },
+            {
+                "jp": "来年 Rainen",
+                "en": "Next year"
+            },
+            {
+                "jp": "午前 Gozen",
+                "en": "AM / Before noon"
+            },
+            {
+                "jp": "午後 Gogo",
+                "en": "PM / Afternoon"
+            }
+        ],
+        "Calendar Dates": [
+            {
+                "jp": "一日 Tsuitachi",
+                "en": "1st of the month (irregular reading)"
+            },
+            {
+                "jp": "二日 Futsuka",
+                "en": "2nd of the month"
+            },
+            {
+                "jp": "三日 Mikka",
+                "en": "3rd of the month"
+            },
+            {
+                "jp": "四日 Yokka",
+                "en": "4th of the month"
+            },
+            {
+                "jp": "五日 Itsuka",
+                "en": "5th of the month"
+            },
+            {
+                "jp": "六日 Muika",
+                "en": "6th of the month"
+            },
+            {
+                "jp": "七日 Nanoka",
+                "en": "7th of the month"
+            },
+            {
+                "jp": "八日 Youka",
+                "en": "8th of the month (note: long vowel, unlike yokka)"
+            },
+            {
+                "jp": "九日 Kokonoka",
+                "en": "9th of the month"
+            },
+            {
+                "jp": "十日 Tooka",
+                "en": "10th of the month"
+            },
+            {
+                "jp": "十四日 Juuyokka",
+                "en": "14th of the month"
+            },
+            {
+                "jp": "二十日 Hatsuka",
+                "en": "20th of the month (unique reading)"
+            },
+            {
+                "jp": "二十四日 Nijuuyokka",
+                "en": "24th of the month"
+            },
+            {
+                "jp": "〜日 Nichi",
+                "en": "Day suffix (used for 11th onward e.g. juuichinichi)"
+            },
+            {
+                "jp": "何日 Nannichi",
+                "en": "What date? / Which day?"
+            }
+        ],
+        "Counters": [
+            {
+                "jp": "一つ Hitotsu",
+                "en": "One thing (general object counter)"
+            },
+            {
+                "jp": "二つ Futatsu",
+                "en": "Two things"
+            },
+            {
+                "jp": "三つ Mittsu",
+                "en": "Three things"
+            },
+            {
+                "jp": "四つ Yottsu",
+                "en": "Four things"
+            },
+            {
+                "jp": "五つ Itsutsu",
+                "en": "Five things"
+            },
+            {
+                "jp": "六つ Muttsu",
+                "en": "Six things"
+            },
+            {
+                "jp": "七つ Nanatsu",
+                "en": "Seven things"
+            },
+            {
+                "jp": "八つ Yattsu",
+                "en": "Eight things"
+            },
+            {
+                "jp": "九つ Kokonotsu",
+                "en": "Nine things"
+            },
+            {
+                "jp": "〜人 Nin",
+                "en": "Counter for people (hitori, futari, sannin...)"
+            },
+            {
+                "jp": "〜枚 Mai",
+                "en": "Counter for flat things (paper, shirts, plates)"
+            },
+            {
+                "jp": "〜本 Hon",
+                "en": "Counter for long thin things (pens, bottles, trees)"
+            },
+            {
+                "jp": "〜冊 Satsu",
+                "en": "Counter for books"
+            },
+            {
+                "jp": "〜回 Kai",
+                "en": "Counter for number of times / frequency"
+            },
+            {
+                "jp": "〜個 Ko",
+                "en": "Counter for small objects (general)"
+            }
+        ],
+        "Food Ingredients": [
+            {
+                "jp": "お湯 Oyu",
+                "en": "Hot water (important distinction from mizu)"
+            },
+            {
+                "jp": "紅茶 Koucha",
+                "en": "Black tea"
+            },
+            {
+                "jp": "牛乳 Gyuunyuu",
+                "en": "Milk"
+            },
+            {
+                "jp": "野菜 Yasai",
+                "en": "Vegetables"
+            },
+            {
+                "jp": "果物 Kudamono",
+                "en": "Fruit"
+            },
+            {
+                "jp": "卵 Tamago",
+                "en": "Egg"
+            },
+            {
+                "jp": "鶏肉 Toriniku",
+                "en": "Chicken"
+            },
+            {
+                "jp": "豚肉 Butaniku",
+                "en": "Pork"
+            },
+            {
+                "jp": "牛肉 Gyuuniku",
+                "en": "Beef"
+            },
+            {
+                "jp": "魚 Sakana",
+                "en": "Fish"
+            },
+            {
+                "jp": "塩 Shio",
+                "en": "Salt"
+            },
+            {
+                "jp": "砂糖 Satou",
+                "en": "Sugar"
+            },
+            {
+                "jp": "醤油 Shouyu",
+                "en": "Soy sauce"
+            },
+            {
+                "jp": "米 Kome",
+                "en": "Uncooked rice (gohan is the cooked version)"
+            },
+            {
+                "jp": "ジュース Juusu",
+                "en": "Juice"
+            }
+        ],
+        "Meals & Tableware": [
+            {
+                "jp": "朝ご飯 Asagohan",
+                "en": "Breakfast"
+            },
+            {
+                "jp": "昼ご飯 Hirugohan",
+                "en": "Lunch"
+            },
+            {
+                "jp": "晩ご飯 Bangohan",
+                "en": "Dinner"
+            },
+            {
+                "jp": "お弁当 Obento",
+                "en": "Lunchbox (often homemade)"
+            },
+            {
+                "jp": "箸 Hashi",
+                "en": "Chopsticks"
+            },
+            {
+                "jp": "フォーク Fooku",
+                "en": "Fork"
+            },
+            {
+                "jp": "ナイフ Naifu",
+                "en": "Knife"
+            },
+            {
+                "jp": "スプーン Supuun",
+                "en": "Spoon"
+            },
+            {
+                "jp": "皿 Sara",
+                "en": "Plate / Dish"
+            },
+            {
+                "jp": "グラス Gurasu",
+                "en": "Glass (for drinking)"
+            },
+            {
+                "jp": "お椀 Owan",
+                "en": "Japanese soup bowl"
+            },
+            {
+                "jp": "鍋 Nabe",
+                "en": "Pot / Hot pot dish"
+            },
+            {
+                "jp": "定食 Teishoku",
+                "en": "Set meal"
+            }
+        ],
+        "Pronouns & Demonstratives": [
+            {
+                "jp": "僕 Boku",
+                "en": "I (male, casual / humble)"
+            },
+            {
+                "jp": "俺 Ore",
+                "en": "I (male, rough / very informal)"
+            },
+            {
+                "jp": "あたし Atashi",
+                "en": "I (female, soft / informal)"
+            },
+            {
+                "jp": "君 Kimi",
+                "en": "You (casual, often male to equal or younger)"
+            },
+            {
+                "jp": "私たち Watashitachi",
+                "en": "We / Us"
+            },
+            {
+                "jp": "彼ら Karera",
+                "en": "They (male or mixed group)"
+            },
+            {
+                "jp": "ここ Koko",
+                "en": "Here (near the speaker)"
+            },
+            {
+                "jp": "そこ Soko",
+                "en": "There (near the listener)"
+            },
+            {
+                "jp": "あそこ Asoko",
+                "en": "Over there (far from both)"
+            },
+            {
+                "jp": "こちら Kochira",
+                "en": "This way / Over here (polite)"
+            },
+            {
+                "jp": "この Kono",
+                "en": "This (before a noun)"
+            },
+            {
+                "jp": "その Sono",
+                "en": "That (before a noun, near listener)"
+            },
+            {
+                "jp": "あの Ano",
+                "en": "That over there (before a noun)"
+            },
+            {
+                "jp": "どこか Dokoka",
+                "en": "Somewhere"
+            },
+            {
+                "jp": "こんな Konna",
+                "en": "This kind of / Like this"
+            }
+        ],
+        "Weather": [
+            {
+                "jp": "天気 Tenki",
+                "en": "Weather"
+            },
+            {
+                "jp": "晴れ Hare",
+                "en": "Sunny / Clear sky"
+            },
+            {
+                "jp": "曇り Kumori",
+                "en": "Cloudy"
+            },
+            {
+                "jp": "台風 Taifuu",
+                "en": "Typhoon"
+            },
+            {
+                "jp": "嵐 Arashi",
+                "en": "Storm"
+            },
+            {
+                "jp": "霧 Kiri",
+                "en": "Fog / Mist"
+            },
+            {
+                "jp": "雷 Kaminari",
+                "en": "Thunder / Lightning"
+            },
+            {
+                "jp": "温度 Ondo",
+                "en": "Temperature"
+            }
+        ],
+        "Extended Adjectives": [
+            {
+                "jp": "冷たい Tsumetai",
+                "en": "Cold to the touch (vs samui which is cold weather)"
+            },
+            {
+                "jp": "熱い Atsui",
+                "en": "Hot to the touch (object, vs atsui for weather)"
+            },
+            {
+                "jp": "広い Hiroi",
+                "en": "Spacious / Wide"
+            },
+            {
+                "jp": "狭い Semai",
+                "en": "Narrow / Cramped"
+            },
+            {
+                "jp": "上手 Jouzu",
+                "en": "Skilled / Good at something"
+            },
+            {
+                "jp": "下手 Heta",
+                "en": "Unskilled / Bad at something"
+            },
+            {
+                "jp": "便利 Benri",
+                "en": "Convenient / Handy"
+            },
+            {
+                "jp": "大切 Taisetsu",
+                "en": "Important / Precious"
+            },
+            {
+                "jp": "親切 Shinsetsu",
+                "en": "Kind / Friendly"
+            },
+            {
+                "jp": "大変 Taihen",
+                "en": "Tough / Serious / Terrible"
+            },
+            {
+                "jp": "低い Hikui",
+                "en": "Low (height)"
+            },
+            {
+                "jp": "重い Omoi",
+                "en": "Heavy"
+            },
+            {
+                "jp": "軽い Karui",
+                "en": "Light (not heavy)"
+            },
+            {
+                "jp": "正しい Tadashii",
+                "en": "Correct / Right"
+            }
+        ],
+        "People & Occupations": [
+            {
+                "jp": "赤ちゃん Akachan",
+                "en": "Baby"
+            },
+            {
+                "jp": "大人 Otona",
+                "en": "Adult"
+            },
+            {
+                "jp": "若者 Wakamono",
+                "en": "Young person"
+            },
+            {
+                "jp": "外国人 Gaikokujin",
+                "en": "Foreigner"
+            },
+            {
+                "jp": "人間 Ningen",
+                "en": "Human being (as a species)"
+            },
+            {
+                "jp": "男の人 Otoko no hito",
+                "en": "Man (polite)"
+            },
+            {
+                "jp": "女の人 Onna no hito",
+                "en": "Woman (polite)"
+            },
+            {
+                "jp": "会社員 Kaishain",
+                "en": "Company employee / Office worker"
+            },
+            {
+                "jp": "医者 Isha",
+                "en": "Doctor"
+            },
+            {
+                "jp": "看護師 Kangoshi",
+                "en": "Nurse (gender neutral)"
+            },
+            {
+                "jp": "警察官 Keisatsukan",
+                "en": "Police officer"
+            },
+            {
+                "jp": "料理人 Ryourinin",
+                "en": "Cook / Chef"
+            },
+            {
+                "jp": "運転手 Untenshu",
+                "en": "Driver"
+            },
+            {
+                "jp": "店員 Tenin",
+                "en": "Shop staff / Clerk"
+            }
+        ],
+        "Extended Body Parts": [
+            {
+                "jp": "髪 Kami",
+                "en": "Hair"
+            },
+            {
+                "jp": "鼻 Hana",
+                "en": "Nose (same reading as 花 flower but different kanji)"
+            },
+            {
+                "jp": "歯 Ha",
+                "en": "Tooth / Teeth"
+            },
+            {
+                "jp": "首 Kubi",
+                "en": "Neck"
+            },
+            {
+                "jp": "腕 Ude",
+                "en": "Arm"
+            },
+            {
+                "jp": "指 Yubi",
+                "en": "Finger / Toe"
+            },
+            {
+                "jp": "胸 Mune",
+                "en": "Chest"
+            },
+            {
+                "jp": "背中 Senaka",
+                "en": "Back (of the body)"
+            },
+            {
+                "jp": "お腹 Onaka",
+                "en": "Belly / Stomach"
+            },
+            {
+                "jp": "膝 Hiza",
+                "en": "Knee"
+            },
+            {
+                "jp": "肩 Kata",
+                "en": "Shoulder"
+            },
+            {
+                "jp": "腰 Koshi",
+                "en": "Lower back / Waist"
+            },
+            {
+                "jp": "爪 Tsume",
+                "en": "Nail (finger or toe)"
+            }
+        ],
+        "Kenty Lesson 3": [
+            {
+                "jp": "たべもの tabemono",
+                "en": "food"
+            },
+            {
+                "jp": "くに kuni",
+                "en": "country"
+            },
+            {
+                "jp": "イタリア itaria",
+                "en": "Italy"
+            },
+            {
+                "jp": "シンプル shinpuru",
+                "en": "simple"
+            },
+            {
+                "jp": "でんとうてきな dentoutekina",
+                "en": "traditional"
+            },
+            {
+                "jp": "ゆうめいな たべもの yuumeina tabemono",
+                "en": "famous food"
+            },
+            {
+                "jp": "ポテト poteto",
+                "en": "potato"
+            },
+            {
+                "jp": "クロケット kuroketto",
+                "en": "croquette"
+            },
+            {
+                "jp": "かたち katachi",
+                "en": "shape"
+            },
+            {
+                "jp": "りょうりする ryourisuru",
+                "en": "to cook"
+            },
+            {
+                "jp": "まいにち mainichi",
+                "en": "every day"
+            },
+            {
+                "jp": "シェフ shefu",
+                "en": "chef"
+            },
+            {
+                "jp": "カレー karee",
+                "en": "curry"
+            },
+            {
+                "jp": "にんじん ninjin",
+                "en": "carrot"
+            },
+            {
+                "jp": "たまねぎ tamanegi",
+                "en": "onion"
+            },
+            {
+                "jp": "にく niku",
+                "en": "meat"
+            },
+            {
+                "jp": "うえ ue",
+                "en": "top / above"
+            },
+            {
+                "jp": "ちゅうごく chuugoku",
+                "en": "China"
+            },
+            {
+                "jp": "いくら ikura",
+                "en": "how much"
+            },
+            {
+                "jp": "もっと たかい motto takai",
+                "en": "more expensive"
+            },
+            {
+                "jp": "ひがし higashi",
+                "en": "east"
+            },
+            {
+                "jp": "きた kita",
+                "en": "north"
+            },
+            {
+                "jp": "あまり いかない amari ikanai",
+                "en": "do not go very often"
+            },
+            {
+                "jp": "なつはとくにきれい natsu wa tokuni kirei",
+                "en": "especially beautiful in summer"
+            },
+            {
+                "jp": "とくに tokuni",
+                "en": "especially"
+            },
+            {
+                "jp": "いつ itsu",
+                "en": "when"
+            },
+            {
+                "jp": "にてる niteru",
+                "en": "similar"
+            },
+            {
+                "jp": "どうやって この たべもの を たべますか？ douyatte kono tabemono o tabemasu ka?",
+                "en": "How do you eat this food?"
+            },
+            {
+                "jp": "これ この ここ kore kono koko",
+                "en": "this / this (something) / here"
+            },
+            {
+                "jp": "だ な da na",
+                "en": "endings for nouns and na adjectives"
+            },
+            {
+                "jp": "げんきな genkina",
+                "en": "healthy / energetic"
+            },
+            {
+                "jp": "げんきな ひと genkina hito",
+                "en": "healthy person / energetic person"
+            },
+            {
+                "jp": "ゆうめいな レストラン yuumeina resutoran",
+                "en": "famous restaurant"
+            }
+        ],
+        "Clothing": [
+            {
+                "jp": "服 Fuku",
+                "en": "Clothes / Clothing (general)"
+            },
+            {
+                "jp": "シャツ Shatsu",
+                "en": "Shirt"
+            },
+            {
+                "jp": "ズボン Zubon",
+                "en": "Trousers / Pants (from Dutch jupon via French)"
+            },
+            {
+                "jp": "スカート Sukaato",
+                "en": "Skirt"
+            },
+            {
+                "jp": "靴 Kutsu",
+                "en": "Shoes"
+            },
+            {
+                "jp": "靴下 Kutsushita",
+                "en": "Socks"
+            },
+            {
+                "jp": "帽子 Boushi",
+                "en": "Hat / Cap"
+            },
+            {
+                "jp": "コート Kooto",
+                "en": "Coat"
+            },
+            {
+                "jp": "ジャケット Jaketto",
+                "en": "Jacket"
+            },
+            {
+                "jp": "下着 Shitagi",
+                "en": "Underwear"
+            },
+            {
+                "jp": "手袋 Tebukuro",
+                "en": "Gloves"
+            },
+            {
+                "jp": "マフラー Mafuraa",
+                "en": "Scarf"
+            }
+        ],
+        "Kenty Lesson 4": [
+            {
+                "jp": "ひっこす hikkosu",
+                "en": "to move house"
+            },
+            {
+                "jp": "でんとうてき dentouteki",
+                "en": "traditional"
+            },
+            {
+                "jp": "ひとつ しつもん が あります hitotsu shitsumon ga arimasu",
+                "en": "I have one question"
+            },
+            {
+                "jp": "おもいだす omoidasu",
+                "en": "to remember / memory comes back"
+            },
+            {
+                "jp": "わかもの wakamono",
+                "en": "young people"
+            },
+            {
+                "jp": "わかい wakai",
+                "en": "young"
+            },
+            {
+                "jp": "せだい sedai",
+                "en": "generation"
+            },
+            {
+                "jp": "みんな、ぜんいん minna zenin",
+                "en": "everyone"
+            },
+            {
+                "jp": "ぜんいん zenin",
+                "en": "everyone"
+            },
+            {
+                "jp": "その ほうほう では sono houhou de wa",
+                "en": "in that way"
+            },
+            {
+                "jp": "じしん jishin",
+                "en": "confidence"
+            },
+            {
+                "jp": "はなそうとする hanasou to suru",
+                "en": "try to speak"
+            },
+            {
+                "jp": "とする to suru",
+                "en": "try to / intend to"
+            },
+            {
+                "jp": "きほんてきに kihonteki ni",
+                "en": "basically"
+            },
+            {
+                "jp": "はずかしい hazukashii",
+                "en": "shy"
+            },
+            {
+                "jp": "いっしょに isshoni",
+                "en": "together"
+            },
+            {
+                "jp": "くるまで kuruma de",
+                "en": "by car"
+            },
+            {
+                "jp": "さいしょは どこにいきますか？ saisho wa doko ni ikimasu ka?",
+                "en": "where will you go first?"
+            },
+            {
+                "jp": "か ka",
+                "en": "or"
+            },
+            {
+                "jp": "おおさかにも りょこうします oosaka ni mo ryokou shimasu",
+                "en": "will also travel to Osaka"
+            },
+            {
+                "jp": "ふんいき funiki",
+                "en": "vibes / atmosphere"
+            },
+            {
+                "jp": "ゆっくりしている yukkuri shite iru",
+                "en": "being relaxed / taking it easy"
+            },
+            {
+                "jp": "いつもは itsumo wa",
+                "en": "usually"
+            },
+            {
+                "jp": "ゆっくり yukkuri",
+                "en": "slowly / relaxedly"
+            },
+            {
+                "jp": "ちゅうしん chuushin",
+                "en": "center"
+            },
+            {
+                "jp": "いがい igai",
+                "en": "except"
+            },
+            {
+                "jp": "いちねんはん ichinenhan",
+                "en": "one year and a half"
+            },
+            {
+                "jp": "いちじはん ichijihan",
+                "en": "one thirty (1:30)"
+            },
+            {
+                "jp": "どうして ひっこしましたか？ doushite hikkoshimashita ka?",
+                "en": "why did you move house?"
+            },
+            {
+                "jp": "まあまあ maamaa",
+                "en": "so so"
+            },
+            {
+                "jp": "ながくない nagakunai",
+                "en": "not long"
+            },
+            {
+                "jp": "みじかい mijikai",
+                "en": "short"
+            },
+            {
+                "jp": "にている nite iru",
+                "en": "similar"
+            },
+            {
+                "jp": "あたまがいい atama ga ii",
+                "en": "smart"
+            },
+            {
+                "jp": "かんがえる kangaeru",
+                "en": "to think (logical)"
+            },
+            {
+                "jp": "おもう omou",
+                "en": "to think (opinion)"
+            }
+        ],
+        "Emotions": [
+            {
+                "jp": "うれしい Ureshii",
+                "en": "Happy / Glad"
+            },
+            {
+                "jp": "かなしい Kanashii",
+                "en": "Sad"
+            },
+            {
+                "jp": "おこる Okoru",
+                "en": "Get angry"
+            },
+            {
+                "jp": "こわい Kowai",
+                "en": "Scared / Frightening"
+            },
+            {
+                "jp": "さびしい Sabishii",
+                "en": "Lonely"
+            },
+            {
+                "jp": "しんぱい Shinpai",
+                "en": "Worry / Concern"
+            },
+            {
+                "jp": "うらやましい Urayamashii",
+                "en": "Envious / Jealous"
+            },
+            {
+                "jp": "おどろく Odoroku",
+                "en": "Be surprised"
+            },
+            {
+                "jp": "なく Naku",
+                "en": "Cry"
+            },
+            {
+                "jp": "わらう Warau",
+                "en": "Laugh / Smile"
+            },
+            {
+                "jp": "きんちょう Kinchou",
+                "en": "Nervous / Tense"
+            },
+            {
+                "jp": "あんしん Anshin",
+                "en": "Relief / Peace of mind"
+            },
+            {
+                "jp": "まんぞく Manzoku",
+                "en": "Satisfaction"
+            },
+            {
+                "jp": "ざんねん Zannen",
+                "en": "Disappointing / What a shame"
+            }
+        ],
+        "Opinions & Reactions": [
+            {
+                "jp": "ほんとうに Hontouni",
+                "en": "Really / Truly"
+            },
+            {
+                "jp": "もちろん Mochiron",
+                "en": "Of course"
+            },
+            {
+                "jp": "たぶん Tabun",
+                "en": "Probably / Perhaps"
+            },
+            {
+                "jp": "むずかしい Muzukashii",
+                "en": "Difficult"
+            },
+            {
+                "jp": "べつに Betsu ni",
+                "en": "Not particularly / Never mind"
+            },
+            {
+                "jp": "だいじょうぶ Daijoubu",
+                "en": "It's fine / I'm OK"
+            },
+            {
+                "jp": "けっこう Kekkou",
+                "en": "Quite / That's fine"
+            },
+            {
+                "jp": "しかたない Shikatanai",
+                "en": "Can't be helped / It's inevitable"
+            }
+        ],
+        "Describing People": [
+            {
+                "jp": "やさしい Yasashii",
+                "en": "Kind / Gentle"
+            },
+            {
+                "jp": "まじめ Majime",
+                "en": "Serious / Diligent"
+            },
+            {
+                "jp": "かしこい Kashikoi",
+                "en": "Smart / Clever"
+            },
+            {
+                "jp": "げんき Genki",
+                "en": "Energetic / Well"
+            },
+            {
+                "jp": "おとな Otona",
+                "en": "Adult"
+            },
+            {
+                "jp": "ゆうめい Yuumei",
+                "en": "Famous"
+            },
+            {
+                "jp": "しんせつ Shinsetsu",
+                "en": "Kind / Helpful"
+            },
+            {
+                "jp": "ていねい Teinei",
+                "en": "Polite"
+            },
+            {
+                "jp": "まじめな人 Majime na hito",
+                "en": "Serious person"
+            },
+            {
+                "jp": "おとなしい Otonashii",
+                "en": "Quiet / Gentle (personality)"
+            }
+        ],
+        "Shopping & Money": [
+            {
+                "jp": "たかい Takai",
+                "en": "Expensive"
+            },
+            {
+                "jp": "やすい Yasui",
+                "en": "Cheap"
+            },
+            {
+                "jp": "わりびき Waribiki",
+                "en": "Discount"
+            },
+            {
+                "jp": "げんきん Genkin",
+                "en": "Cash"
+            },
+            {
+                "jp": "クレジット Kurejitto",
+                "en": "Credit card"
+            },
+            {
+                "jp": "おつり Otsuri",
+                "en": "Change (money back)"
+            },
+            {
+                "jp": "ふくろ Fukuro",
+                "en": "Bag"
+            },
+            {
+                "jp": "サイズ Saizu",
+                "en": "Size"
+            },
+            {
+                "jp": "ためす Tamesu",
+                "en": "Try / Test"
+            },
+            {
+                "jp": "みせてください Misete kudasai",
+                "en": "Please show me"
+            },
+            {
+                "jp": "けんとう Kentou",
+                "en": "Consideration / Maybe"
+            },
+            {
+                "jp": "うりきれ Urikire",
+                "en": "Sold out"
+            },
+            {
+                "jp": "かんけい Kankei",
+                "en": "Relationship / Connection"
+            }
+        ],
+        "Health & Body": [
+            {
+                "jp": "びょういん Byouin",
+                "en": "Hospital"
+            },
+            {
+                "jp": "くすり Kusuri",
+                "en": "Medicine"
+            },
+            {
+                "jp": "アレルギー Arerugii",
+                "en": "Allergy"
+            },
+            {
+                "jp": "ねつ Netsu",
+                "en": "Fever"
+            },
+            {
+                "jp": "せき Seki",
+                "en": "Cough"
+            },
+            {
+                "jp": "のど Nodo",
+                "en": "Throat"
+            },
+            {
+                "jp": "おなか Onaka",
+                "en": "Stomach"
+            },
+            {
+                "jp": "あたま Atama",
+                "en": "Head"
+            },
+            {
+                "jp": "きぶん Kibun",
+                "en": "Feeling / Mood"
+            },
+            {
+                "jp": "ゆっくりやすむ Yukkuri yasumu",
+                "en": "Rest slowly / Take it easy"
+            },
+            {
+                "jp": "だいじょうぶですか Daijoubu desu ka",
+                "en": "Are you OK?"
+            },
+            {
+                "jp": "いしゃ Isha",
+                "en": "Doctor"
+            },
+            {
+                "jp": "けが Kega",
+                "en": "Injury"
+            },
+            {
+                "jp": "てあらい Tearai",
+                "en": "Toilet / Restroom"
+            }
+        ],
+        "Daily Routines": [
+            {
+                "jp": "おきる Okiru",
+                "en": "Wake up"
+            },
+            {
+                "jp": "シャワーをあびる Shawaa wo abiru",
+                "en": "Take a shower"
+            },
+            {
+                "jp": "はみがき Hamigaki",
+                "en": "Brush teeth"
+            },
+            {
+                "jp": "かいもの Kaimono",
+                "en": "Shopping"
+            },
+            {
+                "jp": "そうじ Souji",
+                "en": "Cleaning / Sweeping"
+            },
+            {
+                "jp": "せんたく Sentaku",
+                "en": "Laundry"
+            },
+            {
+                "jp": "りょうり Ryouri",
+                "en": "Cooking"
+            },
+            {
+                "jp": "さんぽ Sanpo",
+                "en": "Walk / Stroll"
+            },
+            {
+                "jp": "ふろ Furo",
+                "en": "Bath"
+            },
+            {
+                "jp": "よるごはん Yoru gohan",
+                "en": "Evening meal"
+            },
+            {
+                "jp": "ねる Neru",
+                "en": "Go to sleep"
+            },
+            {
+                "jp": "めざましどけい Mezamashi dokei",
+                "en": "Alarm clock"
+            }
+        ],
+        "Asking for Help": [
+            {
+                "jp": "てつだっていただけますか Tetsudatte itadakemasu ka",
+                "en": "Could you help me?"
+            },
+            {
+                "jp": "おしえてください Oshiete kudasai",
+                "en": "Please tell me / teach me"
+            },
+            {
+                "jp": "もういちど Mou ichido",
+                "en": "One more time"
+            },
+            {
+                "jp": "にほんごがわかりますか Nihongo ga wakarimasu ka",
+                "en": "Do you understand Japanese?"
+            },
+            {
+                "jp": "えいごはなせますか Eigo hanasemasu ka",
+                "en": "Do you speak English?"
+            },
+            {
+                "jp": "まよった Mayotta",
+                "en": "I got lost"
+            },
+            {
+                "jp": "みちをおしえてください Michi wo oshiete kudasai",
+                "en": "Please show me the way"
+            },
+            {
+                "jp": "よびだす Yobidasu",
+                "en": "Call / Summon"
+            },
+            {
+                "jp": "たすけて Tasukete",
+                "en": "Help! (emergency)"
+            },
+            {
+                "jp": "けいさつ Keisatsu",
+                "en": "Police"
+            },
+            {
+                "jp": "なくしました Nakushimashita",
+                "en": "I lost (something)"
+            },
+            {
+                "jp": "わすれもの Wasuremono",
+                "en": "Lost item / Forgotten item"
+            }
+        ],
+        "Making Plans": [
+            {
+                "jp": "よてい Yotei",
+                "en": "Plans / Schedule"
+            },
+            {
+                "jp": "いっしょにいきませんか Issho ni ikimasen ka",
+                "en": "Shall we go together?"
+            },
+            {
+                "jp": "じかんはありますか Jikan wa arimasu ka",
+                "en": "Do you have time?"
+            },
+            {
+                "jp": "〜はどうですか ~wa dou desu ka",
+                "en": "How about ~?"
+            },
+            {
+                "jp": "むりです Muri desu",
+                "en": "Impossible / I can't"
+            },
+            {
+                "jp": "できます Dekimasu",
+                "en": "I can / It's possible"
+            },
+            {
+                "jp": "たのしみにしています Tanoshimi ni shiteimasu",
+                "en": "I'm looking forward to it"
+            },
+            {
+                "jp": "いつがいいですか Itsu ga ii desu ka",
+                "en": "When is good for you?"
+            },
+            {
+                "jp": "なんじ Nanji",
+                "en": "What time?"
+            },
+            {
+                "jp": "やくそく Yakusoku",
+                "en": "Promise / Appointment"
+            },
+            {
+                "jp": "キャンセル Kyanseru",
+                "en": "Cancel"
+            },
+            {
+                "jp": "おくれる Okureru",
+                "en": "Be late"
+            },
+            {
+                "jp": "まにあう Ma ni au",
+                "en": "Be in time / Make it"
+            },
+            {
+                "jp": "むかえにいく Mukae ni iku",
+                "en": "Go to pick someone up"
+            }
+        ],
+        "Compliments & Small Talk": [
+            {
+                "jp": "じょうずですね Jouzu desu ne",
+                "en": "You're skilled! / Well done"
+            },
+            {
+                "jp": "おつかれさまでした Otsukare sama deshita",
+                "en": "Good work / Thanks for your effort"
+            },
+            {
+                "jp": "さすが Sasuga",
+                "en": "As expected (compliment)"
+            },
+            {
+                "jp": "たのしかった Tanoshikatta",
+                "en": "It was fun"
+            },
+            {
+                "jp": "またあいましょう Mata aimashou",
+                "en": "Let's meet again"
+            },
+            {
+                "jp": "おだいじに Odaiji ni",
+                "en": "Take care (when sick)"
+            },
+            {
+                "jp": "おめでとう Omedetou",
+                "en": "Congratulations"
+            },
+            {
+                "jp": "がんばって Ganbatte",
+                "en": "Do your best / Good luck"
+            }
+        ],
+        "At a Restaurant (Advanced)": [
+            {
+                "jp": "よやく Yoyaku",
+                "en": "Reservation"
+            },
+            {
+                "jp": "なんめいさまですか Nan mei sama desu ka",
+                "en": "How many people?"
+            },
+            {
+                "jp": "おすすめは Osusume wa",
+                "en": "What do you recommend?"
+            },
+            {
+                "jp": "アレルギーがあります Arerugii ga arimasu",
+                "en": "I have an allergy"
+            },
+            {
+                "jp": "からくないですか Karaku nai desu ka",
+                "en": "Is it not spicy?"
+            },
+            {
+                "jp": "もうすこし Mou sukoshi",
+                "en": "A little more"
+            },
+            {
+                "jp": "おかわり Okawari",
+                "en": "Refill / Another serving"
+            },
+            {
+                "jp": "べつべつに Betsu betsu ni",
+                "en": "Separately (bill)"
+            },
+            {
+                "jp": "まとめて Matomete",
+                "en": "All together (bill)"
+            },
+            {
+                "jp": "もちかえり Mochikaeri",
+                "en": "Takeaway / To go"
+            },
+            {
+                "jp": "てーぶるせき Teeburu seki",
+                "en": "Table seat"
+            },
+            {
+                "jp": "かうんたーせき Kauntaa seki",
+                "en": "Counter seat"
+            },
+            {
+                "jp": "おみず Omizu",
+                "en": "Water (polite)"
+            },
+            {
+                "jp": "このりょうりはなんですか Kono ryouri wa nan desu ka",
+                "en": "What is this dish?"
+            },
+            {
+                "jp": "からい Karai",
+                "en": "Spicy"
+            }
+        ],
+        "Travel Situations": [
+            {
+                "jp": "にもつ Nimotsu",
+                "en": "Luggage"
+            },
+            {
+                "jp": "のりかえ Norikae",
+                "en": "Transfer / Change (trains)"
+            },
+            {
+                "jp": "おりる Oriru",
+                "en": "Get off / Exit"
+            },
+            {
+                "jp": "のる Noru",
+                "en": "Ride / Board"
+            },
+            {
+                "jp": "みやげ Miyage",
+                "en": "Souvenir"
+            },
+            {
+                "jp": "ちかみち Chikamichi",
+                "en": "Shortcut"
+            },
+            {
+                "jp": "でぐち Deguchi",
+                "en": "Exit"
+            }
+        ],
+        "Expressing Wants & Needs": [
+            {
+                "jp": "〜がほしい ~ga hoshii",
+                "en": "I want ~"
+            },
+            {
+                "jp": "〜たい ~tai",
+                "en": "I want to do ~"
+            },
+            {
+                "jp": "〜をください ~wo kudasai",
+                "en": "Please give me ~"
+            },
+            {
+                "jp": "〜おねがいします ~onegaishimasu",
+                "en": "Please ~ / I request ~"
+            },
+            {
+                "jp": "ひつよう Hitsuyou",
+                "en": "Necessary / Needed"
+            },
+            {
+                "jp": "いらない Iranai",
+                "en": "Don't need / Don't want"
+            },
+            {
+                "jp": "たりない Tarinai",
+                "en": "Not enough"
+            },
+            {
+                "jp": "じゅうぶん Juubun",
+                "en": "Enough / Sufficient"
+            },
+            {
+                "jp": "もっとほしい Motto hoshii",
+                "en": "I want more"
+            },
+            {
+                "jp": "やめる Yameru",
+                "en": "Stop / Quit"
+            },
+            {
+                "jp": "のどがかわいた Nodo ga kawaita",
+                "en": "I'm thirsty"
+            },
+            {
+                "jp": "おなかがすいた Onaka ga suita",
+                "en": "I'm hungry"
+            },
+            {
+                "jp": "さむい Samui",
+                "en": "Cold (I feel cold)"
+            }
+        ],
+        "Time & Frequency": [
+            {
+                "jp": "たまに Tama ni",
+                "en": "Occasionally / Once in a while"
+            },
+            {
+                "jp": "めったに Metta ni",
+                "en": "Rarely"
+            },
+            {
+                "jp": "ぜんぜん Zenzen",
+                "en": "Not at all"
+            },
+            {
+                "jp": "まいあさ Maiasa",
+                "en": "Every morning"
+            },
+            {
+                "jp": "まいばん Maiban",
+                "en": "Every evening"
+            },
+            {
+                "jp": "いちにちに Ichinichi ni",
+                "en": "Per day"
+            },
+            {
+                "jp": "さいきん Saikin",
+                "en": "Recently / Lately"
+            },
+            {
+                "jp": "むかし Mukashi",
+                "en": "Long ago / In the past"
+            },
+            {
+                "jp": "これから Kore kara",
+                "en": "From now on"
+            },
+            {
+                "jp": "すぐに Sugu ni",
+                "en": "Immediately / Right away"
+            },
+            {
+                "jp": "やっと Yatto",
+                "en": "Finally / At last"
+            },
+            {
+                "jp": "もうすぐ Mou sugu",
+                "en": "Very soon / Almost"
+            }
+        ],
+        "Nature & Outdoors": [
+            {
+                "jp": "こうえん Kouen",
+                "en": "Park"
+            },
+            {
+                "jp": "もり Mori",
+                "en": "Forest"
+            },
+            {
+                "jp": "いけ Ike",
+                "en": "Pond"
+            },
+            {
+                "jp": "はし Hashi",
+                "en": "Bridge"
+            },
+            {
+                "jp": "いわ Iwa",
+                "en": "Rock"
+            },
+            {
+                "jp": "すな Suna",
+                "en": "Sand"
+            },
+            {
+                "jp": "くさ Kusa",
+                "en": "Grass"
+            },
+            {
+                "jp": "き Ki",
+                "en": "Tree"
+            },
+            {
+                "jp": "むし Mushi",
+                "en": "Insect / Bug"
+            },
+            {
+                "jp": "さかな Sakana",
+                "en": "Fish"
+            },
+            {
+                "jp": "つき Tsuki",
+                "en": "Moon"
+            },
+            {
+                "jp": "ほし Hoshi",
+                "en": "Star"
+            },
+            {
+                "jp": "くも Kumo",
+                "en": "Cloud"
+            },
+            {
+                "jp": "きせつ Kisetsu",
+                "en": "Season"
+            }
+        ],
+        "Technology & Modern Life": [
+            {
+                "jp": "スマホ Sumaho",
+                "en": "Smartphone"
+            },
+            {
+                "jp": "じゅうでん Juuden",
+                "en": "Charging (battery)"
+            },
+            {
+                "jp": "でんち Denchi",
+                "en": "Battery"
+            },
+            {
+                "jp": "しゃしんをとる Shashin wo toru",
+                "en": "Take a photo"
+            },
+            {
+                "jp": "けんさく Kensaku",
+                "en": "Search"
+            },
+            {
+                "jp": "こうかんする Koukanする",
+                "en": "Exchange (info/contacts)"
+            },
+            {
+                "jp": "なんのアプリ Nan no apuri",
+                "en": "Which app?"
+            }
+        ],
+        "Social Situations": [
+            {
+                "jp": "よろしくおねがいします Yoroshiku onegaishimasu",
+                "en": "Nice to meet you / Please take care of me"
+            },
+            {
+                "jp": "おじゃまします Ojamashimasu",
+                "en": "I'll come in (entering someone's home)"
+            },
+            {
+                "jp": "きをつけて Ki wo tsukete",
+                "en": "Take care / Be careful"
+            },
+            {
+                "jp": "おせわになりました Osewa ni narimashita",
+                "en": "Thank you for your help / care"
+            },
+            {
+                "jp": "よろしく Yoroshiku",
+                "en": "Best regards / Thanks (casual)"
+            },
+            {
+                "jp": "ちょっとまってください Chotto matte kudasai",
+                "en": "Please wait a moment"
+            },
+            {
+                "jp": "はじめに Hajime ni",
+                "en": "First of all / To begin with"
+            },
+            {
+                "jp": "つまり Tsumari",
+                "en": "In other words / Basically"
+            },
+            {
+                "jp": "そういえば Sou ieba",
+                "en": "Come to think of it / Speaking of which"
+            },
+            {
+                "jp": "ところで Tokoro de",
+                "en": "By the way"
+            },
+            {
+                "jp": "それで Sore de",
+                "en": "And then / So"
+            }
+        ],
+        "Useful Connectors": [
+            {
+                "jp": "もし Moshi",
+                "en": "If"
+            },
+            {
+                "jp": "たとえば Tatoeba",
+                "en": "For example"
+            },
+            {
+                "jp": "ぜひ Zehi",
+                "en": "By all means / Definitely"
+            },
+            {
+                "jp": "だいたい Daitai",
+                "en": "Roughly / Generally"
+            },
+            {
+                "jp": "それに Sore ni",
+                "en": "Moreover / Besides"
+            },
+            {
+                "jp": "あるいは Arui wa",
+                "en": "Or / Alternatively"
+            },
+            {
+                "jp": "しかし Shikashi",
+                "en": "However / But"
+            },
+            {
+                "jp": "ただし Tadashi",
+                "en": "However / Provided that"
+            },
+            {
+                "jp": "それとも Soretomo",
+                "en": "Or (choosing between options)"
+            },
+            {
+                "jp": "せっかく Sekkaku",
+                "en": "With much effort / Specially"
+            },
+            {
+                "jp": "はっきり Hakkiri",
+                "en": "Clearly / Definitively"
+            },
+            {
+                "jp": "やはり Yahari",
+                "en": "As expected / After all"
+            },
+            {
+                "jp": "なんとなく Nantona ku",
+                "en": "Somehow / Vaguely"
+            },
+            {
+                "jp": "できるだけ Dekiru dake",
+                "en": "As much as possible"
+            }
+        ],
+        "Kenty Lesson 5": [
+            {
+                "jp": "カフェ kafe",
+                "en": "cafe"
+            },
+            {
+                "jp": "かく kaku",
+                "en": "to write"
+            },
+            {
+                "jp": "たべる たべます taberu tabemasu",
+                "en": "to eat (dictionary and polite forms)"
+            },
+            {
+                "jp": "たべた たべました tabeta tabemashita",
+                "en": "ate (past and past polite forms)"
+            },
+            {
+                "jp": "たんご tango",
+                "en": "vocabulary"
+            },
+            {
+                "jp": "みつける mitsukeru",
+                "en": "to find"
+            },
+            {
+                "jp": "しています shite imasu",
+                "en": "am doing"
+            },
+            {
+                "jp": "していました shite imashita",
+                "en": "was doing"
+            },
+            {
+                "jp": "はっぱ happa",
+                "en": "leaves"
+            },
+            {
+                "jp": "ほとんど hotondo",
+                "en": "mostly"
+            },
+            {
+                "jp": "A のほうが B より A no hou ga B yori",
+                "en": "A is more than B"
+            },
+            {
+                "jp": "さいきんは saikin wa",
+                "en": "recently"
+            },
+            {
+                "jp": "と おもいます to omoimasu",
+                "en": "I think that"
+            },
+            {
+                "jp": "しごと が ないです shigoto ga naidesu",
+                "en": "I do not have work"
+            },
+            {
+                "jp": "まいしゅう きんようび maishuu kinyoubi",
+                "en": "every Friday"
+            },
+            {
+                "jp": "やすみ yasumi",
+                "en": "holiday / day off / break"
+            },
+            {
+                "jp": "こんや konya",
+                "en": "tonight"
+            },
+            {
+                "jp": "どのくらい dono kurai",
+                "en": "how long / how much"
+            },
+            {
+                "jp": "じてんしゃ で ３０ぷん jitensha de sanjuppun",
+                "en": "30 minutes by bicycle"
+            },
+            {
+                "jp": "さんじゅっぷん sanjuppun",
+                "en": "30 minutes"
+            },
+            {
+                "jp": "オランダじん に とって orandajin ni totte",
+                "en": "for Dutch people"
+            },
+            {
+                "jp": "じつは jitsu wa",
+                "en": "actually"
+            },
+            {
+                "jp": "むずかしくないけど ちょっと とおい muzukashikunai kedo chotto tooi",
+                "en": "it is not difficult but a bit far"
+            },
+            {
+                "jp": "いちじかん ichijikan",
+                "en": "one hour"
+            },
+            {
+                "jp": "はんたいがわ hantaigawa",
+                "en": "the opposite side"
+            },
+            {
+                "jp": "きれいじゃない kirei janai",
+                "en": "not beautiful / not clean"
+            },
+            {
+                "jp": "たてもの tatemono",
+                "en": "building"
+            },
+            {
+                "jp": "ふくしゅうする fukushuu suru",
+                "en": "to review"
+            },
+            {
+                "jp": "だいじ daiji",
+                "en": "important"
+            },
+            {
+                "jp": "じかい jikai",
+                "en": "next time"
+            },
+            {
+                "jp": "きかせて kikasete",
+                "en": "please let me hear / please tell me"
+            }
+        ],
+        "Kenty Lesson 6": [
+            {
+                "jp": "けむり kemuri",
+                "en": "smoke"
+            },
+            {
+                "jp": "まち に みず が たくさん あります machi ni mizu ga takusan arimasu",
+                "en": "there is a lot of water in the town"
+            },
+            {
+                "jp": "すいろ suiro",
+                "en": "canal"
+            },
+            {
+                "jp": "りょうほう ryouhou",
+                "en": "both"
+            },
+            {
+                "jp": "ひろい hiroi",
+                "en": "wide"
+            },
+            {
+                "jp": "にほんりょこう nihon ryokou",
+                "en": "trip to Japan"
+            },
+            {
+                "jp": "けいかくする keikaku suru",
+                "en": "to plan"
+            },
+            {
+                "jp": "きかせて kikasete",
+                "en": "please let me hear / tell me"
+            },
+            {
+                "jp": "ちゃくりくする chakuriku suru",
+                "en": "to land"
+            },
+            {
+                "jp": "つく tsuku",
+                "en": "to arrive"
+            },
+            {
+                "jp": "ふじさん fujisan",
+                "en": "Mt Fuji"
+            },
+            {
+                "jp": "ふつか futsuka",
+                "en": "2 days"
+            },
+            {
+                "jp": "みっか mikka",
+                "en": "3 days"
+            },
+            {
+                "jp": "よっか yokka",
+                "en": "4 days"
+            },
+            {
+                "jp": "いつか itsuka",
+                "en": "5 days"
+            },
+            {
+                "jp": "いちばんおおきいです ichiban ookii desu",
+                "en": "it is the biggest"
+            },
+            {
+                "jp": "がたのしみです ga tanoshimi desu",
+                "en": "looking forward to"
+            },
+            {
+                "jp": "そのあと sono ato",
+                "en": "after that"
+            },
+            {
+                "jp": "きょうと にも いつか います kyouto ni mo itsuka imasu",
+                "en": "I will be in Kyoto for five days too"
+            },
+            {
+                "jp": "いちにち ichinichi",
+                "en": "one day"
+            },
+            {
+                "jp": "みなみ minami",
+                "en": "south"
+            },
+            {
+                "jp": "５しゅうかん go shuukan",
+                "en": "5 weeks"
+            },
+            {
+                "jp": "モノレール monoreeru",
+                "en": "monorail"
+            },
+            {
+                "jp": "ざんねんです zannen desu",
+                "en": "it is a shame"
+            },
+            {
+                "jp": "でんとうてきなたてもの が すきですか dentouteki na tatemono ga suki desu ka",
+                "en": "do you like traditional buildings?"
+            },
+            {
+                "jp": "また とうきょう に いきます mata tokyo ni ikimasu",
+                "en": "I will go to Tokyo again"
+            },
+            {
+                "jp": "とおか tooka",
+                "en": "10 days"
+            },
+            {
+                "jp": "ぜんぶで zenbu de",
+                "en": "totally / in total"
+            },
+            {
+                "jp": "ちばのどこに すんでいますか？ chiba no doko ni sunde imasu ka",
+                "en": "where in Chiba do you live?"
+            },
+            {
+                "jp": "かきごおり kakigoori",
+                "en": "shaved ice"
+            },
+            {
+                "jp": "たかいのが こわいです takai no ga kowai desu",
+                "en": "I am afraid of high places / afraid of heights"
+            }
+        ],
+        "Kenty Lesson 7": [
+            {
+                "jp": "へん hen",
+                "en": "weird"
+            },
+            {
+                "jp": "はれ はれる hare hareru",
+                "en": "sunny / to be sunny"
+            },
+            {
+                "jp": "ぶんぽう bunpou",
+                "en": "grammar"
+            },
+            {
+                "jp": "いきましょう ikimashou",
+                "en": "let's go (polite)"
+            },
+            {
+                "jp": "いこう ikou",
+                "en": "let's go (casual)"
+            },
+            {
+                "jp": "しちじ shichiji",
+                "en": "7 o'clock"
+            },
+            {
+                "jp": "おきる okiru",
+                "en": "to wake up"
+            },
+            {
+                "jp": "まだ かっていません mada katteimasen",
+                "en": "have not bought yet"
+            },
+            {
+                "jp": "もしくは moshiku wa",
+                "en": "or (at the beginning of a sentence)"
+            },
+            {
+                "jp": "あまり だいじ じゃない amari daiji janai",
+                "en": "not very important"
+            },
+            {
+                "jp": "かいたい kaitai",
+                "en": "want to buy"
+            },
+            {
+                "jp": "けさ kesa",
+                "en": "this morning"
+            },
+            {
+                "jp": "きょうのあさ kyou no asa",
+                "en": "this morning"
+            },
+            {
+                "jp": "のはら nohara",
+                "en": "grass field"
+            },
+            {
+                "jp": "じゅうだいな juudaina",
+                "en": "serious"
+            },
+            {
+                "jp": "おかいけい は ぜんぶで です okaikei wa zenbu de desu",
+                "en": "the total bill is (amount)"
+            }
+        ],
+        "Kenty Lesson 8": [
+            {
+                "jp": "さっき sakki",
+                "en": "a little while ago"
+            },
+            {
+                "jp": "ひるねをする hirune o suru",
+                "en": "taking a nap"
+            },
+            {
+                "jp": "あまり amari",
+                "en": "not often (used with negative)"
+            },
+            {
+                "jp": "にばい nibai",
+                "en": "double"
+            },
+            {
+                "jp": "いそがしい isogashii",
+                "en": "busy"
+            },
+            {
+                "jp": "こんでいる konde iru",
+                "en": "crowded"
+            },
+            {
+                "jp": "そこは ひとが すくない です soko wa hito ga sukunai desu",
+                "en": "there are few people there"
+            },
+            {
+                "jp": "おおい ooi",
+                "en": "a lot / many"
+            },
+            {
+                "jp": "すくない sukunai",
+                "en": "few / less"
+            },
+            {
+                "jp": "いまのいえ より たかい ima no ie yori takai",
+                "en": "more expensive than my current house"
+            },
+            {
+                "jp": "ちがう chigau",
+                "en": "different / wrong"
+            },
+            {
+                "jp": "せつめいする setsumei suru",
+                "en": "to explain"
+            },
+            {
+                "jp": "まんなか mannaka",
+                "en": "middle / center"
+            },
+            {
+                "jp": "かす kasu",
+                "en": "to lend"
+            },
+            {
+                "jp": "せいりする seiri suru",
+                "en": "to organize"
+            },
+            {
+                "jp": "にかい nikai",
+                "en": "two times / twice"
+            },
+            {
+                "jp": "いっかいめ ikkaime",
+                "en": "first time"
+            },
+            {
+                "jp": "しぜん shizen",
+                "en": "nature"
+            },
+            {
+                "jp": "りゆう は ないです riyuu wa naidesu",
+                "en": "there is no reason"
+            },
+            {
+                "jp": "たぶん ちがいます tabun chigaimasu",
+                "en": "probably different / probably wrong"
+            }
+        ],
+        "Trip Priority: Speak": [
+            {
+                "jp": "すみません Sumimasen",
+                "en": "Excuse me / Sorry"
+            },
+            {
+                "jp": "お願いします Onegaishimasu",
+                "en": "Please"
+            },
+            {
+                "jp": "わかりません Wakarimasen",
+                "en": "I don't understand"
+            },
+            {
+                "jp": "もう一度お願いします Mou ichido onegaishimasu",
+                "en": "One more time please"
+            },
+            {
+                "jp": "もう少しゆっくりお願いします Mou sukoshi yukkuri onegaishimasu",
+                "en": "Please speak a little more slowly"
+            },
+            {
+                "jp": "英語は話せますか Eigo wa hanasemasu ka",
+                "en": "Do you speak English?"
+            },
+            {
+                "jp": "これは何ですか Kore wa nan desu ka",
+                "en": "What is this?"
+            },
+            {
+                "jp": "〜はどこですか ~ wa doko desu ka",
+                "en": "Where is ~?"
+            },
+            {
+                "jp": "〜をください ~ o kudasai",
+                "en": "Please give me ~"
+            },
+            {
+                "jp": "いくらですか Ikura desu ka",
+                "en": "How much is it?"
+            },
+            {
+                "jp": "カードは使えますか Kaado wa tsukaemasu ka",
+                "en": "Can I use card?"
+            },
+            {
+                "jp": "現金で払います Genkin de haraimasu",
+                "en": "I'll pay in cash"
+            },
+            {
+                "jp": "トイレはどこですか Toire wa doko desu ka",
+                "en": "Where is the toilet?"
+            },
+            {
+                "jp": "別々でお願いします Betsubetsu de onegaishimasu",
+                "en": "Separate bills please"
+            },
+            {
+                "jp": "予約しています Yoyaku shite imasu",
+                "en": "I have a reservation"
+            },
+            {
+                "jp": "チェックインしたいです Chekkuin shitai desu",
+                "en": "I'd like to check in"
+            },
+            {
+                "jp": "パスポートです Pasupooto desu",
+                "en": "Here is my passport"
+            }
+        ],
+        "Trip Priority: Hear Back": [
+            {
+                "jp": "いらっしゃいませ Irasshaimase",
+                "en": "Welcome"
+            },
+            {
+                "jp": "何名様ですか Nanmei sama desu ka",
+                "en": "How many people?"
+            },
+            {
+                "jp": "ご予約はありますか Goyoyaku wa arimasu ka",
+                "en": "Do you have a reservation?"
+            },
+            {
+                "jp": "こちらへどうぞ Kochira e douzo",
+                "en": "This way please"
+            },
+            {
+                "jp": "少々お待ちください Shoushou omachi kudasai",
+                "en": "Please wait a moment"
+            },
+            {
+                "jp": "袋は要りますか Fukuro wa irimasu ka",
+                "en": "Do you need a bag?"
+            },
+            {
+                "jp": "レシートは要りますか Reshiito wa irimasu ka",
+                "en": "Do you need the receipt?"
+            },
+            {
+                "jp": "温めますか Atatamemasu ka",
+                "en": "Shall I heat it up?"
+            },
+            {
+                "jp": "ポイントカードはありますか Pointo kaado wa arimasu ka",
+                "en": "Do you have a point card?"
+            },
+            {
+                "jp": "店内でお召し上がりですか Tennai de omeshiagari desu ka",
+                "en": "For here?"
+            },
+            {
+                "jp": "お持ち帰りですか Omochikaeri desu ka",
+                "en": "To go?"
+            },
+            {
+                "jp": "現金のみです Genkin nomi desu",
+                "en": "Cash only"
+            },
+            {
+                "jp": "〜円です ~ en desu",
+                "en": "It's ~ yen"
+            },
+            {
+                "jp": "おつりです Otsuri desu",
+                "en": "Here is your change"
+            },
+            {
+                "jp": "こちらでよろしいですか Kochira de yoroshii desu ka",
+                "en": "Is this okay?"
+            },
+            {
+                "jp": "パスポートをお願いします Pasupooto o onegaishimasu",
+                "en": "Passport please"
+            },
+            {
+                "jp": "朝食付きです Choushoku-tsuki desu",
+                "en": "Breakfast is included"
+            },
+            {
+                "jp": "禁煙です Kinen desu",
+                "en": "Non-smoking"
+            },
+            {
+                "jp": "少しお待ちください Sukoshi omachi kudasai",
+                "en": "Please wait a little"
+            },
+            {
+                "jp": "次の方どうぞ Tsugi no kata douzo",
+                "en": "Next person please"
+            }
+        ],
+        "Trip Priority: Transport": [
+            {
+                "jp": "改札 Kaisatsu",
+                "en": "Ticket gate"
+            },
+            {
+                "jp": "ホーム Hoomu",
+                "en": "Platform"
+            },
+            {
+                "jp": "何番線ですか Nanbansen desu ka",
+                "en": "Which platform is it?"
+            },
+            {
+                "jp": "乗り換え Norikae",
+                "en": "Transfer"
+            },
+            {
+                "jp": "出口 Deguchi",
+                "en": "Exit"
+            },
+            {
+                "jp": "入口 Iriguchi",
+                "en": "Entrance"
+            },
+            {
+                "jp": "切符 Kippu",
+                "en": "Ticket"
+            },
+            {
+                "jp": "ICカード IC kaado",
+                "en": "IC card"
+            },
+            {
+                "jp": "チャージ Chaaji",
+                "en": "Top up / recharge"
+            },
+            {
+                "jp": "各駅 Kakueki",
+                "en": "Local train"
+            },
+            {
+                "jp": "急行 Kyuukou",
+                "en": "Express train"
+            },
+            {
+                "jp": "特急 Tokkyuu",
+                "en": "Limited express"
+            },
+            {
+                "jp": "遅れています Okurete imasu",
+                "en": "It is delayed"
+            },
+            {
+                "jp": "運休です Unkyuu desu",
+                "en": "It is cancelled"
+            },
+            {
+                "jp": "まもなく電車がまいります Mamonaku densha ga mairimasu",
+                "en": "The train will arrive shortly"
+            },
+            {
+                "jp": "この電車は〜に行きますか Kono densha wa ~ ni ikimasu ka",
+                "en": "Does this train go to ~?"
+            },
+            {
+                "jp": "〜までお願いします ~ made onegaishimasu",
+                "en": "To ~ please"
+            },
+            {
+                "jp": "ここで降ります Koko de orimasu",
+                "en": "I get off here"
+            },
+            {
+                "jp": "迷いました Mayoimashita",
+                "en": "I got lost"
+            },
+            {
+                "jp": "地図を見せてください Chizu o misete kudasai",
+                "en": "Please show me the map"
+            }
+        ],
+        "Trip Priority: Food And Stores": [
+            {
+                "jp": "これをください Kore o kudasai",
+                "en": "This one please"
+            },
+            {
+                "jp": "おすすめは何ですか Osusume wa nan desu ka",
+                "en": "What do you recommend?"
+            },
+            {
+                "jp": "これは何ですか Kore wa nan desu ka",
+                "en": "What is this?"
+            },
+            {
+                "jp": "お会計お願いします Okaikei onegaishimasu",
+                "en": "The bill please"
+            },
+            {
+                "jp": "持ち帰りで Mochikaeri de",
+                "en": "To go / takeaway"
+            },
+            {
+                "jp": "店内で Tennai de",
+                "en": "For here"
+            },
+            {
+                "jp": "袋は大丈夫です Fukuro wa daijoubu desu",
+                "en": "I don't need a bag"
+            },
+            {
+                "jp": "ポイントカードは持っていません Pointo kaado wa motte imasen",
+                "en": "I don't have a point card"
+            },
+            {
+                "jp": "レシートは大丈夫です Reshiito wa daijoubu desu",
+                "en": "I don't need the receipt"
+            },
+            {
+                "jp": "温めてください Atatamete kudasai",
+                "en": "Please heat it up"
+            },
+            {
+                "jp": "水をください Mizu o kudasai",
+                "en": "Water please"
+            },
+            {
+                "jp": "お水 Omizu",
+                "en": "Water"
+            },
+            {
+                "jp": "辛いですか Karai desu ka",
+                "en": "Is it spicy?"
+            },
+            {
+                "jp": "辛いのは苦手です Karai no wa nigate desu",
+                "en": "I'm not good with spicy food"
+            },
+            {
+                "jp": "アレルギーがあります Arerugii ga arimasu",
+                "en": "I have an allergy"
+            },
+            {
+                "jp": "現金 Genkin",
+                "en": "Cash"
+            },
+            {
+                "jp": "おつり Otsuri",
+                "en": "Change"
+            },
+            {
+                "jp": "売り切れ Urikire",
+                "en": "Sold out"
+            },
+            {
+                "jp": "大丈夫です Daijoubu desu",
+                "en": "It's fine / No thank you"
+            }
+        ],
+        "Grammar Patterns": [
+            {
+                "jp": "AじからBじまで (activity) をします A-ji kara B-ji made (activity) o shimasu",
+                "en": "I do (activity) from A o'clock to B. [time range + を]"
+            },
+            {
+                "jp": "(activity) をしたことがあります (activity) o shita koto ga arimasu",
+                "en": "I have done (activity) before. [experience: たことがある]"
+            },
+            {
+                "jp": "これも (A) の (thing) です kore mo (A) no (thing) desu",
+                "en": "This is also a (thing) by / from (A). [も + possessive の]"
+            },
+            {
+                "jp": "(thing) がどこにでもあります (thing) ga dokonidemo arimasu",
+                "en": "(thing) is everywhere. [どこにでも pattern]"
+            },
+            {
+                "jp": "(place) にすんでいます (place) ni sunde imasu",
+                "en": "I live in (place). [住んでいます]"
+            },
+            {
+                "jp": "どのくらい (place) にすんでいますか？ dono kurai (place) ni sunde imasu ka?",
+                "en": "How long have you been living in (place)? [どのくらい + ている question]"
+            },
+            {
+                "jp": "(place) のちゅうしんいがいはゆっくりしています (place) no chuushin igai wa yukkuri shite imasu",
+                "en": "It's relaxed everywhere except the center of (place). [以外 = except]"
+            },
+            {
+                "jp": "(A) と (B) はにています (A) to (B) wa nite imasu",
+                "en": "(A) and (B) are similar. [似ている comparison]"
+            },
+            {
+                "jp": "よく (place) にいきますか？ yoku (place) ni ikimasu ka?",
+                "en": "Do you go to (place) often? [よく + frequency question]"
+            },
+            {
+                "jp": "(A) のほうが (B) より (thing) がおおいです (A) no hou ga (B) yori (thing) ga ooi desu",
+                "en": "(A) has more (thing) than (B). [AのほうがBより comparison]"
+            },
+            {
+                "jp": "(A) のほうが (B) よりにんきです (A) no hou ga (B) yori ninki desu",
+                "en": "(A) is more popular than (B). [popularity comparison]"
+            },
+            {
+                "jp": "(period) (place) にいった (period) (place) ni itta",
+                "en": "I went to / was in (place) for (period). [duration + destination past]"
+            },
+            {
+                "jp": "(place) にひっこします (place) ni hikkoshimasu",
+                "en": "I am moving to (place). [引っ越す]"
+            },
+            {
+                "jp": "(thing) がたのしみです (thing) ga tanoshimi desu",
+                "en": "I am looking forward to (thing). [楽しみです]"
+            },
+            {
+                "jp": "(thing) をうえにのせる (thing) o ue ni noseru",
+                "en": "Put (thing) on top. [上に乗せる placement]"
+            },
+            {
+                "jp": "(person) といっしょに (place) にいく (person) to isshoni (place) ni iku",
+                "en": "Go to (place) together with (person). [一緒に]"
+            },
+            {
+                "jp": "(place) の (thing) はきたないです (place) no (thing) wa kitanai desu",
+                "en": "The (thing) in (place) is dirty/unclean. [descriptive noun phrase]"
+            }
+        ],
+        "Yojijukugo 四字熟語": [
+            {
+                "jp": "鏡花水月 Kyoka suigetsu",
+                "en": "Beauty you can perceive but never grasp; the ephemeral and inexpressible."
+            },
+            {
+                "jp": "一期一会 Ichigo ichie",
+                "en": "A once-in-a-lifetime encounter; treasure the moment because it will never happen in exactly the same way again."
+            },
+            {
+                "jp": "花鳥風月 Kachofugetsu",
+                "en": "Flowers, birds, wind, and moon; savoring nature and the seasons."
+            },
+            {
+                "jp": "以心伝心 Ishin denshin",
+                "en": "Heart-to-heart understanding without words."
+            },
+            {
+                "jp": "明鏡止水 Meikyo shisui",
+                "en": "A clear mirror and still water; a calm, undisturbed mind."
+            },
+            {
+                "jp": "温故知新 Onko chishin",
+                "en": "Review the old and discover the new."
+            },
+            {
+                "jp": "行雲流水 Koun ryusui",
+                "en": "Clouds and flowing water; living naturally, without clinging."
+            },
+            {
+                "jp": "百花繚乱 Hyakka ryoran",
+                "en": "A hundred flowers in bloom; brilliant variety and many standout talents."
+            },
+            {
+                "jp": "和魂漢才 Wakon kansai",
+                "en": "Learn from abroad while keeping a Japanese soul."
+            },
+            {
+                "jp": "桜梅桃李 Oubai touri",
+                "en": "Cherry, plum, peach, and apricot; each person blooms in their own way."
+            }
+        ],
+        "Kanji 01 Core Signs": [
+            {
+                "jp": "日",
+                "en": "(Nichi/Hi) Day/Sun"
+            },
+            {
+                "jp": "月",
+                "en": "(Getsu/Tsuki) Month/Moon"
+            },
+            {
+                "jp": "火",
+                "en": "(Ka/Hi) Fire"
+            },
+            {
+                "jp": "水",
+                "en": "(Sui/Mizu) Water"
+            },
+            {
+                "jp": "木",
+                "en": "(Moku/Ki) Tree/Wood"
+            },
+            {
+                "jp": "金",
+                "en": "(Kin/Kane) Money/Gold"
+            },
+            {
+                "jp": "土",
+                "en": "(Do/Tsuchi) Earth/Soil"
+            },
+            {
+                "jp": "年",
+                "en": "(Nen) Year"
+            },
+            {
+                "jp": "時",
+                "en": "(Ji) Time/Hour"
+            },
+            {
+                "jp": "分",
+                "en": "(Fun/Bun) Minute/Part"
+            },
+            {
+                "jp": "半",
+                "en": "(Han) Half"
+            },
+            {
+                "jp": "今",
+                "en": "(Ima/Kon) Now"
+            },
+            {
+                "jp": "前",
+                "en": "(Mae/Zen) Before/Front"
+            },
+            {
+                "jp": "後",
+                "en": "(Ato/Go) After/Back"
+            },
+            {
+                "jp": "上",
+                "en": "(Ue/Jou) Up/Above"
+            },
+            {
+                "jp": "下",
+                "en": "(Shita/Ka) Down/Below"
+            },
+            {
+                "jp": "左",
+                "en": "(Hidari) Left"
+            },
+            {
+                "jp": "右",
+                "en": "(Migi) Right"
+            },
+            {
+                "jp": "中",
+                "en": "(Naka/Chuu) Inside/Middle"
+            },
+            {
+                "jp": "外",
+                "en": "(Soto/Gai) Outside"
+            }
+        ],
+        "Kanji 02 Navigation": [
+            {
+                "jp": "内",
+                "en": "(Uchi/Nai) Inside"
+            },
+            {
+                "jp": "東",
+                "en": "(Higashi/Tou) East"
+            },
+            {
+                "jp": "西",
+                "en": "(Nishi/Sei) West"
+            },
+            {
+                "jp": "南",
+                "en": "(Minami/Nan) South"
+            },
+            {
+                "jp": "北",
+                "en": "(Kita/Hoku) North"
+            },
+            {
+                "jp": "入",
+                "en": "(Iri/Nyuu) Enter"
+            },
+            {
+                "jp": "出",
+                "en": "(De/Shutsu) Exit"
+            },
+            {
+                "jp": "口",
+                "en": "(Kuchi/Kou) Mouth/Entrance"
+            },
+            {
+                "jp": "行",
+                "en": "(Iku/Kou) Go"
+            },
+            {
+                "jp": "来",
+                "en": "(Kuru/Rai) Come"
+            },
+            {
+                "jp": "見",
+                "en": "(Miru/Ken) See"
+            },
+            {
+                "jp": "聞",
+                "en": "(Kiku/Bun) Hear/Ask"
+            },
+            {
+                "jp": "話",
+                "en": "(Hanashi/Wa) Talk"
+            },
+            {
+                "jp": "言",
+                "en": "(Iu/Gen) Say"
+            },
+            {
+                "jp": "読",
+                "en": "(Yomu/Doku) Read"
+            },
+            {
+                "jp": "書",
+                "en": "(Kaku/Sho) Write"
+            },
+            {
+                "jp": "止",
+                "en": "(Tomeru/Shi) Stop"
+            },
+            {
+                "jp": "禁",
+                "en": "(Kin) Prohibited"
+            },
+            {
+                "jp": "開",
+                "en": "(Akeru/Kai) Open"
+            },
+            {
+                "jp": "閉",
+                "en": "(Shimeru/Hei) Closed"
+            }
+        ],
+        "Kanji 03 Transit & People": [
+            {
+                "jp": "通",
+                "en": "(Tooru/Tsuu) Through/Route"
+            },
+            {
+                "jp": "急",
+                "en": "(Isogu/Kyuu) Hurry/Express"
+            },
+            {
+                "jp": "乗",
+                "en": "(Noru/Jou) Ride/Board"
+            },
+            {
+                "jp": "降",
+                "en": "(Oru/Kou) Get off/Descend"
+            },
+            {
+                "jp": "発",
+                "en": "(Hatsu) Depart"
+            },
+            {
+                "jp": "着",
+                "en": "(Chaku) Arrive"
+            },
+            {
+                "jp": "人",
+                "en": "(Hito/Jin) Person"
+            },
+            {
+                "jp": "男",
+                "en": "(Otoko/Dan) Man"
+            },
+            {
+                "jp": "女",
+                "en": "(Onna/Jo) Woman"
+            },
+            {
+                "jp": "名",
+                "en": "(Na/Mei) Name"
+            },
+            {
+                "jp": "本",
+                "en": "(Hon) Book/Main"
+            },
+            {
+                "jp": "語",
+                "en": "(Go) Language/Word"
+            },
+            {
+                "jp": "英",
+                "en": "(Ei) English"
+            },
+            {
+                "jp": "国",
+                "en": "(Kuni/Koku) Country"
+            },
+            {
+                "jp": "学",
+                "en": "(Manabu/Gaku) Study"
+            },
+            {
+                "jp": "生",
+                "en": "(Sei/Ikiru) Life/Student"
+            },
+            {
+                "jp": "駅",
+                "en": "(Eki) Station"
+            },
+            {
+                "jp": "電",
+                "en": "(Den) Electric"
+            },
+            {
+                "jp": "車",
+                "en": "(Kuruma/Sha) Vehicle/Train"
+            },
+            {
+                "jp": "道",
+                "en": "(Michi/Dou) Road/Way"
+            }
+        ],
+        "Kanji 04 Food & Drinks": [
+            {
+                "jp": "線",
+                "en": "(Sen) Line"
+            },
+            {
+                "jp": "空",
+                "en": "(Sora/Kuu) Sky/Empty"
+            },
+            {
+                "jp": "港",
+                "en": "(Minato/Kou) Harbor/Airport"
+            },
+            {
+                "jp": "旅",
+                "en": "(Tabi/Ryo) Travel"
+            },
+            {
+                "jp": "宿",
+                "en": "(Yado/Shuku) Inn/Lodging"
+            },
+            {
+                "jp": "予",
+                "en": "(Yo) In advance"
+            },
+            {
+                "jp": "約",
+                "en": "(Yaku) Reservation/Promise"
+            },
+            {
+                "jp": "休",
+                "en": "(Yasu/Kyuu) Rest/Closed"
+            },
+            {
+                "jp": "買",
+                "en": "(Kau) Buy"
+            },
+            {
+                "jp": "売",
+                "en": "(Uru/Bai) Sell"
+            },
+            {
+                "jp": "店",
+                "en": "(Mise/Ten) Shop"
+            },
+            {
+                "jp": "円",
+                "en": "(En) Yen/Circle"
+            },
+            {
+                "jp": "百",
+                "en": "(Hyaku) Hundred"
+            },
+            {
+                "jp": "千",
+                "en": "(Sen) Thousand"
+            },
+            {
+                "jp": "万",
+                "en": "(Man) Ten thousand"
+            },
+            {
+                "jp": "安",
+                "en": "(Yasu/An) Cheap/Safe"
+            },
+            {
+                "jp": "高",
+                "en": "(Takai/Kou) Expensive/High"
+            },
+            {
+                "jp": "新",
+                "en": "(Atarashii/Shin) New"
+            },
+            {
+                "jp": "食",
+                "en": "(Taberu/Shoku) Eat/Food"
+            },
+            {
+                "jp": "飲",
+                "en": "(Nomu/In) Drink"
+            }
+        ],
+        "Kanji 05 Shopping & Weather": [
+            {
+                "jp": "茶",
+                "en": "(Cha) Tea"
+            },
+            {
+                "jp": "米",
+                "en": "(Kome/Bei) Rice"
+            },
+            {
+                "jp": "肉",
+                "en": "(Niku) Meat"
+            },
+            {
+                "jp": "魚",
+                "en": "(Sakana/Gyo) Fish"
+            },
+            {
+                "jp": "牛",
+                "en": "(Ushi/Gyuu) Beef/Cow"
+            },
+            {
+                "jp": "豚",
+                "en": "(Buta/Ton) Pork/Pig"
+            },
+            {
+                "jp": "鳥",
+                "en": "(Tori/Chou) Bird/Chicken"
+            },
+            {
+                "jp": "卵",
+                "en": "(Tamago/Ran) Egg"
+            },
+            {
+                "jp": "麺",
+                "en": "(Men) Noodles"
+            },
+            {
+                "jp": "飯",
+                "en": "(Meshi/Han) Rice/Meal"
+            },
+            {
+                "jp": "味",
+                "en": "(Aji) Taste"
+            },
+            {
+                "jp": "甘",
+                "en": "(Amai/Kan) Sweet"
+            },
+            {
+                "jp": "辛",
+                "en": "(Karai/Shin) Spicy"
+            },
+            {
+                "jp": "塩",
+                "en": "(Shio/En) Salt"
+            },
+            {
+                "jp": "酒",
+                "en": "(Sake/Shu) Alcohol"
+            },
+            {
+                "jp": "湯",
+                "en": "(Yu) Hot water"
+            },
+            {
+                "jp": "山",
+                "en": "(Yama/San) Mountain"
+            },
+            {
+                "jp": "天",
+                "en": "(Ten) Sky/Heaven"
+            },
+            {
+                "jp": "気",
+                "en": "(Ki) Spirit/Air"
+            },
+            {
+                "jp": "雨",
+                "en": "(Ame/U) Rain"
+            }
+        ]
+    }
+}

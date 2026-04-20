@@ -1158,108 +1158,6 @@
                 "en": "How many"
             }
         ],
-        "Kanji": [
-            {
-                "jp": "入",
-                "en": "(Iri) Enter"
-            },
-            {
-                "jp": "出",
-                "en": "(De) Exit"
-            },
-            {
-                "jp": "男",
-                "en": "(Otoko) Man"
-            },
-            {
-                "jp": "女",
-                "en": "(Onna) Woman"
-            },
-            {
-                "jp": "北",
-                "en": "(Kita) North"
-            },
-            {
-                "jp": "南",
-                "en": "(Minami) South"
-            },
-            {
-                "jp": "東",
-                "en": "(Higashi) East"
-            },
-            {
-                "jp": "西",
-                "en": "(Nishi) West"
-            },
-            {
-                "jp": "水",
-                "en": "(Mizu) Water"
-            },
-            {
-                "jp": "肉",
-                "en": "(Niku) Meat"
-            },
-            {
-                "jp": "魚",
-                "en": "(Sakana) Fish"
-            },
-            {
-                "jp": "酒",
-                "en": "(Sake) Alcohol"
-            },
-            {
-                "jp": "食",
-                "en": "(Tabe) Food"
-            },
-            {
-                "jp": "大",
-                "en": "(Dai) Big"
-            },
-            {
-                "jp": "小",
-                "en": "(Sho) Small"
-            },
-            {
-                "jp": "円",
-                "en": "(En) Yen"
-            },
-            {
-                "jp": "日",
-                "en": "(Ni/Bi) Day/Sun"
-            },
-            {
-                "jp": "本",
-                "en": "(Hon) Book/Origin"
-            },
-            {
-                "jp": "店",
-                "en": "(Mise) Shop"
-            },
-            {
-                "jp": "駅",
-                "en": "(Eki) Station"
-            },
-            {
-                "jp": "月",
-                "en": "(Getsu/Tsuki) Moon/Month"
-            },
-            {
-                "jp": "火",
-                "en": "(Ka/Hi) Fire"
-            },
-            {
-                "jp": "木",
-                "en": "(Moku/Ki) Wood/Tree"
-            },
-            {
-                "jp": "金",
-                "en": "(Kin/Kane) Gold/Metal/Money"
-            },
-            {
-                "jp": "土",
-                "en": "(Do/Tsuchi) Earth/Soil"
-            }
-        ],
         "Travel Essentials": [
             {
                 "jp": "ありがとうございます Arigatou gozaimasu",
@@ -5378,6 +5276,416 @@
             {
                 "jp": "桜梅桃李 Oubai touri",
                 "en": "Cherry, plum, peach, and apricot; each person blooms in their own way."
+            }
+        ],
+        "Kanji 01 Core Signs": [
+            {
+                "jp": "日",
+                "en": "(Nichi/Hi) Day/Sun"
+            },
+            {
+                "jp": "月",
+                "en": "(Getsu/Tsuki) Month/Moon"
+            },
+            {
+                "jp": "火",
+                "en": "(Ka/Hi) Fire"
+            },
+            {
+                "jp": "水",
+                "en": "(Sui/Mizu) Water"
+            },
+            {
+                "jp": "木",
+                "en": "(Moku/Ki) Tree/Wood"
+            },
+            {
+                "jp": "金",
+                "en": "(Kin/Kane) Money/Gold"
+            },
+            {
+                "jp": "土",
+                "en": "(Do/Tsuchi) Earth/Soil"
+            },
+            {
+                "jp": "年",
+                "en": "(Nen) Year"
+            },
+            {
+                "jp": "時",
+                "en": "(Ji) Time/Hour"
+            },
+            {
+                "jp": "分",
+                "en": "(Fun/Bun) Minute/Part"
+            },
+            {
+                "jp": "半",
+                "en": "(Han) Half"
+            },
+            {
+                "jp": "今",
+                "en": "(Ima/Kon) Now"
+            },
+            {
+                "jp": "前",
+                "en": "(Mae/Zen) Before/Front"
+            },
+            {
+                "jp": "後",
+                "en": "(Ato/Go) After/Back"
+            },
+            {
+                "jp": "上",
+                "en": "(Ue/Jou) Up/Above"
+            },
+            {
+                "jp": "下",
+                "en": "(Shita/Ka) Down/Below"
+            },
+            {
+                "jp": "左",
+                "en": "(Hidari) Left"
+            },
+            {
+                "jp": "右",
+                "en": "(Migi) Right"
+            },
+            {
+                "jp": "中",
+                "en": "(Naka/Chuu) Inside/Middle"
+            },
+            {
+                "jp": "外",
+                "en": "(Soto/Gai) Outside"
+            }
+        ],
+        "Kanji 02 Navigation": [
+            {
+                "jp": "内",
+                "en": "(Uchi/Nai) Inside"
+            },
+            {
+                "jp": "東",
+                "en": "(Higashi/Tou) East"
+            },
+            {
+                "jp": "西",
+                "en": "(Nishi/Sei) West"
+            },
+            {
+                "jp": "南",
+                "en": "(Minami/Nan) South"
+            },
+            {
+                "jp": "北",
+                "en": "(Kita/Hoku) North"
+            },
+            {
+                "jp": "入",
+                "en": "(Iri/Nyuu) Enter"
+            },
+            {
+                "jp": "出",
+                "en": "(De/Shutsu) Exit"
+            },
+            {
+                "jp": "口",
+                "en": "(Kuchi/Kou) Mouth/Entrance"
+            },
+            {
+                "jp": "行",
+                "en": "(Iku/Kou) Go"
+            },
+            {
+                "jp": "来",
+                "en": "(Kuru/Rai) Come"
+            },
+            {
+                "jp": "見",
+                "en": "(Miru/Ken) See"
+            },
+            {
+                "jp": "聞",
+                "en": "(Kiku/Bun) Hear/Ask"
+            },
+            {
+                "jp": "話",
+                "en": "(Hanashi/Wa) Talk"
+            },
+            {
+                "jp": "言",
+                "en": "(Iu/Gen) Say"
+            },
+            {
+                "jp": "読",
+                "en": "(Yomu/Doku) Read"
+            },
+            {
+                "jp": "書",
+                "en": "(Kaku/Sho) Write"
+            },
+            {
+                "jp": "止",
+                "en": "(Tomeru/Shi) Stop"
+            },
+            {
+                "jp": "禁",
+                "en": "(Kin) Prohibited"
+            },
+            {
+                "jp": "開",
+                "en": "(Akeru/Kai) Open"
+            },
+            {
+                "jp": "閉",
+                "en": "(Shimeru/Hei) Closed"
+            }
+        ],
+        "Kanji 03 Transit & People": [
+            {
+                "jp": "通",
+                "en": "(Tooru/Tsuu) Through/Route"
+            },
+            {
+                "jp": "急",
+                "en": "(Isogu/Kyuu) Hurry/Express"
+            },
+            {
+                "jp": "乗",
+                "en": "(Noru/Jou) Ride/Board"
+            },
+            {
+                "jp": "降",
+                "en": "(Oru/Kou) Get off/Descend"
+            },
+            {
+                "jp": "発",
+                "en": "(Hatsu) Depart"
+            },
+            {
+                "jp": "着",
+                "en": "(Chaku) Arrive"
+            },
+            {
+                "jp": "人",
+                "en": "(Hito/Jin) Person"
+            },
+            {
+                "jp": "男",
+                "en": "(Otoko/Dan) Man"
+            },
+            {
+                "jp": "女",
+                "en": "(Onna/Jo) Woman"
+            },
+            {
+                "jp": "名",
+                "en": "(Na/Mei) Name"
+            },
+            {
+                "jp": "本",
+                "en": "(Hon) Book/Main"
+            },
+            {
+                "jp": "語",
+                "en": "(Go) Language/Word"
+            },
+            {
+                "jp": "英",
+                "en": "(Ei) English"
+            },
+            {
+                "jp": "国",
+                "en": "(Kuni/Koku) Country"
+            },
+            {
+                "jp": "学",
+                "en": "(Manabu/Gaku) Study"
+            },
+            {
+                "jp": "生",
+                "en": "(Sei/Ikiru) Life/Student"
+            },
+            {
+                "jp": "駅",
+                "en": "(Eki) Station"
+            },
+            {
+                "jp": "電",
+                "en": "(Den) Electric"
+            },
+            {
+                "jp": "車",
+                "en": "(Kuruma/Sha) Vehicle/Train"
+            },
+            {
+                "jp": "道",
+                "en": "(Michi/Dou) Road/Way"
+            }
+        ],
+        "Kanji 04 Food & Drinks": [
+            {
+                "jp": "線",
+                "en": "(Sen) Line"
+            },
+            {
+                "jp": "空",
+                "en": "(Sora/Kuu) Sky/Empty"
+            },
+            {
+                "jp": "港",
+                "en": "(Minato/Kou) Harbor/Airport"
+            },
+            {
+                "jp": "旅",
+                "en": "(Tabi/Ryo) Travel"
+            },
+            {
+                "jp": "宿",
+                "en": "(Yado/Shuku) Inn/Lodging"
+            },
+            {
+                "jp": "予",
+                "en": "(Yo) In advance"
+            },
+            {
+                "jp": "約",
+                "en": "(Yaku) Reservation/Promise"
+            },
+            {
+                "jp": "休",
+                "en": "(Yasu/Kyuu) Rest/Closed"
+            },
+            {
+                "jp": "買",
+                "en": "(Kau) Buy"
+            },
+            {
+                "jp": "売",
+                "en": "(Uru/Bai) Sell"
+            },
+            {
+                "jp": "店",
+                "en": "(Mise/Ten) Shop"
+            },
+            {
+                "jp": "円",
+                "en": "(En) Yen/Circle"
+            },
+            {
+                "jp": "百",
+                "en": "(Hyaku) Hundred"
+            },
+            {
+                "jp": "千",
+                "en": "(Sen) Thousand"
+            },
+            {
+                "jp": "万",
+                "en": "(Man) Ten thousand"
+            },
+            {
+                "jp": "安",
+                "en": "(Yasu/An) Cheap/Safe"
+            },
+            {
+                "jp": "高",
+                "en": "(Takai/Kou) Expensive/High"
+            },
+            {
+                "jp": "新",
+                "en": "(Atarashii/Shin) New"
+            },
+            {
+                "jp": "食",
+                "en": "(Taberu/Shoku) Eat/Food"
+            },
+            {
+                "jp": "飲",
+                "en": "(Nomu/In) Drink"
+            }
+        ],
+        "Kanji 05 Shopping & Weather": [
+            {
+                "jp": "茶",
+                "en": "(Cha) Tea"
+            },
+            {
+                "jp": "米",
+                "en": "(Kome/Bei) Rice"
+            },
+            {
+                "jp": "肉",
+                "en": "(Niku) Meat"
+            },
+            {
+                "jp": "魚",
+                "en": "(Sakana/Gyo) Fish"
+            },
+            {
+                "jp": "牛",
+                "en": "(Ushi/Gyuu) Beef/Cow"
+            },
+            {
+                "jp": "豚",
+                "en": "(Buta/Ton) Pork/Pig"
+            },
+            {
+                "jp": "鳥",
+                "en": "(Tori/Chou) Bird/Chicken"
+            },
+            {
+                "jp": "卵",
+                "en": "(Tamago/Ran) Egg"
+            },
+            {
+                "jp": "麺",
+                "en": "(Men) Noodles"
+            },
+            {
+                "jp": "飯",
+                "en": "(Meshi/Han) Rice/Meal"
+            },
+            {
+                "jp": "味",
+                "en": "(Aji) Taste"
+            },
+            {
+                "jp": "甘",
+                "en": "(Amai/Kan) Sweet"
+            },
+            {
+                "jp": "辛",
+                "en": "(Karai/Shin) Spicy"
+            },
+            {
+                "jp": "塩",
+                "en": "(Shio/En) Salt"
+            },
+            {
+                "jp": "酒",
+                "en": "(Sake/Shu) Alcohol"
+            },
+            {
+                "jp": "湯",
+                "en": "(Yu) Hot water"
+            },
+            {
+                "jp": "山",
+                "en": "(Yama/San) Mountain"
+            },
+            {
+                "jp": "天",
+                "en": "(Ten) Sky/Heaven"
+            },
+            {
+                "jp": "気",
+                "en": "(Ki) Spirit/Air"
+            },
+            {
+                "jp": "雨",
+                "en": "(Ame/U) Rain"
             }
         ]
     },

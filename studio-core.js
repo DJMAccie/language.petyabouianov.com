@@ -25,6 +25,12 @@ const StudioCore = (() => {
     let activeDialogState = null;
     let confettiLoader = null;
     let tableStatusSortDirection = null;
+    let sessionModeOverride = null;
+    let sessionAnswerMatcher = null;
+    let sessionLabelOverride = null;
+    let sessionIsKanji = false;
+    let kanjiHintVisible = false;
+    let kanjiMnemonics = {};
 
     // === CONFIG (set by init) ===
     let config = {};
@@ -218,6 +224,256 @@ const StudioCore = (() => {
         trigger.setAttribute('title', `Sort status: ${nextDirection}`);
     }
 
+    function getKanjiListNames(lists) {
+        if (!config.enableKanjiCorner) return [];
+
+        const listMap = lists || {};
+        const availableNames = Object.keys(listMap);
+
+        if (Array.isArray(config.kanjiListNames) && config.kanjiListNames.length > 0) {
+            const matched = config.kanjiListNames.filter(name => availableNames.includes(name));
+            if (matched.length > 0) return matched;
+        }
+
+        const baseName = config.kanjiListName || 'Kanji';
+        const prefix = config.kanjiListPrefix || `${baseName} `;
+        return availableNames.filter(name => name === baseName || name.startsWith(prefix));
+    }
+
+    function getKanjiWords(lists) {
+        const words = [];
+        const seen = new Set();
+        const listMap = lists || {};
+
+        getKanjiListNames(listMap).forEach((name) => {
+            const list = Array.isArray(listMap[name]) ? listMap[name] : [];
+            list.forEach((word) => {
+                if (!word || !word.jp || seen.has(word.jp)) return;
+                seen.add(word.jp);
+                words.push(word);
+            });
+        });
+
+        return words;
+    }
+
+    function getNonKanjiLists(lists) {
+        const allEntries = Object.entries(lists || {});
+        if (!config.enableKanjiCorner) return allEntries;
+
+        const kanjiNameSet = new Set(getKanjiListNames(lists));
+        return allEntries.filter(([name]) => !kanjiNameSet.has(name));
+    }
+
+    function normalizeForMatch(text) {
+        if (config.normalize) return config.normalize(text || '');
+        return (text || '').toString().toLowerCase().replace(/\s+/g, '');
+    }
+
+    function collectKanjiAnswerVariants(pair) {
+        const variants = new Set();
+        const addVariant = (value) => {
+            const normalized = normalizeForMatch(value);
+            if (normalized) variants.add(normalized);
+        };
+
+        const rawMeaning = (pair?.en || '').toString().trim();
+        const match = rawMeaning.match(/^\s*\(([^)]+)\)\s*(.*)$/);
+        const readingPart = match ? match[1] : '';
+        const meaningPart = match ? (match[2] || '') : rawMeaning;
+
+        const readingTokens = readingPart
+            .split(/[\/,;]|\bor\b/i)
+            .map(token => token.trim())
+            .filter(Boolean);
+
+        readingTokens.forEach(token => {
+            addVariant(token);
+            if (window.wanakana) {
+                addVariant(window.wanakana.toHiragana(token));
+                addVariant(window.wanakana.toKatakana(token));
+            }
+        });
+
+        const meaningTokens = meaningPart
+            .split(/[\/,;]|\bor\b/i)
+            .map(token => token.trim())
+            .filter(Boolean);
+
+        addVariant(meaningPart);
+        meaningTokens.forEach(addVariant);
+
+        return Array.from(variants);
+    }
+
+    function matchesKanjiAnswer(userInput, pair) {
+        const normalizedUser = normalizeForMatch(userInput);
+        if (!normalizedUser) return false;
+
+        const variants = collectKanjiAnswerVariants(pair);
+        return variants.some(variant => variant === normalizedUser);
+    }
+
+    function normalizeKanjiMnemonicPayload(payload) {
+        const normalized = {};
+        const items = Array.isArray(payload)
+            ? payload
+            : (payload && typeof payload === 'object' ? Object.values(payload) : []);
+
+        items.forEach((item) => {
+            if (!item || typeof item !== 'object') return;
+            const jp = (item.jp || '').toString().trim();
+            if (!jp) return;
+
+            normalized[jp] = {
+                jp,
+                mnemonic: (item.mnemonic || '').toString().trim(),
+                reading_cue: (item.reading_cue || '').toString().trim(),
+                travel_context: (item.travel_context || '').toString().trim(),
+                emoji: (item.emoji || '🧠').toString().trim() || '🧠',
+                image_url: (item.image_url || '').toString().trim()
+            };
+        });
+
+        return normalized;
+    }
+
+    function emojiToCodepoint(emoji) {
+        if (!emoji) return '';
+        return Array.from(emoji)
+            .map(ch => ch.codePointAt(0).toString(16).toUpperCase())
+            .filter(code => code !== 'FE0F')
+            .join('-');
+    }
+
+    function getOpenMojiUrl(emoji) {
+        const codepoint = emojiToCodepoint(emoji);
+        if (!codepoint) return '';
+        return `https://cdn.jsdelivr.net/gh/hfg-gmuend/openmoji/color/svg/${codepoint}.svg`;
+    }
+
+    function getMnemonicEntry(pair) {
+        if (!pair?.jp) return null;
+        return kanjiMnemonics[pair.jp] || null;
+    }
+
+    function parseKanjiReadingFallback(pair) {
+        const rawMeaning = (pair?.en || '').toString().trim();
+        const match = rawMeaning.match(/^\s*\(([^)]+)\)\s*(.*)$/);
+        return match ? match[1].trim() : '';
+    }
+
+    function ensureKanjiHintElements() {
+        if (document.getElementById('kanji-hint-shell')) return;
+
+        const feedback = document.getElementById('feedback');
+        if (!feedback || !feedback.parentElement) return;
+
+        const shell = document.createElement('div');
+        shell.id = 'kanji-hint-shell';
+        shell.className = 'hidden mt-4 md:mt-6';
+        shell.innerHTML = `
+            <div class="flex justify-end">
+                <button id="kanji-hint-toggle" type="button" class="rounded-full border border-amber-300 bg-amber-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.08em] text-amber-700 hover:bg-amber-100 transition">
+                    Hint
+                </button>
+            </div>
+            <div id="kanji-hint-panel" class="hidden mt-3 rounded-xl border border-amber-200 bg-amber-50/70 p-4 text-left">
+                <div class="text-[11px] font-semibold uppercase tracking-[0.12em] text-amber-500">Mnemonic</div>
+                <p id="kanji-hint-mnemonic" class="mt-1 text-sm leading-relaxed text-gray-700"></p>
+                <div class="mt-3 grid gap-2 md:grid-cols-2">
+                    <div>
+                        <div class="text-[11px] font-semibold uppercase tracking-[0.08em] text-amber-500">Reading Cue</div>
+                        <div id="kanji-hint-reading" class="mt-1 text-sm text-gray-700"></div>
+                    </div>
+                    <div>
+                        <div class="text-[11px] font-semibold uppercase tracking-[0.08em] text-amber-500">Travel Context</div>
+                        <div id="kanji-hint-context" class="mt-1 text-sm text-gray-700"></div>
+                    </div>
+                </div>
+                <div id="kanji-hint-image-wrap" class="mt-3 flex items-center gap-3 rounded-lg border border-amber-100 bg-white px-3 py-2">
+                    <img id="kanji-hint-image" class="h-12 w-12 rounded-md object-cover" alt="Mnemonic hint image">
+                    <span id="kanji-hint-emoji" class="hidden text-3xl leading-none">🧠</span>
+                    <div class="text-xs text-gray-500">Visual anchor</div>
+                </div>
+            </div>
+        `;
+        feedback.parentElement.insertBefore(shell, feedback);
+
+        const toggleButton = document.getElementById('kanji-hint-toggle');
+        if (toggleButton) {
+            toggleButton.addEventListener('click', () => toggleKanjiHint());
+        }
+    }
+
+    function updateKanjiHintView(forceVisible = null) {
+        if (typeof forceVisible === 'boolean') {
+            kanjiHintVisible = forceVisible;
+        }
+
+        const shell = document.getElementById('kanji-hint-shell');
+        const panel = document.getElementById('kanji-hint-panel');
+        const toggle = document.getElementById('kanji-hint-toggle');
+        const mnemonicEl = document.getElementById('kanji-hint-mnemonic');
+        const readingEl = document.getElementById('kanji-hint-reading');
+        const contextEl = document.getElementById('kanji-hint-context');
+        const imageEl = document.getElementById('kanji-hint-image');
+        const emojiEl = document.getElementById('kanji-hint-emoji');
+
+        if (!shell || !panel || !toggle || !mnemonicEl || !readingEl || !contextEl || !imageEl || !emojiEl) return;
+
+        if (!sessionIsKanji) {
+            shell.classList.add('hidden');
+            panel.classList.add('hidden');
+            return;
+        }
+
+        shell.classList.remove('hidden');
+        panel.classList.toggle('hidden', !kanjiHintVisible);
+        toggle.textContent = kanjiHintVisible ? 'Hide Hint' : 'Hint';
+
+        const pair = wordList[currentIndex];
+        kanjiHintVisible = false;
+        const entry = getMnemonicEntry(pair);
+        const fallbackReading = parseKanjiReadingFallback(pair);
+
+        const mnemonicText = entry?.mnemonic || 'No mnemonic yet for this kanji.';
+        const readingText = entry?.reading_cue || (fallbackReading ? `Try saying: ${fallbackReading}` : 'No reading cue yet.');
+        const contextText = entry?.travel_context || 'You can add context in kanji_mnemonics.json.';
+        const emojiText = entry?.emoji || '🧠';
+
+        mnemonicEl.textContent = mnemonicText;
+        readingEl.textContent = readingText;
+        contextEl.textContent = contextText;
+        emojiEl.textContent = emojiText;
+
+        const imageUrl = entry?.image_url || getOpenMojiUrl(emojiText);
+        if (!imageUrl) {
+            imageEl.classList.add('hidden');
+            emojiEl.classList.remove('hidden');
+            return;
+        }
+
+        imageEl.onerror = () => {
+            imageEl.classList.add('hidden');
+            emojiEl.classList.remove('hidden');
+        };
+        imageEl.onload = () => {
+            imageEl.classList.remove('hidden');
+            emojiEl.classList.add('hidden');
+        };
+        imageEl.src = imageUrl;
+    }
+
+    function toggleKanjiHint(forceVisible = null) {
+        if (typeof forceVisible === 'boolean') {
+            kanjiHintVisible = forceVisible;
+        } else {
+            kanjiHintVisible = !kanjiHintVisible;
+        }
+        updateKanjiHintView();
+    }
+
     function toggleStatusSort() {
         tableStatusSortDirection = tableStatusSortDirection === 'desc' ? 'asc' : 'desc';
         syncStatusSortUI();
@@ -255,6 +511,7 @@ const StudioCore = (() => {
         window.startQuiz = startQuiz;
         window.startSmartReview = startSmartReview;
         window.startMixSession = startMixSession;
+        window.startKanjiCorner = startKanjiCorner;
         window.editList = editList;
         window.deleteList = deleteList;
         window.filterLists = config.filterLists || filterListsDefault;
@@ -270,6 +527,7 @@ const StudioCore = (() => {
         window.showStats = showStats;
         window.closeStats = closeStats;
         window.startNeedsWork = startNeedsWork;
+        window.toggleKanjiHint = toggleKanjiHint;
         window.toggleStatusSort = toggleStatusSort;
         window.StudioUI = {
             openDialog,
@@ -291,6 +549,7 @@ const StudioCore = (() => {
         injectMultipleChoiceOption();
         injectToolbarButtons();
         injectOverlays();
+        ensureKanjiHintElements();
         initDarkMode();
         setupKeyboardShortcuts();
         if (config.favicon) setFavicon(config.favicon);
@@ -443,11 +702,20 @@ const StudioCore = (() => {
     // =========================================================
     async function fetchLists() {
         try {
-            const [lRes, sRes, statsRes] = await Promise.all([
+            const requests = [
                 fetch(config.apiUrl + '&action=get_lists&t=' + Date.now()),
                 fetch(config.apiUrl + '&action=get_scores&t=' + Date.now()),
                 fetch(config.apiUrl + '&action=get_word_stats&t=' + Date.now())
-            ]);
+            ];
+
+            if (config.enableKanjiCorner) {
+                requests.push(
+                    fetch(config.apiUrl + '&action=get_kanji_mnemonics&t=' + Date.now())
+                        .catch(() => null)
+                );
+            }
+
+            const [lRes, sRes, statsRes, mnemonicRes] = await Promise.all(requests);
             loadedLists = await lRes.json();
             // Normalize: accept "id" key as alias for "jp" (Bahasa organized lists use "id")
             Object.keys(loadedLists).forEach(name => {
@@ -457,6 +725,9 @@ const StudioCore = (() => {
             });
             loadedScores = await sRes.json();
             wordStats = await statsRes.json();
+            kanjiMnemonics = (mnemonicRes && mnemonicRes.ok)
+                ? normalizeKanjiMnemonicPayload(await mnemonicRes.json().catch(() => ({})))
+                : {};
 
             // Keep window references in sync
             window.loadedLists = loadedLists;
@@ -480,9 +751,11 @@ const StudioCore = (() => {
         const currentMode = document.getElementById('global-quiz-mode').value;
 
         // --- SMART REVIEW ROW ---
+        const kanjiWords = getKanjiWords(lists);
+        const nonKanjiLists = getNonKanjiLists(lists);
         let allUniqueWords = [];
         let uniqueCheck = new Set();
-        Object.values(lists).forEach(l => l.forEach(w => {
+        nonKanjiLists.forEach(([, listWords]) => listWords.forEach(w => {
             if (!uniqueCheck.has(w.jp)) {
                 allUniqueWords.push(w);
                 uniqueCheck.add(w.jp);
@@ -510,6 +783,19 @@ const StudioCore = (() => {
                 <td class="p-3 text-blue-400 group-hover:text-white text-xs hidden md:table-cell">--</td>
                 <td class="p-3 hidden md:table-cell"><div class="flex items-center gap-2"><div class="w-2.5 h-2.5 rounded-full bg-blue-500 animate-pulse border border-blue-600"></div><span class="text-blue-600 group-hover:text-white text-xs font-bold uppercase">Queued</span></div></td>
                 <td class="p-3 pr-6 text-right"><button type="button" onclick="startSmartReview()" class="studio-table-start-btn" aria-label="Start smart review session">Start Session</button></td>
+            </tr>`);
+        }
+
+        if (config.enableKanjiCorner && kanjiWords.length > 0) {
+            const kanjiActiveCount = kanjiWords.filter(word => !isMastered(word)).length;
+            const queueCount = kanjiActiveCount > 0 ? kanjiActiveCount : kanjiWords.length;
+            rows.push(`
+            <tr class="border-b border-gray-100 transition cursor-default bg-amber-50/70 hover:bg-amber-500 group">
+                <td class="p-3 pl-6 font-bold text-amber-700 group-hover:text-white"><i class="fas fa-torii-gate mr-3"></i>Kanji Corner</td>
+                <td class="p-3 text-amber-700 group-hover:text-white font-medium">${queueCount} kanji</td>
+                <td class="p-3 text-amber-400 group-hover:text-white text-xs hidden md:table-cell">JP → Meaning/Reading</td>
+                <td class="p-3 hidden md:table-cell"><div class="flex items-center gap-2"><div class="w-2.5 h-2.5 rounded-full bg-amber-500 animate-pulse border border-amber-600"></div><span class="text-amber-700 group-hover:text-white text-xs font-bold uppercase">Dedicated</span></div></td>
+                <td class="p-3 pr-6 text-right"><button type="button" onclick="startKanjiCorner()" class="studio-table-start-btn" aria-label="Start kanji corner session">Start Session</button></td>
             </tr>`);
         }
 
@@ -611,7 +897,7 @@ const StudioCore = (() => {
 
         let allWords = [];
         let uniqueCheck = new Set();
-        Object.values(loadedLists).forEach(l => {
+        getNonKanjiLists(loadedLists).forEach(([, l]) => {
             l.forEach(w => {
                 if (!uniqueCheck.has(w.jp)) {
                     allWords.push(w);
@@ -637,7 +923,7 @@ const StudioCore = (() => {
         let candidates = [];
         let seen = new Set();
 
-        Object.values(loadedLists).forEach(list => {
+        getNonKanjiLists(loadedLists).forEach(([, list]) => {
             list.forEach(word => {
                 if (!seen.has(word.jp)) {
                     seen.add(word.jp);
@@ -664,6 +950,36 @@ const StudioCore = (() => {
         startSession();
     }
 
+    function startKanjiCorner() {
+        const kanjiWords = getKanjiWords(loadedLists);
+
+        if (kanjiWords.length === 0) {
+            alert("No kanji list found.");
+            return;
+        }
+
+        currentListName = "Kanji Corner";
+        isPurificationSession = false;
+
+        let candidates = kanjiWords.filter(word => !isMastered(word));
+        if (candidates.length === 0) {
+            candidates = [...kanjiWords];
+        }
+
+        candidates.forEach(word => { word.priorityScore = calculatePriority(word); });
+        candidates.sort((a, b) => b.priorityScore - a.priorityScore);
+        candidates = shuffleWithBias(candidates);
+
+        wordList = candidates.slice(0, 10);
+
+        startSession({
+            modeOverride: 'jp-en',
+            labelOverride: 'KANJI CORNER',
+            answerMatcher: matchesKanjiAnswer,
+            isKanjiSession: true
+        });
+    }
+
     function startNeedsWork() {
         closeStats();
         currentListName = "Practice Focus";
@@ -672,7 +988,7 @@ const StudioCore = (() => {
 
         const allWords = [];
         const seen = new Set();
-        Object.values(loadedLists).forEach(list => {
+        getNonKanjiLists(loadedLists).forEach(([, list]) => {
             list.forEach(w => { if (!seen.has(w.jp)) { allWords.push(w); seen.add(w.jp); } });
         });
 
@@ -708,8 +1024,13 @@ const StudioCore = (() => {
         startSession();
     }
 
-    function startSession() {
+    function startSession(options = {}) {
         currentIndex = 0; score = 0; sessionResults = [];
+        sessionModeOverride = options.modeOverride || null;
+        sessionAnswerMatcher = typeof options.answerMatcher === 'function' ? options.answerMatcher : null;
+        sessionLabelOverride = options.labelOverride || null;
+        sessionIsKanji = !!options.isKanjiSession;
+        kanjiHintVisible = false;
         showSection('quiz');
         showCard();
     }
@@ -723,7 +1044,7 @@ const StudioCore = (() => {
         document.getElementById('progress-bar').style.width = pct + "%";
         document.getElementById('current-count-text').innerText = `${currentIndex + 1} / ${wordList.length}`;
 
-        let mode = document.getElementById('global-quiz-mode').value;
+        let mode = sessionModeOverride || document.getElementById('global-quiz-mode').value;
         const heartsContainer = document.getElementById('hearts-container');
         const textInput = document.getElementById('text-input-container');
         const speechControls = document.getElementById('speech-controls');
@@ -814,7 +1135,7 @@ const StudioCore = (() => {
             document.getElementById('speech-status').innerText = config.speechPrompt || "Click mic to speak";
             if (config.updateMicState) config.updateMicState('idle');
         } else {
-            document.getElementById('quiz-mode-label').innerText = "Translating";
+            document.getElementById('quiz-mode-label').innerText = sessionLabelOverride || "Translating";
             document.getElementById('quiz-mode-label').classList.remove('text-red-500');
             heartsContainer.classList.add('hidden');
             textInput.classList.remove('hidden');
@@ -834,6 +1155,7 @@ const StudioCore = (() => {
         if (mode !== 'speech' && mode !== 'choice') input.focus();
 
         document.getElementById('feedback').style.opacity = '0';
+        updateKanjiHintView(false);
         isProcessing = false;
     }
 
@@ -854,7 +1176,7 @@ const StudioCore = (() => {
         if (isProcessing) return;
         isProcessing = true;
 
-        let mode = document.getElementById('global-quiz-mode').value;
+        let mode = sessionModeOverride || document.getElementById('global-quiz-mode').value;
         if (isPurificationSession) mode = 'en-jp';
 
         const pair = wordList[currentIndex];
@@ -863,7 +1185,9 @@ const StudioCore = (() => {
 
         // Delegate matching to language-specific logic
         let match = false;
-        if (config.checkAnswerMatch) {
+        if (sessionAnswerMatcher) {
+            match = sessionAnswerMatcher(user, pair, mode);
+        } else if (config.checkAnswerMatch) {
             match = config.checkAnswerMatch(user, correct, mode, pair);
         } else {
             // Fallback: simple normalized containment
@@ -903,6 +1227,9 @@ const StudioCore = (() => {
             fb.appendChild(errorSpan);
 
             document.getElementById('answer-input').classList.add('border-red-500');
+            if (sessionIsKanji) {
+                toggleKanjiHint(true);
+            }
 
             if (isPurificationSession) {
                 gauntletLives--;
@@ -955,7 +1282,7 @@ const StudioCore = (() => {
     async function finishQuiz() {
         const pct = Math.round((score / wordList.length) * 100);
         document.getElementById('progress-bar').style.width = "100%";
-        const mode = document.getElementById('global-quiz-mode').value;
+        const mode = sessionModeOverride || document.getElementById('global-quiz-mode').value;
 
         try {
             await Promise.all([

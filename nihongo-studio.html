@@ -318,6 +318,8 @@
     <script>
         let isKanaMode = true;
         let wanakanaBound = false;
+        const GRAMMAR_LIST_NAME = 'Grammar Patterns';
+        let isSavingGrammarEntry = false;
 
         function toggleKanaIME() {
             const input = document.getElementById('answer-input');
@@ -391,7 +393,7 @@
 
         function getGrammarRows() {
             const loadedLists = window._studio?.getLoadedLists?.() || {};
-            return loadedLists['Grammar Patterns'] || [];
+            return loadedLists[GRAMMAR_LIST_NAME] || [];
         }
 
         function parseGrammarPoint(meaning) {
@@ -403,16 +405,109 @@
             return (meaning || '').replace(/\s*\[[^\]]+\]\s*$/, '').trim();
         }
 
+        function grammarRowKey(item) {
+            return `${(item?.jp || '').trim().toLowerCase()}|${(item?.en || '').trim().toLowerCase()}`;
+        }
+
+        async function saveGrammarEntry(event) {
+            if (event) event.preventDefault();
+            if (isSavingGrammarEntry) return;
+
+            const grammarPointInput = document.getElementById('grammar-point-input');
+            const patternInput = document.getElementById('grammar-pattern-input');
+            const explanationInput = document.getElementById('grammar-explanation-input');
+
+            const grammarPoint = grammarPointInput?.value.trim() || '';
+            const pattern = patternInput?.value.trim() || '';
+            const explanation = explanationInput?.value.trim() || '';
+
+            if (!grammarPoint || !pattern || !explanation) {
+                window.showToast?.('Fill in grammar point, pattern, and explanation.', 'warning');
+                return;
+            }
+
+            const entry = {
+                jp: pattern,
+                en: `${explanation} [${grammarPoint}]`
+            };
+
+            const rows = getGrammarRows();
+            const nextKey = grammarRowKey(entry);
+            const hasDuplicate = rows.some((item) => grammarRowKey(item) === nextKey);
+            if (hasDuplicate) {
+                window.showToast?.('That grammar entry already exists.', 'warning');
+                return;
+            }
+
+            const saveButton = document.getElementById('grammar-save-btn');
+            try {
+                isSavingGrammarEntry = true;
+                if (saveButton) {
+                    saveButton.disabled = true;
+                    saveButton.setAttribute('aria-busy', 'true');
+                    saveButton.textContent = 'Saving...';
+                }
+
+                const response = await fetch('studio_api.php?lang=nihongo&action=save_list', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        name: GRAMMAR_LIST_NAME,
+                        words: [...rows, entry]
+                    })
+                });
+
+                const payload = await response.json().catch(() => ({}));
+                if (!response.ok || payload.error) {
+                    throw new Error(payload.error || 'Failed to save grammar entry.');
+                }
+
+                await StudioCore.fetchLists();
+                renderGrammarCorner();
+                window.showToast?.('Grammar entry added.', 'success');
+            } catch (error) {
+                window.showToast?.(error.message || 'Failed to save grammar entry.', 'error');
+            } finally {
+                isSavingGrammarEntry = false;
+                if (saveButton) {
+                    saveButton.disabled = false;
+                    saveButton.removeAttribute('aria-busy');
+                    saveButton.textContent = 'Add Entry';
+                }
+            }
+        }
+
         function renderGrammarCorner() {
             const results = document.getElementById('grammar-corner-results');
             const rows = getGrammarRows();
 
-            if (!rows.length) {
-                results.innerHTML = '<p class="text-gray-400 text-center py-8">No grammar points found yet.</p>';
-                return;
-            }
-
             results.innerHTML = `
+                <div class="mb-5 rounded-xl border border-gray-200 bg-gray-50 px-4 py-4">
+                    <div class="text-xs font-semibold tracking-[0.12em] text-gray-400">Add Grammar Entry</div>
+                    <form class="mt-3 grid gap-3 md:grid-cols-2" onsubmit="saveGrammarEntry(event)">
+                        <div class="md:col-span-1">
+                            <label for="grammar-point-input" class="mb-1 block text-[11px] font-semibold tracking-[0.06em] text-gray-500">Grammar Point</label>
+                            <input id="grammar-point-input" type="text" maxlength="80" placeholder="e.g. たことがある"
+                                class="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-700 focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400/30">
+                        </div>
+                        <div class="md:col-span-1">
+                            <label for="grammar-pattern-input" class="mb-1 block text-[11px] font-semibold tracking-[0.06em] text-gray-500">Japanese Pattern</label>
+                            <input id="grammar-pattern-input" type="text" maxlength="220" placeholder="Pattern in Japanese / romaji"
+                                class="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-700 focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400/30">
+                        </div>
+                        <div class="md:col-span-2">
+                            <label for="grammar-explanation-input" class="mb-1 block text-[11px] font-semibold tracking-[0.06em] text-gray-500">Explanation</label>
+                            <textarea id="grammar-explanation-input" rows="2" maxlength="260" placeholder="Meaning or usage note"
+                                class="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-700 focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400/30 resize-none"></textarea>
+                        </div>
+                        <div class="md:col-span-2 flex justify-end">
+                            <button id="grammar-save-btn" type="submit"
+                                class="rounded-lg bg-blue-500 px-4 py-2 text-sm font-semibold text-white transition hover:bg-blue-600">
+                                Add Entry
+                            </button>
+                        </div>
+                    </form>
+                </div>
                 <div class="mb-4 flex items-end justify-between gap-4 border-b border-gray-200 pb-3">
                     <div>
                         <div class="text-xs font-semibold tracking-[0.12em] text-gray-400">Grammar Points</div>
@@ -420,7 +515,7 @@
                     <div class="text-xs text-gray-400">${rows.length} entries</div>
                 </div>
                 <div class="border-t border-gray-200">
-                    ${rows.map((item) => {
+                    ${rows.length ? rows.map((item) => {
                         const jp = item.jp || '';
                         const en = item.en || '';
                         const grammarPoint = parseGrammarPoint(en);
@@ -436,7 +531,7 @@
                                 </div>
                             </div>
                         `;
-                    }).join('')}
+                    }).join('') : '<p class="py-8 text-center text-gray-400">No grammar points found yet.</p>'}
                 </div>
             `;
         }
@@ -444,7 +539,7 @@
         function openGrammarCorner() {
             renderGrammarCorner();
             window.StudioUI?.openDialog(document.getElementById('grammar-corner-modal'), {
-                initialFocusSelector: '.studio-overlay-close-btn',
+                initialFocusSelector: '#grammar-point-input',
                 labelId: 'grammar-corner-title'
             });
         }
@@ -498,6 +593,7 @@
         window.closeDictionary = closeDictionary;
         window.lookupWord = lookupWord;
         window.handleSearchKeyup = handleSearchKeyup;
+        window.saveGrammarEntry = saveGrammarEntry;
         window.openGrammarCorner = openGrammarCorner;
         window.closeGrammarCorner = closeGrammarCorner;
     </script>

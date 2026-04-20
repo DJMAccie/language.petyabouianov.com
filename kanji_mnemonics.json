@@ -1,0 +1,713 @@
+{
+    "nihongo": {
+        "安": {
+            "jp": "安",
+            "mnemonic": "Treat 安 as your visual anchor for \"cheap\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Yasu/An.",
+            "travel_context": "Common on price tags, receipts, and shopping signs.",
+            "emoji": "🏷️",
+            "image_url": "https://cdn.jsdelivr.net/gh/hfg-gmuend/openmoji/color/svg/1F3F7.svg"
+        },
+        "飲": {
+            "jp": "飲",
+            "mnemonic": "Picture lifting a cup: this marks drinks and drinking.",
+            "reading_cue": "Read it as Nomu/In.",
+            "travel_context": "Common on restaurant menus, vending machine labels, and food tickets.",
+            "emoji": "🍵"
+        },
+        "右": {
+            "jp": "右",
+            "mnemonic": "Treat 右 as your visual anchor for \"right\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Migi.",
+            "travel_context": "Common on directional and safety signs in stations and public buildings.",
+            "emoji": "↘️"
+        },
+        "雨": {
+            "jp": "雨",
+            "mnemonic": "Treat 雨 as your visual anchor for \"rain\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Ame/U.",
+            "travel_context": "Common in weather forecasts, hazard notices, and sightseeing maps.",
+            "emoji": "🌧️"
+        },
+        "英": {
+            "jp": "英",
+            "mnemonic": "Treat 英 as your visual anchor for \"english\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Ei.",
+            "travel_context": "Common on multilingual notices and passenger information signs.",
+            "emoji": "👤"
+        },
+        "駅": {
+            "jp": "駅",
+            "mnemonic": "Anchor this as the station kanji you scan for on every platform sign.",
+            "reading_cue": "Read it as Eki.",
+            "travel_context": "Common on station boards, platform signs, and train displays.",
+            "emoji": "🚆"
+        },
+        "円": {
+            "jp": "円",
+            "mnemonic": "Think of the circle on a price tag: yen amounts everywhere.",
+            "reading_cue": "Read it as En.",
+            "travel_context": "Common on price tags, receipts, and shopping signs.",
+            "emoji": "💴"
+        },
+        "塩": {
+            "jp": "塩",
+            "mnemonic": "Treat 塩 as your visual anchor for \"salt\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Shio/En.",
+            "travel_context": "Common on restaurant menus, vending machine labels, and food tickets.",
+            "emoji": "🍜"
+        },
+        "下": {
+            "jp": "下",
+            "mnemonic": "Treat 下 as your visual anchor for \"down\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Shita/Ka.",
+            "travel_context": "Common on directional and safety signs in stations and public buildings.",
+            "emoji": "⬇️"
+        },
+        "火": {
+            "jp": "火",
+            "mnemonic": "Treat 火 as your visual anchor for \"fire\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Ka/Hi.",
+            "travel_context": "Common in weather forecasts, hazard notices, and sightseeing maps.",
+            "emoji": "🔥"
+        },
+        "開": {
+            "jp": "開",
+            "mnemonic": "Treat 開 as your visual anchor for \"open\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Akeru/Kai.",
+            "travel_context": "Common on directional and safety signs in stations and public buildings.",
+            "emoji": "🟢"
+        },
+        "外": {
+            "jp": "外",
+            "mnemonic": "Treat 外 as your visual anchor for \"outside\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Soto/Gai.",
+            "travel_context": "Common on directional and safety signs in stations and public buildings.",
+            "emoji": "🚪"
+        },
+        "学": {
+            "jp": "学",
+            "mnemonic": "Treat 学 as your visual anchor for \"study\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Manabu/Gaku.",
+            "travel_context": "Common on multilingual notices and passenger information signs.",
+            "emoji": "👤",
+            "image_url": "https://cdn.jsdelivr.net/gh/hfg-gmuend/openmoji/color/svg/1F464.svg"
+        },
+        "甘": {
+            "jp": "甘",
+            "mnemonic": "Treat 甘 as your visual anchor for \"sweet\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Amai/Kan.",
+            "travel_context": "Common on restaurant menus, vending machine labels, and food tickets.",
+            "emoji": "🍜"
+        },
+        "気": {
+            "jp": "気",
+            "mnemonic": "Treat 気 as your visual anchor for \"spirit\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Ki.",
+            "travel_context": "Common on everyday travel signs across stations, shops, and menus.",
+            "emoji": "🌤️"
+        },
+        "休": {
+            "jp": "休",
+            "mnemonic": "A person leaning on a tree = rest day or closed notice.",
+            "reading_cue": "Read it as Yasu/Kyuu.",
+            "travel_context": "Common on directional and safety signs in stations and public buildings.",
+            "emoji": "🛑"
+        },
+        "急": {
+            "jp": "急",
+            "mnemonic": "See this as urgency: express service or hurry notices.",
+            "reading_cue": "Read it as Isogu/Kyuu.",
+            "travel_context": "Common on station boards, platform signs, and train displays.",
+            "emoji": "⚡"
+        },
+        "牛": {
+            "jp": "牛",
+            "mnemonic": "Treat 牛 as your visual anchor for \"beef\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Ushi/Gyuu.",
+            "travel_context": "Common on restaurant menus, vending machine labels, and food tickets.",
+            "emoji": "🍜"
+        },
+        "魚": {
+            "jp": "魚",
+            "mnemonic": "Treat 魚 as your visual anchor for \"fish\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Sakana/Gyo.",
+            "travel_context": "Common on restaurant menus, vending machine labels, and food tickets.",
+            "emoji": "🍜"
+        },
+        "禁": {
+            "jp": "禁",
+            "mnemonic": "Treat this as a strict warning marker: prohibited or forbidden.",
+            "reading_cue": "Read it as Kin.",
+            "travel_context": "Common on directional and safety signs in stations and public buildings.",
+            "emoji": "🛑"
+        },
+        "金": {
+            "jp": "金",
+            "mnemonic": "Treat 金 as your visual anchor for \"money\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Kin/Kane.",
+            "travel_context": "Common on price tags, receipts, and shopping signs.",
+            "emoji": "💴"
+        },
+        "空": {
+            "jp": "空",
+            "mnemonic": "Treat 空 as your visual anchor for \"sky\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Sora/Kuu.",
+            "travel_context": "Common in weather forecasts, hazard notices, and sightseeing maps.",
+            "emoji": "🌤️"
+        },
+        "月": {
+            "jp": "月",
+            "mnemonic": "Treat 月 as your visual anchor for \"month\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Getsu/Tsuki.",
+            "travel_context": "Common on timetables, schedules, and operating-hour signs.",
+            "emoji": "🌙"
+        },
+        "見": {
+            "jp": "見",
+            "mnemonic": "Treat 見 as your visual anchor for \"see\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Miru/Ken.",
+            "travel_context": "Common on everyday travel signs across stations, shops, and menus.",
+            "emoji": "🧠"
+        },
+        "言": {
+            "jp": "言",
+            "mnemonic": "Treat 言 as your visual anchor for \"say\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Iu/Gen.",
+            "travel_context": "Common on everyday travel signs across stations, shops, and menus.",
+            "emoji": "🧠",
+            "image_url": "https://cdn.jsdelivr.net/gh/hfg-gmuend/openmoji/color/svg/1F9E0.svg"
+        },
+        "後": {
+            "jp": "後",
+            "mnemonic": "Treat 後 as your visual anchor for \"after\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Ato/Go.",
+            "travel_context": "Common on directional and safety signs in stations and public buildings.",
+            "emoji": "➡️"
+        },
+        "語": {
+            "jp": "語",
+            "mnemonic": "Treat 語 as your visual anchor for \"language\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Go.",
+            "travel_context": "Common on multilingual notices and passenger information signs.",
+            "emoji": "👤"
+        },
+        "口": {
+            "jp": "口",
+            "mnemonic": "Looks like a small opening; treat it as mouth or entrance on signs.",
+            "reading_cue": "Read it as Kuchi/Kou.",
+            "travel_context": "Common on directional and safety signs in stations and public buildings.",
+            "emoji": "🚪"
+        },
+        "港": {
+            "jp": "港",
+            "mnemonic": "Treat 港 as your visual anchor for \"harbor\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Minato/Kou.",
+            "travel_context": "Common in airports, hotel notices, and travel service counters.",
+            "emoji": "🧳"
+        },
+        "行": {
+            "jp": "行",
+            "mnemonic": "Treat 行 as your visual anchor for \"go\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Iku/Kou.",
+            "travel_context": "Common on everyday travel signs across stations, shops, and menus.",
+            "emoji": "🛣️"
+        },
+        "降": {
+            "jp": "降",
+            "mnemonic": "Treat 降 as your visual anchor for \"get off\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Oru/Kou.",
+            "travel_context": "Common on everyday travel signs across stations, shops, and menus.",
+            "emoji": "🧠"
+        },
+        "高": {
+            "jp": "高",
+            "mnemonic": "Treat 高 as your visual anchor for \"expensive\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Takai/Kou.",
+            "travel_context": "Common on price tags, receipts, and shopping signs.",
+            "emoji": "💸"
+        },
+        "国": {
+            "jp": "国",
+            "mnemonic": "Treat 国 as your visual anchor for \"country\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Kuni/Koku.",
+            "travel_context": "Common on multilingual notices and passenger information signs.",
+            "emoji": "👤"
+        },
+        "今": {
+            "jp": "今",
+            "mnemonic": "Treat 今 as your visual anchor for \"now\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Ima/Kon.",
+            "travel_context": "Common on timetables, schedules, and operating-hour signs.",
+            "emoji": "⏰"
+        },
+        "左": {
+            "jp": "左",
+            "mnemonic": "Treat 左 as your visual anchor for \"left\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Hidari.",
+            "travel_context": "Common on directional and safety signs in stations and public buildings.",
+            "emoji": "↙️"
+        },
+        "山": {
+            "jp": "山",
+            "mnemonic": "Treat 山 as your visual anchor for \"mountain\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Yama/San.",
+            "travel_context": "Common in weather forecasts, hazard notices, and sightseeing maps.",
+            "emoji": "⛰️"
+        },
+        "止": {
+            "jp": "止",
+            "mnemonic": "Treat 止 as your visual anchor for \"stop\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Tomeru/Shi.",
+            "travel_context": "Common on directional and safety signs in stations and public buildings.",
+            "emoji": "🛑",
+            "image_url": "https://cdn.jsdelivr.net/gh/hfg-gmuend/openmoji/color/svg/1F6D1.svg"
+        },
+        "時": {
+            "jp": "時",
+            "mnemonic": "Treat 時 as your visual anchor for \"time\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Ji.",
+            "travel_context": "Common on timetables, schedules, and operating-hour signs.",
+            "emoji": "⏰"
+        },
+        "車": {
+            "jp": "車",
+            "mnemonic": "Imagine a rolling wheel: vehicles, cars, and train cars.",
+            "reading_cue": "Read it as Kuruma/Sha.",
+            "travel_context": "Common on station boards, platform signs, and train displays.",
+            "emoji": "🚆"
+        },
+        "酒": {
+            "jp": "酒",
+            "mnemonic": "Treat 酒 as your visual anchor for \"alcohol\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Sake/Shu.",
+            "travel_context": "Common on restaurant menus, vending machine labels, and food tickets.",
+            "emoji": "🍵"
+        },
+        "宿": {
+            "jp": "宿",
+            "mnemonic": "Treat 宿 as your visual anchor for \"inn\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Yado/Shuku.",
+            "travel_context": "Common in airports, hotel notices, and travel service counters.",
+            "emoji": "🧳"
+        },
+        "出": {
+            "jp": "出",
+            "mnemonic": "Picture feet stepping out of the gate: that motion is exiting.",
+            "reading_cue": "Read it as De/Shutsu.",
+            "travel_context": "Common on directional and safety signs in stations and public buildings.",
+            "emoji": "🚶"
+        },
+        "書": {
+            "jp": "書",
+            "mnemonic": "Treat 書 as your visual anchor for \"write\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Kaku/Sho.",
+            "travel_context": "Common on everyday travel signs across stations, shops, and menus.",
+            "emoji": "🧠"
+        },
+        "女": {
+            "jp": "女",
+            "mnemonic": "Treat 女 as your visual anchor for \"woman\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Onna/Jo.",
+            "travel_context": "Common on multilingual notices and passenger information signs.",
+            "emoji": "👤"
+        },
+        "上": {
+            "jp": "上",
+            "mnemonic": "Treat 上 as your visual anchor for \"up\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Ue/Jou.",
+            "travel_context": "Common on directional and safety signs in stations and public buildings.",
+            "emoji": "⬆️"
+        },
+        "乗": {
+            "jp": "乗",
+            "mnemonic": "Treat 乗 as your visual anchor for \"ride\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Noru/Jou.",
+            "travel_context": "Common on station boards, platform signs, and train displays.",
+            "emoji": "🚆"
+        },
+        "食": {
+            "jp": "食",
+            "mnemonic": "Think of a tray and chopsticks: this marks food and eating.",
+            "reading_cue": "Read it as Taberu/Shoku.",
+            "travel_context": "Common on restaurant menus, vending machine labels, and food tickets.",
+            "emoji": "🍜"
+        },
+        "新": {
+            "jp": "新",
+            "mnemonic": "Treat 新 as your visual anchor for \"new\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Atarashii/Shin.",
+            "travel_context": "Common on price tags, receipts, and shopping signs.",
+            "emoji": "✨"
+        },
+        "辛": {
+            "jp": "辛",
+            "mnemonic": "Treat 辛 as your visual anchor for \"spicy\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Karai/Shin.",
+            "travel_context": "Common on restaurant menus, vending machine labels, and food tickets.",
+            "emoji": "🍜",
+            "image_url": "https://cdn.jsdelivr.net/gh/hfg-gmuend/openmoji/color/svg/1F35C.svg"
+        },
+        "人": {
+            "jp": "人",
+            "mnemonic": "Treat 人 as your visual anchor for \"person\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Hito/Jin.",
+            "travel_context": "Common on multilingual notices and passenger information signs.",
+            "emoji": "👤"
+        },
+        "水": {
+            "jp": "水",
+            "mnemonic": "Treat 水 as your visual anchor for \"water\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Sui/Mizu.",
+            "travel_context": "Common on restaurant menus, vending machine labels, and food tickets.",
+            "emoji": "💧"
+        },
+        "生": {
+            "jp": "生",
+            "mnemonic": "Treat 生 as your visual anchor for \"life\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Sei/Ikiru.",
+            "travel_context": "Common on multilingual notices and passenger information signs.",
+            "emoji": "👤"
+        },
+        "西": {
+            "jp": "西",
+            "mnemonic": "Treat 西 as your visual anchor for \"west\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Nishi/Sei.",
+            "travel_context": "Common on directional and safety signs in stations and public buildings.",
+            "emoji": "🧭"
+        },
+        "千": {
+            "jp": "千",
+            "mnemonic": "Treat 千 as your visual anchor for \"thousand\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Sen.",
+            "travel_context": "Common on price tags, receipts, and shopping signs.",
+            "emoji": "🔢"
+        },
+        "線": {
+            "jp": "線",
+            "mnemonic": "Treat 線 as your visual anchor for \"line\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Sen.",
+            "travel_context": "Common on station boards, platform signs, and train displays.",
+            "emoji": "🛣️"
+        },
+        "前": {
+            "jp": "前",
+            "mnemonic": "Treat 前 as your visual anchor for \"before\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Mae/Zen.",
+            "travel_context": "Common on directional and safety signs in stations and public buildings.",
+            "emoji": "⬅️"
+        },
+        "男": {
+            "jp": "男",
+            "mnemonic": "Treat 男 as your visual anchor for \"man\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Otoko/Dan.",
+            "travel_context": "Common on multilingual notices and passenger information signs.",
+            "emoji": "👤"
+        },
+        "茶": {
+            "jp": "茶",
+            "mnemonic": "Treat 茶 as your visual anchor for \"tea\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Cha.",
+            "travel_context": "Common on restaurant menus, vending machine labels, and food tickets.",
+            "emoji": "🍵"
+        },
+        "着": {
+            "jp": "着",
+            "mnemonic": "This marks arrival on train and airport displays.",
+            "reading_cue": "Read it as Chaku.",
+            "travel_context": "Common on station boards, platform signs, and train displays.",
+            "emoji": "🚆"
+        },
+        "中": {
+            "jp": "中",
+            "mnemonic": "Treat 中 as your visual anchor for \"inside\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Naka/Chuu.",
+            "travel_context": "Common on directional and safety signs in stations and public buildings.",
+            "emoji": "📍"
+        },
+        "鳥": {
+            "jp": "鳥",
+            "mnemonic": "Treat 鳥 as your visual anchor for \"bird\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Tori/Chou.",
+            "travel_context": "Common on restaurant menus, vending machine labels, and food tickets.",
+            "emoji": "🍜",
+            "image_url": "https://cdn.jsdelivr.net/gh/hfg-gmuend/openmoji/color/svg/1F35C.svg"
+        },
+        "通": {
+            "jp": "通",
+            "mnemonic": "Treat 通 as your visual anchor for \"through\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Tooru/Tsuu.",
+            "travel_context": "Common on station boards, platform signs, and train displays.",
+            "emoji": "🛣️"
+        },
+        "天": {
+            "jp": "天",
+            "mnemonic": "Treat 天 as your visual anchor for \"sky\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Ten.",
+            "travel_context": "Common in weather forecasts, hazard notices, and sightseeing maps.",
+            "emoji": "🌤️"
+        },
+        "店": {
+            "jp": "店",
+            "mnemonic": "Think of a storefront curtain; this marks a shop.",
+            "reading_cue": "Read it as Mise/Ten.",
+            "travel_context": "Common on price tags, receipts, and shopping signs.",
+            "emoji": "🛍️"
+        },
+        "電": {
+            "jp": "電",
+            "mnemonic": "Think electric lines powering trains and city transit systems.",
+            "reading_cue": "Read it as Den.",
+            "travel_context": "Common on station boards, platform signs, and train displays.",
+            "emoji": "🚆"
+        },
+        "土": {
+            "jp": "土",
+            "mnemonic": "Treat 土 as your visual anchor for \"earth\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Do/Tsuchi.",
+            "travel_context": "Common in weather forecasts, hazard notices, and sightseeing maps.",
+            "emoji": "🟫"
+        },
+        "東": {
+            "jp": "東",
+            "mnemonic": "Treat 東 as your visual anchor for \"east\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Higashi/Tou.",
+            "travel_context": "Common on directional and safety signs in stations and public buildings.",
+            "emoji": "🧭"
+        },
+        "湯": {
+            "jp": "湯",
+            "mnemonic": "Treat 湯 as your visual anchor for \"hot water\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Yu.",
+            "travel_context": "Common on restaurant menus, vending machine labels, and food tickets.",
+            "emoji": "💧"
+        },
+        "道": {
+            "jp": "道",
+            "mnemonic": "Treat 道 as your visual anchor for \"road\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Michi/Dou.",
+            "travel_context": "Common on everyday travel signs across stations, shops, and menus.",
+            "emoji": "🛣️"
+        },
+        "読": {
+            "jp": "読",
+            "mnemonic": "Treat 読 as your visual anchor for \"read\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Yomu/Doku.",
+            "travel_context": "Common on everyday travel signs across stations, shops, and menus.",
+            "emoji": "🧠"
+        },
+        "豚": {
+            "jp": "豚",
+            "mnemonic": "Treat 豚 as your visual anchor for \"pork\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Buta/Ton.",
+            "travel_context": "Common on restaurant menus, vending machine labels, and food tickets.",
+            "emoji": "🍜"
+        },
+        "内": {
+            "jp": "内",
+            "mnemonic": "Treat 内 as your visual anchor for \"inside\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Uchi/Nai.",
+            "travel_context": "Common on directional and safety signs in stations and public buildings.",
+            "emoji": "📍"
+        },
+        "南": {
+            "jp": "南",
+            "mnemonic": "Treat 南 as your visual anchor for \"south\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Minami/Nan.",
+            "travel_context": "Common on directional and safety signs in stations and public buildings.",
+            "emoji": "🧭",
+            "image_url": "https://cdn.jsdelivr.net/gh/hfg-gmuend/openmoji/color/svg/1F9ED.svg"
+        },
+        "肉": {
+            "jp": "肉",
+            "mnemonic": "Treat 肉 as your visual anchor for \"meat\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Niku.",
+            "travel_context": "Common on restaurant menus, vending machine labels, and food tickets.",
+            "emoji": "🍜"
+        },
+        "日": {
+            "jp": "日",
+            "mnemonic": "Treat 日 as your visual anchor for \"day\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Nichi/Hi.",
+            "travel_context": "Common on timetables, schedules, and operating-hour signs.",
+            "emoji": "☀️"
+        },
+        "入": {
+            "jp": "入",
+            "mnemonic": "Picture a person stepping into a narrow gate: that motion is entering.",
+            "reading_cue": "Read it as Iri/Nyuu.",
+            "travel_context": "Common on directional and safety signs in stations and public buildings.",
+            "emoji": "🚪"
+        },
+        "年": {
+            "jp": "年",
+            "mnemonic": "Treat 年 as your visual anchor for \"year\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Nen.",
+            "travel_context": "Common on timetables, schedules, and operating-hour signs.",
+            "emoji": "🗓️"
+        },
+        "買": {
+            "jp": "買",
+            "mnemonic": "Treat 買 as your visual anchor for \"buy\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Kau.",
+            "travel_context": "Common on price tags, receipts, and shopping signs.",
+            "emoji": "🛍️"
+        },
+        "売": {
+            "jp": "売",
+            "mnemonic": "Treat 売 as your visual anchor for \"sell\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Uru/Bai.",
+            "travel_context": "Common on price tags, receipts, and shopping signs.",
+            "emoji": "🛍️"
+        },
+        "発": {
+            "jp": "発",
+            "mnemonic": "This marks departure on boards and schedules.",
+            "reading_cue": "Read it as Hatsu.",
+            "travel_context": "Common on station boards, platform signs, and train displays.",
+            "emoji": "🚆"
+        },
+        "半": {
+            "jp": "半",
+            "mnemonic": "Treat 半 as your visual anchor for \"half\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Han.",
+            "travel_context": "Common on timetables, schedules, and operating-hour signs.",
+            "emoji": "⏰"
+        },
+        "飯": {
+            "jp": "飯",
+            "mnemonic": "Treat 飯 as your visual anchor for \"rice\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Meshi/Han.",
+            "travel_context": "Common on restaurant menus, vending machine labels, and food tickets.",
+            "emoji": "🍜"
+        },
+        "百": {
+            "jp": "百",
+            "mnemonic": "Treat 百 as your visual anchor for \"hundred\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Hyaku.",
+            "travel_context": "Common on price tags, receipts, and shopping signs.",
+            "emoji": "🔢"
+        },
+        "分": {
+            "jp": "分",
+            "mnemonic": "Treat 分 as your visual anchor for \"minute\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Fun/Bun.",
+            "travel_context": "Common on timetables, schedules, and operating-hour signs.",
+            "emoji": "⏰"
+        },
+        "聞": {
+            "jp": "聞",
+            "mnemonic": "Treat 聞 as your visual anchor for \"hear\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Kiku/Bun.",
+            "travel_context": "Common on everyday travel signs across stations, shops, and menus.",
+            "emoji": "🧠",
+            "image_url": "https://cdn.jsdelivr.net/gh/hfg-gmuend/openmoji/color/svg/1F9E0.svg"
+        },
+        "閉": {
+            "jp": "閉",
+            "mnemonic": "Treat 閉 as your visual anchor for \"closed\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Shimeru/Hei.",
+            "travel_context": "Common on directional and safety signs in stations and public buildings.",
+            "emoji": "🛑"
+        },
+        "米": {
+            "jp": "米",
+            "mnemonic": "Treat 米 as your visual anchor for \"rice\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Kome/Bei.",
+            "travel_context": "Common on restaurant menus, vending machine labels, and food tickets.",
+            "emoji": "🍜"
+        },
+        "北": {
+            "jp": "北",
+            "mnemonic": "Treat 北 as your visual anchor for \"north\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Kita/Hoku.",
+            "travel_context": "Common on directional and safety signs in stations and public buildings.",
+            "emoji": "🧭"
+        },
+        "本": {
+            "jp": "本",
+            "mnemonic": "Treat 本 as your visual anchor for \"book\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Hon.",
+            "travel_context": "Common on everyday travel signs across stations, shops, and menus.",
+            "emoji": "🧠"
+        },
+        "万": {
+            "jp": "万",
+            "mnemonic": "Treat 万 as your visual anchor for \"ten thousand\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Man.",
+            "travel_context": "Common on price tags, receipts, and shopping signs.",
+            "emoji": "🔢"
+        },
+        "味": {
+            "jp": "味",
+            "mnemonic": "Treat 味 as your visual anchor for \"taste\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Aji.",
+            "travel_context": "Common on restaurant menus, vending machine labels, and food tickets.",
+            "emoji": "🍜"
+        },
+        "名": {
+            "jp": "名",
+            "mnemonic": "Treat 名 as your visual anchor for \"name\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Na/Mei.",
+            "travel_context": "Common on multilingual notices and passenger information signs.",
+            "emoji": "👤"
+        },
+        "麺": {
+            "jp": "麺",
+            "mnemonic": "Treat 麺 as your visual anchor for \"noodles\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Men.",
+            "travel_context": "Common on restaurant menus, vending machine labels, and food tickets.",
+            "emoji": "🍜"
+        },
+        "木": {
+            "jp": "木",
+            "mnemonic": "Treat 木 as your visual anchor for \"tree\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Moku/Ki.",
+            "travel_context": "Common on everyday travel signs across stations, shops, and menus.",
+            "emoji": "🌳"
+        },
+        "約": {
+            "jp": "約",
+            "mnemonic": "Treat 約 as your visual anchor for \"reservation\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Yaku.",
+            "travel_context": "Common in airports, hotel notices, and travel service counters.",
+            "emoji": "🧳"
+        },
+        "予": {
+            "jp": "予",
+            "mnemonic": "Treat 予 as your visual anchor for \"in advance\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Yo.",
+            "travel_context": "Common on everyday travel signs across stations, shops, and menus.",
+            "emoji": "🧠"
+        },
+        "来": {
+            "jp": "来",
+            "mnemonic": "Treat 来 as your visual anchor for \"come\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Kuru/Rai.",
+            "travel_context": "Common on everyday travel signs across stations, shops, and menus.",
+            "emoji": "🧠",
+            "image_url": "https://cdn.jsdelivr.net/gh/hfg-gmuend/openmoji/color/svg/1F9E0.svg"
+        },
+        "卵": {
+            "jp": "卵",
+            "mnemonic": "Treat 卵 as your visual anchor for \"egg\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Tamago/Ran.",
+            "travel_context": "Common on restaurant menus, vending machine labels, and food tickets.",
+            "emoji": "🍜"
+        },
+        "旅": {
+            "jp": "旅",
+            "mnemonic": "Treat 旅 as your visual anchor for \"travel\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Tabi/Ryo.",
+            "travel_context": "Common in airports, hotel notices, and travel service counters.",
+            "emoji": "🧳"
+        },
+        "話": {
+            "jp": "話",
+            "mnemonic": "Treat 話 as your visual anchor for \"talk\" when scanning Japanese signs.",
+            "reading_cue": "Read it as Hanashi/Wa.",
+            "travel_context": "Common on everyday travel signs across stations, shops, and menus.",
+            "emoji": "🧠"
+        }
+    }
+}

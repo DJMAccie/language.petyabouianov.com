@@ -77,30 +77,74 @@ function ensureLangKeys(array $langs, array $source): array
     return $normalized;
 }
 
+function loadLocalKanjiMnemonics(string $path): array
+{
+    if (!file_exists($path)) {
+        return [];
+    }
+
+    $decoded = json_decode((string) file_get_contents($path), true);
+    if (!is_array($decoded)) {
+        return [];
+    }
+
+    $nihongo = $decoded['nihongo'] ?? [];
+    return is_array($nihongo) ? $nihongo : [];
+}
+
+function isValidKanjiMnemonicPayload(array $payload): bool
+{
+    if (isset($payload['error'])) {
+        return false;
+    }
+
+    if (count($payload) < 20) {
+        return false;
+    }
+
+    foreach ($payload as $entry) {
+        if (!is_array($entry)) {
+            return false;
+        }
+        foreach (['jp', 'mnemonic', 'reading_cue', 'travel_context', 'emoji'] as $field) {
+            if (!isset($entry[$field]) || trim((string) $entry[$field]) === '') {
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
+
 $listsByLang = [];
 $scoresByLang = [];
 $statsByLang = [];
+$kanjiMnemonics = [];
 
 foreach ($langs as $lang) {
     $listsByLang[$lang] = fetchRemoteJson($baseUrl, 'get_lists', $lang, $timeoutSeconds);
     $scoresByLang[$lang] = fetchRemoteJson($baseUrl, 'get_scores', $lang, $timeoutSeconds);
     $statsByLang[$lang] = fetchRemoteJson($baseUrl, 'get_word_stats', $lang, $timeoutSeconds);
 }
+$kanjiMnemonics = fetchRemoteJson($baseUrl, 'get_kanji_mnemonics', 'nihongo', $timeoutSeconds);
+if (!isValidKanjiMnemonicPayload($kanjiMnemonics)) {
+    $kanjiMnemonics = loadLocalKanjiMnemonics($repoRoot . '/kanji_mnemonics.json');
+}
 
-$globalLists = [
-    'nihongo' => $listsByLang['nihongo'],
-    'bahasa' => $listsByLang['bahasa'],
-    'italia' => $listsByLang['italia'],
-];
-
+$nihongoLists = ['nihongo' => $listsByLang['nihongo']];
+$bahasaLists = ['bahasa' => $listsByLang['bahasa']];
+$italiaLists = ['italia' => $listsByLang['italia']];
 $nederlandsLists = ['nederlands' => $listsByLang['nederlands']];
 $saschaLists = ['sascha' => $listsByLang['sascha']];
 $globalScores = ensureLangKeys($langs, $scoresByLang);
 $globalWordStats = ensureLangKeys($langs, $statsByLang);
 
-writeJson($repoRoot . '/global_lists.json', $globalLists);
+writeJson($repoRoot . '/nihongo_lists.json', $nihongoLists);
+writeJson($repoRoot . '/bahasa_lists.json', $bahasaLists);
+writeJson($repoRoot . '/italia_lists.json', $italiaLists);
 writeJson($repoRoot . '/nederlands_lists.json', $nederlandsLists);
 writeJson($repoRoot . '/sascha_lists.json', $saschaLists);
+writeJson($repoRoot . '/kanji_mnemonics.json', ['nihongo' => $kanjiMnemonics]);
 writeJson($repoRoot . '/global_scores.json', $globalScores);
 writeJson($repoRoot . '/global_word_stats.json', $globalWordStats);
 

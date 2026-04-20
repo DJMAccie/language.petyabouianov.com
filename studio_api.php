@@ -39,10 +39,11 @@ $data = is_array($data) ? $data : [];
 $client_password = $data['password'] ?? '';
 
 // --- ROUTING CONFIG ---
+$legacyGlobalListsFile = __DIR__ . '/global_lists.json';
 $listsFilesByLang = [
-    'nihongo' => __DIR__ . '/global_lists.json',
-    'bahasa' => __DIR__ . '/global_lists.json',
-    'italia' => __DIR__ . '/global_lists.json',
+    'nihongo' => __DIR__ . '/nihongo_lists.json',
+    'bahasa' => __DIR__ . '/bahasa_lists.json',
+    'italia' => __DIR__ . '/italia_lists.json',
     'nederlands' => __DIR__ . '/nederlands_lists.json',
     'sascha' => __DIR__ . '/sascha_lists.json',
 ];
@@ -50,6 +51,7 @@ $allowedLangs = array_keys($listsFilesByLang);
 $listsFile = $listsFilesByLang[$lang] ?? null;
 $scoresFile = __DIR__ . '/global_scores.json';
 $statsFile = __DIR__ . '/global_word_stats.json';
+$kanjiMnemonicsFile = __DIR__ . '/kanji_mnemonics.json';
 
 // --- HELPER FUNCTIONS ---
 
@@ -141,6 +143,50 @@ function normalizeWordEntry($item) {
     ];
 }
 
+function normalizeMnemonicEntry($item, $fallbackJp = '') {
+    if (!is_array($item)) return null;
+
+    $jp = trim((string) ($item['jp'] ?? $fallbackJp));
+    if ($jp === '') return null;
+
+    $mnemonic = trim((string) ($item['mnemonic'] ?? ''));
+    $readingCue = trim((string) ($item['reading_cue'] ?? ''));
+    $travelContext = trim((string) ($item['travel_context'] ?? ''));
+    $emoji = trim((string) ($item['emoji'] ?? '🧠'));
+    $imageUrl = trim((string) ($item['image_url'] ?? ''));
+
+    if ($mnemonic === '') $mnemonic = 'Use this kanji as a travel sign anchor.';
+    if ($readingCue === '') $readingCue = 'No reading cue yet.';
+    if ($travelContext === '') $travelContext = 'General travel context.';
+    if ($emoji === '') $emoji = '🧠';
+    if ($imageUrl !== '' && !preg_match('/^https?:\\/\\//i', $imageUrl)) {
+        $imageUrl = '';
+    }
+
+    return [
+        'jp' => function_exists('mb_substr') ? mb_substr($jp, 0, 16) : substr($jp, 0, 16),
+        'mnemonic' => function_exists('mb_substr') ? mb_substr($mnemonic, 0, 300) : substr($mnemonic, 0, 300),
+        'reading_cue' => function_exists('mb_substr') ? mb_substr($readingCue, 0, 200) : substr($readingCue, 0, 200),
+        'travel_context' => function_exists('mb_substr') ? mb_substr($travelContext, 0, 220) : substr($travelContext, 0, 220),
+        'emoji' => function_exists('mb_substr') ? mb_substr($emoji, 0, 16) : substr($emoji, 0, 16),
+        'image_url' => $imageUrl,
+    ];
+}
+
+function normalizeMnemonicPayload($rawPayload) {
+    if (!is_array($rawPayload)) return [];
+
+    $normalized = [];
+    foreach ($rawPayload as $key => $value) {
+        $fallbackJp = is_string($key) ? $key : '';
+        $entry = normalizeMnemonicEntry($value, $fallbackJp);
+        if (!$entry) continue;
+        $normalized[$entry['jp']] = $entry;
+    }
+
+    return $normalized;
+}
+
 function hasMeaningfulRuntimeData($value) {
     if (is_array($value)) {
         foreach ($value as $item) {
@@ -219,6 +265,31 @@ function migrateBundledRuntimeSnapshot($targets) {
     }
 }
 
+function seedLangListsFromLegacyGlobal($lang, $targetPath, $legacyGlobalPath) {
+    if (!shouldSeedRuntimeFile($targetPath)) {
+        return;
+    }
+
+    if (!file_exists($legacyGlobalPath)) {
+        return;
+    }
+
+    $legacy = json_decode(safeRead($legacyGlobalPath), true);
+    if (!is_array($legacy)) {
+        return;
+    }
+
+    $legacyLists = $legacy[$lang] ?? null;
+    if (!is_array($legacyLists) || !hasMeaningfulRuntimeData($legacyLists)) {
+        return;
+    }
+
+    @file_put_contents(
+        $targetPath,
+        json_encode([$lang => $legacyLists], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE)
+    );
+}
+
 if (!in_array($lang, $allowedLangs, true) || !$listsFile) {
     outputJSON(["error" => "Invalid language"], 400);
 }
@@ -231,9 +302,12 @@ foreach ($allowedLangs as $allowedLang) {
 }
 
 $defaultFileContents = [
-    __DIR__ . '/global_lists.json' => ['nihongo' => [], 'bahasa' => [], 'italia' => []],
+    __DIR__ . '/nihongo_lists.json' => ['nihongo' => []],
+    __DIR__ . '/bahasa_lists.json' => ['bahasa' => []],
+    __DIR__ . '/italia_lists.json' => ['italia' => []],
     __DIR__ . '/nederlands_lists.json' => ['nederlands' => []],
     __DIR__ . '/sascha_lists.json' => ['sascha' => []],
+    $kanjiMnemonicsFile => ['nihongo' => []],
     $scoresFile => $defaultBuckets,
     $statsFile => $defaultBuckets,
 ];
@@ -243,6 +317,8 @@ foreach ($defaultFileContents as $path => $defaults) {
         file_put_contents($path, json_encode($defaults, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
     }
 }
+
+seedLangListsFromLegacyGlobal($lang, $listsFile, $legacyGlobalListsFile);
 
 
 // --- MAIN LOGIC ---
@@ -261,6 +337,12 @@ switch ($action) {
     case 'get_word_stats':
         $data = json_decode(safeRead($statsFile), true) ?? [];
         outputJSON($data[$lang] ?? []);
+        break;
+
+    case 'get_kanji_mnemonics':
+        $mnemonicData = json_decode(safeRead($kanjiMnemonicsFile), true) ?? [];
+        $langPayload = $mnemonicData[$lang] ?? [];
+        outputJSON(normalizeMnemonicPayload($langPayload));
         break;
 
     case 'save_list':
