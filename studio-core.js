@@ -1100,14 +1100,12 @@ const StudioCore = (() => {
             const totalCount = uniqueWords.length;
             const dueCount = uniqueWords.filter(word => !isMastered(word)).length;
             const masteredCount = Math.max(0, totalCount - dueCount);
-            const masteryPercent = totalCount > 0 ? Math.round((masteredCount / totalCount) * 100) : 0;
             const packNumber = getKanjiPackNumber(name);
             return {
                 name,
                 dueCount,
                 totalCount,
                 masteredCount,
-                masteryPercent,
                 packNumber,
                 categoryLabel: getKanjiCategoryLabel(name)
             };
@@ -1120,34 +1118,26 @@ const StudioCore = (() => {
             const groupTotal = packs.reduce((sum, pack) => sum + pack.totalCount, 0);
             const groupSummary = `${groupDue} due · ${groupTotal} cards`;
 
-            const rows = packs.map((pack, rowIndex) => {
+            const rows = packs.map((pack) => {
                 const packLabel = pack.packNumber !== null
                     ? `Pack ${String(pack.packNumber).padStart(2, '0')}`
                     : 'Kanji Pack';
                 return `
-                    <label class="kanji-picker-row" style="--stagger:${rowIndex + 1};">
-                        <span class="kanji-picker-check-wrap">
-                            <input
-                                type="checkbox"
-                                class="kanji-picker-checkbox"
-                                value="${escapeAttr(pack.name)}"
-                                data-category-index="${groupIndex}"
-                                data-due="${pack.dueCount}"
-                                data-total="${pack.totalCount}"
-                                ${selectedSet.has(pack.name) ? 'checked' : ''}
-                            >
-                        </span>
+                    <label class="kanji-picker-row ${pack.dueCount === 0 ? 'is-mastered' : ''}">
+                        <input
+                            type="checkbox"
+                            class="kanji-picker-checkbox"
+                            value="${escapeAttr(pack.name)}"
+                            data-category-index="${groupIndex}"
+                            data-due="${pack.dueCount}"
+                            data-total="${pack.totalCount}"
+                            ${selectedSet.has(pack.name) ? 'checked' : ''}
+                        >
                         <span class="kanji-picker-main">
                             <span class="kanji-picker-title" title="${escapeAttr(pack.name)}">${escapeHTML(pack.name)}</span>
-                            <span class="kanji-picker-sub">${packLabel}</span>
-                            <span class="kanji-picker-meter" aria-hidden="true">
-                                <span style="width:${pack.masteryPercent}%"></span>
-                            </span>
+                            <span class="kanji-picker-sub">${packLabel} · ${pack.masteredCount}/${pack.totalCount} mastered</span>
                         </span>
-                        <span class="kanji-picker-meta">
-                            <span class="kanji-picker-chip ${pack.dueCount === 0 ? 'is-quiet' : ''}">${pack.dueCount} due</span>
-                            <span class="kanji-picker-chip is-soft">${pack.masteredCount}/${pack.totalCount} mastered</span>
-                        </span>
+                        <span class="kanji-picker-meta ${pack.dueCount === 0 ? 'is-quiet' : ''}">${pack.dueCount} due</span>
                     </label>
                 `;
             }).join('');
@@ -1159,7 +1149,7 @@ const StudioCore = (() => {
                             <div class="kanji-picker-group-title">${escapeHTML(group.label)}</div>
                             <div class="kanji-picker-group-meta">${groupSummary}</div>
                         </div>
-                        <button type="button" class="kanji-picker-group-action" data-category-index="${groupIndex}">Toggle Category</button>
+                        <button type="button" class="kanji-picker-group-action" data-category-index="${groupIndex}">Select group</button>
                     </div>
                     <div class="kanji-picker-group-list">${rows}</div>
                 </section>
@@ -1177,10 +1167,10 @@ const StudioCore = (() => {
                 </button>
             </div>
             <div class="kanji-picker-body">
-                <p class="kanji-picker-intro">Load one or more 5-kanji packs for this run. Due cards are prioritized automatically.</p>
+                <p class="kanji-picker-intro">Pick one or more 5-kanji packs for this run. Due items are asked first.</p>
                 <div class="kanji-picker-toolbar">
-                    <button type="button" id="kanji-picker-all" class="kanji-picker-toolbar-btn">All Packs</button>
-                    <button type="button" id="kanji-picker-due" class="kanji-picker-toolbar-btn">Due Packs</button>
+                    <button type="button" id="kanji-picker-all" class="kanji-picker-toolbar-btn">Select all</button>
+                    <button type="button" id="kanji-picker-due" class="kanji-picker-toolbar-btn">Due only</button>
                     <button type="button" id="kanji-picker-none" class="kanji-picker-toolbar-btn">Clear</button>
                 </div>
                 <div class="kanji-picker-groups">${groupedRows}</div>
@@ -1188,7 +1178,7 @@ const StudioCore = (() => {
             <div class="kanji-picker-footer">
                 <div id="kanji-picker-summary" class="kanji-picker-summary" aria-live="polite"></div>
                 <div id="kanji-picker-summary-hint" class="kanji-picker-summary-hint"></div>
-                <button type="button" id="kanji-picker-start" class="kanji-picker-start-btn">Start Kanji Run</button>
+                <button type="button" id="kanji-picker-start" class="kanji-picker-start-btn">Start run</button>
             </div>
         `;
 
@@ -1217,7 +1207,17 @@ const StudioCore = (() => {
                 row.classList.toggle('is-selected', checkbox.checked);
             });
         };
-        const refreshSummary = (withPulse = false) => {
+        const refreshCategoryButtons = () => {
+            categoryButtons.forEach((button) => {
+                const groupId = button.getAttribute('data-category-index');
+                if (!groupId) return;
+                const categoryBoxes = checkboxes.filter(cb => cb.getAttribute('data-category-index') === groupId);
+                if (categoryBoxes.length === 0) return;
+                const allSelected = categoryBoxes.every(cb => cb.checked);
+                button.textContent = allSelected ? 'Clear group' : 'Select group';
+            });
+        };
+        const refreshSummary = () => {
             const selectedNames = getSelectedNames();
             const selectedWords = getKanjiWordsForListNames(loadedLists, selectedNames);
             const totalCount = selectedWords.length;
@@ -1225,23 +1225,19 @@ const StudioCore = (() => {
             const nextRunCount = Math.min(10, dueCount > 0 ? dueCount : totalCount);
 
             syncSelectedRows();
+            refreshCategoryButtons();
 
             if (summary) {
-                summary.textContent = `${selectedNames.length} packs loaded · ${dueCount} due now · ${totalCount} cards`;
-                if (withPulse) {
-                    summary.classList.remove('is-pulse');
-                    void summary.offsetWidth;
-                    summary.classList.add('is-pulse');
-                }
+                summary.textContent = `${selectedNames.length} packs · ${dueCount} due · ${totalCount} kanji`;
             }
 
             if (summaryHint) {
                 if (selectedNames.length === 0) {
-                    summaryHint.textContent = 'Choose at least one pack to start.';
+                    summaryHint.textContent = 'Select at least one pack to start.';
                 } else if (dueCount === 0) {
-                    summaryHint.textContent = `All loaded packs are mastered. Next run will be a ${nextRunCount}-card refresher.`;
+                    summaryHint.textContent = `No due items in this selection. This run becomes a ${nextRunCount}-kanji refresher.`;
                 } else {
-                    summaryHint.textContent = `Next run: up to ${nextRunCount} cards from your loaded packs.`;
+                    summaryHint.textContent = `This run starts with due items, then continues with the remaining selected kanji.`;
                 }
             }
 
@@ -1257,7 +1253,7 @@ const StudioCore = (() => {
         if (selectAllButton) {
             selectAllButton.addEventListener('click', () => {
                 setSelection(true);
-                refreshSummary(true);
+                refreshSummary();
             });
         }
 
@@ -1270,14 +1266,14 @@ const StudioCore = (() => {
                 } else {
                     setSelectionByName(dueNames);
                 }
-                refreshSummary(true);
+                refreshSummary();
             });
         }
 
         if (clearButton) {
             clearButton.addEventListener('click', () => {
                 setSelection(false);
-                refreshSummary(true);
+                refreshSummary();
             });
         }
 
@@ -1289,12 +1285,12 @@ const StudioCore = (() => {
                 if (categoryBoxes.length === 0) return;
                 const shouldEnable = categoryBoxes.some(cb => !cb.checked);
                 categoryBoxes.forEach(cb => { cb.checked = shouldEnable; });
-                refreshSummary(true);
+                refreshSummary();
             });
         });
 
         checkboxes.forEach((checkbox) => {
-            checkbox.addEventListener('change', () => refreshSummary(true));
+            checkbox.addEventListener('change', () => refreshSummary());
         });
 
         if (startButton) {
