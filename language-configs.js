@@ -86,8 +86,17 @@ window.StudioConfigs = {};
         speechLabel: "SPEAKING (EN → JP)",
         enableKanjiCorner: true,
         enableKanjiCornerListPicker: true,
+        hideKanjiListsFromMainTable: true,
         kanjiListName: 'Kanji',
         kanjiListPrefix: 'Kanji ',
+        kanjiCornerCategoryRanges: [
+            { label: 'Core Signs', start: 1, end: 4 },
+            { label: 'Navigation', start: 5, end: 8 },
+            { label: 'Transit & People', start: 9, end: 12 },
+            { label: 'Food & Shopping', start: 13, end: 16 },
+            { label: 'Travel & Weather', start: 17, end: 20 }
+        ],
+        kanjiCornerDefaultCategoryLabel: 'Other Kanji',
         startTraining: function (name) {
             const loadedLists = window._studio.getLoadedLists();
             if (!loadedLists[name]) return;

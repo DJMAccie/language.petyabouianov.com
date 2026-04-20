@@ -237,7 +237,71 @@ const StudioCore = (() => {
 
         const baseName = config.kanjiListName || 'Kanji';
         const prefix = config.kanjiListPrefix || `${baseName} `;
-        return availableNames.filter(name => name === baseName || name.startsWith(prefix));
+        return availableNames
+            .filter(name => name === baseName || name.startsWith(prefix))
+            .sort((a, b) => {
+                const aNum = getKanjiPackNumber(a);
+                const bNum = getKanjiPackNumber(b);
+                if (aNum !== null && bNum !== null && aNum !== bNum) return aNum - bNum;
+                if (aNum !== null && bNum === null) return -1;
+                if (aNum === null && bNum !== null) return 1;
+                return a.localeCompare(b);
+            });
+    }
+
+    function getKanjiPackNumber(listName) {
+        if (typeof listName !== 'string') return null;
+        const baseName = config.kanjiListName || 'Kanji';
+        const prefix = config.kanjiListPrefix || `${baseName} `;
+        if (!listName.startsWith(prefix)) return null;
+        const suffix = listName.slice(prefix.length).trim();
+        const match = suffix.match(/^(\d{1,3})\b/);
+        if (!match) return null;
+        const num = Number.parseInt(match[1], 10);
+        return Number.isFinite(num) ? num : null;
+    }
+
+    function getKanjiCategoryLabel(listName) {
+        const packNumber = getKanjiPackNumber(listName);
+        const ranges = Array.isArray(config.kanjiCornerCategoryRanges) ? config.kanjiCornerCategoryRanges : [];
+
+        if (packNumber !== null) {
+            for (const range of ranges) {
+                const start = Number.parseInt(range?.start, 10);
+                const end = Number.parseInt(range?.end, 10);
+                if (Number.isFinite(start) && Number.isFinite(end) && packNumber >= start && packNumber <= end) {
+                    return range.label || 'Kanji';
+                }
+            }
+        }
+
+        return config.kanjiCornerDefaultCategoryLabel || 'Other Kanji';
+    }
+
+    function groupKanjiListNamesByCategory(listNames) {
+        const orderedGroups = [];
+        const byLabel = new Map();
+        const ranges = Array.isArray(config.kanjiCornerCategoryRanges) ? config.kanjiCornerCategoryRanges : [];
+
+        ranges.forEach((range) => {
+            const label = (range?.label || '').toString().trim();
+            if (!label || byLabel.has(label)) return;
+            const group = { label, names: [] };
+            byLabel.set(label, group);
+            orderedGroups.push(group);
+        });
+
+        (listNames || []).forEach((name) => {
+            const label = getKanjiCategoryLabel(name);
+            if (!byLabel.has(label)) {
+                const group = { label, names: [] };
+                byLabel.set(label, group);
+                orderedGroups.push(group);
+            }
+            byLabel.get(label).names.push(name);
+        });
+
+        return orderedGroups.filter(group => group.names.length > 0);
     }
 
     function getKanjiWords(lists) {
@@ -858,7 +922,11 @@ const StudioCore = (() => {
             return a.localeCompare(b);
         };
 
-        const sortedKeys = Object.keys(lists).sort((a, b) => {
+        const kanjiNameSet = new Set(getKanjiListNames(lists));
+        const hideKanjiRows = !!config.hideKanjiListsFromMainTable;
+        const sortedKeys = Object.keys(lists)
+            .filter(name => !(hideKanjiRows && kanjiNameSet.has(name)))
+            .sort((a, b) => {
             if (!tableStatusSortDirection) {
                 return compareByRecent(a, b);
             }
@@ -924,7 +992,9 @@ const StudioCore = (() => {
 
         // Update footer counts
         let uniqueWords = new Set();
-        Object.values(lists).forEach(wl => { wl.forEach(w => uniqueWords.add(w.jp)); });
+        sortedKeys.forEach((name) => {
+            (lists[name] || []).forEach((w) => uniqueWords.add(w.jp));
+        });
         document.getElementById('total-lists-count').innerText = count + " lists";
         document.getElementById('total-words-count').innerText = uniqueWords.size + " words";
     }
@@ -998,7 +1068,7 @@ const StudioCore = (() => {
             return;
         }
 
-        if (config.enableKanjiCornerListPicker && kanjiListNames.length > 1) {
+        if (config.enableKanjiCornerListPicker) {
             showKanjiCornerPicker(kanjiListNames);
             return;
         }
@@ -1023,7 +1093,7 @@ const StudioCore = (() => {
         const defaultSelection = saved.length > 0 ? saved : [...available];
         const selectedSet = new Set(defaultSelection);
 
-        const listRows = available.map((name) => {
+        const buildListRow = (name) => {
             const words = Array.isArray(loadedLists[name]) ? loadedLists[name] : [];
             const uniqueWords = getKanjiWordsForListNames(loadedLists, [name]);
             const dueCount = uniqueWords.filter(word => !isMastered(word)).length;
@@ -1036,7 +1106,14 @@ const StudioCore = (() => {
                     <span class="shrink-0 text-xs text-gray-500">${dueCount} due · ${words.length}</span>
                 </label>
             `;
-        }).join('');
+        };
+
+        const groupedRows = groupKanjiListNamesByCategory(available).map((group) => `
+            <section>
+                <div class="stats-label" style="margin-bottom:0.4rem;">${escapeHTML(group.label)}</div>
+                <div class="space-y-2">${group.names.map(buildListRow).join('')}</div>
+            </section>
+        `).join('');
 
         overlay.innerHTML = `
             <div class="stats-header">
@@ -1051,7 +1128,7 @@ const StudioCore = (() => {
                     <button type="button" id="kanji-picker-all" class="studio-inline-action">Select All</button>
                     <button type="button" id="kanji-picker-none" class="studio-inline-action">Clear</button>
                 </div>
-                <div class="space-y-2">${listRows}</div>
+                <div class="space-y-3">${groupedRows}</div>
                 <div id="kanji-picker-summary" class="stats-summary-note" style="margin-top:1rem;"></div>
                 <div class="studio-table-action-bar" style="margin-top:1rem;">
                     <button type="button" id="kanji-picker-start" class="studio-table-start-btn">Start Session</button>
