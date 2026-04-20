@@ -86,6 +86,7 @@ window.StudioConfigs = {};
         speechLabel: "SPEAKING (EN → JP)",
         enableKanjiCorner: true,
         enableKanjiCornerListPicker: true,
+        showKanjiCornerTableRow: false,
         hideKanjiListsFromMainTable: true,
         kanjiListName: 'Kanji',
         kanjiListPrefix: 'Kanji ',

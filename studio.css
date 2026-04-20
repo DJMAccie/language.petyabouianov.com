@@ -1668,6 +1668,11 @@ body.dark .choice-btn.wrong {
     background: var(--studio-accent-soft);
 }
 
+.studio-header-slot-multi {
+    width: auto !important;
+    min-width: 4.8rem;
+}
+
 @media (max-width: 767px) {
     .choice-grid {
         grid-template-columns: 1fr;
@@ -1719,6 +1724,11 @@ body.dark .choice-btn.wrong {
     [data-studio-header-left],
     [data-studio-header-right] {
         width: 2.75rem !important;
+    }
+
+    .studio-header-slot-multi {
+        width: auto !important;
+        min-width: 6.1rem;
     }
 
     .studio-toolbar-icon-btn,

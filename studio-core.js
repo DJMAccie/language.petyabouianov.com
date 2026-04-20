@@ -893,7 +893,7 @@ const StudioCore = (() => {
             </tr>`);
         }
 
-        if (config.enableKanjiCorner && kanjiWords.length > 0) {
+        if (config.enableKanjiCorner && config.showKanjiCornerTableRow !== false && kanjiWords.length > 0) {
             const kanjiDueCount = kanjiWords.filter(word => !isMastered(word)).length;
             const kanjiCountLabel = `${kanjiDueCount} due · ${kanjiWords.length} total`;
             rows.push(`
@@ -2132,6 +2132,11 @@ const StudioCore = (() => {
                         showStats();
                     }
                     break;
+                case 'k':
+                    if (!document.getElementById('select-section').classList.contains('hidden') && config.enableKanjiCorner) {
+                        startKanjiCorner();
+                    }
+                    break;
             }
         });
     }
@@ -2163,12 +2168,14 @@ const StudioCore = (() => {
         const header = document.querySelector('[data-studio-header]');
         if (!header) return;
 
-        // Left side: Stats icon
+        // Left side: Stats + Kanji Corner icons
         const leftSlot = header.querySelector('[data-studio-header-left]');
         if (leftSlot) {
             leftSlot.innerHTML = '';
+            leftSlot.classList.add('studio-header-slot-multi');
             leftSlot.style.display = 'flex';
             leftSlot.style.alignItems = 'center';
+            leftSlot.style.gap = '0.35rem';
             const statsBtn = document.createElement('button');
             statsBtn.type = 'button';
             statsBtn.className = 'header-icon-btn';
@@ -2177,6 +2184,17 @@ const StudioCore = (() => {
             statsBtn.setAttribute('aria-label', 'Open statistics');
             statsBtn.innerHTML = '<i class="fas fa-chart-pie"></i>';
             leftSlot.appendChild(statsBtn);
+
+            if (config.enableKanjiCorner) {
+                const kanjiBtn = document.createElement('button');
+                kanjiBtn.type = 'button';
+                kanjiBtn.className = 'header-icon-btn';
+                kanjiBtn.onclick = () => startKanjiCorner();
+                kanjiBtn.title = 'Kanji Corner (K)';
+                kanjiBtn.setAttribute('aria-label', 'Open Kanji Corner');
+                kanjiBtn.innerHTML = '<i class="fas fa-torii-gate"></i>';
+                leftSlot.appendChild(kanjiBtn);
+            }
         }
 
         // Right side: Dark mode toggle
