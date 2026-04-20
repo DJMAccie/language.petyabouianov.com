@@ -792,8 +792,10 @@ const StudioCore = (() => {
         // Hide feature overlays
         const ro = document.getElementById('studio-results-overlay');
         const so = document.getElementById('studio-stats-overlay');
+        const ko = document.getElementById('studio-kanji-picker-overlay');
         if (ro) closeDialog(ro, { restoreFocus: false });
         if (so) closeDialog(so, { restoreFocus: false });
+        if (ko) closeDialog(ko, { restoreFocus: false });
         const sysBar = document.getElementById('system-bar');
         sysBar.style.marginTop = (id === 'quiz') ? '-130px' : '0px';
         if (id === 'select') {
@@ -900,7 +902,7 @@ const StudioCore = (() => {
                 <td class="p-3 text-amber-700 group-hover:text-white font-medium">${kanjiCountLabel}</td>
                 <td class="p-3 text-amber-400 group-hover:text-white text-xs hidden md:table-cell">--</td>
                 <td class="p-3 hidden md:table-cell"><span class="text-amber-400 group-hover:text-white text-xs">--</span></td>
-                <td class="p-3 pr-6 text-right"><button type="button" onclick="startKanjiCorner()" class="studio-table-start-btn" aria-label="Start kanji corner session">Start Session</button></td>
+                <td class="p-3 pr-6 text-right"><button type="button" onclick="startKanjiCorner()" class="studio-table-start-btn" aria-label="Open kanji corner picker">Open Corner</button></td>
             </tr>`);
         }
 
@@ -1093,67 +1095,156 @@ const StudioCore = (() => {
         const defaultSelection = saved.length > 0 ? saved : [...available];
         const selectedSet = new Set(defaultSelection);
 
-        const buildListRow = (name) => {
-            const words = Array.isArray(loadedLists[name]) ? loadedLists[name] : [];
+        const listMeta = available.map((name) => {
             const uniqueWords = getKanjiWordsForListNames(loadedLists, [name]);
+            const totalCount = uniqueWords.length;
             const dueCount = uniqueWords.filter(word => !isMastered(word)).length;
-            return `
-                <label class="flex items-center justify-between gap-3 rounded-lg border border-gray-200 bg-white px-3 py-2">
-                    <span class="flex min-w-0 items-center gap-3">
-                        <input type="checkbox" class="kanji-picker-checkbox h-4 w-4 shrink-0 accent-blue-500" value="${escapeAttr(name)}" ${selectedSet.has(name) ? 'checked' : ''}>
-                        <span class="truncate text-sm font-medium text-gray-700">${escapeHTML(name)}</span>
-                    </span>
-                    <span class="shrink-0 text-xs text-gray-500">${dueCount} due · ${words.length}</span>
-                </label>
-            `;
-        };
+            const masteredCount = Math.max(0, totalCount - dueCount);
+            const masteryPercent = totalCount > 0 ? Math.round((masteredCount / totalCount) * 100) : 0;
+            const packNumber = getKanjiPackNumber(name);
+            return {
+                name,
+                dueCount,
+                totalCount,
+                masteredCount,
+                masteryPercent,
+                packNumber,
+                categoryLabel: getKanjiCategoryLabel(name)
+            };
+        });
 
-        const groupedRows = groupKanjiListNamesByCategory(available).map((group) => `
-            <section>
-                <div class="stats-label" style="margin-bottom:0.4rem;">${escapeHTML(group.label)}</div>
-                <div class="space-y-2">${group.names.map(buildListRow).join('')}</div>
-            </section>
-        `).join('');
+        const metaByName = new Map(listMeta.map((item) => [item.name, item]));
+        const groupedRows = groupKanjiListNamesByCategory(available).map((group, groupIndex) => {
+            const packs = group.names.map((name) => metaByName.get(name)).filter(Boolean);
+            const groupDue = packs.reduce((sum, pack) => sum + pack.dueCount, 0);
+            const groupTotal = packs.reduce((sum, pack) => sum + pack.totalCount, 0);
+            const groupSummary = `${groupDue} due · ${groupTotal} cards`;
+
+            const rows = packs.map((pack, rowIndex) => {
+                const packLabel = pack.packNumber !== null
+                    ? `Pack ${String(pack.packNumber).padStart(2, '0')}`
+                    : 'Kanji Pack';
+                return `
+                    <label class="kanji-picker-row" style="--stagger:${rowIndex + 1};">
+                        <span class="kanji-picker-check-wrap">
+                            <input
+                                type="checkbox"
+                                class="kanji-picker-checkbox"
+                                value="${escapeAttr(pack.name)}"
+                                data-category-index="${groupIndex}"
+                                data-due="${pack.dueCount}"
+                                data-total="${pack.totalCount}"
+                                ${selectedSet.has(pack.name) ? 'checked' : ''}
+                            >
+                        </span>
+                        <span class="kanji-picker-main">
+                            <span class="kanji-picker-title" title="${escapeAttr(pack.name)}">${escapeHTML(pack.name)}</span>
+                            <span class="kanji-picker-sub">${packLabel}</span>
+                            <span class="kanji-picker-meter" aria-hidden="true">
+                                <span style="width:${pack.masteryPercent}%"></span>
+                            </span>
+                        </span>
+                        <span class="kanji-picker-meta">
+                            <span class="kanji-picker-chip ${pack.dueCount === 0 ? 'is-quiet' : ''}">${pack.dueCount} due</span>
+                            <span class="kanji-picker-chip is-soft">${pack.masteredCount}/${pack.totalCount} mastered</span>
+                        </span>
+                    </label>
+                `;
+            }).join('');
+
+            return `
+                <section class="kanji-picker-group">
+                    <div class="kanji-picker-group-header">
+                        <div>
+                            <div class="kanji-picker-group-title">${escapeHTML(group.label)}</div>
+                            <div class="kanji-picker-group-meta">${groupSummary}</div>
+                        </div>
+                        <button type="button" class="kanji-picker-group-action" data-category-index="${groupIndex}">Toggle Category</button>
+                    </div>
+                    <div class="kanji-picker-group-list">${rows}</div>
+                </section>
+            `;
+        }).join('');
 
         overlay.innerHTML = `
-            <div class="stats-header">
-                <span id="studio-kanji-picker-title" class="stats-header-title">Kanji Corner</span>
+            <div class="kanji-picker-header">
+                <span id="studio-kanji-picker-title" class="kanji-picker-header-title">
+                    <i class="fas fa-torii-gate"></i>
+                    Kanji Corner
+                </span>
                 <button type="button" id="kanji-picker-close" class="studio-overlay-close-btn" aria-label="Close kanji list picker">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
-            <div class="stats-section" style="padding-top:1rem;">
-                <p class="stats-summary-note">Choose the kanji packs to practice (5 kanji per list).</p>
-                <div class="studio-table-action-bar" style="margin-top:0.75rem; margin-bottom:0.75rem;">
-                    <button type="button" id="kanji-picker-all" class="studio-inline-action">Select All</button>
-                    <button type="button" id="kanji-picker-none" class="studio-inline-action">Clear</button>
+            <div class="kanji-picker-body">
+                <p class="kanji-picker-intro">Load one or more 5-kanji packs for this run. Due cards are prioritized automatically.</p>
+                <div class="kanji-picker-toolbar">
+                    <button type="button" id="kanji-picker-all" class="kanji-picker-toolbar-btn">All Packs</button>
+                    <button type="button" id="kanji-picker-due" class="kanji-picker-toolbar-btn">Due Packs</button>
+                    <button type="button" id="kanji-picker-none" class="kanji-picker-toolbar-btn">Clear</button>
                 </div>
-                <div class="space-y-3">${groupedRows}</div>
-                <div id="kanji-picker-summary" class="stats-summary-note" style="margin-top:1rem;"></div>
-                <div class="studio-table-action-bar" style="margin-top:1rem;">
-                    <button type="button" id="kanji-picker-start" class="studio-table-start-btn">Start Session</button>
-                </div>
+                <div class="kanji-picker-groups">${groupedRows}</div>
+            </div>
+            <div class="kanji-picker-footer">
+                <div id="kanji-picker-summary" class="kanji-picker-summary" aria-live="polite"></div>
+                <div id="kanji-picker-summary-hint" class="kanji-picker-summary-hint"></div>
+                <button type="button" id="kanji-picker-start" class="kanji-picker-start-btn">Start Kanji Run</button>
             </div>
         `;
 
         const closeButton = overlay.querySelector('#kanji-picker-close');
         const selectAllButton = overlay.querySelector('#kanji-picker-all');
+        const dueButton = overlay.querySelector('#kanji-picker-due');
         const clearButton = overlay.querySelector('#kanji-picker-none');
         const startButton = overlay.querySelector('#kanji-picker-start');
         const summary = overlay.querySelector('#kanji-picker-summary');
+        const summaryHint = overlay.querySelector('#kanji-picker-summary-hint');
+        const categoryButtons = Array.from(overlay.querySelectorAll('.kanji-picker-group-action'));
         const checkboxes = Array.from(overlay.querySelectorAll('.kanji-picker-checkbox'));
 
         const getSelectedNames = () => checkboxes.filter(cb => cb.checked).map(cb => cb.value);
         const setSelection = (enabled) => {
             checkboxes.forEach(cb => { cb.checked = enabled; });
         };
-        const refreshSummary = () => {
+        const setSelectionByName = (names) => {
+            const lookup = new Set(names || []);
+            checkboxes.forEach(cb => { cb.checked = lookup.has(cb.value); });
+        };
+        const syncSelectedRows = () => {
+            checkboxes.forEach((checkbox) => {
+                const row = checkbox.closest('.kanji-picker-row');
+                if (!row) return;
+                row.classList.toggle('is-selected', checkbox.checked);
+            });
+        };
+        const refreshSummary = (withPulse = false) => {
             const selectedNames = getSelectedNames();
             const selectedWords = getKanjiWordsForListNames(loadedLists, selectedNames);
+            const totalCount = selectedWords.length;
             const dueCount = selectedWords.filter(word => !isMastered(word)).length;
+            const nextRunCount = Math.min(10, dueCount > 0 ? dueCount : totalCount);
+
+            syncSelectedRows();
+
             if (summary) {
-                summary.textContent = `${selectedNames.length} lists selected · ${dueCount} due · ${selectedWords.length} total`;
+                summary.textContent = `${selectedNames.length} packs loaded · ${dueCount} due now · ${totalCount} cards`;
+                if (withPulse) {
+                    summary.classList.remove('is-pulse');
+                    void summary.offsetWidth;
+                    summary.classList.add('is-pulse');
+                }
             }
+
+            if (summaryHint) {
+                if (selectedNames.length === 0) {
+                    summaryHint.textContent = 'Choose at least one pack to start.';
+                } else if (dueCount === 0) {
+                    summaryHint.textContent = `All loaded packs are mastered. Next run will be a ${nextRunCount}-card refresher.`;
+                } else {
+                    summaryHint.textContent = `Next run: up to ${nextRunCount} cards from your loaded packs.`;
+                }
+            }
+
             if (startButton) {
                 startButton.disabled = selectedNames.length === 0;
             }
@@ -1166,19 +1257,44 @@ const StudioCore = (() => {
         if (selectAllButton) {
             selectAllButton.addEventListener('click', () => {
                 setSelection(true);
-                refreshSummary();
+                refreshSummary(true);
+            });
+        }
+
+        if (dueButton) {
+            dueButton.addEventListener('click', () => {
+                const dueNames = listMeta.filter(item => item.dueCount > 0).map(item => item.name);
+                if (dueNames.length === 0) {
+                    setSelection(true);
+                    showToast("Everything is mastered. Loaded all packs for refresher mode.", "info");
+                } else {
+                    setSelectionByName(dueNames);
+                }
+                refreshSummary(true);
             });
         }
 
         if (clearButton) {
             clearButton.addEventListener('click', () => {
                 setSelection(false);
-                refreshSummary();
+                refreshSummary(true);
             });
         }
 
+        categoryButtons.forEach((button) => {
+            button.addEventListener('click', () => {
+                const groupId = button.getAttribute('data-category-index');
+                if (!groupId) return;
+                const categoryBoxes = checkboxes.filter(cb => cb.getAttribute('data-category-index') === groupId);
+                if (categoryBoxes.length === 0) return;
+                const shouldEnable = categoryBoxes.some(cb => !cb.checked);
+                categoryBoxes.forEach(cb => { cb.checked = shouldEnable; });
+                refreshSummary(true);
+            });
+        });
+
         checkboxes.forEach((checkbox) => {
-            checkbox.addEventListener('change', refreshSummary);
+            checkbox.addEventListener('change', () => refreshSummary(true));
         });
 
         if (startButton) {
@@ -1219,7 +1335,7 @@ const StudioCore = (() => {
 
         currentListName = selectedNames.length === 1
             ? `Kanji Corner · ${selectedNames[0]}`
-            : `Kanji Corner (${selectedNames.length} lists)`;
+            : `Kanji Corner (${selectedNames.length} packs)`;
         isPurificationSession = false;
 
         let candidates = kanjiWords.filter(word => !isMastered(word));
@@ -1982,7 +2098,10 @@ const StudioCore = (() => {
                     // Close any open overlay, or quit quiz
                     const resultsOverlay = document.getElementById('studio-results-overlay');
                     const statsOverlay = document.getElementById('studio-stats-overlay');
-                    if (resultsOverlay && !resultsOverlay.classList.contains('hidden')) {
+                    const kanjiPickerOverlay = document.getElementById('studio-kanji-picker-overlay');
+                    if (kanjiPickerOverlay && !kanjiPickerOverlay.classList.contains('hidden')) {
+                        closeDialog(kanjiPickerOverlay);
+                    } else if (resultsOverlay && !resultsOverlay.classList.contains('hidden')) {
                         closeDialog(resultsOverlay);
                         showSection('select');
                     } else if (statsOverlay && !statsOverlay.classList.contains('hidden')) {
@@ -2101,7 +2220,7 @@ const StudioCore = (() => {
 
         const kanjiPickerOverlay = document.createElement('div');
         kanjiPickerOverlay.id = 'studio-kanji-picker-overlay';
-        kanjiPickerOverlay.className = 'studio-stats-overlay hidden';
+        kanjiPickerOverlay.className = 'studio-kanji-picker-overlay hidden';
         kanjiPickerOverlay.setAttribute('aria-hidden', 'true');
         contentArea.appendChild(kanjiPickerOverlay);
     }
