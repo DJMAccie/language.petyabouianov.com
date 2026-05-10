@@ -1,0 +1,23 @@
+{
+  "expo": {
+    "name": "Nihongo Go",
+    "slug": "nihongo-go",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false,
+        "UIFileSharingEnabled": false,
+        "LSSupportsOpeningDocumentsInPlace": false,
+        "NSAppTransportSecurity": {
+          "NSAllowsArbitraryLoads": false
+        }
+      }
+    }
+  }
+}

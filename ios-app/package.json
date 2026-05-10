@@ -1,0 +1,20 @@
+{
+  "name": "nihongo-studio-ios",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Offline Nihongo Studio iOS wrapper",
+  "scripts": {
+    "sync:web": "bash scripts/sync-web-assets.sh",
+    "cap:sync": "npx cap sync ios",
+    "cap:open": "npx cap open ios",
+    "cap:run": "npx cap run ios"
+  },
+  "dependencies": {
+    "@capacitor/core": "^7.0.0",
+    "@capacitor/ios": "^7.0.0"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^7.0.0",
+    "typescript": "^5.6.3"
+  }
+}

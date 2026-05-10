@@ -10,16 +10,28 @@ ini_set('auto_detect_line_endings', true);
 
 // --- HEADERS (Disable Caching & CORS) ---
 header('Content-Type: application/json');
-$allowedOrigins = ['https://language.petyabouianov.com', 'https://petyabouianov.com'];
+$allowedOrigins = [
+    'https://language.petyabouianov.com',
+    'https://petyabouianov.com',
+    'capacitor://localhost',
+    'ionic://localhost',
+    'http://localhost',
+    'http://127.0.0.1',
+];
 $requestOrigin = $_SERVER['HTTP_ORIGIN'] ?? '';
 if ($requestOrigin && in_array($requestOrigin, $allowedOrigins, true)) {
     header("Access-Control-Allow-Origin: $requestOrigin");
 } else {
     header("Access-Control-Allow-Origin: https://language.petyabouianov.com");
 }
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type");
 header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
 header("Cache-Control: post-check=0, pre-check=0", false);
 header("Pragma: no-cache");
+header("X-Content-Type-Options: nosniff");
+header("X-Frame-Options: DENY");
+header("Referrer-Policy: no-referrer");
 
 // --- LOAD PASSWORD CONFIG ---
 $config_path = __DIR__ . '/studio_api_config.php';
@@ -28,11 +40,28 @@ if (file_exists($config_path)) {
     require_once $config_path;
 }
 $has_admin_password = is_string($admin_password) && $admin_password !== '';
+$sync_token = isset($sync_token) && is_string($sync_token)
+    ? $sync_token
+    : (getenv('STUDIO_API_SYNC_TOKEN') ?: '');
+$has_sync_token = is_string($sync_token) && $sync_token !== '';
+$write_token = isset($write_token) && is_string($write_token)
+    ? $write_token
+    : (getenv('STUDIO_API_WRITE_TOKEN') ?: '');
+$has_write_token = is_string($write_token) && $write_token !== '';
+$enforce_score_auth = (getenv('STUDIO_API_ENFORCE_SCORE_AUTH') === '1');
 
 // --- PARSE REQUEST ---
 $lang = $_GET['lang'] ?? 'nihongo';
 $action = $_GET['action'] ?? '';
 $requestMethod = $_SERVER['REQUEST_METHOD'] ?? 'GET';
+if ($requestMethod === 'OPTIONS') {
+    http_response_code(204);
+    exit;
+}
+$contentLength = (int) ($_SERVER['CONTENT_LENGTH'] ?? 0);
+if ($contentLength > 512000) {
+    outputJSON(["error" => "Payload too large"], 413);
+}
 $inputJSON = file_get_contents('php://input');
 $data = json_decode($inputJSON, true);
 $data = is_array($data) ? $data : [];
@@ -52,6 +81,8 @@ $listsFile = $listsFilesByLang[$lang] ?? null;
 $scoresFile = __DIR__ . '/global_scores.json';
 $statsFile = __DIR__ . '/global_word_stats.json';
 $kanjiMnemonicsFile = __DIR__ . '/kanji_mnemonics.json';
+$processedSyncEventsFile = __DIR__ . '/sync_processed_events.json';
+$rateLimitFile = __DIR__ . '/api_rate_limits.json';
 
 // --- HELPER FUNCTIONS ---
 
@@ -123,6 +154,119 @@ function requirePostRequest($requestMethod) {
     }
 }
 
+function requireJsonContentTypeForPost($requestMethod) {
+    if ($requestMethod !== 'POST') return;
+    $contentType = strtolower((string) ($_SERVER['CONTENT_TYPE'] ?? ''));
+    if ($contentType === '') return;
+    if (strpos($contentType, 'application/json') !== 0) {
+        outputJSON(["error" => "Content-Type must be application/json"], 415);
+    }
+}
+
+function hasValidSyncToken($data, $syncToken, $hasSyncToken) {
+    if (!$hasSyncToken) return false;
+    $clientToken = trim((string) ($data['sync_token'] ?? ''));
+    return $clientToken !== '' && hash_equals($syncToken, $clientToken);
+}
+
+function hasValidWriteToken($data, $writeToken, $hasWriteToken) {
+    if (!$hasWriteToken) return false;
+    $clientToken = trim((string) ($data['write_token'] ?? ''));
+    if ($clientToken !== '' && hash_equals($writeToken, $clientToken)) {
+        return true;
+    }
+    return hasValidSyncToken($data, $writeToken, $hasWriteToken);
+}
+
+function hasValidAdminPassword($data, $adminPassword, $hasAdminPassword) {
+    if (!$hasAdminPassword) return false;
+    $clientPassword = (string) ($data['password'] ?? '');
+    return $clientPassword !== '' && hash_equals($adminPassword, $clientPassword);
+}
+
+function requireWriteAuthorization($data, $writeToken, $hasWriteToken, $syncToken, $hasSyncToken, $adminPassword, $hasAdminPassword) {
+    $hasAnyAuthConfig = $hasWriteToken || $hasSyncToken || $hasAdminPassword;
+    if (!$hasAnyAuthConfig) {
+        outputJSON(["error" => "Write authorization is not configured"], 503);
+    }
+    if (hasValidWriteToken($data, $writeToken, $hasWriteToken)) return;
+    if (hasValidSyncToken($data, $syncToken, $hasSyncToken)) return;
+    if (hasValidAdminPassword($data, $adminPassword, $hasAdminPassword)) return;
+    outputJSON(["error" => "Invalid write authorization"], 403);
+}
+
+function requireSyncToken($data, $syncToken, $hasSyncToken) {
+    if (!$hasSyncToken) {
+        outputJSON(["error" => "Sync endpoint is not configured"], 503);
+    }
+    if (!hasValidSyncToken($data, $syncToken, $hasSyncToken)) {
+        outputJSON(["error" => "Invalid sync token"], 403);
+    }
+}
+
+function getClientIpAddress() {
+    $cloudflareIp = trim((string) ($_SERVER['HTTP_CF_CONNECTING_IP'] ?? ''));
+    if ($cloudflareIp !== '') return $cloudflareIp;
+
+    $forwardedFor = trim((string) ($_SERVER['HTTP_X_FORWARDED_FOR'] ?? ''));
+    if ($forwardedFor !== '') {
+        $parts = explode(',', $forwardedFor);
+        $first = trim((string) ($parts[0] ?? ''));
+        if ($first !== '') return $first;
+    }
+
+    $remoteAddr = trim((string) ($_SERVER['REMOTE_ADDR'] ?? ''));
+    return $remoteAddr !== '' ? $remoteAddr : 'unknown';
+}
+
+function enforceRateLimit($rateLimitFile, $bucketKey, $maxRequests, $windowSeconds) {
+    $now = time();
+    $windowStart = $now - max(1, $windowSeconds);
+    $allowed = true;
+
+    safeModifyJSON($rateLimitFile, function($rootData) use ($bucketKey, $maxRequests, $windowStart, $now, &$allowed) {
+        if (!is_array($rootData)) $rootData = [];
+        if (!isset($rootData[$bucketKey]) || !is_array($rootData[$bucketKey])) {
+            $rootData[$bucketKey] = [];
+        }
+
+        $recent = [];
+        foreach ($rootData[$bucketKey] as $timestamp) {
+            $ts = (int) $timestamp;
+            if ($ts >= $windowStart) $recent[] = $ts;
+        }
+
+        if (count($recent) >= $maxRequests) {
+            $allowed = false;
+            $rootData[$bucketKey] = $recent;
+            return $rootData;
+        }
+
+        $recent[] = $now;
+        $rootData[$bucketKey] = $recent;
+
+        if (count($rootData) > 2000) {
+            $trimmed = [];
+            foreach ($rootData as $key => $values) {
+                if (!is_array($values)) continue;
+                $clean = [];
+                foreach ($values as $value) {
+                    $ts = (int) $value;
+                    if ($ts >= $windowStart) $clean[] = $ts;
+                }
+                if (!empty($clean)) $trimmed[$key] = $clean;
+            }
+            $rootData = $trimmed;
+        }
+
+        return $rootData;
+    });
+
+    if (!$allowed) {
+        outputJSON(["error" => "Too many requests"], 429);
+    }
+}
+
 function normalizeListName($value) {
     $name = trim((string) $value);
     $name = preg_replace('/\s+/', ' ', $name);
@@ -141,6 +285,103 @@ function normalizeWordEntry($item) {
         'jp' => function_exists('mb_substr') ? mb_substr(preg_replace('/\s+/', ' ', $jp), 0, 160) : substr(preg_replace('/\s+/', ' ', $jp), 0, 160),
         'en' => function_exists('mb_substr') ? mb_substr(preg_replace('/\s+/', ' ', $en), 0, 200) : substr(preg_replace('/\s+/', ' ', $en), 0, 200),
     ];
+}
+
+function normalizeSessionResultEntry($item) {
+    if (!is_array($item)) return null;
+
+    $word = isset($item['jp']) ? trim((string) $item['jp']) : (isset($item['word']) ? trim((string) $item['word']) : '');
+    if ($word === '') return null;
+
+    $word = function_exists('mb_substr') ? mb_substr($word, 0, 160) : substr($word, 0, 160);
+
+    return [
+        'word' => $word,
+        'correct' => !empty($item['correct']),
+    ];
+}
+
+function applyScoreUpdate(&$rootData, $lang, $listName, $newScore, $mode, $timestampMs) {
+    if (!isset($rootData[$lang]) || !is_array($rootData[$lang])) $rootData[$lang] = [];
+
+    $scores = $rootData[$lang];
+    $entry = $scores[$listName] ?? [];
+    if (!is_array($entry)) {
+        $entry = ['jp-en' => (int) $entry, 'en-jp' => 0, 'speech' => 0, 'choice' => 0, 'last_activity' => 0];
+    }
+    if ($newScore > ($entry[$mode] ?? 0)) {
+        $entry[$mode] = $newScore;
+    }
+    $entry['last_activity'] = $timestampMs;
+    $scores[$listName] = $entry;
+    $rootData[$lang] = $scores;
+}
+
+function applyWordStatsUpdate(&$rootData, $lang, $results, $isPurification, $timestampMs) {
+    if (!isset($rootData[$lang]) || !is_array($rootData[$lang])) $rootData[$lang] = [];
+    $stats = $rootData[$lang];
+
+    foreach ($results as $item) {
+        if (!is_array($item)) continue;
+
+        $word = isset($item['word']) ? trim((string) $item['word']) : '';
+        if ($word === '') continue;
+
+        if (!isset($stats[$word])) {
+            $stats[$word] = ['correct' => 0, 'wrong' => 0, 'streak' => 0, 'last_review' => 0, 'next_review' => 0, 'seen' => 0];
+        }
+
+        $isCorrect = !empty($item['correct']);
+        $stats[$word]['seen'] = ($stats[$word]['seen'] ?? 0) + 1;
+        $stats[$word]['last_review'] = $timestampMs;
+
+        if ($isCorrect) {
+            $stats[$word]['correct']++;
+            $stats[$word]['streak']++;
+            if ($isPurification) $stats[$word]['wrong'] = 0;
+
+            $streak = $stats[$word]['streak'];
+            $days = ($streak == 1) ? 1 : ($streak == 2 ? 3 : ($streak == 3 ? 7 : ($streak == 4 ? 14 : 30)));
+            $stats[$word]['next_review'] = $timestampMs + ($days * 86400 * 1000);
+        } else {
+            $stats[$word]['wrong']++;
+            $stats[$word]['streak'] = 0;
+            $stats[$word]['next_review'] = $timestampMs;
+        }
+    }
+
+    $rootData[$lang] = $stats;
+}
+
+function markSyncEventAsProcessed($processedFile, $eventId, $timestampMs) {
+    $isNew = false;
+
+    safeModifyJSON($processedFile, function($rootData) use (&$isNew, $eventId, $timestampMs) {
+        if (!is_array($rootData)) $rootData = [];
+
+        $cutoff = $timestampMs - (45 * 86400 * 1000);
+        foreach ($rootData as $id => $seenAt) {
+            if (!is_numeric($seenAt) || (int) $seenAt < $cutoff) {
+                unset($rootData[$id]);
+            }
+        }
+
+        if (!isset($rootData[$eventId])) {
+            $rootData[$eventId] = $timestampMs;
+            $isNew = true;
+        }
+
+        if (count($rootData) > 25000) {
+            asort($rootData, SORT_NUMERIC);
+            while (count($rootData) > 20000) {
+                array_shift($rootData);
+            }
+        }
+
+        return $rootData;
+    });
+
+    return $isNew;
 }
 
 function normalizeMnemonicEntry($item, $fallbackJp = '') {
@@ -310,6 +551,8 @@ $defaultFileContents = [
     $kanjiMnemonicsFile => ['nihongo' => []],
     $scoresFile => $defaultBuckets,
     $statsFile => $defaultBuckets,
+    $processedSyncEventsFile => [],
+    $rateLimitFile => [],
 ];
 
 foreach ($defaultFileContents as $path => $defaults) {
@@ -347,6 +590,9 @@ switch ($action) {
 
     case 'save_list':
         requirePostRequest($requestMethod);
+        requireJsonContentTypeForPost($requestMethod);
+        enforceRateLimit($rateLimitFile, 'save_list|' . $lang . '|' . getClientIpAddress(), 30, 60);
+        requireWriteAuthorization($data, $write_token, $has_write_token, $sync_token, $has_sync_token, $admin_password, $has_admin_password);
 
         $name = normalizeListName($data['name'] ?? '');
         $rawWords = $data['words'] ?? [];
@@ -403,6 +649,9 @@ switch ($action) {
 
     case 'delete_list':
         requirePostRequest($requestMethod);
+        requireJsonContentTypeForPost($requestMethod);
+        enforceRateLimit($rateLimitFile, 'delete_list|' . $lang . '|' . getClientIpAddress(), 30, 60);
+        requireWriteAuthorization($data, $write_token, $has_write_token, $sync_token, $has_sync_token, $admin_password, $has_admin_password);
 
         $name = normalizeListName($data['name'] ?? '');
         if ($name === '') {
@@ -422,6 +671,11 @@ switch ($action) {
 
     case 'save_score':
         requirePostRequest($requestMethod);
+        requireJsonContentTypeForPost($requestMethod);
+        enforceRateLimit($rateLimitFile, 'save_score|' . $lang . '|' . getClientIpAddress(), 180, 60);
+        if ($enforce_score_auth) {
+            requireWriteAuthorization($data, $write_token, $has_write_token, $sync_token, $has_sync_token, $admin_password, $has_admin_password);
+        }
 
         $listName = normalizeListName($data['listName'] ?? 'Unknown');
         $newScore = max(0, min(100, (int) ($data['score'] ?? 0)));
@@ -433,19 +687,7 @@ switch ($action) {
         }
 
         safeModifyJSON($scoresFile, function($rootData) use ($lang, $listName, $newScore, $mode, $now) {
-            if (!isset($rootData[$lang])) $rootData[$lang] = [];
-            $scores = $rootData[$lang];
-            
-            $entry = $scores[$listName] ?? [];
-            if (!is_array($entry)) { 
-                $entry = ['jp-en' => (int) $entry, 'en-jp' => 0, 'last_activity' => 0];
-            }
-            if ($newScore > ($entry[$mode] ?? 0)) {
-                $entry[$mode] = $newScore;
-            }
-            $entry['last_activity'] = $now;
-            $scores[$listName] = $entry;
-            $rootData[$lang] = $scores;
+            applyScoreUpdate($rootData, $lang, $listName, $newScore, $mode, $now);
             return $rootData;
         });
         outputJSON(["status" => "success"]);
@@ -453,6 +695,11 @@ switch ($action) {
 
     case 'update_word_stats':
         requirePostRequest($requestMethod);
+        requireJsonContentTypeForPost($requestMethod);
+        enforceRateLimit($rateLimitFile, 'update_word_stats|' . $lang . '|' . getClientIpAddress(), 180, 60);
+        if ($enforce_score_auth) {
+            requireWriteAuthorization($data, $write_token, $has_write_token, $sync_token, $has_sync_token, $admin_password, $has_admin_password);
+        }
 
         $results = $data['results'] ?? [];
         $isPurification = $data['is_purification'] ?? false; 
@@ -463,48 +710,95 @@ switch ($action) {
         }
 
         $results = array_slice($results, 0, 250);
+        $normalizedResults = [];
+        foreach ($results as $item) {
+            $normalized = normalizeSessionResultEntry($item);
+            if ($normalized) $normalizedResults[] = $normalized;
+        }
 
-        safeModifyJSON($statsFile, function($rootData) use ($lang, $results, $isPurification, $now) {
-            if (!isset($rootData[$lang])) $rootData[$lang] = [];
-            $stats = $rootData[$lang];
-            
-            foreach ($results as $item) {
-                if (!is_array($item)) continue;
-
-                // Determine target word key depending on language
-                $word = isset($item['jp']) ? trim((string) $item['jp']) : (isset($item['word']) ? trim((string) $item['word']) : null);
-                if (!$word) continue;
-                $word = function_exists('mb_substr') ? mb_substr($word, 0, 160) : substr($word, 0, 160);
-                $isCorrect = !empty($item['correct']);
-
-                if (!isset($stats[$word])) {
-                    $stats[$word] = ['correct' => 0, 'wrong' => 0, 'streak' => 0, 'last_review' => 0, 'next_review' => 0, 'seen' => 0];
-                }
-                
-                $stats[$word]['seen'] = ($stats[$word]['seen'] ?? 0) + 1;
-                $stats[$word]['last_review'] = $now;
-
-                if ($isCorrect) {
-                    $stats[$word]['correct']++;
-                    $stats[$word]['streak']++;
-                    if ($isPurification) $stats[$word]['wrong'] = 0;
-                    
-                    $streak = $stats[$word]['streak'];
-                    $days = ($streak == 1) ? 1 : ($streak == 2 ? 3 : ($streak == 3 ? 7 : ($streak == 4 ? 14 : 30)));
-                    $stats[$word]['next_review'] = $now + ($days * 86400 * 1000);
-                } else {
-                    $stats[$word]['wrong']++;
-                    $stats[$word]['streak'] = 0;
-                    $stats[$word]['next_review'] = $now;
-                }
-            }
-            $rootData[$lang] = $stats;
+        safeModifyJSON($statsFile, function($rootData) use ($lang, $normalizedResults, $isPurification, $now) {
+            applyWordStatsUpdate($rootData, $lang, $normalizedResults, $isPurification, $now);
             return $rootData;
         });
         outputJSON(["status" => "success"]);
         break;
 
+    case 'sync_progress_batch':
+        requirePostRequest($requestMethod);
+        requireJsonContentTypeForPost($requestMethod);
+        enforceRateLimit($rateLimitFile, 'sync_progress_batch|' . $lang . '|' . getClientIpAddress(), 120, 60);
+        requireSyncToken($data, $sync_token, $has_sync_token);
+
+        $requestLang = trim((string) ($data['lang'] ?? $lang));
+        if ($requestLang !== $lang) {
+            outputJSON(["error" => "Language mismatch"], 400);
+        }
+
+        $events = $data['events'] ?? [];
+        if (!is_array($events)) {
+            outputJSON(["error" => "Invalid events payload"], 400);
+        }
+
+        $events = array_slice($events, 0, 400);
+        $appliedEventIds = [];
+        $skippedEventIds = [];
+
+        foreach ($events as $event) {
+            if (!is_array($event)) continue;
+
+            $eventId = trim((string) ($event['event_id'] ?? ''));
+            if ($eventId === '' || strlen($eventId) > 160) {
+                continue;
+            }
+
+            $eventTs = (int) ($event['event_ts'] ?? (time() * 1000));
+            if ($eventTs <= 0) $eventTs = time() * 1000;
+
+            $isNewEvent = markSyncEventAsProcessed($processedSyncEventsFile, $eventId, $eventTs);
+            if (!$isNewEvent) {
+                $skippedEventIds[] = $eventId;
+                continue;
+            }
+
+            $listName = normalizeListName($event['listName'] ?? 'Unknown');
+            $mode = (string) ($event['mode'] ?? 'jp-en');
+            $newScore = max(0, min(100, (int) ($event['score'] ?? 0)));
+            $isPurification = !empty($event['is_purification']);
+            $rawResults = is_array($event['results'] ?? null) ? $event['results'] : [];
+
+            if (!in_array($mode, ['jp-en', 'en-jp', 'speech', 'choice'], true)) {
+                $mode = 'jp-en';
+            }
+
+            $normalizedResults = [];
+            foreach (array_slice($rawResults, 0, 250) as $item) {
+                $normalized = normalizeSessionResultEntry($item);
+                if ($normalized) $normalizedResults[] = $normalized;
+            }
+
+            safeModifyJSON($scoresFile, function($rootData) use ($lang, $listName, $newScore, $mode, $eventTs) {
+                applyScoreUpdate($rootData, $lang, $listName, $newScore, $mode, $eventTs);
+                return $rootData;
+            });
+
+            safeModifyJSON($statsFile, function($rootData) use ($lang, $normalizedResults, $isPurification, $eventTs) {
+                applyWordStatsUpdate($rootData, $lang, $normalizedResults, $isPurification, $eventTs);
+                return $rootData;
+            });
+
+            $appliedEventIds[] = $eventId;
+        }
+
+        outputJSON([
+            "status" => "success",
+            "applied_event_ids" => $appliedEventIds,
+            "skipped_event_ids" => $skippedEventIds,
+            "remaining_queue_hint" => 0
+        ]);
+        break;
+
     case 'lookup': // Jisho proxy (Nihongo only really)
+        enforceRateLimit($rateLimitFile, 'lookup|' . $lang . '|' . getClientIpAddress(), 120, 60);
         $word = $_GET['word'] ?? '';
         if (empty($word)) outputJSON(["error" => "No word provided"]);
         $url = "https://jisho.org/api/v1/search/words?keyword=" . urlencode($word);

@@ -21,3 +21,24 @@ newsletter/emails.txt
 .ftp-deploy-sync-state.json
 upload_image_config.php
 studio_api_config.php
+api_rate_limits.json
+sync_processed_events.json
+
+# iOS wrapper local build artifacts
+ios-app/node_modules/
+ios-app/.derivedData/
+ios-app/ios/App/Pods/
+ios-app/ios/App/build/
+ios-app/build/
+expo-go-client/node_modules/
+expo-go-client/.expo/
+
+# Environment configuration
+.env
+.env.local
+.env.production
+.env.*.local
+**/.env
+**/.env.local
+**/.env.production
+**/.env.*.local
