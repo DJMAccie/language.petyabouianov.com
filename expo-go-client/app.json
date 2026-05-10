@@ -9,6 +9,7 @@
       "**/*"
     ],
     "ios": {
+      "bundleIdentifier": "com.petyabouianov.nihongogo",
       "supportsTablet": true,
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false,
@@ -18,6 +19,12 @@
           "NSAllowsArbitraryLoads": false
         }
       }
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "f73867ff-154d-49e9-9dbb-131a88e7f4da"
+      }
+    },
+    "owner": "tyranitar420"
   }
 }
