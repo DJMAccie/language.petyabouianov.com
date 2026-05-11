@@ -699,34 +699,9 @@ const StudioCore = (() => {
     }
 
     function getStatusRank(activeScore) {
-        return getListStatusState(activeScore).rank;
-    }
-
-    function getListStatusState(activeScore) {
-        if (activeScore > 80) {
-            return {
-                key: 'mastered',
-                label: 'Mastered',
-                rank: 2,
-                dotClass: 'bg-green-500'
-            };
-        }
-
-        if (activeScore > 0) {
-            return {
-                key: 'learning',
-                label: 'Learning',
-                rank: 1,
-                dotClass: 'bg-yellow-400'
-            };
-        }
-
-        return {
-            key: 'new',
-            label: 'New',
-            rank: 0,
-            dotClass: 'bg-gray-300'
-        };
+        if (activeScore > 80) return 2;
+        if (activeScore > 0) return 1;
+        return 0;
     }
 
     function syncStatusSortUI() {
@@ -1527,41 +1502,37 @@ const StudioCore = (() => {
             const scoreSet = getScoreSet(scores, name);
             const progress = getModeProgress(currentMode, scoreSet);
             const activeScore = progress.value || 0;
-            const status = getListStatusState(activeScore);
+
+            let dotColor = "bg-gray-300";
+            let statusText = "New";
+            if (activeScore > 80) {
+                dotColor = "bg-green-500";
+                statusText = "Mastered";
+            } else if (activeScore > 0) {
+                dotColor = "bg-yellow-400";
+                statusText = "Learning";
+            }
 
             // Build action buttons — training only for nihongo
             const safeName = escapeAttr(name);
-            let iconButtons = `
+            let actionButtons = `
                 <button type="button" onclick="editList('${safeName}')" class="studio-table-icon-btn" title="Edit ${safeName}" aria-label="Edit ${safeName}"><i class="fas fa-edit"></i></button>
                 <button type="button" onclick="deleteList('${safeName}')" class="studio-table-icon-btn danger" title="Delete ${safeName}" aria-label="Delete ${safeName}"><i class="fas fa-trash"></i></button>`;
 
             if (config.startTraining) {
-                iconButtons += `
+                actionButtons += `
                 <button type="button" onclick="startTraining('${safeName}')" class="studio-table-icon-btn" title="Training for ${safeName}" aria-label="Start training for ${safeName}"><i class="fas fa-dumbbell"></i></button>`;
             }
 
-            const actionButtons = `
-                <button type="button" onclick="startQuiz('${safeName}')" class="studio-table-start-btn studio-table-start-btn--primary" aria-label="Start quiz for ${safeName}">Start Quiz</button>
-                <div class="studio-table-action-secondary">${iconButtons}</div>`;
+            actionButtons += `
+                <button type="button" onclick="startQuiz('${safeName}')" class="studio-table-start-btn" aria-label="Start quiz for ${safeName}">Start Quiz</button>`;
 
             rows.push(`
-            <tr class="studio-list-row list-row--${status.key} border-b border-gray-100 transition cursor-default group" data-list-state="${status.key}" style="--row-index:${count}">
-                <td class="p-3 pl-6 font-medium text-gray-800">
-                    <div class="studio-list-row-main">
-                        <div class="studio-list-row-top">
-                            <span class="studio-list-row-title"><i class="fas fa-list-ul mr-3 text-gray-400 group-hover:text-white"></i>${escapeHTML(name)}</span>
-                            <span class="studio-status-chip studio-status-chip--${status.key}">${status.label}</span>
-                        </div>
-                        <div class="studio-list-row-meta text-gray-500 md:hidden">
-                            <span>${words.length} words</span>
-                            <span>•</span>
-                            <span>${activeScore}% accuracy</span>
-                        </div>
-                    </div>
-                </td>
+            <tr class="border-b border-gray-100 transition cursor-default group">
+                <td class="p-3 pl-6 font-medium text-gray-800"><i class="fas fa-list-ul mr-3 text-gray-400 group-hover:text-white"></i>${escapeHTML(name)}</td>
                 <td class="p-3 text-gray-500">${words.length} words</td>
                 <td class="p-3 hidden md:table-cell text-gray-500">${activeScore}%</td>
-                <td class="p-3 hidden md:table-cell"><div class="flex items-center gap-2"><div class="w-2.5 h-2.5 rounded-full ${status.dotClass} shadow-sm"></div><span class="text-gray-500">${status.label}</span></div></td>
+                <td class="p-3 hidden md:table-cell"><div class="flex items-center gap-2"><div class="w-2.5 h-2.5 rounded-full ${dotColor} shadow-sm"></div><span class="text-gray-500">${statusText}</span></div></td>
                 <td class="p-3 pr-6 text-right">
                     <div class="studio-table-action-bar">${actionButtons}</div>
                 </td>
