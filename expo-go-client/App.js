@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useCallback, useMemo, useRef } from 'react';
 import { SafeAreaView, StatusBar, StyleSheet } from 'react-native';
 import { WebView } from 'react-native-webview';
 
@@ -24,7 +24,7 @@ const APP_ONLY_UI_INJECTION = `
         animation: ngAppRowIn 320ms cubic-bezier(0.22, 1, 0.36, 1) both;
       }
       .ng-app-list-row td:first-child {
-        border-left: 3px solid transparent;
+        border-left: 6px solid transparent !important;
       }
       .ng-app-list-row.ng-app-state-new {
         background: #f8fafc;
@@ -39,10 +39,11 @@ const APP_ONLY_UI_INJECTION = `
         border-left-color: #f59e0b;
       }
       .ng-app-list-row.ng-app-state-mastered {
-        background: #ecfdf3;
+        background: linear-gradient(90deg, #bbf7d0 0%, #ecfdf3 56%, #f8fff9 100%) !important;
       }
       .ng-app-list-row.ng-app-state-mastered td:first-child {
-        border-left-color: #16a34a;
+        border-left-color: #15803d !important;
+        box-shadow: inset 0 1px 0 rgba(21, 128, 61, 0.14), inset 0 -1px 0 rgba(21, 128, 61, 0.14);
       }
       .ng-app-list-top {
         display: flex;
@@ -54,6 +55,32 @@ const APP_ONLY_UI_INJECTION = `
         min-width: 0;
         display: inline-flex;
         align-items: center;
+        gap: 0.5rem;
+      }
+      .ng-app-status-flag {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 1.65rem;
+        height: 1.65rem;
+        border-radius: 9999px;
+        font-size: 0.84rem;
+        font-weight: 900;
+        line-height: 1;
+        flex: 0 0 auto;
+      }
+      .ng-app-status-flag.ng-app-state-new {
+        background: #e2e8f0;
+        color: #475569;
+      }
+      .ng-app-status-flag.ng-app-state-learning {
+        background: #f59e0b;
+        color: #fff7ed;
+      }
+      .ng-app-status-flag.ng-app-state-mastered {
+        background: #15803d;
+        color: #f0fdf4;
+        box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.16);
       }
       .ng-app-status-chip {
         display: inline-flex;
@@ -77,8 +104,8 @@ const APP_ONLY_UI_INJECTION = `
         color: #92400e;
       }
       .ng-app-status-chip.ng-app-state-mastered {
-        background: #dcfce7;
-        color: #166534;
+        background: #15803d;
+        color: #f0fdf4;
         animation: ngAppMasteredPulse 2.8s ease-in-out infinite;
       }
       .ng-app-row-meta {
@@ -173,7 +200,7 @@ const APP_ONLY_UI_INJECTION = `
         background: #352612;
       }
       body.dark .ng-app-list-row.ng-app-state-mastered {
-        background: #142b1c;
+        background: linear-gradient(90deg, #14532d 0%, #142b1c 64%, #111827 100%) !important;
       }
       body.dark .ng-app-status-chip.ng-app-state-new {
         background: #334155;
@@ -184,8 +211,20 @@ const APP_ONLY_UI_INJECTION = `
         color: #fde68a;
       }
       body.dark .ng-app-status-chip.ng-app-state-mastered {
-        background: #1f4730;
-        color: #bbf7d0;
+        background: #22c55e;
+        color: #052e16;
+      }
+      body.dark .ng-app-status-flag.ng-app-state-new {
+        background: #334155;
+        color: #cbd5e1;
+      }
+      body.dark .ng-app-status-flag.ng-app-state-learning {
+        background: #f59e0b;
+        color: #1c1917;
+      }
+      body.dark .ng-app-status-flag.ng-app-state-mastered {
+        background: #22c55e;
+        color: #052e16;
       }
       body.dark .ng-app-start-primary {
         background: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%) !important;
@@ -215,10 +254,15 @@ const APP_ONLY_UI_INJECTION = `
     document.head.appendChild(style);
   }
 
-  function getStatus(scoreValue) {
-    if (scoreValue > 80) return { key: 'mastered', label: 'Mastered' };
-    if (scoreValue > 0) return { key: 'learning', label: 'Learning' };
-    return { key: 'new', label: 'New' };
+  function getStatus(scoreValue, statusText) {
+    const normalized = (statusText || '').toLowerCase();
+    if (normalized.includes('mastered')) return { key: 'mastered', label: 'Mastered', mark: 'M' };
+    if (normalized.includes('learning')) return { key: 'learning', label: 'Learning', mark: 'L' };
+    if (normalized.includes('new')) return { key: 'new', label: 'New', mark: 'N' };
+
+    if (scoreValue > 80) return { key: 'mastered', label: 'Mastered', mark: 'M' };
+    if (scoreValue > 0) return { key: 'learning', label: 'Learning', mark: 'L' };
+    return { key: 'new', label: 'New', mark: 'N' };
   }
 
   function parseScore(scoreCell) {
@@ -265,12 +309,13 @@ const APP_ONLY_UI_INJECTION = `
     if (!isMainListRow(row)) return;
 
     const scoreCell = row.cells[2];
+    const statusCell = row.cells[3];
     const wordsCell = row.cells[1];
     const firstCell = row.cells[0];
     const actionCell = row.cells[4];
     if (!firstCell || !actionCell) return;
 
-    const status = getStatus(parseScore(scoreCell));
+    const status = getStatus(parseScore(scoreCell), statusCell?.textContent || '');
     row.classList.add('ng-app-list-row');
     row.classList.remove('ng-app-state-new', 'ng-app-state-learning', 'ng-app-state-mastered');
     row.classList.add(\`ng-app-state-\${status.key}\`);
@@ -282,6 +327,18 @@ const APP_ONLY_UI_INJECTION = `
       const current = firstCell.innerHTML;
       firstCell.innerHTML = \`<div class="ng-app-list-top"><span class="ng-app-list-name">\${current}</span></div>\`;
       top = firstCell.querySelector('.ng-app-list-top');
+    }
+
+    const name = top.querySelector('.ng-app-list-name');
+    let flag = firstCell.querySelector('.ng-app-status-flag');
+    if (!flag && name) {
+      flag = document.createElement('span');
+      name.insertBefore(flag, name.firstChild);
+    }
+    if (flag) {
+      flag.className = \`ng-app-status-flag ng-app-state-\${status.key}\`;
+      flag.textContent = status.mark;
+      flag.setAttribute('aria-hidden', 'true');
     }
 
     let chip = firstCell.querySelector('.ng-app-status-chip');
@@ -351,11 +408,16 @@ function isAllowedNavigation(url) {
 
 export default function App() {
   const source = useMemo(() => ({ uri: NIHONGO_URL }), []);
+  const webViewRef = useRef(null);
+  const injectAppSkin = useCallback(() => {
+    webViewRef.current?.injectJavaScript(APP_ONLY_UI_INJECTION);
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="dark-content" />
       <WebView
+        ref={webViewRef}
         source={source}
         style={styles.webview}
         startInLoadingState
@@ -365,6 +427,7 @@ export default function App() {
         cacheEnabled={false}
         originWhitelist={[ALLOWED_ORIGIN]}
         injectedJavaScript={APP_ONLY_UI_INJECTION}
+        onLoadEnd={injectAppSkin}
         onShouldStartLoadWithRequest={(request) => isAllowedNavigation(request?.url)}
       />
     </SafeAreaView>
