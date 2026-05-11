@@ -9,9 +9,10 @@ const ALLOWED_ORIGIN = 'https://language.petyabouianov.com';
 const ALLOWED_HOST = 'language.petyabouianov.com';
 const APP_ONLY_UI_INJECTION = `
 (() => {
-  const STYLE_ID = 'nihongo-go-app-only-ui-v1';
+  const STYLE_ID = 'nihongo-go-app-only-ui-v2';
   const ROW_SELECTOR = '#list-table-body tr';
   const LIST_STATE_ATTR = 'data-ng-app-list-state';
+  let pollCount = 0;
 
   function injectStyles() {
     if (document.getElementById(STYLE_ID)) return;
@@ -98,6 +99,9 @@ const APP_ONLY_UI_INJECTION = `
       .ng-app-start-primary:active {
         transform: scale(0.97);
         filter: saturate(0.94);
+      }
+      .ng-app-start-primary:hover {
+        color: #ffffff !important;
       }
       .ng-app-secondary {
         display: inline-flex;
@@ -241,7 +245,6 @@ const APP_ONLY_UI_INJECTION = `
     if (!secondary) {
       secondary = document.createElement('div');
       secondary.className = 'ng-app-secondary';
-      actionBar.appendChild(secondary);
     }
 
     const iconButtons = Array.from(actionBar.querySelectorAll('.studio-table-icon-btn'));
@@ -251,6 +254,10 @@ const APP_ONLY_UI_INJECTION = `
 
     if (startButton && startButton.parentElement !== actionBar) {
       actionBar.insertBefore(startButton, actionBar.firstChild);
+    }
+
+    if (secondary.parentElement !== actionBar) {
+      actionBar.appendChild(secondary);
     }
   }
 
@@ -294,7 +301,10 @@ const APP_ONLY_UI_INJECTION = `
     }
     const wordsText = (wordsCell?.textContent || '').trim() || '0 words';
     const scoreText = \`\${parseScore(scoreCell)}% accuracy\`;
-    meta.innerHTML = \`<span>\${wordsText}</span><span>•</span><span>\${scoreText}</span>\`;
+    const nextMeta = \`<span>\${wordsText}</span><span>•</span><span>\${scoreText}</span>\`;
+    if (meta.innerHTML !== nextMeta) {
+      meta.innerHTML = nextMeta;
+    }
 
     enhanceActionCell(actionCell);
   }
@@ -303,15 +313,18 @@ const APP_ONLY_UI_INJECTION = `
     injectStyles();
     const rows = Array.from(document.querySelectorAll(ROW_SELECTOR));
     rows.forEach((row, index) => enhanceRow(row, index));
+    return rows.some(isMainListRow);
   }
 
   function setup() {
-    enhanceTable();
-    const tableBody = document.getElementById('list-table-body');
-    if (!tableBody || tableBody.dataset.ngAppObserverReady === '1') return;
-    const observer = new MutationObserver(() => enhanceTable());
-    observer.observe(tableBody, { childList: true, subtree: true });
-    tableBody.dataset.ngAppObserverReady = '1';
+    const tick = () => {
+      pollCount += 1;
+      enhanceTable();
+      if (pollCount < 240) {
+        window.setTimeout(tick, 500);
+      }
+    };
+    tick();
   }
 
   if (document.readyState === 'loading') {
@@ -349,6 +362,7 @@ export default function App() {
         allowsBackForwardNavigationGestures
         javaScriptEnabled
         domStorageEnabled
+        cacheEnabled={false}
         originWhitelist={[ALLOWED_ORIGIN]}
         injectedJavaScript={APP_ONLY_UI_INJECTION}
         onShouldStartLoadWithRequest={(request) => isAllowedNavigation(request?.url)}
