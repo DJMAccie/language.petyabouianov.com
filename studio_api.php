@@ -49,6 +49,9 @@ $write_token = isset($write_token) && is_string($write_token)
     : (getenv('STUDIO_API_WRITE_TOKEN') ?: '');
 $has_write_token = is_string($write_token) && $write_token !== '';
 $enforce_score_auth = (getenv('STUDIO_API_ENFORCE_SCORE_AUTH') === '1');
+$require_list_write_auth = isset($require_list_write_auth)
+    ? filter_var($require_list_write_auth, FILTER_VALIDATE_BOOLEAN)
+    : (getenv('STUDIO_API_REQUIRE_LIST_WRITE_AUTH') === '1');
 
 // --- PARSE REQUEST ---
 $lang = $_GET['lang'] ?? 'nihongo';
@@ -592,7 +595,9 @@ switch ($action) {
         requirePostRequest($requestMethod);
         requireJsonContentTypeForPost($requestMethod);
         enforceRateLimit($rateLimitFile, 'save_list|' . $lang . '|' . getClientIpAddress(), 30, 60);
-        requireWriteAuthorization($data, $write_token, $has_write_token, $sync_token, $has_sync_token, $admin_password, $has_admin_password);
+        if ($require_list_write_auth) {
+            requireWriteAuthorization($data, $write_token, $has_write_token, $sync_token, $has_sync_token, $admin_password, $has_admin_password);
+        }
 
         $name = normalizeListName($data['name'] ?? '');
         $rawWords = $data['words'] ?? [];
@@ -651,7 +656,9 @@ switch ($action) {
         requirePostRequest($requestMethod);
         requireJsonContentTypeForPost($requestMethod);
         enforceRateLimit($rateLimitFile, 'delete_list|' . $lang . '|' . getClientIpAddress(), 30, 60);
-        requireWriteAuthorization($data, $write_token, $has_write_token, $sync_token, $has_sync_token, $admin_password, $has_admin_password);
+        if ($require_list_write_auth) {
+            requireWriteAuthorization($data, $write_token, $has_write_token, $sync_token, $has_sync_token, $admin_password, $has_admin_password);
+        }
 
         $name = normalizeListName($data['name'] ?? '');
         if ($name === '') {
