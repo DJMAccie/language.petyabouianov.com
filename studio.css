@@ -17,6 +17,8 @@
     --studio-warning: #ff9f0a;
     --studio-danger: #ff3b30;
     --studio-shadow-soft: 0 1px 2px rgba(15, 23, 42, 0.08), 0 1px 1px rgba(15, 23, 42, 0.04);
+    --studio-wallpaper-image: url('assets/images/akihabara-background.jpg');
+    --studio-wallpaper-overlay: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(15, 23, 42, 0.12));
 }
 
 /* --- General & Background --- */
@@ -32,11 +34,17 @@ body {
     padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
 }
 
+body.nihongo-page {
+    background-image: var(--studio-wallpaper-overlay), var(--studio-wallpaper-image);
+    background-attachment: fixed;
+}
+
 /* Optional macOS wallpaper class */
 .mac-wallpaper {
-    background: url('https://4kwallpapers.com/images/wallpapers/macos-big-sur-apple-layers-fluidic-colorful-wwdc-2020-5120x2880-1455.jpg');
+    background-image: var(--studio-wallpaper-overlay), var(--studio-wallpaper-image);
     background-size: cover;
     background-position: center;
+    background-attachment: fixed;
 }
 
 /* --- Glass Window Effect --- */
