@@ -6,7 +6,6 @@ ob_start();
 ini_set('display_errors', 0);
 ini_set('log_errors', 1);
 error_reporting(E_ALL);
-ini_set('auto_detect_line_endings', true);
 
 // --- HEADERS (Disable Caching & CORS) ---
 header('Content-Type: application/json');
@@ -77,7 +76,6 @@ $listsFilesByLang = [
     'bahasa' => __DIR__ . '/bahasa_lists.json',
     'italia' => __DIR__ . '/italia_lists.json',
     'nederlands' => __DIR__ . '/nederlands_lists.json',
-    'sascha' => __DIR__ . '/sascha_lists.json',
 ];
 $allowedLangs = array_keys($listsFilesByLang);
 $listsFile = $listsFilesByLang[$lang] ?? null;
@@ -550,7 +548,6 @@ $defaultFileContents = [
     __DIR__ . '/bahasa_lists.json' => ['bahasa' => []],
     __DIR__ . '/italia_lists.json' => ['italia' => []],
     __DIR__ . '/nederlands_lists.json' => ['nederlands' => []],
-    __DIR__ . '/sascha_lists.json' => ['sascha' => []],
     $kanjiMnemonicsFile => ['nihongo' => []],
     $scoresFile => $defaultBuckets,
     $statsFile => $defaultBuckets,

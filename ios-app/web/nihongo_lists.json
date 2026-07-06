@@ -608,30 +608,6 @@
                 "en": "To search / To investigate"
             },
             {
-                "jp": "つかむ Tsukamu",
-                "en": "To grab / To hold"
-            },
-            {
-                "jp": "かける Kakeru",
-                "en": "To wear (glasses)"
-            },
-            {
-                "jp": "はく Haku",
-                "en": "To wear (lower body)"
-            },
-            {
-                "jp": "かぶる Kaburu",
-                "en": "To wear (head/hat)"
-            },
-            {
-                "jp": "しちゃくする Shichaku suru",
-                "en": "To try on"
-            },
-            {
-                "jp": "しまう Shimau",
-                "en": "To put away"
-            },
-            {
                 "jp": "ひらく Hiraku",
                 "en": "To open"
             },
@@ -640,32 +616,8 @@
                 "en": "To touch"
             },
             {
-                "jp": "とりだす Toridasu",
-                "en": "To take out"
-            },
-            {
-                "jp": "かぞえる Kazoeru",
-                "en": "To count"
-            },
-            {
-                "jp": "おとす Otosu",
-                "en": "To drop"
-            },
-            {
-                "jp": "ひろう Hirou",
-                "en": "To pick up"
-            },
-            {
                 "jp": "まよう Mayou",
                 "en": "To get lost / To be indecisive"
-            },
-            {
-                "jp": "勉強する Benkyou suru",
-                "en": "To study"
-            },
-            {
-                "jp": "泳ぐ Oyogu",
-                "en": "To swim"
             }
         ],
         "Glue words": [
@@ -814,10 +766,6 @@
                 "en": "no im good"
             },
             {
-                "jp": "英語がわかりますか Eigo wa wakarimasu ka?",
-                "en": "Do you understand English?"
-            },
-            {
                 "jp": "わかりません Wakarimasen",
                 "en": "I don’t understand"
             },
@@ -836,10 +784,6 @@
             {
                 "jp": "[Item] はありますか Ringo wa arimasu ka?",
                 "en": "Do you have apples?"
-            },
-            {
-                "jp": "[Place] までお願いします Tokyo made onegaishimasu",
-                "en": "To Tokyo please"
             },
             {
                 "jp": "[Place] に行きたいです Sapporo ni ikitai desu",
@@ -876,10 +820,6 @@
             {
                 "jp": "助けて Tasukete",
                 "en": "Help!"
-            },
-            {
-                "jp": "コンビニ Konbini",
-                "en": "Convenience store"
             },
             {
                 "jp": "乗り場 Noriba",
@@ -3706,10 +3646,6 @@
                 "en": "How many people?"
             },
             {
-                "jp": "おすすめは Osusume wa",
-                "en": "What do you recommend?"
-            },
-            {
                 "jp": "アレルギーがあります Arerugii ga arimasu",
                 "en": "I have an allergy"
             },
@@ -3796,14 +3732,6 @@
             {
                 "jp": "〜たい ~tai",
                 "en": "I want to do ~"
-            },
-            {
-                "jp": "〜をください ~wo kudasai",
-                "en": "Please give me ~"
-            },
-            {
-                "jp": "〜おねがいします ~onegaishimasu",
-                "en": "Please ~ / I request ~"
             },
             {
                 "jp": "ひつよう Hitsuyou",
@@ -3982,14 +3910,6 @@
         ],
         "Social Situations": [
             {
-                "jp": "よろしくおねがいします Yoroshiku onegaishimasu",
-                "en": "Nice to meet you / Please take care of me"
-            },
-            {
-                "jp": "おじゃまします Ojamashimasu",
-                "en": "I'll come in (entering someone's home)"
-            },
-            {
                 "jp": "きをつけて Ki wo tsukete",
                 "en": "Take care / Be careful"
             },
@@ -4000,10 +3920,6 @@
             {
                 "jp": "よろしく Yoroshiku",
                 "en": "Best regards / Thanks (casual)"
-            },
-            {
-                "jp": "ちょっとまってください Chotto matte kudasai",
-                "en": "Please wait a moment"
             },
             {
                 "jp": "はじめに Hajime ni",
@@ -4240,10 +4156,6 @@
                 "en": "to plan"
             },
             {
-                "jp": "きかせて kikasete",
-                "en": "please let me hear / tell me"
-            },
-            {
                 "jp": "ちゃくりくする chakuriku suru",
                 "en": "to land"
             },
@@ -4324,16 +4236,8 @@
                 "en": "totally / in total"
             },
             {
-                "jp": "ちばのどこに すんでいますか？ chiba no doko ni sunde imasu ka",
-                "en": "where in Chiba do you live?"
-            },
-            {
                 "jp": "かきごおり kakigoori",
                 "en": "shaved ice"
-            },
-            {
-                "jp": "たかいのが こわいです takai no ga kowai desu",
-                "en": "I am afraid of high places / afraid of heights"
             }
         ],
         "Kenty Lesson 7": [
@@ -4484,100 +4388,6 @@
                 "en": "probably different / probably wrong"
             }
         ],
-        "Trip Priority: Speak": [
-            {
-                "jp": "すみません Sumimasen",
-                "en": "Excuse me / Sorry"
-            },
-            {
-                "jp": "お願いします Onegaishimasu",
-                "en": "Please"
-            },
-            {
-                "jp": "わかりません Wakarimasen",
-                "en": "I don't understand"
-            },
-            {
-                "jp": "もう一度お願いします Mou ichido onegaishimasu",
-                "en": "One more time please"
-            },
-            {
-                "jp": "もう少しゆっくりお願いします Mou sukoshi yukkuri onegaishimasu",
-                "en": "Please speak a little more slowly"
-            },
-            {
-                "jp": "英語は話せますか Eigo wa hanasemasu ka",
-                "en": "Do you speak English?"
-            },
-            {
-                "jp": "これは何ですか Kore wa nan desu ka",
-                "en": "What is this?"
-            },
-            {
-                "jp": "〜はどこですか ~ wa doko desu ka",
-                "en": "Where is ~?"
-            },
-            {
-                "jp": "〜をください ~ o kudasai",
-                "en": "Please give me ~"
-            },
-            {
-                "jp": "いくらですか Ikura desu ka",
-                "en": "How much is it?"
-            },
-            {
-                "jp": "カードは使えますか Kaado wa tsukaemasu ka",
-                "en": "Can I use card?"
-            },
-            {
-                "jp": "現金で払います Genkin de haraimasu",
-                "en": "I'll pay in cash"
-            },
-            {
-                "jp": "トイレはどこですか Toire wa doko desu ka",
-                "en": "Where is the toilet?"
-            },
-            {
-                "jp": "お会計お願いします Okaikei onegaishimasu",
-                "en": "The bill please"
-            },
-            {
-                "jp": "おすすめは何ですか Osusume wa nan desu ka",
-                "en": "What do you recommend?"
-            },
-            {
-                "jp": "水をください Mizu o kudasai",
-                "en": "Water please"
-            },
-            {
-                "jp": "アレルギーがあります Arerugii ga arimasu",
-                "en": "I have an allergy"
-            },
-            {
-                "jp": "辛いのは苦手です Karai no wa nigate desu",
-                "en": "I'm not good with spicy food"
-            },
-            {
-                "jp": "持ち帰りで Mochikaeri de",
-                "en": "To go / takeaway"
-            },
-            {
-                "jp": "別々でお願いします Betsubetsu de onegaishimasu",
-                "en": "Separate bills please"
-            },
-            {
-                "jp": "予約しています Yoyaku shite imasu",
-                "en": "I have a reservation"
-            },
-            {
-                "jp": "チェックインしたいです Chekkuin shitai desu",
-                "en": "I'd like to check in"
-            },
-            {
-                "jp": "パスポートです Pasupooto desu",
-                "en": "Here is my passport"
-            }
-        ],
         "Trip Priority: Hear Back": [
             {
                 "jp": "いらっしゃいませ Irasshaimase",
@@ -4604,20 +4414,8 @@
                 "en": "Do you need a bag?"
             },
             {
-                "jp": "レシートは要りますか Reshiito wa irimasu ka",
-                "en": "Do you need the receipt?"
-            },
-            {
                 "jp": "温めますか Atatamemasu ka",
                 "en": "Shall I heat it up?"
-            },
-            {
-                "jp": "ポイントカードはありますか Pointo kaado wa arimasu ka",
-                "en": "Do you have a point card?"
-            },
-            {
-                "jp": "店内でお召し上がりですか Tennai de omeshiagari desu ka",
-                "en": "For here?"
             },
             {
                 "jp": "お持ち帰りですか Omochikaeri desu ka",
@@ -4628,28 +4426,12 @@
                 "en": "Cash only"
             },
             {
-                "jp": "〜円です ~ en desu",
-                "en": "It's ~ yen"
-            },
-            {
                 "jp": "おつりです Otsuri desu",
                 "en": "Here is your change"
             },
             {
                 "jp": "こちらでよろしいですか Kochira de yoroshii desu ka",
                 "en": "Is this okay?"
-            },
-            {
-                "jp": "パスポートをお願いします Pasupooto o onegaishimasu",
-                "en": "Passport please"
-            },
-            {
-                "jp": "朝食付きです Choushoku-tsuki desu",
-                "en": "Breakfast is included"
-            },
-            {
-                "jp": "禁煙です Kinen desu",
-                "en": "Non-smoking"
             },
             {
                 "jp": "少しお待ちください Sukoshi omachi kudasai",
@@ -4744,22 +4526,6 @@
                 "en": "This one please"
             },
             {
-                "jp": "おすすめは何ですか Osusume wa nan desu ka",
-                "en": "What do you recommend?"
-            },
-            {
-                "jp": "これは何ですか Kore wa nan desu ka",
-                "en": "What is this?"
-            },
-            {
-                "jp": "お会計お願いします Okaikei onegaishimasu",
-                "en": "The bill please"
-            },
-            {
-                "jp": "持ち帰りで Mochikaeri de",
-                "en": "To go / takeaway"
-            },
-            {
                 "jp": "店内で Tennai de",
                 "en": "For here"
             },
@@ -4776,10 +4542,6 @@
                 "en": "Please heat it up"
             },
             {
-                "jp": "水をください Mizu o kudasai",
-                "en": "Water please"
-            },
-            {
                 "jp": "お水 Omizu",
                 "en": "Water"
             },
@@ -4788,20 +4550,8 @@
                 "en": "Is it spicy?"
             },
             {
-                "jp": "辛いのは苦手です Karai no wa nigate desu",
-                "en": "I'm not good with spicy food"
-            },
-            {
-                "jp": "アレルギーがあります Arerugii ga arimasu",
-                "en": "I have an allergy"
-            },
-            {
                 "jp": "現金 Genkin",
                 "en": "Cash"
-            },
-            {
-                "jp": "おつり Otsuri",
-                "en": "Change"
             },
             {
                 "jp": "売り切れ Urikire",
@@ -4930,10 +4680,6 @@
                 "en": "from May 12th until June 16th"
             },
             {
-                "jp": "みじかい mijikai",
-                "en": "short"
-            },
-            {
                 "jp": "いろんな ironna",
                 "en": "several / various"
             },
@@ -4954,10 +4700,6 @@
                 "en": "the Netherlands is the opposite of Japan"
             },
             {
-                "jp": "かんがえる kangaeru",
-                "en": "to think"
-            },
-            {
                 "jp": "よくなる yokunaru",
                 "en": "to get better"
             },
@@ -4972,10 +4714,6 @@
             {
                 "jp": "あつかった atsukatta",
                 "en": "hot / was hot"
-            },
-            {
-                "jp": "よかった yokatta",
-                "en": "good / was good"
             },
             {
                 "jp": "わかい わかもの wakai wakamono",
@@ -5018,10 +4756,6 @@
             {
                 "jp": "さんかい sankai",
                 "en": "3 times"
-            },
-            {
-                "jp": "にかい nikai",
-                "en": "2 times"
             },
             {
                 "jp": "いっしゅうかん に さんかい isshuukan ni sankai",
@@ -6032,10 +5766,6 @@
         ],
         "Kenty Lesson 11": [
             {
-                "jp": "ひっこす hikkosu",
-                "en": "to move house"
-            },
-            {
                 "jp": "おくる okuru",
                 "en": "to send"
             },
@@ -6044,24 +5774,12 @@
                 "en": "natural Japanese videos"
             },
             {
-                "jp": "ひつよう hitsuyou",
-                "en": "necessary"
-            },
-            {
-                "jp": "オランダと日本はしあいをする oranda to nihon wa shiai o suru",
-                "en": "Netherlands and Japan have a match"
-            },
-            {
                 "jp": "しあい shiai",
                 "en": "match"
             },
             {
                 "jp": "なんでも nandemo",
                 "en": "anything"
-            },
-            {
-                "jp": "おいしいりょうりもあります oishii ryouri mo arimasu",
-                "en": "there are also delicious dishes"
             },
             {
                 "jp": "かんこうきゃく kankoukyaku",
@@ -6082,6 +5800,100 @@
             {
                 "jp": "いごこちがいい igokochi ga ii",
                 "en": "cozy / comfortable"
+            }
+        ],
+        "Trip Priority: Speak": [
+            {
+                "jp": "すみません Sumimasen",
+                "en": "Excuse me / Sorry"
+            },
+            {
+                "jp": "お願いします Onegaishimasu",
+                "en": "Please"
+            },
+            {
+                "jp": "わかりません Wakarimasen",
+                "en": "I don't understand"
+            },
+            {
+                "jp": "もう一度お願いします Mou ichido onegaishimasu",
+                "en": "One more time please"
+            },
+            {
+                "jp": "もう少しゆっくりお願いします Mou sukoshi yukkuri onegaishimasu",
+                "en": "Please speak a little more slowly"
+            },
+            {
+                "jp": "英語は話せますか Eigo wa hanasemasu ka",
+                "en": "Do you speak English?"
+            },
+            {
+                "jp": "これは何ですか Kore wa nan desu ka",
+                "en": "What is this?"
+            },
+            {
+                "jp": "〜はどこですか ~ wa doko desu ka",
+                "en": "Where is ~?"
+            },
+            {
+                "jp": "〜をください ~ o kudasai",
+                "en": "Please give me ~"
+            },
+            {
+                "jp": "いくらですか Ikura desu ka",
+                "en": "How much is it?"
+            },
+            {
+                "jp": "カードは使えますか Kaado wa tsukaemasu ka",
+                "en": "Can I use card?"
+            },
+            {
+                "jp": "現金で払います Genkin de haraimasu",
+                "en": "I'll pay in cash"
+            },
+            {
+                "jp": "トイレはどこですか Toire wa doko desu ka",
+                "en": "Where is the toilet?"
+            },
+            {
+                "jp": "お会計お願いします Okaikei onegaishimasu",
+                "en": "The bill please"
+            },
+            {
+                "jp": "おすすめは何ですか Osusume wa nan desu ka",
+                "en": "What do you recommend?"
+            },
+            {
+                "jp": "水をください Mizu o kudasai",
+                "en": "Water please"
+            },
+            {
+                "jp": "アレルギーがあります Arerugii ga arimasu",
+                "en": "I have an allergy"
+            },
+            {
+                "jp": "辛いのは苦手です Karai no wa nigate desu",
+                "en": "I'm not good with spicy food"
+            },
+            {
+                "jp": "持ち帰りで Mochikaeri de",
+                "en": "To go / takeaway"
+            },
+            {
+                "jp": "別々でお願いします Betsubetsu de onegaishimasu",
+                "en": "Separate bills please"
+            },
+            {
+                "jp": "予約しています Yoyaku shite imasu",
+                "en": "I have a reservation"
+            },
+            {
+                "jp": "チェックインしたいです Chekkuin shitai desu",
+                "en": "I'd like to check in"
+            },
+            {
+                "jp": "パスポートです Pasupooto desu",
+                "en": "Here is my passport"
             }
         ]
     }

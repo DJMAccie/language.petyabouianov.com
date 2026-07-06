@@ -1083,12 +1083,12 @@
             "next_review": 1769256166000
         },
         "いらっしゃいませ Irasshaimase": {
-            "correct": 14,
-            "wrong": 7,
-            "last_review": 1777973442000,
-            "streak": 2,
-            "next_review": 1778232642000,
-            "seen": 8
+            "correct": 18,
+            "wrong": 9,
+            "last_review": 1778727770000,
+            "streak": 3,
+            "next_review": 1779332570000,
+            "seen": 14
         },
         "[Item] をください (Item) o kudasai": {
             "correct": 2,
@@ -2949,12 +2949,12 @@
             "seen": 5
         },
         "お願いします Onegaishimasu": {
-            "correct": 6,
+            "correct": 7,
             "wrong": 0,
-            "streak": 6,
-            "last_review": 1775682913000,
-            "next_review": 1778274913000,
-            "seen": 1
+            "streak": 7,
+            "last_review": 1778515922000,
+            "next_review": 1781107922000,
+            "seen": 2
         },
         "多分 Tabun": {
             "correct": 10,
@@ -3028,12 +3028,12 @@
             "seen": 3
         },
         "手 Te": {
-            "correct": 6,
+            "correct": 7,
             "wrong": 1,
-            "streak": 1,
-            "last_review": 1773479753000,
-            "next_review": 1773566153000,
-            "seen": 4
+            "streak": 2,
+            "last_review": 1780540769000,
+            "next_review": 1780799969000,
+            "seen": 5
         },
         "よろしくお願いします Yoroshiku onegaishimasu": {
             "correct": 4,
@@ -3051,12 +3051,12 @@
             "seen": 2
         },
         "目 Me": {
-            "correct": 6,
-            "wrong": 0,
-            "streak": 6,
-            "last_review": 1770294596000,
-            "next_review": 1772886596000,
-            "seen": 2
+            "correct": 7,
+            "wrong": 1,
+            "streak": 1,
+            "last_review": 1780710460000,
+            "next_review": 1780796860000,
+            "seen": 4
         },
         "暇 Hima": {
             "correct": 5,
@@ -3408,12 +3408,12 @@
             "seen": 10
         },
         "登る Noboru": {
-            "correct": 6,
-            "wrong": 12,
+            "correct": 7,
+            "wrong": 13,
             "streak": 1,
-            "last_review": 1776181713000,
-            "next_review": 1776268113000,
-            "seen": 8
+            "last_review": 1780710460000,
+            "next_review": 1780796860000,
+            "seen": 10
         },
         "入る Hairu": {
             "correct": 4,
@@ -3440,12 +3440,12 @@
             "seen": 6
         },
         "売る Uru": {
-            "correct": 6,
-            "wrong": 4,
-            "streak": 3,
-            "last_review": 1776253461000,
-            "next_review": 1776858261000,
-            "seen": 9
+            "correct": 7,
+            "wrong": 5,
+            "streak": 1,
+            "last_review": 1780629861000,
+            "next_review": 1780716261000,
+            "seen": 11
         },
         "払う Harau": {
             "correct": 8,
@@ -3488,12 +3488,12 @@
             "seen": 17
         },
         "呼ぶ Yobu": {
-            "correct": 6,
-            "wrong": 3,
-            "streak": 4,
-            "last_review": 1776241025000,
-            "next_review": 1777450625000,
-            "seen": 8
+            "correct": 7,
+            "wrong": 4,
+            "streak": 1,
+            "last_review": 1778980281000,
+            "next_review": 1779066681000,
+            "seen": 10
         },
         "歌う Utau": {
             "correct": 8,
@@ -4083,12 +4083,12 @@
             "seen": 4
         },
         "へえ Hee": {
-            "correct": 6,
-            "wrong": 3,
+            "correct": 7,
+            "wrong": 4,
             "streak": 1,
-            "last_review": 1775596129000,
-            "next_review": 1775682529000,
-            "seen": 2
+            "last_review": 1780710460000,
+            "next_review": 1780796860000,
+            "seen": 4
         },
         "いいですね Ii desu ne": {
             "correct": 7,
@@ -4404,12 +4404,12 @@
             "seen": 9
         },
         "キャンセル Kyanseru": {
-            "correct": 4,
+            "correct": 5,
             "wrong": 2,
-            "streak": 1,
-            "last_review": 1778277499000,
-            "next_review": 1778363899000,
-            "seen": 6
+            "streak": 2,
+            "last_review": 1780629861000,
+            "next_review": 1780889061000,
+            "seen": 7
         },
         "編集 Henshū": {
             "correct": 2,
@@ -4884,12 +4884,12 @@
             "seen": 6
         },
         "スコップ Sukoppu": {
-            "correct": 6,
+            "correct": 7,
             "wrong": 4,
-            "streak": 1,
-            "last_review": 1775683343000,
-            "next_review": 1775769743000,
-            "seen": 10
+            "streak": 2,
+            "last_review": 1780629981000,
+            "next_review": 1780889181000,
+            "seen": 11
         },
         "おてんば Otenba": {
             "correct": 5,
@@ -5468,12 +5468,12 @@
             "seen": 5
         },
         "三人の Sannin no": {
-            "correct": 4,
+            "correct": 5,
             "wrong": 0,
-            "streak": 4,
-            "last_review": 1776411975000,
-            "next_review": 1777621575000,
-            "seen": 4
+            "streak": 5,
+            "last_review": 1778980281000,
+            "next_review": 1781572281000,
+            "seen": 5
         },
         "いくつかの Ikutsu ka no": {
             "correct": 3,
@@ -5580,12 +5580,12 @@
             "seen": 5
         },
         "必要 Hitsuyou": {
-            "correct": 6,
-            "wrong": 10,
+            "correct": 7,
+            "wrong": 11,
             "streak": 1,
-            "last_review": 1775682425000,
-            "next_review": 1775768825000,
-            "seen": 16
+            "last_review": 1778515922000,
+            "next_review": 1778602322000,
+            "seen": 18
         },
         "明らか Akiraka": {
             "correct": 5,
@@ -5612,12 +5612,12 @@
             "seen": 7
         },
         "よく Yoku": {
-            "correct": 4,
-            "wrong": 1,
-            "streak": 2,
-            "last_review": 1773393230000,
-            "next_review": 1773652430000,
-            "seen": 5
+            "correct": 5,
+            "wrong": 2,
+            "streak": 1,
+            "last_review": 1780629981000,
+            "next_review": 1780716381000,
+            "seen": 7
         },
         "関する Kansuru": {
             "correct": 3,
@@ -5636,12 +5636,12 @@
             "seen": 4
         },
         "価格 Kakaku": {
-            "correct": 3,
-            "wrong": 0,
+            "correct": 6,
+            "wrong": 2,
             "streak": 3,
-            "last_review": 1773174082000,
-            "next_review": 1773778882000,
-            "seen": 3
+            "last_review": 1780630088000,
+            "next_review": 1781234888000,
+            "seen": 8
         },
         "企業 Kigyou": {
             "correct": 4,
@@ -5796,12 +5796,12 @@
             "seen": 7
         },
         "開く Aku": {
-            "correct": 6,
-            "wrong": 8,
+            "correct": 7,
+            "wrong": 9,
             "streak": 1,
-            "last_review": 1776181646000,
-            "next_review": 1776268046000,
-            "seen": 14
+            "last_review": 1780630260000,
+            "next_review": 1780716660000,
+            "seen": 16
         },
         "ポルダー Porudaa": {
             "correct": 4,
@@ -5812,12 +5812,12 @@
             "seen": 8
         },
         "閉める Shimeru": {
-            "correct": 4,
-            "wrong": 6,
-            "streak": 1,
-            "last_review": 1777844848000,
-            "next_review": 1777931248000,
-            "seen": 10
+            "correct": 6,
+            "wrong": 8,
+            "streak": 2,
+            "last_review": 1780710460000,
+            "next_review": 1780969660000,
+            "seen": 14
         },
         "喜ぶ Yorokobu": {
             "correct": 3,
@@ -5900,12 +5900,12 @@
             "seen": 25
         },
         "腹八分 Hara hachi bu": {
-            "correct": 6,
+            "correct": 7,
             "wrong": 3,
-            "streak": 2,
-            "last_review": 1775658328000,
-            "next_review": 1775917528000,
-            "seen": 9
+            "streak": 3,
+            "last_review": 1778980281000,
+            "next_review": 1779585081000,
+            "seen": 10
         },
         "おなかいっぱい Onaka ippai": {
             "correct": 7,
@@ -6012,12 +6012,12 @@
             "seen": 13
         },
         "最近どう？ Saikin dou?": {
-            "correct": 6,
+            "correct": 7,
             "wrong": 2,
-            "streak": 5,
-            "last_review": 1771444235000,
-            "next_review": 1774036235000,
-            "seen": 8
+            "streak": 6,
+            "last_review": 1778980281000,
+            "next_review": 1781572281000,
+            "seen": 9
         },
         "わたしはオランダじんです Watashi wa Orandajin desu": {
             "correct": 9,
@@ -6172,28 +6172,28 @@
             "seen": 11
         },
         "てめぇ Temee": {
-            "correct": 6,
+            "correct": 7,
             "wrong": 1,
-            "streak": 1,
-            "last_review": 1775373843000,
-            "next_review": 1775460243000,
-            "seen": 7
+            "streak": 2,
+            "last_review": 1778980484000,
+            "next_review": 1779239684000,
+            "seen": 8
         },
         "つかう tsukau": {
-            "correct": 6,
-            "wrong": 1,
-            "streak": 6,
-            "last_review": 1773479613000,
-            "next_review": 1776071613000,
-            "seen": 7
+            "correct": 7,
+            "wrong": 2,
+            "streak": 1,
+            "last_review": 1780710460000,
+            "next_review": 1780796860000,
+            "seen": 9
         },
         "あめがふる ame ga furu": {
-            "correct": 6,
+            "correct": 7,
             "wrong": 1,
-            "streak": 5,
-            "last_review": 1777624551000,
-            "next_review": 1780216551000,
-            "seen": 7
+            "streak": 6,
+            "last_review": 1780540769000,
+            "next_review": 1783132769000,
+            "seen": 8
         },
         "おいしくないです oishikunai desu": {
             "correct": 5,
@@ -6204,12 +6204,12 @@
             "seen": 6
         },
         "あめが たくさん ふる ame ga takusan furu": {
-            "correct": 6,
-            "wrong": 5,
+            "correct": 7,
+            "wrong": 7,
             "streak": 1,
-            "last_review": 1775683343000,
-            "next_review": 1775769743000,
-            "seen": 11
+            "last_review": 1778979886000,
+            "next_review": 1779066286000,
+            "seen": 14
         },
         "はたらく hataraku": {
             "correct": 4,
@@ -6260,20 +6260,20 @@
             "seen": 13
         },
         "どうやって douyatte": {
-            "correct": 4,
+            "correct": 5,
             "wrong": 0,
-            "streak": 4,
-            "last_review": 1775683343000,
-            "next_review": 1776892943000,
-            "seen": 4
+            "streak": 5,
+            "last_review": 1780630088000,
+            "next_review": 1783222088000,
+            "seen": 5
         },
         "から まで kara made": {
-            "correct": 4,
+            "correct": 5,
             "wrong": 0,
-            "streak": 4,
-            "last_review": 1775508728000,
-            "next_review": 1776718328000,
-            "seen": 4
+            "streak": 5,
+            "last_review": 1780710460000,
+            "next_review": 1783302460000,
+            "seen": 5
         },
         "りょうほう ryouhou": {
             "correct": 12,
@@ -6652,20 +6652,20 @@
             "seen": 19
         },
         "ポケモンは懐かしいです Pokemon wa natsukashii desu": {
-            "correct": 3,
-            "wrong": 1,
-            "streak": 3,
-            "last_review": 1771445416000,
-            "next_review": 1772050216000,
-            "seen": 4
+            "correct": 5,
+            "wrong": 2,
+            "streak": 1,
+            "last_review": 1780540920000,
+            "next_review": 1780627320000,
+            "seen": 7
         },
         "今から寝ますね Ima kara nemasu ne": {
-            "correct": 5,
-            "wrong": 9,
+            "correct": 7,
+            "wrong": 13,
             "streak": 1,
-            "last_review": 1773390632000,
-            "next_review": 1773477032000,
-            "seen": 14
+            "last_review": 1780710460000,
+            "next_review": 1780796860000,
+            "seen": 20
         },
         "ぼくは日本語を三週間勉強しています Boku wa nihongo o sanshuukan benkyou shiteimasu": {
             "correct": 3,
@@ -6684,12 +6684,12 @@
             "seen": 3
         },
         "ズルズル Zuru zuru": {
-            "correct": 5,
-            "wrong": 2,
-            "streak": 2,
-            "last_review": 1775683485000,
-            "next_review": 1775942685000,
-            "seen": 7
+            "correct": 6,
+            "wrong": 3,
+            "streak": 1,
+            "last_review": 1780540920000,
+            "next_review": 1780627320000,
+            "seen": 9
         },
         "飲み会 Nomikai": {
             "correct": 3,
@@ -6708,12 +6708,12 @@
             "seen": 14
         },
         "三人行ったよ Sannin itta yo": {
-            "correct": 4,
+            "correct": 5,
             "wrong": 5,
-            "streak": 3,
-            "last_review": 1771447237000,
-            "next_review": 1772052037000,
-            "seen": 9
+            "streak": 4,
+            "last_review": 1780541045000,
+            "next_review": 1781750645000,
+            "seen": 10
         },
         "ジムに行く Jimu ni iku": {
             "correct": 5,
@@ -6748,12 +6748,12 @@
             "seen": 7
         },
         "どこで会う？ Doko de au?": {
-            "correct": 6,
-            "wrong": 8,
+            "correct": 7,
+            "wrong": 9,
             "streak": 1,
-            "last_review": 1777624320000,
-            "next_review": 1777710720000,
-            "seen": 14
+            "last_review": 1780540920000,
+            "next_review": 1780627320000,
+            "seen": 16
         },
         "だれと行ったの？ Dare to itta no?": {
             "correct": 7,
@@ -6844,12 +6844,12 @@
             "seen": 3
         },
         "ジムに行きます Jimu ni ikimasu": {
-            "correct": 4,
+            "correct": 5,
             "wrong": 2,
-            "streak": 3,
-            "last_review": 1775509179000,
-            "next_review": 1776113979000,
-            "seen": 6
+            "streak": 4,
+            "last_review": 1778659722000,
+            "next_review": 1779869322000,
+            "seen": 7
         },
         "何飲んだ？ Nani nonda?": {
             "correct": 7,
@@ -6884,12 +6884,12 @@
             "seen": 10
         },
         "胸 Mune": {
-            "correct": 5,
-            "wrong": 0,
-            "streak": 5,
-            "last_review": 1771792671000,
-            "next_review": 1774384671000,
-            "seen": 5
+            "correct": 6,
+            "wrong": 3,
+            "streak": 1,
+            "last_review": 1778980281000,
+            "next_review": 1779066681000,
+            "seen": 9
         },
         "首 Kubi": {
             "correct": 7,
@@ -6940,12 +6940,12 @@
             "seen": 11
         },
         "肩 Kata": {
-            "correct": 6,
-            "wrong": 1,
+            "correct": 7,
+            "wrong": 2,
             "streak": 1,
-            "last_review": 1775683485000,
-            "next_review": 1775769885000,
-            "seen": 7
+            "last_review": 1780541045000,
+            "next_review": 1780627445000,
+            "seen": 9
         },
         "指 Yubi": {
             "correct": 6,
@@ -6964,12 +6964,12 @@
             "seen": 5
         },
         "背中 Senaka": {
-            "correct": 6,
-            "wrong": 3,
+            "correct": 7,
+            "wrong": 4,
             "streak": 1,
-            "last_review": 1773088584000,
-            "next_review": 1773174984000,
-            "seen": 9
+            "last_review": 1778980484000,
+            "next_review": 1779066884000,
+            "seen": 11
         },
         "腕 Ude": {
             "correct": 6,
@@ -7020,12 +7020,12 @@
             "seen": 8
         },
         "マフラー Mafuraa": {
-            "correct": 4,
-            "wrong": 0,
-            "streak": 4,
-            "last_review": 1771792410000,
-            "next_review": 1773002010000,
-            "seen": 4
+            "correct": 5,
+            "wrong": 3,
+            "streak": 1,
+            "last_review": 1778659722000,
+            "next_review": 1778746122000,
+            "seen": 8
         },
         "靴下 Kutsushita": {
             "correct": 5,
@@ -7044,12 +7044,12 @@
             "seen": 10
         },
         "手袋 Tebukuro": {
-            "correct": 6,
-            "wrong": 10,
+            "correct": 8,
+            "wrong": 14,
             "streak": 1,
-            "last_review": 1775683630000,
-            "next_review": 1775770030000,
-            "seen": 16
+            "last_review": 1780541045000,
+            "next_review": 1780627445000,
+            "seen": 22
         },
         "スカート Sukaato": {
             "correct": 4,
@@ -7068,12 +7068,12 @@
             "seen": 4
         },
         "下着 Shitagi": {
-            "correct": 4,
-            "wrong": 0,
-            "streak": 4,
-            "last_review": 1771792410000,
-            "next_review": 1773002010000,
-            "seen": 4
+            "correct": 5,
+            "wrong": 1,
+            "streak": 1,
+            "last_review": 1778980020000,
+            "next_review": 1779066420000,
+            "seen": 6
         },
         "ズボン Zubon": {
             "correct": 4,
@@ -7100,12 +7100,12 @@
             "seen": 6
         },
         "フォーク Fooku": {
-            "correct": 3,
+            "correct": 4,
             "wrong": 0,
-            "streak": 3,
-            "last_review": 1776016270000,
-            "next_review": 1776621070000,
-            "seen": 3
+            "streak": 4,
+            "last_review": 1780540769000,
+            "next_review": 1781750369000,
+            "seen": 4
         },
         "グラス Gurasu": {
             "correct": 3,
@@ -7124,12 +7124,12 @@
             "seen": 5
         },
         "お弁当 Obento": {
-            "correct": 4,
+            "correct": 5,
             "wrong": 0,
-            "streak": 4,
-            "last_review": 1775509179000,
-            "next_review": 1776718779000,
-            "seen": 4
+            "streak": 5,
+            "last_review": 1778979886000,
+            "next_review": 1781571886000,
+            "seen": 5
         },
         "定食 Teishoku": {
             "correct": 7,
@@ -7140,12 +7140,12 @@
             "seen": 17
         },
         "ナイフ Naifu": {
-            "correct": 3,
+            "correct": 4,
             "wrong": 0,
-            "streak": 3,
-            "last_review": 1776412075000,
-            "next_review": 1777016875000,
-            "seen": 3
+            "streak": 4,
+            "last_review": 1780710460000,
+            "next_review": 1781920060000,
+            "seen": 4
         },
         "スプーン Supuun": {
             "correct": 3,
@@ -7172,12 +7172,12 @@
             "seen": 3
         },
         "皿 Sara": {
-            "correct": 3,
-            "wrong": 2,
+            "correct": 4,
+            "wrong": 3,
             "streak": 1,
-            "last_review": 1776412075000,
-            "next_review": 1776498475000,
-            "seen": 5
+            "last_review": 1780630260000,
+            "next_review": 1780716660000,
+            "seen": 7
         },
         "箸 Hashi": {
             "correct": 4,
@@ -7196,20 +7196,20 @@
             "seen": 6
         },
         "曇り Kumori": {
-            "correct": 5,
-            "wrong": 9,
+            "correct": 7,
+            "wrong": 13,
             "streak": 1,
-            "last_review": 1777624551000,
-            "next_review": 1777710951000,
-            "seen": 14
+            "last_review": 1780540769000,
+            "next_review": 1780627169000,
+            "seen": 20
         },
         "温度 Ondo": {
-            "correct": 4,
-            "wrong": 4,
+            "correct": 6,
+            "wrong": 8,
             "streak": 1,
-            "last_review": 1777844848000,
-            "next_review": 1777931248000,
-            "seen": 8
+            "last_review": 1780629861000,
+            "next_review": 1780716261000,
+            "seen": 14
         },
         "晴れ Hare": {
             "correct": 3,
@@ -7332,12 +7332,12 @@
             "seen": 11
         },
         "玄関 Genkan": {
-            "correct": 6,
-            "wrong": 1,
-            "streak": 6,
-            "last_review": 1771876551000,
-            "next_review": 1774468551000,
-            "seen": 7
+            "correct": 7,
+            "wrong": 2,
+            "streak": 1,
+            "last_review": 1778515922000,
+            "next_review": 1778602322000,
+            "seen": 9
         },
         "洗濯機 Sentakuki": {
             "correct": 7,
@@ -7372,12 +7372,12 @@
             "seen": 10
         },
         "兄 Ani": {
-            "correct": 6,
-            "wrong": 4,
+            "correct": 7,
+            "wrong": 5,
             "streak": 1,
-            "last_review": 1777844848000,
-            "next_review": 1777931248000,
-            "seen": 10
+            "last_review": 1778980020000,
+            "next_review": 1779066420000,
+            "seen": 12
         },
         "お兄さん Oniisan": {
             "correct": 7,
@@ -7492,28 +7492,28 @@
             "seen": 4
         },
         "弟 Otouto": {
-            "correct": 4,
-            "wrong": 1,
-            "streak": 4,
-            "last_review": 1771879561000,
-            "next_review": 1773089161000,
-            "seen": 5
+            "correct": 6,
+            "wrong": 3,
+            "streak": 2,
+            "last_review": 1780541045000,
+            "next_review": 1780800245000,
+            "seen": 9
         },
         "祖父 Sofu": {
-            "correct": 4,
-            "wrong": 1,
+            "correct": 7,
+            "wrong": 4,
             "streak": 1,
-            "last_review": 1777845134000,
-            "next_review": 1777931534000,
-            "seen": 5
+            "last_review": 1780630260000,
+            "next_review": 1780716660000,
+            "seen": 11
         },
         "妹 Imouto": {
-            "correct": 5,
-            "wrong": 7,
+            "correct": 6,
+            "wrong": 8,
             "streak": 1,
-            "last_review": 1777624181000,
-            "next_review": 1777710581000,
-            "seen": 12
+            "last_review": 1778980020000,
+            "next_review": 1779066420000,
+            "seen": 14
         },
         "彼 Kare": {
             "correct": 6,
@@ -7556,12 +7556,12 @@
             "seen": 8
         },
         "醤油 Shouyu": {
-            "correct": 5,
-            "wrong": 1,
-            "streak": 5,
-            "last_review": 1772026557000,
-            "next_review": 1774618557000,
-            "seen": 6
+            "correct": 6,
+            "wrong": 2,
+            "streak": 1,
+            "last_review": 1780541045000,
+            "next_review": 1780627445000,
+            "seen": 8
         },
         "野菜 Yasai": {
             "correct": 7,
@@ -7596,20 +7596,20 @@
             "seen": 13
         },
         "鶏肉 Toriniku": {
-            "correct": 6,
+            "correct": 7,
             "wrong": 1,
-            "streak": 6,
-            "last_review": 1772026557000,
-            "next_review": 1774618557000,
-            "seen": 7
+            "streak": 7,
+            "last_review": 1780540920000,
+            "next_review": 1783132920000,
+            "seen": 8
         },
         "魚 Sakana": {
-            "correct": 6,
-            "wrong": 3,
-            "streak": 5,
-            "last_review": 1773390632000,
-            "next_review": 1775982632000,
-            "seen": 9
+            "correct": 7,
+            "wrong": 4,
+            "streak": 1,
+            "last_review": 1778659722000,
+            "next_review": 1778746122000,
+            "seen": 11
         },
         "牛肉 Gyuuniku": {
             "correct": 7,
@@ -7900,12 +7900,12 @@
             "seen": 14
         },
         "たまねぎ tamanegi": {
-            "correct": 6,
-            "wrong": 7,
+            "correct": 7,
+            "wrong": 8,
             "streak": 1,
-            "last_review": 1778311851000,
-            "next_review": 1778398251000,
-            "seen": 13
+            "last_review": 1780629861000,
+            "next_review": 1780716261000,
+            "seen": 15
         },
         "ちゅうごく chuugoku": {
             "correct": 7,
@@ -7932,12 +7932,12 @@
             "seen": 13
         },
         "ポテト poteto": {
-            "correct": 5,
+            "correct": 6,
             "wrong": 3,
-            "streak": 1,
-            "last_review": 1775510762000,
-            "next_review": 1775597162000,
-            "seen": 8
+            "streak": 2,
+            "last_review": 1780541045000,
+            "next_review": 1780800245000,
+            "seen": 9
         },
         "とくに tokuni": {
             "correct": 7,
@@ -7972,12 +7972,12 @@
             "seen": 4
         },
         "にんじん ninjin": {
-            "correct": 5,
+            "correct": 6,
             "wrong": 2,
-            "streak": 1,
-            "last_review": 1775206092000,
-            "next_review": 1775292492000,
-            "seen": 7
+            "streak": 2,
+            "last_review": 1780630260000,
+            "next_review": 1780889460000,
+            "seen": 8
         },
         "たべもの tabemono": {
             "correct": 7,
@@ -8020,12 +8020,12 @@
             "seen": 7
         },
         "げんきな genkina": {
-            "correct": 3,
+            "correct": 4,
             "wrong": 0,
-            "streak": 3,
-            "last_review": 1775596409000,
-            "next_review": 1776201209000,
-            "seen": 3
+            "streak": 4,
+            "last_review": 1780629861000,
+            "next_review": 1781839461000,
+            "seen": 4
         },
         "Albert Heijn が どこにでも あります Albert Heijn ga dokonidemo arimasu": {
             "correct": 4,
@@ -8044,12 +8044,12 @@
             "seen": 9
         },
         "ゆうめいな たべもの yuumeina tabemono": {
-            "correct": 3,
+            "correct": 4,
             "wrong": 1,
-            "streak": 1,
-            "last_review": 1776412075000,
-            "next_review": 1776498475000,
-            "seen": 4
+            "streak": 2,
+            "last_review": 1780629981000,
+            "next_review": 1780889181000,
+            "seen": 5
         },
         "これ この ここ kore kono koko": {
             "correct": 4,
@@ -8068,20 +8068,20 @@
             "seen": 16
         },
         "にく niku": {
-            "correct": 4,
+            "correct": 5,
             "wrong": 0,
-            "streak": 4,
-            "last_review": 1777840265000,
-            "next_review": 1779049865000,
-            "seen": 4
+            "streak": 5,
+            "last_review": 1778659722000,
+            "next_review": 1781251722000,
+            "seen": 5
         },
         "カレー karee": {
-            "correct": 3,
+            "correct": 4,
             "wrong": 1,
-            "streak": 3,
-            "last_review": 1775682036000,
-            "next_review": 1776286836000,
-            "seen": 4
+            "streak": 4,
+            "last_review": 1778979886000,
+            "next_review": 1780189486000,
+            "seen": 5
         },
         "りょうりする ryourisuru": {
             "correct": 3,
@@ -8188,12 +8188,12 @@
             "seen": 9
         },
         "信号 Shingou": {
-            "correct": 6,
-            "wrong": 11,
+            "correct": 7,
+            "wrong": 12,
             "streak": 1,
-            "last_review": 1775682913000,
-            "next_review": 1775769313000,
-            "seen": 17
+            "last_review": 1780540769000,
+            "next_review": 1780627169000,
+            "seen": 19
         },
         "道 Michi": {
             "correct": 5,
@@ -8204,20 +8204,20 @@
             "seen": 8
         },
         "銀行 Ginkou": {
-            "correct": 6,
+            "correct": 7,
             "wrong": 2,
-            "streak": 3,
-            "last_review": 1778277982000,
-            "next_review": 1778882782000,
-            "seen": 8
+            "streak": 4,
+            "last_review": 1778980020000,
+            "next_review": 1780189620000,
+            "seen": 9
         },
         "映画館 Eigakan": {
-            "correct": 4,
-            "wrong": 3,
+            "correct": 5,
+            "wrong": 4,
             "streak": 1,
-            "last_review": 1775683123000,
-            "next_review": 1775769523000,
-            "seen": 7
+            "last_review": 1780540920000,
+            "next_review": 1780627320000,
+            "seen": 9
         },
         "ゆっくり yukkuri": {
             "correct": 5,
@@ -8524,12 +8524,12 @@
             "seen": 14
         },
         "ゆっくりしている yukkuri shite iru": {
-            "correct": 4,
-            "wrong": 6,
-            "streak": 2,
-            "last_review": 1773089713000,
-            "next_review": 1773348913000,
-            "seen": 10
+            "correct": 5,
+            "wrong": 7,
+            "streak": 1,
+            "last_review": 1778659722000,
+            "next_review": 1778746122000,
+            "seen": 12
         },
         "はずかしい hazukashii": {
             "correct": 4,
@@ -8612,12 +8612,12 @@
             "seen": 7
         },
         "六つ Muttsu": {
-            "correct": 6,
-            "wrong": 4,
+            "correct": 7,
+            "wrong": 5,
             "streak": 1,
-            "last_review": 1775805011000,
-            "next_review": 1775891411000,
-            "seen": 10
+            "last_review": 1778659722000,
+            "next_review": 1778746122000,
+            "seen": 12
         },
         "五つ Itsutsu": {
             "correct": 6,
@@ -8772,20 +8772,20 @@
             "seen": 20
         },
         "七日 Nanoka": {
-            "correct": 5,
-            "wrong": 9,
+            "correct": 6,
+            "wrong": 10,
             "streak": 1,
-            "last_review": 1777624320000,
-            "next_review": 1777710720000,
-            "seen": 14
+            "last_review": 1778979886000,
+            "next_review": 1779066286000,
+            "seen": 16
         },
         "十日 Tooka": {
-            "correct": 6,
-            "wrong": 7,
+            "correct": 7,
+            "wrong": 8,
             "streak": 1,
-            "last_review": 1776412170000,
-            "next_review": 1776498570000,
-            "seen": 13
+            "last_review": 1778515922000,
+            "next_review": 1778602322000,
+            "seen": 15
         },
         "一昨日 Ototoi": {
             "correct": 10,
@@ -8868,12 +8868,12 @@
             "seen": 11
         },
         "先月 Sengetsu": {
-            "correct": 6,
+            "correct": 7,
             "wrong": 1,
-            "streak": 6,
-            "last_review": 1772884193000,
-            "next_review": 1775476193000,
-            "seen": 7
+            "streak": 7,
+            "last_review": 1778980484000,
+            "next_review": 1781572484000,
+            "seen": 8
         },
         "午後 Gogo": {
             "correct": 7,
@@ -9196,28 +9196,28 @@
             "seen": 6
         },
         "〜おねがいします ~onegaishimasu": {
-            "correct": 6,
+            "correct": 7,
             "wrong": 4,
-            "streak": 1,
-            "last_review": 1778277660000,
-            "next_review": 1778364060000,
-            "seen": 10
+            "streak": 2,
+            "last_review": 1778980020000,
+            "next_review": 1779239220000,
+            "seen": 11
         },
         "もっとほしい Motto hoshii": {
-            "correct": 4,
-            "wrong": 4,
+            "correct": 5,
+            "wrong": 5,
             "streak": 1,
-            "last_review": 1777624320000,
-            "next_review": 1777710720000,
-            "seen": 8
+            "last_review": 1780540920000,
+            "next_review": 1780627320000,
+            "seen": 10
         },
         "いらない Iranai": {
-            "correct": 3,
-            "wrong": 3,
+            "correct": 4,
+            "wrong": 5,
             "streak": 1,
-            "last_review": 1776411975000,
-            "next_review": 1776498375000,
-            "seen": 6
+            "last_review": 1778659722000,
+            "next_review": 1778746122000,
+            "seen": 9
         },
         "き Ki": {
             "correct": 10,
@@ -9652,12 +9652,12 @@
             "seen": 7
         },
         "こんや konya": {
-            "correct": 6,
+            "correct": 7,
             "wrong": 2,
-            "streak": 4,
-            "last_review": 1775804647000,
-            "next_review": 1777014247000,
-            "seen": 8
+            "streak": 5,
+            "last_review": 1780629861000,
+            "next_review": 1783221861000,
+            "seen": 9
         },
         "だいじ daiji": {
             "correct": 7,
@@ -9844,12 +9844,12 @@
             "seen": 11
         },
         "よっか yokka": {
-            "correct": 5,
-            "wrong": 2,
-            "streak": 4,
-            "last_review": 1774598790000,
-            "next_review": 1775808390000,
-            "seen": 7
+            "correct": 6,
+            "wrong": 5,
+            "streak": 1,
+            "last_review": 1778980484000,
+            "next_review": 1779066884000,
+            "seen": 11
         },
         "みっか mikka": {
             "correct": 8,
@@ -9876,12 +9876,12 @@
             "seen": 12
         },
         "いちばんおおきいです ichiban ookii desu": {
-            "correct": 5,
-            "wrong": 1,
-            "streak": 5,
-            "last_review": 1774598790000,
-            "next_review": 1777190790000,
-            "seen": 6
+            "correct": 6,
+            "wrong": 2,
+            "streak": 1,
+            "last_review": 1780630260000,
+            "next_review": 1780716660000,
+            "seen": 8
         },
         "ふじさん fujisan": {
             "correct": 6,
@@ -9964,12 +9964,12 @@
             "seen": 8
         },
         "がたのしみです ga tanoshimi desu": {
-            "correct": 5,
+            "correct": 6,
             "wrong": 3,
-            "streak": 5,
-            "last_review": 1776699528000,
-            "next_review": 1779291528000,
-            "seen": 8
+            "streak": 6,
+            "last_review": 1780710460000,
+            "next_review": 1783302460000,
+            "seen": 9
         },
         "でんとうてきなたてもの が すきですか dentouteki na tatemono ga suki desu ka": {
             "correct": 7,
@@ -10060,12 +10060,12 @@
             "seen": 3
         },
         "つく tsuku": {
-            "correct": 5,
-            "wrong": 2,
+            "correct": 6,
+            "wrong": 3,
             "streak": 1,
-            "last_review": 1778311851000,
-            "next_review": 1778398251000,
-            "seen": 7
+            "last_review": 1780630260000,
+            "next_review": 1780716660000,
+            "seen": 9
         },
         "くうきはきたないです kuuki wa kitanai desu": {
             "correct": 3,
@@ -10076,12 +10076,12 @@
             "seen": 5
         },
         "かきごおり kakigoori": {
-            "correct": 4,
+            "correct": 5,
             "wrong": 4,
-            "streak": 1,
-            "last_review": 1776016450000,
-            "next_review": 1776102850000,
-            "seen": 8
+            "streak": 2,
+            "last_review": 1778980484000,
+            "next_review": 1779239684000,
+            "seen": 9
         },
         "げんき Genki": {
             "correct": 10,
@@ -10164,12 +10164,12 @@
             "seen": 12
         },
         "ふくろ Fukuro": {
-            "correct": 6,
+            "correct": 7,
             "wrong": 2,
-            "streak": 1,
-            "last_review": 1777624551000,
-            "next_review": 1777710951000,
-            "seen": 8
+            "streak": 2,
+            "last_review": 1780541045000,
+            "next_review": 1780800245000,
+            "seen": 9
         },
         "ためす Tamesu": {
             "correct": 7,
@@ -10316,12 +10316,12 @@
             "seen": 5
         },
         "めったに Metta ni": {
-            "correct": 3,
-            "wrong": 6,
+            "correct": 5,
+            "wrong": 7,
             "streak": 2,
-            "last_review": 1775510914000,
-            "next_review": 1775770114000,
-            "seen": 9
+            "last_review": 1780630260000,
+            "next_review": 1780889460000,
+            "seen": 12
         },
         "もうすぐ Mou sugu": {
             "correct": 3,
@@ -10332,12 +10332,12 @@
             "seen": 9
         },
         "たまに Tama ni": {
-            "correct": 3,
-            "wrong": 4,
+            "correct": 4,
+            "wrong": 7,
             "streak": 1,
-            "last_review": 1775805011000,
-            "next_review": 1775891411000,
-            "seen": 7
+            "last_review": 1780540769000,
+            "next_review": 1780627169000,
+            "seen": 11
         },
         "いちにちに Ichinichi ni": {
             "correct": 4,
@@ -10412,12 +10412,12 @@
             "seen": 8
         },
         "いこう ikou": {
-            "correct": 5,
+            "correct": 6,
             "wrong": 1,
-            "streak": 5,
-            "last_review": 1777845134000,
-            "next_review": 1780437134000,
-            "seen": 6
+            "streak": 6,
+            "last_review": 1778980020000,
+            "next_review": 1781572020000,
+            "seen": 7
         },
         "もしくは moshiku wa": {
             "correct": 7,
@@ -10452,28 +10452,28 @@
             "seen": 6
         },
         "じゅうだいな juudaina": {
-            "correct": 6,
-            "wrong": 4,
+            "correct": 7,
+            "wrong": 5,
             "streak": 1,
-            "last_review": 1778311851000,
-            "next_review": 1778398251000,
-            "seen": 10
+            "last_review": 1778515922000,
+            "next_review": 1778602322000,
+            "seen": 12
         },
         "あまり だいじ じゃない amari daiji janai": {
-            "correct": 6,
-            "wrong": 11,
-            "streak": 2,
-            "last_review": 1777844323000,
-            "next_review": 1778103523000,
-            "seen": 17
+            "correct": 7,
+            "wrong": 12,
+            "streak": 1,
+            "last_review": 1780630088000,
+            "next_review": 1780716488000,
+            "seen": 19
         },
         "のはら nohara": {
-            "correct": 5,
-            "wrong": 4,
+            "correct": 6,
+            "wrong": 6,
             "streak": 1,
-            "last_review": 1778277797000,
-            "next_review": 1778364197000,
-            "seen": 9
+            "last_review": 1780541045000,
+            "next_review": 1780627445000,
+            "seen": 12
         },
         "へん hen": {
             "correct": 5,
@@ -10588,12 +10588,12 @@
             "seen": 5
         },
         "いまのいえ より たかい ima no ie yori takai": {
-            "correct": 5,
-            "wrong": 4,
-            "streak": 2,
-            "last_review": 1775467057000,
-            "next_review": 1775726257000,
-            "seen": 9
+            "correct": 6,
+            "wrong": 6,
+            "streak": 1,
+            "last_review": 1780630088000,
+            "next_review": 1780716488000,
+            "seen": 12
         },
         "テセル teseru": {
             "correct": 3,
@@ -10604,12 +10604,12 @@
             "seen": 4
         },
         "こんでいる konde iru": {
-            "correct": 5,
+            "correct": 7,
             "wrong": 5,
-            "streak": 1,
-            "last_review": 1778277499000,
-            "next_review": 1778363899000,
-            "seen": 10
+            "streak": 3,
+            "last_review": 1778980484000,
+            "next_review": 1779585284000,
+            "seen": 12
         },
         "そこは ひとが すくない です soko wa hito ga sukunai desu": {
             "correct": 7,
@@ -10644,20 +10644,20 @@
             "seen": 7
         },
         "にばい nibai": {
-            "correct": 6,
-            "wrong": 3,
+            "correct": 7,
+            "wrong": 4,
             "streak": 1,
-            "last_review": 1778277660000,
-            "next_review": 1778364060000,
-            "seen": 9
+            "last_review": 1780630088000,
+            "next_review": 1780716488000,
+            "seen": 11
         },
         "いっかいめ ikkaime": {
-            "correct": 3,
-            "wrong": 7,
-            "streak": 2,
-            "last_review": 1775464319000,
-            "next_review": 1775723519000,
-            "seen": 10
+            "correct": 4,
+            "wrong": 8,
+            "streak": 1,
+            "last_review": 1780629981000,
+            "next_review": 1780716381000,
+            "seen": 12
         },
         "しぜん shizen": {
             "correct": 3,
@@ -10668,12 +10668,12 @@
             "seen": 3
         },
         "まんなか mannaka": {
-            "correct": 3,
+            "correct": 4,
             "wrong": 0,
-            "streak": 3,
-            "last_review": 1775464319000,
-            "next_review": 1776069119000,
-            "seen": 3
+            "streak": 4,
+            "last_review": 1780540769000,
+            "next_review": 1781750369000,
+            "seen": 4
         },
         "あまり amari": {
             "correct": 3,
@@ -10684,12 +10684,12 @@
             "seen": 3
         },
         "ちがう chigau": {
-            "correct": 3,
-            "wrong": 5,
+            "correct": 4,
+            "wrong": 6,
             "streak": 1,
-            "last_review": 1775509601000,
-            "next_review": 1775596001000,
-            "seen": 8
+            "last_review": 1778979886000,
+            "next_review": 1779066286000,
+            "seen": 10
         },
         "まんなかのクラスのいえ mannaka no kurasu no ie": {
             "correct": 2,
@@ -10732,20 +10732,20 @@
             "seen": 7
         },
         "けんさく Kensaku": {
-            "correct": 6,
-            "wrong": 7,
-            "streak": 4,
-            "last_review": 1775658986000,
-            "next_review": 1776868586000,
-            "seen": 13
+            "correct": 7,
+            "wrong": 9,
+            "streak": 1,
+            "last_review": 1780540769000,
+            "next_review": 1780627169000,
+            "seen": 16
         },
         "じゅうでん Juuden": {
-            "correct": 6,
-            "wrong": 1,
-            "streak": 3,
-            "last_review": 1775658986000,
-            "next_review": 1776263786000,
-            "seen": 7
+            "correct": 7,
+            "wrong": 2,
+            "streak": 1,
+            "last_review": 1780629981000,
+            "next_review": 1780716381000,
+            "seen": 9
         },
         "なんのアプリ Nan no apuri": {
             "correct": 7,
@@ -10812,12 +10812,12 @@
             "seen": 3
         },
         "地図を見せてください Chizu o misete kudasai": {
-            "correct": 4,
-            "wrong": 4,
+            "correct": 5,
+            "wrong": 5,
             "streak": 1,
-            "last_review": 1777844196000,
-            "next_review": 1777930596000,
-            "seen": 8
+            "last_review": 1780629981000,
+            "next_review": 1780716381000,
+            "seen": 10
         },
         "迷いました Mayoimashita": {
             "correct": 2,
@@ -10844,12 +10844,12 @@
             "seen": 11
         },
         "ここで降ります Koko de orimasu": {
-            "correct": 2,
-            "wrong": 5,
-            "streak": 2,
-            "last_review": 1775670985000,
-            "next_review": 1775930185000,
-            "seen": 7
+            "correct": 4,
+            "wrong": 8,
+            "streak": 1,
+            "last_review": 1780540769000,
+            "next_review": 1780627169000,
+            "seen": 12
         },
         "運休です Unkyuu desu": {
             "correct": 3,
@@ -10860,12 +10860,12 @@
             "seen": 13
         },
         "乗り換え Norikae": {
-            "correct": 3,
-            "wrong": 6,
+            "correct": 4,
+            "wrong": 7,
             "streak": 1,
-            "last_review": 1776412476000,
-            "next_review": 1776498876000,
-            "seen": 9
+            "last_review": 1778979886000,
+            "next_review": 1779066286000,
+            "seen": 11
         },
         "ホーム Hoomu": {
             "correct": 5,
@@ -11196,12 +11196,12 @@
             "seen": 13
         },
         "だいじょうぶですか Daijoubu desu ka": {
-            "correct": 6,
+            "correct": 7,
             "wrong": 0,
-            "streak": 6,
-            "last_review": 1776176421000,
-            "next_review": 1778768421000,
-            "seen": 6
+            "streak": 7,
+            "last_review": 1778515922000,
+            "next_review": 1781107922000,
+            "seen": 7
         },
         "せき Seki": {
             "correct": 5,
@@ -11316,20 +11316,20 @@
             "seen": 5
         },
         "被る Kaburu": {
-            "correct": 4,
-            "wrong": 3,
-            "streak": 3,
-            "last_review": 1776239397000,
-            "next_review": 1776844197000,
-            "seen": 7
+            "correct": 6,
+            "wrong": 5,
+            "streak": 1,
+            "last_review": 1780629981000,
+            "next_review": 1780716381000,
+            "seen": 11
         },
         "違う Chigau": {
-            "correct": 3,
+            "correct": 4,
             "wrong": 0,
-            "streak": 3,
-            "last_review": 1776241025000,
-            "next_review": 1776845825000,
-            "seen": 3
+            "streak": 4,
+            "last_review": 1778980281000,
+            "next_review": 1780189881000,
+            "seen": 4
         },
         "しゃべる Shaberu": {
             "correct": 3,
@@ -11340,20 +11340,20 @@
             "seen": 3
         },
         "調べる Shiraberu": {
-            "correct": 5,
+            "correct": 6,
             "wrong": 1,
-            "streak": 2,
-            "last_review": 1778311769000,
-            "next_review": 1778570969000,
-            "seen": 6
+            "streak": 3,
+            "last_review": 1780629981000,
+            "next_review": 1781234781000,
+            "seen": 7
         },
         "座る Suwaru": {
-            "correct": 4,
-            "wrong": 4,
-            "streak": 1,
-            "last_review": 1777845134000,
-            "next_review": 1777931534000,
-            "seen": 8
+            "correct": 6,
+            "wrong": 5,
+            "streak": 2,
+            "last_review": 1780629861000,
+            "next_review": 1780889061000,
+            "seen": 11
         },
         "やめる Yameru": {
             "correct": 4,
@@ -11380,12 +11380,12 @@
             "seen": 3
         },
         "選ぶ Erabu": {
-            "correct": 4,
-            "wrong": 2,
+            "correct": 5,
+            "wrong": 4,
             "streak": 1,
-            "last_review": 1778311769000,
-            "next_review": 1778398169000,
-            "seen": 6
+            "last_review": 1780629981000,
+            "next_review": 1780716381000,
+            "seen": 9
         },
         "味わう Ajiwau": {
             "correct": 4,
@@ -11404,28 +11404,28 @@
             "seen": 4
         },
         "渡す Watasu": {
-            "correct": 4,
-            "wrong": 1,
-            "streak": 4,
-            "last_review": 1776257992000,
-            "next_review": 1777467592000,
-            "seen": 5
+            "correct": 5,
+            "wrong": 2,
+            "streak": 1,
+            "last_review": 1778980281000,
+            "next_review": 1779066681000,
+            "seen": 7
         },
         "誘う Sasou": {
-            "correct": 4,
-            "wrong": 2,
-            "streak": 4,
-            "last_review": 1776257992000,
-            "next_review": 1777467592000,
-            "seen": 6
+            "correct": 5,
+            "wrong": 3,
+            "streak": 1,
+            "last_review": 1780630088000,
+            "next_review": 1780716488000,
+            "seen": 8
         },
         "上げる Ageru": {
-            "correct": 5,
-            "wrong": 5,
+            "correct": 7,
+            "wrong": 9,
             "streak": 1,
-            "last_review": 1777624320000,
-            "next_review": 1777710720000,
-            "seen": 10
+            "last_review": 1780630260000,
+            "next_review": 1780716660000,
+            "seen": 16
         },
         "数える Kazoeru": {
             "correct": 4,
@@ -11436,12 +11436,12 @@
             "seen": 4
         },
         "掴む Tsukamu": {
-            "correct": 4,
-            "wrong": 6,
-            "streak": 3,
-            "last_review": 1776873950000,
-            "next_review": 1777478750000,
-            "seen": 10
+            "correct": 6,
+            "wrong": 8,
+            "streak": 1,
+            "last_review": 1780630088000,
+            "next_review": 1780716488000,
+            "seen": 14
         },
         "落とす Otosu": {
             "correct": 7,
@@ -11460,12 +11460,12 @@
             "seen": 5
         },
         "取り出す Toridasu": {
-            "correct": 4,
+            "correct": 5,
             "wrong": 1,
-            "streak": 4,
-            "last_review": 1776873950000,
-            "next_review": 1778083550000,
-            "seen": 5
+            "streak": 5,
+            "last_review": 1778980484000,
+            "next_review": 1781572484000,
+            "seen": 6
         },
         "拾う Hirou": {
             "correct": 4,
@@ -11500,20 +11500,20 @@
             "seen": 5
         },
         "ごうほう gouhou": {
-            "correct": 5,
+            "correct": 7,
             "wrong": 1,
-            "streak": 5,
-            "last_review": 1778277797000,
-            "next_review": 1780869797000,
-            "seen": 6
+            "streak": 7,
+            "last_review": 1780630088000,
+            "next_review": 1783222088000,
+            "seen": 8
         },
         "いごこちがいい igokochi ga ii": {
-            "correct": 6,
-            "wrong": 11,
+            "correct": 7,
+            "wrong": 12,
             "streak": 1,
-            "last_review": 1778311769000,
-            "next_review": 1778398169000,
-            "seen": 17
+            "last_review": 1778980020000,
+            "next_review": 1779066420000,
+            "seen": 19
         },
         "しぜんなにほんごのどうが shizen na nihongo no douga": {
             "correct": 4,
@@ -11524,12 +11524,12 @@
             "seen": 7
         },
         "かんこうきゃく kankoukyaku": {
-            "correct": 5,
+            "correct": 6,
             "wrong": 7,
-            "streak": 5,
-            "last_review": 1778277982000,
-            "next_review": 1780869982000,
-            "seen": 12
+            "streak": 6,
+            "last_review": 1780629861000,
+            "next_review": 1783221861000,
+            "seen": 13
         },
         "オランダと日本はしあいをする oranda to nihon wa shiai o suru": {
             "correct": 6,
@@ -11572,84 +11572,84 @@
             "seen": 6
         },
         "せかいじゅうのひと sekaijuu no hito": {
-            "correct": 3,
-            "wrong": 2,
-            "streak": 3,
-            "last_review": 1777622639000,
-            "next_review": 1778227439000,
-            "seen": 5
-        },
-        "かんこうきゃくのためのおみせ kankoukyaku no tame no omise": {
-            "correct": 5,
-            "wrong": 6,
-            "streak": 2,
-            "last_review": 1778414023000,
-            "next_review": 1778673223000,
-            "seen": 11
-        },
-        "やはり Yahari": {
-            "correct": 1,
-            "wrong": 3,
-            "streak": 1,
-            "last_review": 1777840540000,
-            "next_review": 1777926940000,
-            "seen": 4
-        },
-        "できるだけ Dekiru dake": {
-            "correct": 1,
-            "wrong": 1,
-            "streak": 1,
-            "last_review": 1777840540000,
-            "next_review": 1777926940000,
-            "seen": 2
-        },
-        "だいたい Daitai": {
-            "correct": 2,
-            "wrong": 3,
-            "streak": 2,
-            "last_review": 1777840867000,
-            "next_review": 1778100067000,
-            "seen": 5
-        },
-        "ぜひ Zehi": {
-            "correct": 1,
-            "wrong": 1,
-            "streak": 1,
-            "last_review": 1777840540000,
-            "next_review": 1777926940000,
-            "seen": 2
-        },
-        "それに Sore ni": {
-            "correct": 2,
-            "wrong": 2,
-            "streak": 2,
-            "last_review": 1777840867000,
-            "next_review": 1778100067000,
-            "seen": 4
-        },
-        "あるいは Arui wa": {
-            "correct": 2,
+            "correct": 4,
             "wrong": 4,
             "streak": 1,
-            "last_review": 1778311769000,
-            "next_review": 1778398169000,
-            "seen": 6
+            "last_review": 1778515922000,
+            "next_review": 1778602322000,
+            "seen": 8
+        },
+        "かんこうきゃくのためのおみせ kankoukyaku no tame no omise": {
+            "correct": 7,
+            "wrong": 7,
+            "streak": 2,
+            "last_review": 1780541045000,
+            "next_review": 1780800245000,
+            "seen": 14
+        },
+        "やはり Yahari": {
+            "correct": 6,
+            "wrong": 4,
+            "streak": 5,
+            "last_review": 1778525788000,
+            "next_review": 1781117788000,
+            "seen": 10
+        },
+        "できるだけ Dekiru dake": {
+            "correct": 7,
+            "wrong": 4,
+            "streak": 4,
+            "last_review": 1778525788000,
+            "next_review": 1779735388000,
+            "seen": 11
+        },
+        "だいたい Daitai": {
+            "correct": 6,
+            "wrong": 4,
+            "streak": 4,
+            "last_review": 1778525788000,
+            "next_review": 1779735388000,
+            "seen": 10
+        },
+        "ぜひ Zehi": {
+            "correct": 7,
+            "wrong": 4,
+            "streak": 4,
+            "last_review": 1778980281000,
+            "next_review": 1780189881000,
+            "seen": 11
+        },
+        "それに Sore ni": {
+            "correct": 8,
+            "wrong": 10,
+            "streak": 1,
+            "last_review": 1778525788000,
+            "next_review": 1778612188000,
+            "seen": 18
+        },
+        "あるいは Arui wa": {
+            "correct": 8,
+            "wrong": 9,
+            "streak": 4,
+            "last_review": 1778525788000,
+            "next_review": 1779735388000,
+            "seen": 17
         },
         "それとも Soretomo": {
-            "correct": 1,
-            "wrong": 1,
-            "streak": 1,
-            "last_review": 1777840867000,
-            "next_review": 1777927267000,
-            "seen": 2
+            "correct": 8,
+            "wrong": 6,
+            "streak": 3,
+            "last_review": 1778525788000,
+            "next_review": 1779130588000,
+            "seen": 14
         },
         "もし Moshi": {
-            "correct": 1,
-            "wrong": 0,
-            "streak": 1,
-            "last_review": 1777840867000,
-            "next_review": 1777927267000,
-            "seen": 1
+            "correct": 7,
+            "wrong": 1,
+            "streak": 6,
+            "last_review": 1778525788000,
+            "next_review": 1781117788000,
+            "seen": 8
         },
         "べつべつに Betsu betsu ni": {
             "correct": 7,
@@ -11668,20 +11668,20 @@
             "seen": 7
         },
         "かうんたーせき Kauntaa seki": {
-            "correct": 6,
-            "wrong": 1,
-            "streak": 6,
-            "last_review": 1778312693000,
-            "next_review": 1780904693000,
-            "seen": 7
+            "correct": 7,
+            "wrong": 2,
+            "streak": 1,
+            "last_review": 1778980281000,
+            "next_review": 1779066681000,
+            "seen": 9
         },
         "まとめて Matomete": {
-            "correct": 5,
-            "wrong": 6,
-            "streak": 3,
-            "last_review": 1778312693000,
-            "next_review": 1778917493000,
-            "seen": 11
+            "correct": 6,
+            "wrong": 7,
+            "streak": 1,
+            "last_review": 1780630088000,
+            "next_review": 1780716488000,
+            "seen": 13
         },
         "もうすこし Mou sukoshi": {
             "correct": 7,
@@ -11740,12 +11740,12 @@
             "seen": 7
         },
         "おかわり Okawari": {
-            "correct": 4,
+            "correct": 5,
             "wrong": 1,
-            "streak": 3,
-            "last_review": 1778312693000,
-            "next_review": 1778917493000,
-            "seen": 5
+            "streak": 4,
+            "last_review": 1780540769000,
+            "next_review": 1781750369000,
+            "seen": 6
         },
         "からい Karai": {
             "correct": 4,
@@ -11756,12 +11756,12 @@
             "seen": 5
         },
         "おすすめは Osusume wa": {
-            "correct": 4,
+            "correct": 5,
             "wrong": 0,
-            "streak": 4,
-            "last_review": 1778312693000,
-            "next_review": 1779522293000,
-            "seen": 4
+            "streak": 5,
+            "last_review": 1780630260000,
+            "next_review": 1783222260000,
+            "seen": 5
         },
         "このりょうりはなんですか Kono ryouri wa nan desu ka": {
             "correct": 4,
@@ -11794,6 +11794,198 @@
             "last_review": 1778313592000,
             "next_review": 1778399992000,
             "seen": 3
+        },
+        "ただし Tadashi": {
+            "correct": 7,
+            "wrong": 5,
+            "streak": 5,
+            "last_review": 1778525788000,
+            "next_review": 1781117788000,
+            "seen": 12
+        },
+        "なんとなく Nantona ku": {
+            "correct": 5,
+            "wrong": 11,
+            "streak": 2,
+            "last_review": 1778525788000,
+            "next_review": 1778784988000,
+            "seen": 16
+        },
+        "しかし Shikashi": {
+            "correct": 7,
+            "wrong": 6,
+            "streak": 1,
+            "last_review": 1780540920000,
+            "next_review": 1780627320000,
+            "seen": 13
+        },
+        "せっかく Sekkaku": {
+            "correct": 7,
+            "wrong": 11,
+            "streak": 1,
+            "last_review": 1780541045000,
+            "next_review": 1780627445000,
+            "seen": 18
+        },
+        "はっきり Hakkiri": {
+            "correct": 6,
+            "wrong": 5,
+            "streak": 2,
+            "last_review": 1778525788000,
+            "next_review": 1778784988000,
+            "seen": 11
+        },
+        "たとえば Tatoeba": {
+            "correct": 6,
+            "wrong": 0,
+            "streak": 6,
+            "last_review": 1778525788000,
+            "next_review": 1781117788000,
+            "seen": 6
+        },
+        "ポイントカードはありますか Pointo kaado wa arimasu ka": {
+            "correct": 3,
+            "wrong": 3,
+            "streak": 1,
+            "last_review": 1780629861000,
+            "next_review": 1780716261000,
+            "seen": 6
+        },
+        "袋は要りますか Fukuro wa irimasu ka": {
+            "correct": 3,
+            "wrong": 2,
+            "streak": 2,
+            "last_review": 1778727533000,
+            "next_review": 1778986733000,
+            "seen": 5
+        },
+        "現金のみです Genkin nomi desu": {
+            "correct": 4,
+            "wrong": 0,
+            "streak": 4,
+            "last_review": 1778727669000,
+            "next_review": 1779937269000,
+            "seen": 4
+        },
+        "店内でお召し上がりですか Tennai de omeshiagari desu ka": {
+            "correct": 3,
+            "wrong": 12,
+            "streak": 2,
+            "last_review": 1778727890000,
+            "next_review": 1778987090000,
+            "seen": 15
+        },
+        "少しお待ちください Sukoshi omachi kudasai": {
+            "correct": 6,
+            "wrong": 7,
+            "streak": 1,
+            "last_review": 1778980020000,
+            "next_review": 1779066420000,
+            "seen": 13
+        },
+        "パスポートをお願いします Pasupooto o onegaishimasu": {
+            "correct": 2,
+            "wrong": 5,
+            "streak": 1,
+            "last_review": 1778727770000,
+            "next_review": 1778814170000,
+            "seen": 7
+        },
+        "何名様ですか Nanmei sama desu ka": {
+            "correct": 4,
+            "wrong": 0,
+            "streak": 4,
+            "last_review": 1778727770000,
+            "next_review": 1779937370000,
+            "seen": 4
+        },
+        "少々お待ちください Shoushou omachi kudasai": {
+            "correct": 4,
+            "wrong": 2,
+            "streak": 4,
+            "last_review": 1778727890000,
+            "next_review": 1779937490000,
+            "seen": 6
+        },
+        "ご予約はありますか Goyoyaku wa arimasu ka": {
+            "correct": 2,
+            "wrong": 2,
+            "streak": 2,
+            "last_review": 1778727890000,
+            "next_review": 1778987090000,
+            "seen": 4
+        },
+        "こちらへどうぞ Kochira e douzo": {
+            "correct": 1,
+            "wrong": 1,
+            "streak": 1,
+            "last_review": 1778727285000,
+            "next_review": 1778813685000,
+            "seen": 2
+        },
+        "おつりです Otsuri desu": {
+            "correct": 2,
+            "wrong": 1,
+            "streak": 2,
+            "last_review": 1778727770000,
+            "next_review": 1778986970000,
+            "seen": 3
+        },
+        "禁煙です Kinen desu": {
+            "correct": 2,
+            "wrong": 0,
+            "streak": 2,
+            "last_review": 1780540920000,
+            "next_review": 1780800120000,
+            "seen": 2
+        },
+        "レシートは要りますか Reshiito wa irimasu ka": {
+            "correct": 3,
+            "wrong": 0,
+            "streak": 3,
+            "last_review": 1780630260000,
+            "next_review": 1781235060000,
+            "seen": 3
+        },
+        "〜円です ~ en desu": {
+            "correct": 2,
+            "wrong": 1,
+            "streak": 2,
+            "last_review": 1778727533000,
+            "next_review": 1778986733000,
+            "seen": 3
+        },
+        "お持ち帰りですか Omochikaeri desu ka": {
+            "correct": 3,
+            "wrong": 8,
+            "streak": 1,
+            "last_review": 1780710460000,
+            "next_review": 1780796860000,
+            "seen": 11
+        },
+        "朝食付きです Choushoku-tsuki desu": {
+            "correct": 2,
+            "wrong": 6,
+            "streak": 1,
+            "last_review": 1778727890000,
+            "next_review": 1778814290000,
+            "seen": 8
+        },
+        "温めますか Atatamemasu ka": {
+            "correct": 2,
+            "wrong": 3,
+            "streak": 1,
+            "last_review": 1778979886000,
+            "next_review": 1779066286000,
+            "seen": 5
+        },
+        "次の方どうぞ Tsugi no kata douzo": {
+            "correct": 2,
+            "wrong": 2,
+            "streak": 2,
+            "last_review": 1778727770000,
+            "next_review": 1778986970000,
+            "seen": 4
         }
     },
     "bahasa": {
@@ -12244,32 +12436,6 @@
             "last_review": 1777637886000,
             "next_review": 1778242686000,
             "seen": 4
-        }
-    },
-    "sascha": {
-        "すみません sumimasen": {
-            "correct": 1,
-            "wrong": 1,
-            "streak": 1,
-            "last_review": 1775049724000,
-            "next_review": 1775136124000,
-            "seen": 2
-        },
-        "日本語があまり話せません nihongo ga amari hanasemasen": {
-            "correct": 1,
-            "wrong": 1,
-            "streak": 1,
-            "last_review": 1775049724000,
-            "next_review": 1775136124000,
-            "seen": 2
-        },
-        "お願いします onegaishimasu": {
-            "correct": 1,
-            "wrong": 2,
-            "streak": 1,
-            "last_review": 1775049724000,
-            "next_review": 1775136124000,
-            "seen": 3
         }
     }
 }

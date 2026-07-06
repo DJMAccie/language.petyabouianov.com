@@ -1113,6 +1113,7 @@ const StudioCore = (() => {
         window.startQuiz = startQuiz;
         window.startSmartReview = startSmartReview;
         window.startMixSession = startMixSession;
+        window.startFocusDeck = startFocusDeck;
         window.startKanjiCorner = startKanjiCorner;
         window.editList = editList;
         window.deleteList = deleteList;
@@ -1235,6 +1236,169 @@ const StudioCore = (() => {
             }
         }
         return result;
+    }
+
+    function getUniqueStudyWords(lists = loadedLists) {
+        const words = [];
+        const byPrompt = new Map();
+
+        getNonKanjiLists(lists).forEach(([listName, listWords]) => {
+            listWords.forEach((word) => {
+                if (!word || !word.jp) return;
+                if (!byPrompt.has(word.jp)) {
+                    const entry = { ...word, listNames: [listName] };
+                    byPrompt.set(word.jp, entry);
+                    words.push(entry);
+                    return;
+                }
+                byPrompt.get(word.jp).listNames.push(listName);
+            });
+        });
+
+        return words;
+    }
+
+    function getReviewTotal(word) {
+        const stats = wordStats[word.jp];
+        if (!stats) return 0;
+        return (stats.correct || 0) + (stats.wrong || 0);
+    }
+
+    function getAccuracy(word) {
+        const stats = wordStats[word.jp];
+        const total = getReviewTotal(word);
+        if (!stats || total === 0) return 0;
+        return (stats.correct || 0) / total;
+    }
+
+    function getFreshPriority(word) {
+        const names = word.listNames || [];
+        if (names.some(name => /^Trip Priority/.test(name))) return 7;
+        if (names.some(name => name === 'Grammar Patterns')) return 6;
+        if (names.some(name => /Useful Connectors|Asking for Help|Social Situations|Making Plans|Expressing Wants|Daily Routines/.test(name))) return 5;
+        if (names.some(name => /Kenty Lesson 1[01]/.test(name))) return 4;
+        return 1;
+    }
+
+    function getFocusCandidates(kind) {
+        const words = getUniqueStudyWords();
+
+        if (kind === 'fresh') {
+            return words
+                .filter(word => getReviewTotal(word) === 0)
+                .sort((a, b) => getFreshPriority(b) - getFreshPriority(a));
+        }
+
+        if (kind === 'weak') {
+            return words
+                .filter(word => getReviewTotal(word) > 0 && !isMastered(word))
+                .map(word => ({ ...word, priorityScore: calculatePriority(word) }))
+                .sort((a, b) => {
+                    const priorityDiff = (b.priorityScore || 0) - (a.priorityScore || 0);
+                    if (priorityDiff !== 0) return priorityDiff;
+                    const wrongDiff = (wordStats[b.jp]?.wrong || 0) - (wordStats[a.jp]?.wrong || 0);
+                    if (wrongDiff !== 0) return wrongDiff;
+                    return getAccuracy(a) - getAccuracy(b);
+                });
+        }
+
+        if (kind === 'maintenance') {
+            return words
+                .filter(word => isMastered(word))
+                .sort((a, b) => {
+                    const aStats = wordStats[a.jp] || {};
+                    const bStats = wordStats[b.jp] || {};
+                    const reviewDiff = (aStats.last_review || 0) - (bStats.last_review || 0);
+                    if (reviewDiff !== 0) return reviewDiff;
+                    return (bStats.wrong || 0) - (aStats.wrong || 0);
+                });
+        }
+
+        return [];
+    }
+
+    function getStudyFocusSummary(lists = loadedLists) {
+        const words = getUniqueStudyWords(lists);
+        const total = words.length;
+        const mastered = words.filter(word => isMastered(word)).length;
+        const fresh = words.filter(word => getReviewTotal(word) === 0).length;
+        const weak = words.filter(word => getReviewTotal(word) > 0 && !isMastered(word)).length;
+        const maintenance = words.filter(word => isMastered(word)).length;
+        const kanjiWords = config.enableKanjiCorner ? getKanjiWords(lists) : [];
+        const kanjiDue = kanjiWords.filter(word => !isMastered(word)).length;
+        const goal = Number(config.vocabularyGoal) || 0;
+
+        return { total, mastered, fresh, weak, maintenance, kanjiDue, goal };
+    }
+
+    function renderStudyFocusPanel(lists = loadedLists) {
+        const panel = document.getElementById('study-focus-panel');
+        if (!panel) return;
+
+        const summary = getStudyFocusSummary(lists);
+        const masteredPct = summary.total > 0 ? Math.round((summary.mastered / summary.total) * 100) : 0;
+        const goalPct = summary.goal > 0 ? Math.min(100, Math.round((summary.mastered / summary.goal) * 100)) : 0;
+        const goalText = summary.goal > 0
+            ? `${summary.mastered}/${summary.goal} goal`
+            : `${summary.mastered} mastered`;
+        const cards = [
+            {
+                kind: 'fresh',
+                icon: 'seedling',
+                title: 'Fresh 10',
+                meta: `${summary.fresh} new`,
+                disabled: summary.fresh === 0
+            },
+            {
+                kind: 'weak',
+                icon: 'crosshairs',
+                title: 'Weak Spots',
+                meta: `${summary.weak} active`,
+                disabled: summary.weak === 0
+            },
+            {
+                kind: 'maintenance',
+                icon: 'sync-alt',
+                title: 'Maintenance',
+                meta: `${summary.maintenance} ready`,
+                disabled: summary.maintenance === 0
+            },
+            {
+                kind: 'kanji',
+                icon: 'torii-gate',
+                title: 'WaniKani Bridge',
+                meta: `${summary.kanjiDue} kanji due`,
+                disabled: !config.enableKanjiCorner || summary.kanjiDue === 0
+            }
+        ];
+
+        panel.innerHTML = `
+            <div class="study-focus-summary">
+                <div>
+                    <div class="study-focus-kicker">Today</div>
+                    <div class="study-focus-title">${masteredPct}% mastered</div>
+                    <div class="study-focus-meta">${goalText}</div>
+                </div>
+                <div class="study-focus-progress" aria-hidden="true">
+                    <span style="width:${goalPct}%"></span>
+                </div>
+            </div>
+            <div class="study-focus-actions">
+                ${cards.map(card => `
+                    <button type="button"
+                        class="study-focus-card study-focus-card--${card.kind}"
+                        onclick="startFocusDeck('${card.kind}')"
+                        ${card.disabled ? 'disabled' : ''}
+                        aria-label="${escapeAttr(card.title)}">
+                        <span class="study-focus-card-icon"><i class="fas fa-${card.icon}"></i></span>
+                        <span class="study-focus-card-main">
+                            <span class="study-focus-card-title">${escapeHTML(card.title)}</span>
+                            <span class="study-focus-card-meta">${escapeHTML(card.meta)}</span>
+                        </span>
+                    </button>
+                `).join('')}
+            </div>
+        `;
     }
 
     // =========================================================
@@ -1420,6 +1584,7 @@ const StudioCore = (() => {
                 uniqueCheck.add(w.jp);
             }
         }));
+        renderStudyFocusPanel(lists);
 
         const reviewQueue = allUniqueWords.filter(w => {
             const stats = wordStats[w.jp];
@@ -1578,6 +1743,35 @@ const StudioCore = (() => {
         allWords = shuffleWithBias(allWords);
 
         wordList = allWords.slice(0, 10);
+        startSession();
+    }
+
+    function startFocusDeck(kind) {
+        if (kind === 'kanji') {
+            startKanjiCorner();
+            return;
+        }
+
+        const labels = {
+            fresh: 'Fresh 10',
+            weak: 'Weak Spots',
+            maintenance: 'Maintenance Run'
+        };
+        const candidates = getFocusCandidates(kind);
+        let selected = candidates.slice(0, kind === 'fresh' ? 18 : 10);
+
+        if (kind === 'fresh') {
+            selected = selected.sort(() => Math.random() - 0.5).slice(0, 10);
+        }
+
+        if (selected.length === 0) {
+            showToast("No cards ready for that lane.", "info");
+            return;
+        }
+
+        currentListName = labels[kind] || 'Focus Run';
+        isPurificationSession = false;
+        wordList = selected.slice(0, 10);
         startSession();
     }
 
@@ -2518,11 +2712,7 @@ const StudioCore = (() => {
         const overlay = document.getElementById('studio-stats-overlay');
         if (!overlay) return;
 
-        const allWords = [];
-        const seen = new Set();
-        Object.values(loadedLists).forEach(list => {
-            list.forEach(w => { if (!seen.has(w.jp)) { allWords.push(w); seen.add(w.jp); } });
-        });
+        const allWords = getUniqueStudyWords();
 
         let totalMastered = 0, totalLearning = 0, totalNew = 0;
         let totalCorrect = 0, totalWrong = 0;
@@ -2547,6 +2737,8 @@ const StudioCore = (() => {
         const masteredPct = (totalMastered / total) * 100;
         const learningPct = (totalLearning / total) * 100;
         const accuracyTone = avgAccuracy >= 70 ? 'tone-success' : 'tone-warning';
+        const vocabularyGoal = Number(config.vocabularyGoal) || 0;
+        const goalPct = vocabularyGoal > 0 ? Math.min(100, Math.round((totalMastered / vocabularyGoal) * 100)) : 0;
 
         const sparklineHTML = recentScores.length > 1 ? `
             <div class="sparkline-container" aria-hidden="true">
@@ -2600,6 +2792,11 @@ const StudioCore = (() => {
                     <div class="stat-value ${accuracyTone}">${avgAccuracy}%</div>
                     <div class="stat-label">Accuracy</div>
                 </div>
+                ${vocabularyGoal > 0 ? `
+                <div class="stat-card">
+                    <div class="stat-value tone-accent">${goalPct}%</div>
+                    <div class="stat-label">2K Goal</div>
+                </div>` : ''}
             </div>
 
             <div class="stats-section">

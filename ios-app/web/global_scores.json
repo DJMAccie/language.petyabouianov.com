@@ -30,7 +30,7 @@
         "Smart Review": {
             "jp-en": 100,
             "en-jp": 100,
-            "last_activity": 1778414023000
+            "last_activity": 1780710460000
         },
         "6 basic sentences": {
             "jp-en": 100,
@@ -214,7 +214,7 @@
         "Action Verbs": {
             "jp-en": 0,
             "en-jp": 86,
-            "last_activity": 1775650174000
+            "last_activity": 1783330705000
         },
         "Body Parts": {
             "jp-en": 0,
@@ -314,7 +314,7 @@
         "Travel Essentials": {
             "jp-en": 0,
             "en-jp": 89,
-            "last_activity": 1777973442000
+            "last_activity": 1783330298000
         },
         "Restaurant & Bar": {
             "jp-en": 0,
@@ -339,7 +339,7 @@
         },
         "Home & Rooms": {
             "en-jp": 100,
-            "last_activity": 1775650174000
+            "last_activity": 1783330613000
         },
         "Family System (Training)": {
             "en-jp": 55,
@@ -383,7 +383,7 @@
         },
         "City Places": {
             "en-jp": 100,
-            "last_activity": 1772556999000
+            "last_activity": 1783330728000
         },
         "Kenty Lesson 4 (Training)": {
             "en-jp": 83,
@@ -407,7 +407,7 @@
         },
         "Calendar Dates": {
             "en-jp": 100,
-            "last_activity": 1772648158000
+            "last_activity": 1783331005000
         },
         "Extended Time (Training)": {
             "en-jp": 83,
@@ -469,7 +469,7 @@
         "Kenty Lesson 5": {
             "jp-en": 64,
             "en-jp": 100,
-            "last_activity": 1775650175000
+            "last_activity": 1783330520000
         },
         "Kenty Lesson 5 (Training)": {
             "en-jp": 100,
@@ -498,7 +498,7 @@
         "Kenty Lesson 6": {
             "jp-en": 0,
             "en-jp": 94,
-            "last_activity": 1775650175000
+            "last_activity": 1783330684000
         },
         "Kenty Lesson 6 (Training)": {
             "en-jp": 100,
@@ -514,7 +514,7 @@
         },
         "Time & Frequency": {
             "en-jp": 43,
-            "last_activity": 1774990474000
+            "last_activity": 1783330714000
         },
         "Kenty Lesson 7": {
             "jp-en": 0,
@@ -545,13 +545,13 @@
         },
         "Useful Connectors": {
             "jp-en": 0,
-            "en-jp": 0,
-            "last_activity": 1775644975000
+            "en-jp": 93,
+            "last_activity": 1778525788000
         },
         "Expressing Wants & Needs": {
             "jp-en": 0,
             "en-jp": 0,
-            "last_activity": 1775645012000
+            "last_activity": 1783330760000
         },
         "At a Restaurant (Advanced)": {
             "jp-en": 0,
@@ -568,25 +568,20 @@
             "en-jp": 0,
             "last_activity": 1775650360000
         },
-        "Trip Priority: Speak": {
-            "jp-en": 0,
-            "en-jp": 0,
-            "last_activity": 1775650597000
-        },
         "Trip Priority: Hear Back": {
             "jp-en": 0,
             "en-jp": 0,
-            "last_activity": 1776978704000
+            "last_activity": 1783330955000
         },
         "Trip Priority: Transport": {
             "jp-en": 0,
             "en-jp": 0,
-            "last_activity": 1775667953000
+            "last_activity": 1783330797000
         },
         "Trip Priority: Food And Stores": {
             "jp-en": 0,
             "en-jp": 0,
-            "last_activity": 1775650531000
+            "last_activity": 1783330989000
         },
         "Grammar Patterns": {
             "jp-en": 0,
@@ -601,12 +596,12 @@
         "Asking for Help": {
             "jp-en": 0,
             "en-jp": 0,
-            "last_activity": 1775650710000
+            "last_activity": 1783330996000
         },
         "Making Plans": {
             "jp-en": 0,
             "en-jp": 0,
-            "last_activity": 1775650721000
+            "last_activity": 1783330538000
         },
         "Yojijukugo 四字熟語": {
             "jp-en": 0,
@@ -803,15 +798,15 @@
         "Kenty Lesson 11": {
             "jp-en": 0,
             "en-jp": 100,
-            "last_activity": 1777622639000
+            "last_activity": 1783330216000
         },
         "Kenty Lesson 11 (Training)": {
             "en-jp": 83,
             "last_activity": 1777621604000
         },
         "Useful Connectors (Training)": {
-            "en-jp": 56,
-            "last_activity": 1777840867000
+            "en-jp": 63,
+            "last_activity": 1778525034000
         },
         "At a Restaurant (Advanced) (Training)": {
             "en-jp": 71,
@@ -820,6 +815,15 @@
         "Yojijukugo 四字熟語 (Training)": {
             "en-jp": 30,
             "last_activity": 1778313592000
+        },
+        "Trip Priority: Hear Back (Training)": {
+            "en-jp": 67,
+            "last_activity": 1778727890000
+        },
+        "Social Situations": {
+            "jp-en": 0,
+            "en-jp": 0,
+            "last_activity": 1783330847000
         }
     },
     "bahasa": {
@@ -849,12 +853,6 @@
         "Animals & Pets": {
             "en-jp": 100,
             "last_activity": 1777637886000
-        }
-    },
-    "sascha": {
-        "Arrival & Basic Politeness (Training)": {
-            "jp-en": 43,
-            "last_activity": 1775049724000
         }
     }
 }

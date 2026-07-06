@@ -77,6 +77,7 @@ window.StudioConfigs = {};
         favicon: '🇯🇵',
         lang: 'ja-JP',
         streakKey: 'ns',
+        vocabularyGoal: 2000,
         quotes: quotes,
         normalize: normalize,
         checkAnswerMatch: checkAnswerMatch,
@@ -112,28 +113,7 @@ window.StudioConfigs = {};
 })();
 
 // ==========================================
-// 2. SASCHA (TRAVEL JAPANESE) CONFIGURATION
-// ==========================================
-(function () {
-    const baseConfig = window.StudioConfigs.nihongo;
-    const quotes = [
-        { jp: "旅は道連れ世は情け", en: "Travel is easier with kindness from others.", reading: "Tabi wa michizure yo wa nasake" },
-        { jp: "案ずるより産むが易し", en: "Doing it is easier than worrying about it.", reading: "Anzuru yori umu ga yasushi" },
-        { jp: "習うより慣れろ", en: "Learn by getting used to it.", reading: "Narau yori narero" }
-    ];
-
-    window.StudioConfigs.sascha = {
-        ...baseConfig,
-        apiUrl: 'studio_api.php?lang=sascha',
-        streakKey: 'ns_sascha',
-        quotes: quotes,
-        defaultQuizMode: 'jp-en',
-        speechLabel: "SPEAKING (EN → JP)"
-    };
-})();
-
-// ==========================================
-// 3. BAHASA (INDONESIAN) CONFIGURATION
+// 2. BAHASA (INDONESIAN) CONFIGURATION
 // ==========================================
 (function () {
     let bestIndoVoice = null;
@@ -210,7 +190,7 @@ window.StudioConfigs = {};
 })();
 
 // ==========================================
-// 4. ITALIA (ITALIAN) CONFIGURATION
+// 3. ITALIA (ITALIAN) CONFIGURATION
 // ==========================================
 (function () {
     let bestItalianVoice = null;
@@ -287,7 +267,7 @@ window.StudioConfigs = {};
 })();
 
 // ==========================================
-// 5. NEDERLANDS (DUTCH) CONFIGURATION
+// 4. NEDERLANDS (DUTCH) CONFIGURATION
 // ==========================================
 (function () {
     let bestDutchVoice = null;

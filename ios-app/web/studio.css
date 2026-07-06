@@ -222,6 +222,213 @@ body {
     font-size: 0.95rem;
 }
 
+.study-focus-panel {
+    display: grid;
+    grid-template-columns: minmax(13rem, 0.85fr) minmax(0, 2.15fr);
+    gap: 0.75rem;
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.22);
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(248, 250, 252, 0.9));
+}
+
+.study-focus-summary {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-content: center;
+    gap: 0.45rem;
+    min-height: 4.25rem;
+    padding: 0.35rem 0.25rem;
+}
+
+.study-focus-kicker {
+    color: var(--studio-text-faint);
+    font-size: 0.68rem;
+    font-weight: 700;
+    line-height: 1;
+    text-transform: uppercase;
+    letter-spacing: 0;
+}
+
+.study-focus-title {
+    color: var(--studio-text);
+    font-size: 1.25rem;
+    font-weight: 760;
+    line-height: 1.15;
+    letter-spacing: 0;
+}
+
+.study-focus-meta {
+    color: var(--studio-text-muted);
+    font-size: 0.78rem;
+    line-height: 1.2;
+}
+
+.study-focus-progress {
+    width: 100%;
+    height: 0.45rem;
+    overflow: hidden;
+    border-radius: 999px;
+    background: rgba(148, 163, 184, 0.22);
+}
+
+.study-focus-progress span {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #bc002d, #2563eb, #16a34a);
+}
+
+.study-focus-actions {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.55rem;
+    min-width: 0;
+}
+
+.study-focus-card {
+    display: grid;
+    grid-template-columns: 2.2rem minmax(0, 1fr);
+    align-items: center;
+    gap: 0.55rem;
+    min-height: 4.25rem;
+    padding: 0.55rem 0.65rem;
+    border: 1px solid rgba(148, 163, 184, 0.3);
+    border-radius: 0.5rem;
+    background: rgba(255, 255, 255, 0.82);
+    color: var(--studio-text);
+    text-align: left;
+    box-shadow: 0 10px 24px -22px rgba(15, 23, 42, 0.5);
+    cursor: pointer;
+    transition: transform 0.18s ease, border-color 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.study-focus-card:hover {
+    transform: translateY(-1px);
+    border-color: rgba(37, 99, 235, 0.4);
+    background: #fff;
+    box-shadow: 0 16px 28px -24px rgba(15, 23, 42, 0.7);
+}
+
+.study-focus-card:active {
+    transform: translateY(0) scale(0.99);
+}
+
+.study-focus-card:focus-visible {
+    outline: 3px solid var(--studio-accent-ring);
+    outline-offset: 2px;
+}
+
+.study-focus-card[disabled] {
+    cursor: default;
+    opacity: 0.48;
+    filter: saturate(0.75);
+}
+
+.study-focus-card[disabled]:hover {
+    transform: none;
+    border-color: rgba(148, 163, 184, 0.3);
+    box-shadow: 0 10px 24px -22px rgba(15, 23, 42, 0.5);
+}
+
+.study-focus-card-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.2rem;
+    height: 2.2rem;
+    border-radius: 0.5rem;
+    background: rgba(59, 130, 246, 0.1);
+    color: #2563eb;
+    font-size: 0.98rem;
+}
+
+.study-focus-card--fresh .study-focus-card-icon {
+    background: rgba(22, 163, 74, 0.1);
+    color: #15803d;
+}
+
+.study-focus-card--weak .study-focus-card-icon {
+    background: rgba(188, 0, 45, 0.1);
+    color: #bc002d;
+}
+
+.study-focus-card--maintenance .study-focus-card-icon {
+    background: rgba(217, 119, 6, 0.12);
+    color: #b45309;
+}
+
+.study-focus-card--kanji .study-focus-card-icon {
+    background: rgba(37, 99, 235, 0.1);
+    color: #1d4ed8;
+}
+
+.study-focus-card-main {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.18rem;
+}
+
+.study-focus-card-title {
+    overflow: hidden;
+    color: inherit;
+    font-size: 0.86rem;
+    font-weight: 720;
+    line-height: 1.18;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.study-focus-card-meta {
+    overflow: hidden;
+    color: var(--studio-text-muted);
+    font-size: 0.73rem;
+    line-height: 1.2;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+body.dark .study-focus-panel {
+    border-bottom-color: rgba(75, 85, 99, 0.55);
+    background: linear-gradient(180deg, rgba(24, 24, 27, 0.96), rgba(17, 24, 39, 0.9));
+}
+
+body.dark .study-focus-card {
+    border-color: rgba(75, 85, 99, 0.7);
+    background: rgba(31, 41, 55, 0.72);
+}
+
+body.dark .study-focus-card:hover {
+    background: rgba(31, 41, 55, 0.96);
+}
+
+@media (max-width: 900px) {
+    .study-focus-panel {
+        grid-template-columns: 1fr;
+        padding: 0.75rem;
+    }
+
+    .study-focus-summary {
+        min-height: auto;
+        padding: 0.1rem 0.15rem 0.2rem;
+    }
+
+    .study-focus-actions {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 340px) {
+    .study-focus-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .study-focus-card {
+        min-height: 3.65rem;
+    }
+}
+
 .studio-modal {
     position: fixed;
     inset: 0;
