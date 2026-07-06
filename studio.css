@@ -855,6 +855,58 @@ body.dark .studio-toolbar-icon {
     color: #60a5fa !important;
 }
 
+body.nihongo-page .studio-toolbar-pill-btn,
+body.nihongo-page .studio-toolbar-icon-btn {
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+    transition: none;
+}
+
+body.nihongo-page .studio-toolbar-pill-btn:hover,
+body.nihongo-page .studio-toolbar-icon-btn:hover {
+    background: transparent;
+    border-color: transparent;
+}
+
+body.nihongo-page .studio-toolbar-pill-btn:active,
+body.nihongo-page .studio-toolbar-icon-btn:active {
+    transform: none;
+}
+
+body.nihongo-page .study-focus-card {
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+    transition: none;
+}
+
+body.nihongo-page .study-focus-card:hover,
+body.nihongo-page .study-focus-card[disabled]:hover {
+    transform: none;
+    background: transparent;
+    box-shadow: none;
+}
+
+body.nihongo-page .study-focus-card:active {
+    transform: none;
+}
+
+body.dark.nihongo-page .studio-toolbar-pill-btn,
+body.dark.nihongo-page .studio-toolbar-icon-btn {
+    background: transparent !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+}
+
+body.dark.nihongo-page .studio-toolbar-pill-btn:hover,
+body.dark.nihongo-page .studio-toolbar-icon-btn:hover,
+body.dark.nihongo-page .study-focus-card,
+body.dark.nihongo-page .study-focus-card:hover {
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
 body.dark #system-bar select {
     background: #2a2a2a !important;
     border-color: #444 !important;
