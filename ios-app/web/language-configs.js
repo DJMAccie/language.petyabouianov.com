@@ -78,6 +78,13 @@ window.StudioConfigs = {};
         lang: 'ja-JP',
         streakKey: 'ns',
         vocabularyGoal: 2000,
+        wallpapers: [
+            'assets/images/akihabara-background.jpg',
+            'assets/images/mt-aso-green-hills.jpg',
+            'assets/images/tokyo-backstreet.jpg',
+            'assets/images/hokkaido-summer-lake.jpg',
+            'assets/images/hokkaido-flower-field.webp'
+        ],
         quotes: quotes,
         normalize: normalize,
         checkAnswerMatch: checkAnswerMatch,

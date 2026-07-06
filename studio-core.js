@@ -1082,6 +1082,37 @@ const StudioCore = (() => {
         renderTable(loadedLists, loadedScores);
     }
 
+    function applyRandomWallpaper() {
+        const wallpapers = Array.isArray(config.wallpapers)
+            ? config.wallpapers
+                .map(item => (typeof item === 'string' ? item.trim() : ''))
+                .filter(Boolean)
+            : [];
+        if (wallpapers.length === 0) return;
+
+        const storageKey = `${config.streakKey || 'studio'}_wallpaper_index`;
+        let lastIndex = -1;
+        try {
+            const storedIndex = localStorage.getItem(storageKey);
+            lastIndex = storedIndex === null ? -1 : Number(storedIndex);
+        } catch (error) {
+            lastIndex = -1;
+        }
+        let nextIndex = Math.floor(Math.random() * wallpapers.length);
+
+        if (wallpapers.length > 1 && Number.isFinite(lastIndex) && nextIndex === lastIndex) {
+            nextIndex = (nextIndex + 1 + Math.floor(Math.random() * (wallpapers.length - 1))) % wallpapers.length;
+        }
+
+        try {
+            localStorage.setItem(storageKey, String(nextIndex));
+        } catch (error) {
+            // The wallpaper can still rotate for this page load if storage is blocked.
+        }
+        const selected = wallpapers[nextIndex].replace(/"/g, '%22');
+        document.documentElement.style.setProperty('--studio-wallpaper-image', `url("${selected}")`);
+    }
+
     // =========================================================
     // PUBLIC: Initialization
     // =========================================================
@@ -1156,6 +1187,7 @@ const StudioCore = (() => {
         initDarkMode();
         setupKeyboardShortcuts();
         if (config.favicon) setFavicon(config.favicon);
+        applyRandomWallpaper();
 
         // Default to the harder production direction on every fresh load.
         const modeSelect = document.getElementById('global-quiz-mode');
