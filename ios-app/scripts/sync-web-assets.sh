@@ -35,7 +35,7 @@ perl -0pi -e 's#<link href="https://cdnjs\.cloudflare\.com/ajax/libs/font-awesom
 perl -0pi -e 's#<script defer src="https://unpkg\.com/wanakana"></script>#<script defer src="vendor/wanakana.min.js"></script>#g' "$IOS_WEB_DIR/index.html"
 
 if ! rg -q 'ios-config.js' "$IOS_WEB_DIR/index.html"; then
-  perl -0pi -e 's#<script src="language-configs.js"></script>#<script src="language-configs.js"></script>\n    <script src="ios-config.js"></script>#' "$IOS_WEB_DIR/index.html"
+  perl -0pi -e 's#<script src="(language-configs\.js(?:\?[^\"]*)?)"></script>#<script src="$1"></script>\n    <script src="ios-config.js"></script>#' "$IOS_WEB_DIR/index.html"
 fi
 
 if ! rg -q 'offlineSeedPaths' "$IOS_WEB_DIR/index.html"; then

@@ -4,7 +4,7 @@ declare(strict_types=1);
 $repoRoot = dirname(__DIR__, 2);
 $baseUrl = getenv('STUDIO_SYNC_BASE_URL') ?: 'https://language.petyabouianov.com/studio_api.php';
 $timeoutSeconds = (int) (getenv('STUDIO_SYNC_TIMEOUT') ?: '30');
-$langs = ['nihongo', 'bahasa', 'italia', 'nederlands'];
+$langs = ['nihongo'];
 
 function fail(string $message): never
 {
@@ -132,16 +132,10 @@ if (!isValidKanjiMnemonicPayload($kanjiMnemonics)) {
 }
 
 $nihongoLists = ['nihongo' => $listsByLang['nihongo']];
-$bahasaLists = ['bahasa' => $listsByLang['bahasa']];
-$italiaLists = ['italia' => $listsByLang['italia']];
-$nederlandsLists = ['nederlands' => $listsByLang['nederlands']];
 $globalScores = ensureLangKeys($langs, $scoresByLang);
 $globalWordStats = ensureLangKeys($langs, $statsByLang);
 
 writeJson($repoRoot . '/nihongo_lists.json', $nihongoLists);
-writeJson($repoRoot . '/bahasa_lists.json', $bahasaLists);
-writeJson($repoRoot . '/italia_lists.json', $italiaLists);
-writeJson($repoRoot . '/nederlands_lists.json', $nederlandsLists);
 writeJson($repoRoot . '/kanji_mnemonics.json', ['nihongo' => $kanjiMnemonics]);
 writeJson($repoRoot . '/global_scores.json', $globalScores);
 writeJson($repoRoot . '/global_word_stats.json', $globalWordStats);

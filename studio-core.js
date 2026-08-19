@@ -1,6 +1,5 @@
 /**
- * studio-core.js — Shared Language Learning Engine
- * Used by nihongo-studio.html and bahasa-studio.html
+ * studio-core.js — Nihongo Studio learning engine
  * 
  * Initialize with: StudioCore.init(config)
  */
@@ -31,6 +30,17 @@ const StudioCore = (() => {
     let sessionIsKanji = false;
     let kanjiHintVisible = false;
     let kanjiMnemonics = {};
+    let sessionKind = 'standard';
+    let sessionInitialWordCount = 0;
+    let lessonWords = [];
+    let lessonIndex = 0;
+    let lessonBatchIndex = 0;
+    let lessonLookupRequest = 0;
+
+    const DAILY_LESSON_BATCH_SIZE = 5;
+    const DAILY_LESSON_DEFAULT = 10;
+    const DAILY_LESSON_MAX = 15;
+    const DAILY_REVIEW_LIMIT = 10;
 
     // === CONFIG (set by init) ===
     let config = {};
@@ -1082,37 +1092,6 @@ const StudioCore = (() => {
         renderTable(loadedLists, loadedScores);
     }
 
-    function applyRandomWallpaper() {
-        const wallpapers = Array.isArray(config.wallpapers)
-            ? config.wallpapers
-                .map(item => (typeof item === 'string' ? item.trim() : ''))
-                .filter(Boolean)
-            : [];
-        if (wallpapers.length === 0) return;
-
-        const storageKey = `${config.streakKey || 'studio'}_wallpaper_index`;
-        let lastIndex = -1;
-        try {
-            const storedIndex = localStorage.getItem(storageKey);
-            lastIndex = storedIndex === null ? -1 : Number(storedIndex);
-        } catch (error) {
-            lastIndex = -1;
-        }
-        let nextIndex = Math.floor(Math.random() * wallpapers.length);
-
-        if (wallpapers.length > 1 && Number.isFinite(lastIndex) && nextIndex === lastIndex) {
-            nextIndex = (nextIndex + 1 + Math.floor(Math.random() * (wallpapers.length - 1))) % wallpapers.length;
-        }
-
-        try {
-            localStorage.setItem(storageKey, String(nextIndex));
-        } catch (error) {
-            // The wallpaper can still rotate for this page load if storage is blocked.
-        }
-        const selected = wallpapers[nextIndex].replace(/"/g, '%22');
-        document.documentElement.style.setProperty('--studio-wallpaper-image', `url("${selected}")`);
-    }
-
     // =========================================================
     // PUBLIC: Initialization
     // =========================================================
@@ -1163,6 +1142,13 @@ const StudioCore = (() => {
         window.startNeedsWork = startNeedsWork;
         window.toggleKanjiHint = toggleKanjiHint;
         window.toggleStatusSort = toggleStatusSort;
+        window.startDailyLesson = startDailyLesson;
+        window.startDailyReview = startDailyReview;
+        window.addFiveMoreWords = addFiveMoreWords;
+        window.moveLessonCard = moveLessonCard;
+        window.goToLessonCard = goToLessonCard;
+        window.playLessonAudio = playLessonAudio;
+        window.quitCurrentSession = quitCurrentSession;
         window.StudioUI = {
             openDialog,
             closeDialog,
@@ -1174,11 +1160,6 @@ const StudioCore = (() => {
             window.startTraining = config.startTraining;
         }
 
-        // Ghost mode (bahasa-only)
-        if (config.startGhostMode) {
-            window.startGhostMode = config.startGhostMode;
-        }
-
         // Inject UI enhancements
         injectMultipleChoiceOption();
         injectToolbarButtons();
@@ -1187,7 +1168,6 @@ const StudioCore = (() => {
         initDarkMode();
         setupKeyboardShortcuts();
         if (config.favicon) setFavicon(config.favicon);
-        applyRandomWallpaper();
 
         // Default to the harder production direction on every fresh load.
         const modeSelect = document.getElementById('global-quiz-mode');
@@ -1363,6 +1343,449 @@ const StudioCore = (() => {
         return { total, mastered, fresh, weak, maintenance, kanjiDue, goal };
     }
 
+    function hasCalmDailyPath() {
+        return config.enableCalmDailyPath === true
+            && !!document.getElementById('today-section')
+            && !!document.getElementById('lesson-section');
+    }
+
+    // =========================================================
+    // CALM DAILY PATH — 5-word lessons, 10-word reviews
+    // =========================================================
+    function getLocalDateKey() {
+        return new Date().toLocaleDateString('en-CA');
+    }
+
+    function getDailyPathStorageKey() {
+        return `${config.streakKey || 'studio'}_daily_path_v1`;
+    }
+
+    function createDailyPathState() {
+        return {
+            date: getLocalDateKey(),
+            lessonTarget: DAILY_LESSON_DEFAULT,
+            lessonBatches: [],
+            completedLessonBatches: [],
+            reviewKeys: [],
+            reviewCompleted: false,
+            reviewCount: 0
+        };
+    }
+
+    function readDailyPathState() {
+        const fallback = createDailyPathState();
+        try {
+            const stored = JSON.parse(localStorage.getItem(getDailyPathStorageKey()) || 'null');
+            if (!stored || stored.date !== fallback.date) return fallback;
+
+            const target = Number(stored.lessonTarget);
+            return {
+                ...fallback,
+                ...stored,
+                lessonTarget: target === DAILY_LESSON_MAX ? DAILY_LESSON_MAX : DAILY_LESSON_DEFAULT,
+                lessonBatches: Array.isArray(stored.lessonBatches)
+                    ? stored.lessonBatches.map(batch => Array.isArray(batch) ? batch.filter(Boolean) : []).filter(batch => batch.length > 0)
+                    : [],
+                completedLessonBatches: Array.isArray(stored.completedLessonBatches)
+                    ? [...new Set(stored.completedLessonBatches.map(Number).filter(Number.isInteger))]
+                    : [],
+                reviewKeys: Array.isArray(stored.reviewKeys) ? stored.reviewKeys.filter(Boolean) : [],
+                reviewCompleted: stored.reviewCompleted === true,
+                reviewCount: Math.max(0, Number(stored.reviewCount) || 0)
+            };
+        } catch (error) {
+            return fallback;
+        }
+    }
+
+    function writeDailyPathState(state) {
+        try {
+            localStorage.setItem(getDailyPathStorageKey(), JSON.stringify(state));
+        } catch (error) {
+            // The daily path still works for this page load if storage is blocked.
+        }
+    }
+
+    function findStudyWord(wordKey) {
+        return getUniqueStudyWords().find(word => word.jp === wordKey) || null;
+    }
+
+    function getDailyFreshCandidates(excludedKeys = new Set()) {
+        return getFocusCandidates('fresh')
+            .filter(word => !(word.listNames || []).includes('Grammar Patterns'))
+            .filter(word => !excludedKeys.has(word.jp));
+    }
+
+    function ensureDailyLessonBatch(state, batchIndex) {
+        while (state.lessonBatches.length <= batchIndex) {
+            const assigned = new Set(state.lessonBatches.flat());
+            const nextBatch = getDailyFreshCandidates(assigned)
+                .slice(0, DAILY_LESSON_BATCH_SIZE)
+                .map(word => word.jp);
+
+            if (nextBatch.length === 0) break;
+            state.lessonBatches.push(nextBatch);
+        }
+        writeDailyPathState(state);
+        return state.lessonBatches[batchIndex] || [];
+    }
+
+    function getDailyReviewCandidates() {
+        const now = Date.now();
+        return getUniqueStudyWords()
+            .filter(word => !(word.listNames || []).includes('Grammar Patterns'))
+            .filter(word => getReviewTotal(word) > 0)
+            .map(word => {
+                const stats = wordStats[word.jp] || {};
+                const nextReview = Number(stats.next_review) || 0;
+                return {
+                    word,
+                    due: nextReview === 0 || nextReview <= now,
+                    mastered: isMastered(word),
+                    nextReview,
+                    lastReview: Number(stats.last_review) || 0,
+                    wrong: Number(stats.wrong) || 0,
+                    streak: Number(stats.streak) || 0
+                };
+            })
+            .sort((a, b) => {
+                if (a.due !== b.due) return a.due ? -1 : 1;
+                if (a.mastered !== b.mastered) return a.mastered ? 1 : -1;
+                if (a.due && a.nextReview !== b.nextReview) return a.nextReview - b.nextReview;
+                if (a.wrong !== b.wrong) return b.wrong - a.wrong;
+                if (a.streak !== b.streak) return a.streak - b.streak;
+                return a.lastReview - b.lastReview;
+            })
+            .map(item => item.word);
+    }
+
+    function ensureDailyReviewQueue(state) {
+        const existing = state.reviewKeys.map(findStudyWord).filter(Boolean);
+        if (existing.length === 0 && !state.reviewCompleted) {
+            state.reviewKeys = getDailyReviewCandidates().slice(0, DAILY_REVIEW_LIMIT).map(word => word.jp);
+            writeDailyPathState(state);
+            return state.reviewKeys.map(findStudyWord).filter(Boolean);
+        }
+        return existing;
+    }
+
+    function getGreeting() {
+        const hour = new Date().getHours();
+        if (hour < 12) return 'Good morning!';
+        if (hour < 18) return 'Good afternoon!';
+        return 'Good evening!';
+    }
+
+    function getStoredStreak() {
+        const prefix = config.streakKey || 'studio';
+        return Math.max(0, Number.parseInt(localStorage.getItem(`${prefix}_streak`) || '0', 10) || 0);
+    }
+
+    function renderDailyDashboard() {
+        const panel = document.getElementById('daily-study-panel');
+        if (!hasCalmDailyPath() || !panel || !Object.keys(loadedLists).length) return;
+
+        const state = readDailyPathState();
+        const words = getUniqueStudyWords();
+        const total = words.length;
+        const mastered = words.filter(word => isMastered(word)).length;
+        const learning = words.filter(word => getReviewTotal(word) > 0 && !isMastered(word)).length;
+        const fresh = Math.max(0, total - mastered - learning);
+        const goal = Number(config.vocabularyGoal) || 2000;
+        const goalBase = Math.max(goal, 1);
+        const catalogPct = Math.min(100, (total / goalBase) * 100);
+
+        const completedSet = new Set(state.completedLessonBatches);
+        const targetBatchCount = state.lessonTarget / DAILY_LESSON_BATCH_SIZE;
+        let nextBatchIndex = -1;
+        for (let i = 0; i < targetBatchCount; i++) {
+            if (!completedSet.has(i)) { nextBatchIndex = i; break; }
+        }
+
+        const completedLessonWords = [...completedSet]
+            .filter(index => index >= 0 && index < targetBatchCount)
+            .reduce((sum, index) => sum + (state.lessonBatches[index]?.length || DAILY_LESSON_BATCH_SIZE), 0);
+        const lessonsDone = nextBatchIndex === -1;
+        const reviewQueue = ensureDailyReviewQueue(state);
+        const reviewReady = state.reviewCompleted ? 0 : reviewQueue.length;
+        const streak = getStoredStreak();
+
+        const quotaSteps = [0, 1, 2].map(index => {
+            const isOptional = index === 2;
+            const isUnlocked = !isOptional || state.lessonTarget === DAILY_LESSON_MAX;
+            const isComplete = completedSet.has(index);
+            const isCurrent = isUnlocked && index === nextBatchIndex;
+            const stateClass = isComplete ? 'is-complete' : isCurrent ? 'is-current' : isUnlocked ? 'is-ready' : 'is-optional';
+            const icon = isComplete ? '<i class="fas fa-check" aria-hidden="true"></i>' : String(index + 1);
+            const label = isOptional && !isUnlocked ? 'optional 5' : '5 words';
+            return `<div class="daily-quota-step ${stateClass}"><span>${icon}</span><small>${label}</small></div>`;
+        }).join('');
+
+        const lessonButtonLabel = lessonsDone
+            ? 'Today’s lessons done'
+            : (state.lessonBatches[nextBatchIndex]?.length ? 'Continue 5 words' : 'Learn 5 words');
+        const optionalAction = lessonsDone && state.lessonTarget < DAILY_LESSON_MAX && fresh > 0
+            ? `<button type="button" class="daily-optional-btn" onclick="addFiveMoreWords()"><i class="fas fa-plus" aria-hidden="true"></i> I feel good — add 5 more</button>`
+            : '';
+
+        panel.innerHTML = `
+            <div class="daily-intro">
+                <div>
+                    <h1 id="today-heading">${getGreeting()}</h1>
+                    <p>A little each day adds up. No rush.</p>
+                </div>
+                <button type="button" class="daily-settings-btn" onclick="showStats()" aria-label="Open progress"><i class="fas fa-chart-pie" aria-hidden="true"></i><span>Progress</span></button>
+            </div>
+
+            <div class="daily-section-label">Today’s path</div>
+            <div class="daily-actions-grid">
+                <section class="daily-action-card daily-action-card--lesson">
+                    <div class="daily-action-illustration"><img src="assets/lesson-words.png" alt="" aria-hidden="true"></div>
+                    <div class="daily-action-content">
+                        <h2>Lessons</h2>
+                        <div class="daily-action-number"><strong>${Math.max(0, state.lessonTarget - completedLessonWords)}</strong><span>new words</span></div>
+                        <p>See each word first. Learn in groups of five.</p>
+                        <button type="button" class="daily-primary-btn daily-primary-btn--lesson" onclick="startDailyLesson()" ${lessonsDone || fresh === 0 ? 'disabled' : ''}>${lessonButtonLabel}</button>
+                        <div class="daily-quota" aria-label="Daily lesson quota">${quotaSteps}</div>
+                        ${optionalAction}
+                    </div>
+                </section>
+
+                <section class="daily-action-card daily-action-card--review">
+                    <div class="daily-action-illustration"><img src="assets/review-words.png" alt="" aria-hidden="true"></div>
+                    <div class="daily-action-content">
+                        <h2>Reviews</h2>
+                        <div class="daily-action-number"><strong>${reviewReady}</strong><span>${state.reviewCompleted ? 'finished today' : 'ready'}</span></div>
+                        <p>${state.reviewCompleted ? `Nice. You reviewed ${state.reviewCount} words today.` : 'Reinforce the words that need you most.'}</p>
+                        <button type="button" class="daily-primary-btn daily-primary-btn--review" onclick="startDailyReview()" ${reviewReady === 0 ? 'disabled' : ''}>${state.reviewCompleted ? 'Reviews done' : `Review ${reviewReady} words`}</button>
+                    </div>
+                </section>
+            </div>
+
+            <section class="daily-progress-section" aria-label="Progress toward two thousand words">
+                <div class="daily-section-label">Your progress</div>
+                <div class="daily-progress-track" aria-hidden="true">
+                    <span class="is-rainbow" style="width:${catalogPct}%"></span>
+                </div>
+                <div class="daily-progress-values">
+                    <div class="is-mastered"><strong>${mastered.toLocaleString()}</strong><span>steady</span></div>
+                    <div class="is-learning"><strong>${learning.toLocaleString()}</strong><span>learning</span></div>
+                    <div class="is-new"><strong>${fresh.toLocaleString()}</strong><span>new</span></div>
+                    <div class="is-goal"><strong>${goal.toLocaleString()}</strong><span>word goal</span></div>
+                </div>
+                <div class="daily-streak-line">
+                    <span><i class="fas fa-fire" aria-hidden="true"></i> <strong>${streak} day streak</strong></span>
+                    <span>${total.toLocaleString()} words currently in your studio</span>
+                </div>
+            </section>
+        `;
+    }
+
+    function addFiveMoreWords() {
+        const state = readDailyPathState();
+        state.lessonTarget = DAILY_LESSON_MAX;
+        writeDailyPathState(state);
+        renderDailyDashboard();
+        showToast('Optional five unlocked. Still no pressure.', 'success');
+    }
+
+    function splitJapaneseLabel(word) {
+        const raw = String(word?.jp || '').trim();
+        const suppliedRomaji = String(word?.romaji || '').trim();
+        const match = raw.match(/^(.+?)\s+([A-Za-z0-9À-ž'’.,!?~:/()\-\s]+)$/u);
+        const japanese = match ? match[1].trim() : raw;
+        const romaji = suppliedRomaji || (match ? match[2].trim() : '');
+        return { japanese, romaji };
+    }
+
+    function getLessonKana(word, japanese) {
+        const supplied = String(word?.kana || word?.reading || '').trim();
+        if (supplied) return supplied;
+        const hasKanji = /[\u3400-\u9fff々〆ヵヶ]/u.test(japanese);
+        const hasKana = /[\u3040-\u30ff]/u.test(japanese);
+        return !hasKanji && hasKana ? japanese : (word?._lessonKana || '…');
+    }
+
+    function hashText(text) {
+        let hash = 0;
+        for (const char of String(text || '')) hash = ((hash << 5) - hash + char.codePointAt(0)) | 0;
+        return Math.abs(hash);
+    }
+
+    function buildMemoryHook(word, romaji) {
+        if (word?.mnemonic) return String(word.mnemonic);
+        const sound = romaji || splitJapaneseLabel(word).japanese;
+        const meaning = String(word?.en || 'this meaning').split(/[\/;]/)[0].trim();
+        const hooks = [
+            `Picture ${meaning} wearing a tiny name tag that says “${sound}”.`,
+            `Imagine shouting “${sound}!” when ${meaning} suddenly appears.`,
+            `Put ${meaning} inside the Reptilian Birdhaus and label it “${sound}”.`,
+            `Make ${meaning} move in a ridiculous way while you say “${sound}”.`,
+            `Link “${sound}” to the strangest version of ${meaning} you can picture.`
+        ];
+        return hooks[hashText(word?.jp) % hooks.length];
+    }
+
+    async function enrichLessonKana(word, japanese, requestId) {
+        if (getLessonKana(word, japanese) !== '…' || !japanese) return;
+        try {
+            const response = await fetch(`${config.apiUrl}&action=lookup&word=${encodeURIComponent(japanese)}`);
+            const payload = await response.json();
+            const entries = payload?.data?.[0]?.japanese || [];
+            const exact = entries.find(entry => entry.word === japanese) || entries[0];
+            const reading = String(exact?.reading || '').trim();
+            if (!reading) return;
+            word._lessonKana = reading;
+            if (requestId === lessonLookupRequest && lessonWords[lessonIndex]?.jp === word.jp) {
+                document.getElementById('lesson-kana').textContent = reading;
+            }
+        } catch (error) {
+            // Reading enrichment is optional; stored kana/romaji still keep the lesson usable.
+        }
+    }
+
+    function renderLessonCard() {
+        const word = lessonWords[lessonIndex];
+        if (!word) return;
+        const { japanese, romaji } = splitJapaneseLabel(word);
+        const kana = getLessonKana(word, japanese);
+        const exampleJp = String(word.sentence_jp || word.example_jp || '').trim();
+        const exampleEn = String(word.sentence_en || word.example_en || '').trim();
+        const exampleBlock = document.getElementById('lesson-example-block');
+        const batchTotal = readDailyPathState().lessonTarget / DAILY_LESSON_BATCH_SIZE;
+
+        document.getElementById('lesson-batch-label').textContent = `Lesson ${lessonBatchIndex + 1} of ${batchTotal}`;
+        document.getElementById('lesson-count-text').textContent = `${lessonIndex + 1} / ${lessonWords.length}`;
+        document.getElementById('lesson-progress-bar').style.width = `${((lessonIndex + 1) / lessonWords.length) * 100}%`;
+        document.getElementById('lesson-word').textContent = japanese;
+        document.getElementById('lesson-meaning').textContent = word.en || '';
+        document.getElementById('lesson-kana').textContent = kana;
+        document.getElementById('lesson-romaji').textContent = romaji || '—';
+        document.getElementById('lesson-mnemonic').textContent = buildMemoryHook(word, romaji);
+
+        if (exampleJp || exampleEn) {
+            exampleBlock.hidden = false;
+            document.getElementById('lesson-example-jp').textContent = exampleJp;
+            document.getElementById('lesson-example-en').textContent = exampleEn;
+        } else {
+            exampleBlock.hidden = true;
+        }
+
+        const prevButton = document.getElementById('lesson-prev-btn');
+        const nextButton = document.getElementById('lesson-next-btn');
+        prevButton.disabled = lessonIndex === 0;
+        nextButton.innerHTML = lessonIndex === lessonWords.length - 1
+            ? `Start 5-word quiz <i class="fas fa-arrow-right" aria-hidden="true"></i>`
+            : `Next word <i class="fas fa-arrow-right" aria-hidden="true"></i>`;
+
+        document.getElementById('lesson-dots').innerHTML = lessonWords.map((item, index) => `
+            <button type="button" class="lesson-dot ${index === lessonIndex ? 'is-active' : ''} ${index < lessonIndex ? 'is-seen' : ''}"
+                onclick="goToLessonCard(${index})" aria-label="Word ${index + 1}" ${index === lessonIndex ? 'aria-current="step"' : ''}>${index + 1}</button>
+        `).join('');
+
+        lessonLookupRequest += 1;
+        enrichLessonKana(word, japanese, lessonLookupRequest);
+    }
+
+    function startDailyLesson() {
+        if (!hasCalmDailyPath()) return;
+        const state = readDailyPathState();
+        const completed = new Set(state.completedLessonBatches);
+        const targetBatchCount = state.lessonTarget / DAILY_LESSON_BATCH_SIZE;
+        let batchIndex = -1;
+        for (let i = 0; i < targetBatchCount; i++) {
+            if (!completed.has(i)) { batchIndex = i; break; }
+        }
+
+        if (batchIndex < 0) {
+            showToast('Today’s lesson path is complete.', 'success');
+            return;
+        }
+
+        const keys = ensureDailyLessonBatch(state, batchIndex);
+        const batch = keys.map(findStudyWord).filter(Boolean);
+        if (batch.length === 0) {
+            showToast('No fresh words are waiting right now.', 'info');
+            return;
+        }
+
+        lessonBatchIndex = batchIndex;
+        lessonWords = batch;
+        lessonIndex = 0;
+        showSection('lesson');
+        renderLessonCard();
+    }
+
+    function goToLessonCard(index) {
+        if (!Number.isInteger(index) || index < 0 || index >= lessonWords.length) return;
+        lessonIndex = index;
+        renderLessonCard();
+    }
+
+    function moveLessonCard(direction) {
+        if (direction > 0 && lessonIndex === lessonWords.length - 1) {
+            currentListName = `Daily Lesson ${lessonBatchIndex + 1}`;
+            isPurificationSession = false;
+            wordList = [...lessonWords];
+            startSession({
+                modeOverride: 'choice',
+                labelOverride: '5-WORD CHECK',
+                sessionKind: 'daily-lesson'
+            });
+            return;
+        }
+
+        lessonIndex = Math.max(0, Math.min(lessonWords.length - 1, lessonIndex + direction));
+        renderLessonCard();
+    }
+
+    function playLessonAudio() {
+        const word = lessonWords[lessonIndex];
+        if (!word || !config.speakText) return;
+        config.speakText(splitJapaneseLabel(word).japanese);
+    }
+
+    function startDailyReview() {
+        if (!hasCalmDailyPath()) return;
+        const state = readDailyPathState();
+        if (state.reviewCompleted) {
+            showToast('Today’s reviews are already complete.', 'success');
+            return;
+        }
+
+        const queue = ensureDailyReviewQueue(state);
+        if (queue.length === 0) {
+            showToast('No review words are ready yet.', 'info');
+            return;
+        }
+
+        currentListName = 'Daily Review';
+        isPurificationSession = false;
+        wordList = [...queue];
+        startSession({ sessionKind: 'daily-review' });
+    }
+
+    function completeDailySession() {
+        if (sessionKind !== 'daily-lesson' && sessionKind !== 'daily-review') return;
+        const state = readDailyPathState();
+
+        if (sessionKind === 'daily-lesson') {
+            if (!state.completedLessonBatches.includes(lessonBatchIndex)) {
+                state.completedLessonBatches.push(lessonBatchIndex);
+                state.completedLessonBatches.sort((a, b) => a - b);
+            }
+        } else {
+            state.reviewCompleted = true;
+            state.reviewCount = Math.min(DAILY_REVIEW_LIMIT, sessionInitialWordCount);
+        }
+
+        writeDailyPathState(state);
+    }
+
+    function quitCurrentSession() {
+        showSection(sessionKind === 'daily-lesson' || sessionKind === 'daily-review' ? 'today' : 'select');
+    }
+
     function renderStudyFocusPanel(lists = loadedLists) {
         const panel = document.getElementById('study-focus-panel');
         if (!panel) return;
@@ -1484,8 +1907,15 @@ const StudioCore = (() => {
     // SECTION NAVIGATION
     // =========================================================
     function showSection(id) {
-        ['select', 'setup', 'quiz'].forEach(sec => document.getElementById(sec + '-section').classList.add('hidden'));
-        document.getElementById(id + '-section').classList.remove('hidden');
+        const useDailyPath = hasCalmDailyPath();
+        const sectionIds = useDailyPath
+            ? ['today', 'select', 'setup', 'lesson', 'quiz']
+            : ['select', 'setup', 'quiz'];
+        sectionIds.forEach(sec => document.getElementById(sec + '-section')?.classList.add('hidden'));
+        const target = document.getElementById(id + '-section');
+        if (!target) return;
+        target.classList.remove('hidden');
+        if (id === 'today' || id === 'select') target.scrollTop = 0;
         // Hide feature overlays
         const ro = document.getElementById('studio-results-overlay');
         const so = document.getElementById('studio-stats-overlay');
@@ -1494,7 +1924,18 @@ const StudioCore = (() => {
         if (so) closeDialog(so, { restoreFocus: false });
         if (ko) closeDialog(ko, { restoreFocus: false });
         const sysBar = document.getElementById('system-bar');
-        sysBar.style.marginTop = (id === 'quiz') ? '-130px' : '0px';
+        if (useDailyPath) {
+            sysBar?.classList.toggle('is-hidden', !['today', 'select'].includes(id));
+            document.getElementById('nav-today')?.classList.toggle('is-active', id === 'today');
+            document.getElementById('nav-select')?.classList.toggle('is-active', id === 'select');
+        } else if (sysBar) {
+            sysBar.style.marginTop = id === 'quiz' ? '-130px' : '0px';
+        }
+
+        if (useDailyPath && id === 'today') {
+            renderDailyDashboard();
+            fetchLists();
+        }
         if (id === 'select') {
             fetchLists();
             renderDailyQuote();
@@ -1526,12 +1967,6 @@ const StudioCore = (() => {
 
             const [lRes, sRes, statsRes, mnemonicRes] = await Promise.all(requests);
             loadedLists = await lRes.json();
-            // Normalize: accept "id" key as alias for "jp" (Bahasa organized lists use "id")
-            Object.keys(loadedLists).forEach(name => {
-                loadedLists[name] = loadedLists[name].map(w =>
-                    (!w.jp && w.id) ? { jp: w.id, en: w.en } : w
-                );
-            });
             loadedScores = await sRes.json();
             wordStats = await statsRes.json();
             kanjiMnemonics = (mnemonicRes && mnemonicRes.ok)
@@ -1617,6 +2052,7 @@ const StudioCore = (() => {
             }
         }));
         renderStudyFocusPanel(lists);
+        renderDailyDashboard();
 
         const reviewQueue = allUniqueWords.filter(w => {
             const stats = wordStats[w.jp];
@@ -1653,12 +2089,6 @@ const StudioCore = (() => {
                 <td class="p-3 hidden md:table-cell"><span class="text-amber-400 group-hover:text-white text-xs">--</span></td>
                 <td class="p-3 pr-6 text-right"><button type="button" onclick="startKanjiCorner()" class="studio-table-start-btn" aria-label="Open kanji corner picker">Open Corner</button></td>
             </tr>`);
-        }
-
-        // --- CUSTOM TABLE EXTRAS (e.g. Hantu Hunt for Bahasa) ---
-        if (config.renderTableExtras) {
-            const extraHTML = config.renderTableExtras(lists, allUniqueWords, wordStats);
-            if (extraHTML) rows.push(extraHTML);
         }
 
         // --- MAIN LISTS ---
@@ -2177,6 +2607,8 @@ const StudioCore = (() => {
 
     function startSession(options = {}) {
         currentIndex = 0; score = 0; sessionResults = [];
+        sessionKind = options.sessionKind || 'standard';
+        sessionInitialWordCount = new Set(wordList.map(word => word?.jp).filter(Boolean)).size;
         sessionModeOverride = options.modeOverride || null;
         sessionAnswerMatcher = typeof options.answerMatcher === 'function' ? options.answerMatcher : null;
         sessionLabelOverride = options.labelOverride || null;
@@ -2221,7 +2653,7 @@ const StudioCore = (() => {
             speechControls.classList.add('hidden');
             choiceContainer.classList.add('hidden');
         } else if (mode === 'choice') {
-            document.getElementById('quiz-mode-label').innerText = "Multiple Choice";
+            document.getElementById('quiz-mode-label').innerText = sessionLabelOverride || "Multiple Choice";
             document.getElementById('quiz-mode-label').classList.remove('text-red-500');
             heartsContainer.classList.add('hidden');
             textInput.classList.add('hidden');
@@ -2392,7 +2824,7 @@ const StudioCore = (() => {
                     }, 1000);
                     return;
                 }
-            } else {
+            } else if (sessionKind !== 'daily-lesson' && sessionKind !== 'daily-review') {
                 wordList.push(pair); // re-queue for retry
             }
 
@@ -2470,9 +2902,10 @@ const StudioCore = (() => {
         }
 
         incrementStreak();
+        completeDailySession();
 
         // Save session history
-        saveSessionHistory({ listName: currentListName, mode, score: pct, wordCount: wordList.length, date: Date.now() });
+        saveSessionHistory({ listName: currentListName, mode, score: pct, wordCount: sessionInitialWordCount || wordList.length, date: Date.now() });
 
         // Confetti on perfect score
         if (pct === 100) {
@@ -2530,9 +2963,9 @@ const StudioCore = (() => {
                 <div class="results-score ${scoreTone}">${pct}%</div>
                 <div class="results-meta">${escapeHTML(currentListName)} · ${mode.toUpperCase()}</div>
                 ${wrongHTML}
-                <button type="button" onclick="window.StudioUI.closeDialog(document.getElementById('studio-results-overlay'), { restoreFocus: false }); showSection('select');"
+                <button type="button" onclick="window.StudioUI.closeDialog(document.getElementById('studio-results-overlay'), { restoreFocus: false }); quitCurrentSession();"
                     class="results-done-btn" style="margin-top:2rem;" aria-label="Close results">
-                    Done
+                    ${sessionKind === 'daily-lesson' ? 'Back to today' : sessionKind === 'daily-review' ? 'Reviews complete' : 'Done'}
                 </button>
             </div>
         `;
@@ -2542,7 +2975,7 @@ const StudioCore = (() => {
             labelId: 'studio-results-title',
             onRequestClose: () => {
                 closeDialog(overlay, { restoreFocus: false });
-                showSection('select');
+                quitCurrentSession();
             }
         });
     }
@@ -2596,9 +3029,18 @@ const StudioCore = (() => {
         }
         let words = text.split('\n').reduce((acc, line) => {
             if (!line.trim()) return acc;
-            let match = line.match(/^(.*?),\s*(.*)$/);
+            const parts = line.split(/\s+\|\s+/);
+            const pair = parts.shift() || '';
+            let match = pair.match(/^(.*?),\s*(.*)$/);
             if (match && match.length >= 3) {
-                acc.push({ jp: match[1].trim(), en: match[2].trim() });
+                const [kana = '', romaji = '', sentenceJp = '', sentenceEn = '', mnemonic = ''] = parts;
+                const entry = { jp: match[1].trim(), en: match[2].trim() };
+                if (kana.trim()) entry.kana = kana.trim();
+                if (romaji.trim()) entry.romaji = romaji.trim();
+                if (sentenceJp.trim()) entry.sentence_jp = sentenceJp.trim();
+                if (sentenceEn.trim()) entry.sentence_en = sentenceEn.trim();
+                if (mnemonic.trim()) entry.mnemonic = mnemonic.trim();
+                acc.push(entry);
             }
             return acc;
         }, []);
@@ -2648,7 +3090,11 @@ const StudioCore = (() => {
     function editList(name) {
         editingOriginalName = name;
         document.getElementById('list-name-input').value = name;
-        document.getElementById('word-input').value = loadedLists[name].map(p => `${p.jp}, ${p.en}`).join('\n');
+        document.getElementById('word-input').value = loadedLists[name].map((p) => {
+            const extras = [p.kana || '', p.romaji || '', p.sentence_jp || '', p.sentence_en || '', p.mnemonic || ''];
+            while (extras.length && !extras[extras.length - 1]) extras.pop();
+            return `${p.jp}, ${p.en}${extras.length ? ` | ${extras.join(' | ')}` : ''}`;
+        }).join('\n');
         showSection('setup');
     }
 
@@ -2897,15 +3343,18 @@ const StudioCore = (() => {
                         closeDialog(kanjiPickerOverlay);
                     } else if (resultsOverlay && !resultsOverlay.classList.contains('hidden')) {
                         closeDialog(resultsOverlay);
-                        showSection('select');
+                        quitCurrentSession();
                     } else if (statsOverlay && !statsOverlay.classList.contains('hidden')) {
                         closeStats();
-                    } else if (!document.getElementById('quiz-section').classList.contains('hidden')) {
-                        showSection('select');
+                    } else if (!document.getElementById('quiz-section')?.classList.contains('hidden')) {
+                        quitCurrentSession();
+                    } else if (!document.getElementById('lesson-section')?.classList.contains('hidden')) {
+                        showSection('today');
                     }
                     break;
                 case '/':
                     e.preventDefault();
+                    showSection('select');
                     document.getElementById('list-search')?.focus();
                     break;
                 case 'n':
@@ -2922,7 +3371,7 @@ const StudioCore = (() => {
                     toggleDarkMode();
                     break;
                 case 's':
-                    if (!document.getElementById('select-section').classList.contains('hidden')) {
+                    if (!document.getElementById('select-section')?.classList.contains('hidden') || !document.getElementById('today-section')?.classList.contains('hidden')) {
                         showStats();
                     }
                     break;

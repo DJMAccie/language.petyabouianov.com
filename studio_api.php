@@ -1,6 +1,6 @@
 <?php
 // studio_api.php
-// Unified API for Language Studios
+// API for Nihongo Studio
 ob_start();
 
 ini_set('display_errors', 0);
@@ -73,9 +73,6 @@ $client_password = $data['password'] ?? '';
 $legacyGlobalListsFile = __DIR__ . '/global_lists.json';
 $listsFilesByLang = [
     'nihongo' => __DIR__ . '/nihongo_lists.json',
-    'bahasa' => __DIR__ . '/bahasa_lists.json',
-    'italia' => __DIR__ . '/italia_lists.json',
-    'nederlands' => __DIR__ . '/nederlands_lists.json',
 ];
 $allowedLangs = array_keys($listsFilesByLang);
 $listsFile = $listsFilesByLang[$lang] ?? null;
@@ -282,10 +279,28 @@ function normalizeWordEntry($item) {
 
     if ($jp === '' || $en === '') return null;
 
-    return [
+    $normalized = [
         'jp' => function_exists('mb_substr') ? mb_substr(preg_replace('/\s+/', ' ', $jp), 0, 160) : substr(preg_replace('/\s+/', ' ', $jp), 0, 160),
         'en' => function_exists('mb_substr') ? mb_substr(preg_replace('/\s+/', ' ', $en), 0, 200) : substr(preg_replace('/\s+/', ' ', $en), 0, 200),
     ];
+
+    // Optional calm-lesson fields. Older two-column lists remain fully compatible.
+    $optionalFields = [
+        'kana' => 160,
+        'romaji' => 160,
+        'sentence_jp' => 260,
+        'sentence_en' => 300,
+        'mnemonic' => 360,
+    ];
+
+    foreach ($optionalFields as $field => $limit) {
+        $value = trim((string) ($item[$field] ?? ''));
+        if ($value === '') continue;
+        $value = preg_replace('/\s+/', ' ', $value);
+        $normalized[$field] = function_exists('mb_substr') ? mb_substr($value, 0, $limit) : substr($value, 0, $limit);
+    }
+
+    return $normalized;
 }
 
 function normalizeSessionResultEntry($item) {
@@ -545,9 +560,6 @@ foreach ($allowedLangs as $allowedLang) {
 
 $defaultFileContents = [
     __DIR__ . '/nihongo_lists.json' => ['nihongo' => []],
-    __DIR__ . '/bahasa_lists.json' => ['bahasa' => []],
-    __DIR__ . '/italia_lists.json' => ['italia' => []],
-    __DIR__ . '/nederlands_lists.json' => ['nederlands' => []],
     $kanjiMnemonicsFile => ['nihongo' => []],
     $scoresFile => $defaultBuckets,
     $statsFile => $defaultBuckets,
