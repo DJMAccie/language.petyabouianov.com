@@ -28,6 +28,10 @@ studio_api_config.php
 api_rate_limits.json
 sync_processed_events.json
 
+# Build and dependencies
+node_modules/
+/dist/
+
 # iOS wrapper local build artifacts
 ios-app/node_modules/
 ios-app/.derivedData/

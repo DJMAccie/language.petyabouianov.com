@@ -19,7 +19,7 @@
     <script src="vendor/tailwindcss.browser.js"></script>
     <link href="vendor/fontawesome.min.css" rel="stylesheet">
     <script defer src="vendor/wanakana.min.js"></script>
-    <link rel="stylesheet" href="studio.css?v=20260706c">
+    <link rel="stylesheet" href="studio.css?v=20260819-live2">
     <style>
         /* --- Scrollbar --- */
         ::-webkit-scrollbar {
@@ -64,11 +64,11 @@
 
 </head>
 
-<body class="nihongo-page min-h-screen w-full flex items-center justify-center p-0 md:p-4 overflow-x-hidden">
+<body class="nihongo-page min-h-screen w-full p-0 overflow-x-hidden">
 
     <!-- MAIN WINDOW -->
     <div
-        class="mac-window w-full max-w-6xl md:h-[85vh] h-[100dvh] md:rounded-xl rounded-none md:border border-white/40 border-none overflow-hidden flex flex-col relative">
+        class="mac-window studio-app-shell w-full h-[100dvh] overflow-hidden flex flex-col relative">
 
         <!-- HEADER -->
         <div data-studio-header
@@ -83,54 +83,67 @@
         <link rel="icon"
             href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 900 600%22><rect width=%22900%22 height=%22600%22 fill=%22white%22/><circle cx=%22450%22 cy=%22300%22 r=%22180%22 fill=%22%23bc002d%22/></svg>">
 
-        <!-- TOOLBAR -->
-        <div id="system-bar"
-            class="bg-gray-50/80 p-4 md:p-6 border-b border-gray-200 shrink-0 flex flex-col items-center justify-center gap-3 transition-all duration-300 ease-in-out relative z-10">
-            <div class="w-full flex flex-col md:flex-row justify-between items-center gap-3 md:gap-0 max-w-5xl">
-                <!-- Action Buttons -->
-                <div class="studio-toolbar-actions w-full md:w-auto justify-center md:justify-start">
-                    <button type="button" onclick="openCreateNew()" aria-label="Create a new list"
-                        class="studio-toolbar-pill-btn">
-                        <i class="fas fa-plus studio-toolbar-icon"></i> New List
-                    </button>
-                    <button type="button" onclick="openGrammarCorner()" aria-label="Open grammar notes" title="Grammar Notes"
-                        class="studio-toolbar-icon-btn">
-                        <i class="fas fa-book-open studio-toolbar-icon studio-toolbar-icon--compact"></i>
-                    </button>
-                    <!-- MIX BUTTON -->
-                    <button type="button" onclick="startMixSession()" aria-label="Start a mixed review session" title="Start mixed review"
-                        class="studio-toolbar-icon-btn">
-                        <i class="fas fa-random studio-toolbar-icon"></i>
-                    </button>
-                </div>
-                <!-- Unified Search (Lists + Dictionary on Enter) -->
-                <div class="relative w-full md:w-96 group">
-                    <i class="fas fa-search absolute left-4 top-3.5 text-gray-400 group-focus-within:text-blue-500"></i>
-                    <input type="text" id="list-search" placeholder="Search lists... (Enter for Jisho)"
-                        onkeyup="handleSearchKeyup(event)" aria-label="Search lists or press Enter for dictionary"
-                        class="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-300 rounded-full text-sm focus:outline-none focus:ring-4 focus:ring-blue-400/30 focus:border-blue-400 shadow-sm transition-all search-input">
-                </div>
-                <!-- Mode Toggle -->
-                <div class="relative w-full md:w-auto">
-                    <select id="global-quiz-mode" onchange="renderTable(loadedLists, loadedScores)" aria-label="Quiz mode"
-                        class="w-full md:w-auto appearance-none bg-white border border-gray-300 text-gray-600 py-2 pl-4 pr-10 rounded-full text-sm font-medium shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 cursor-pointer">
-                        <option value="en-jp" selected>EN → JP</option>
-                        <option value="jp-en">JP → EN</option>
-                        <option value="speech">🗣 はなす</option>
-                    </select>
-                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-400">
-                        <i class="fas fa-chevron-down text-xs"></i>
-                    </div>
-                </div>
+        <!-- PRIMARY NAVIGATION -->
+        <nav id="system-bar" class="studio-primary-nav" aria-label="Nihongo Studio sections">
+            <div class="studio-primary-links">
+                <button id="nav-today" type="button" class="studio-primary-link is-active" onclick="showSection('today')">
+                    <i class="fas fa-home" aria-hidden="true"></i><span>Today</span>
+                </button>
+                <button id="nav-select" type="button" class="studio-primary-link" onclick="showSection('select')">
+                    <i class="fas fa-book-open" aria-hidden="true"></i><span>Word Library</span>
+                </button>
+                <button type="button" class="studio-primary-link" onclick="openGrammarCorner()">
+                    <i class="fas fa-shapes" aria-hidden="true"></i><span>Grammar</span>
+                </button>
+                <button type="button" class="studio-primary-link" onclick="openDictionary()">
+                    <i class="fas fa-search" aria-hidden="true"></i><span>Dictionary</span>
+                </button>
             </div>
-        </div>
+            <div class="studio-mode-select">
+                <label for="global-quiz-mode" class="sr-only">Review direction</label>
+                <select id="global-quiz-mode" onchange="renderTable(loadedLists, loadedScores)" aria-label="Review direction">
+                    <option value="en-jp" selected>EN → JP</option>
+                    <option value="jp-en">JP → EN</option>
+                    <option value="speech">🗣 はなす</option>
+                </select>
+                <i class="fas fa-chevron-down" aria-hidden="true"></i>
+            </div>
+        </nav>
 
         <!-- CONTENT -->
         <div class="flex-1 min-h-0 bg-white relative flex flex-col z-0" data-studio-content>
 
-            <!-- TABLE SECTION -->
-            <div id="select-section" class="flex-1 overflow-auto animate-fade-in flex flex-col">
-                <div id="study-focus-panel" class="study-focus-panel" aria-label="Study focus"></div>
+            <!-- TODAY SECTION -->
+            <section id="today-section" class="flex-1 overflow-y-auto animate-fade-in" aria-labelledby="today-heading">
+                <div id="daily-study-panel" class="daily-study-panel" aria-live="polite">
+                    <div class="daily-loading">Preparing today’s five-word steps…</div>
+                </div>
+            </section>
+
+            <!-- WORD LIBRARY SECTION -->
+            <section id="select-section" class="hidden flex flex-1 overflow-auto animate-fade-in flex-col" aria-labelledby="library-heading">
+                <div class="library-toolbar">
+                    <div>
+                        <h1 id="library-heading">Word Library</h1>
+                        <p>Your lists live here when you need them. Today stays small.</p>
+                    </div>
+                    <div class="library-toolbar-actions">
+                        <button type="button" onclick="openCreateNew()" class="library-action-btn">
+                            <i class="fas fa-plus" aria-hidden="true"></i> New list
+                        </button>
+                        <button type="button" onclick="startMixSession()" class="library-action-btn library-action-btn--quiet">
+                            <i class="fas fa-random" aria-hidden="true"></i> Smart mix
+                        </button>
+                    </div>
+                </div>
+                <div class="library-search-row">
+                    <div class="library-search-field">
+                        <i class="fas fa-search" aria-hidden="true"></i>
+                        <input type="text" id="list-search" placeholder="Search lists… (Enter for Jisho)"
+                            onkeyup="handleSearchKeyup(event)" aria-label="Search lists or press Enter for dictionary">
+                    </div>
+                </div>
+                <div id="study-focus-panel" class="hidden" aria-hidden="true"></div>
                 <div class="flex-1 overflow-auto">
                     <table class="w-full text-left border-collapse finder-table">
                         <thead class="bg-white sticky top-0 border-b border-gray-200 shadow-sm z-10">
@@ -171,7 +184,7 @@
                         <span id="streak-text">0 Day Streak</span>
                     </div>
                 </div>
-            </div>
+            </section>
 
             <!-- SETUP SECTION (Create/Edit) -->
             <div id="setup-section" class="hidden absolute inset-0 bg-white z-20 flex flex-col animate-fade-in">
@@ -189,8 +202,7 @@
                         </div>
                         <div>
                             <label class="block text-xs font-bold text-gray-500 uppercase mb-2">Words <span
-                                    class="text-gray-400 font-normal normal-case ml-1">(Format: Word,
-                                    Meaning)</span></label>
+                                    class="text-gray-400 font-normal normal-case ml-1">(Word, Meaning — optional: | kana | romaji | example JP | example EN | memory hook)</span></label>
                             <textarea id="word-input" spellcheck="false"
                                 class="w-full h-64 px-4 py-3 bg-gray-50 border border-gray-300 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition resize-none font-mono text-sm shadow-sm leading-relaxed"></textarea>
                         </div>
@@ -203,6 +215,67 @@
                     </div>
                 </div>
             </div>
+
+            <!-- FIVE-WORD LESSON SECTION -->
+            <section id="lesson-section" class="hidden absolute inset-0 bg-white z-20 flex flex-col animate-fade-in" aria-labelledby="lesson-word">
+                <header class="lesson-header">
+                    <div class="lesson-header-copy">
+                        <button type="button" class="lesson-today-btn" onclick="showSection('today')">
+                            <i class="fas fa-calendar-day" aria-hidden="true"></i> Today
+                        </button>
+                        <span id="lesson-batch-label">Lesson 1 of 2</span>
+                    </div>
+                    <div class="lesson-progress-wrap" aria-label="Lesson progress">
+                        <strong id="lesson-count-text">1 / 5</strong>
+                        <div class="lesson-progress-track"><span id="lesson-progress-bar"></span></div>
+                    </div>
+                    <button type="button" class="lesson-audio-btn" onclick="playLessonAudio()">
+                        <i class="fas fa-volume-up" aria-hidden="true"></i><span>Audio</span>
+                    </button>
+                </header>
+
+                <main class="lesson-body">
+                    <article class="lesson-word-card">
+                        <div class="lesson-word-main">
+                            <h1 id="lesson-word">手</h1>
+                            <p id="lesson-meaning">hand</p>
+                        </div>
+
+                        <dl class="lesson-readings">
+                            <div>
+                                <dt>かな</dt>
+                                <dd id="lesson-kana">て</dd>
+                            </div>
+                            <div>
+                                <dt>romaji</dt>
+                                <dd id="lesson-romaji">te</dd>
+                            </div>
+                        </dl>
+
+                        <div class="lesson-detail-row">
+                            <section id="lesson-example-block" class="lesson-detail-block">
+                                <h2>Example</h2>
+                                <p id="lesson-example-jp" class="lesson-example-jp">手を洗います。</p>
+                                <p id="lesson-example-en" class="lesson-example-en">I wash my hands.</p>
+                            </section>
+                            <section class="lesson-detail-block lesson-memory-block">
+                                <h2>Memory hook</h2>
+                                <p id="lesson-mnemonic">A tiny cup of TEA balances in your HAND.</p>
+                            </section>
+                        </div>
+                    </article>
+                </main>
+
+                <footer class="lesson-footer">
+                    <button id="lesson-prev-btn" type="button" class="lesson-secondary-btn" onclick="moveLessonCard(-1)">
+                        <i class="fas fa-arrow-left" aria-hidden="true"></i> Previous
+                    </button>
+                    <div id="lesson-dots" class="lesson-dots" aria-label="Five lesson words"></div>
+                    <button id="lesson-next-btn" type="button" class="lesson-primary-btn" onclick="moveLessonCard(1)">
+                        Next word <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                    </button>
+                </footer>
+            </section>
 
             <!-- QUIZ SECTION -->
             <div id="quiz-section"
@@ -260,7 +333,7 @@
 
                     <div id="feedback" class="h-10 mt-6 md:mt-8 text-lg font-semibold transition-opacity opacity-0" aria-live="polite">
                     </div>
-                    <button type="button" onclick="showSection('select')"
+                    <button type="button" onclick="quitCurrentSession()"
                         class="mt-8 md:mt-12 text-gray-400 hover:text-red-500 text-sm font-medium transition flex items-center gap-2 mx-auto"><i
                             class="fas fa-stop-circle"></i> Quit Session</button>
                 </div>
@@ -314,14 +387,17 @@
     <!-- TOAST NOTIFICATIONS -->
     <div id="toast-container" class="fixed bottom-4 right-4 z-50 flex flex-col gap-2" role="status" aria-live="polite" aria-atomic="true"></div>
 
-    <script src="studio-core.js?v=20260706b"></script>
-    <script src="language-configs.js"></script>
+    <script src="studio-api.js?v=20260911"></script>
+    <script src="studio-ui.js?v=20260911"></script>
+    <script src="studio-daily.js?v=20260911"></script>
+    <script src="studio-quiz.js?v=20260911"></script>
+    <script src="studio-library.js?v=20260911"></script>
+    <script src="studio-core.js?v=20260911"></script>
+    <script src="language-configs.js?v=20260911"></script>
     <script src="ios-config.js"></script>
     <script>
         let isKanaMode = true;
         let wanakanaBound = false;
-        const GRAMMAR_LIST_NAME = 'Grammar Patterns';
-        let isSavingGrammarEntry = false;
 
         function toggleKanaIME() {
             const input = document.getElementById('answer-input');
@@ -367,251 +443,16 @@
                 document.getElementById('kana-toggle-btn').style.display = 'none';
             }
 
-            // Re-bind dictionary logic for Nihongo
             document.getElementById('dict-search-input')?.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') lookupWord(); // Note: lookupWord etc need to be re-added or handled.
+                if (e.key === 'Enter') window.StudioUI.lookupWord();
             });
             document.getElementById('dictionary-modal')?.addEventListener('click', (e) => {
-                if (e.target.id === 'dictionary-modal') closeDictionary();
+                if (e.target.id === 'dictionary-modal') window.StudioUI.closeDictionary();
             });
             document.getElementById('grammar-corner-modal')?.addEventListener('click', (e) => {
-                if (e.target.id === 'grammar-corner-modal') closeGrammarCorner();
+                if (e.target.id === 'grammar-corner-modal') window.StudioUI.closeGrammarCorner();
             });
         };
-
-        // Dictionary functions injected directly for Nihongo
-        function openDictionary(searchTerm = null) {
-            const dialog = document.getElementById('dictionary-modal');
-            window.StudioUI?.openDialog(dialog, {
-                initialFocusSelector: '#dict-search-input',
-                labelId: 'dictionary-modal-title'
-            });
-            const input = document.getElementById('dict-search-input');
-            if (searchTerm) {
-                input.value = searchTerm;
-                lookupWord();
-            } else {
-                input.value = '';
-                document.getElementById('dict-results').innerHTML = '<p class="text-gray-400 text-center py-8">Enter a word to search</p>';
-            }
-            input.focus();
-        }
-
-        function closeDictionary() {
-            window.StudioUI?.closeDialog(document.getElementById('dictionary-modal'));
-        }
-
-        function grammarEscapeHTML(text) {
-            const div = document.createElement('div');
-            div.textContent = text || '';
-            return div.innerHTML;
-        }
-
-        function getGrammarRows() {
-            const loadedLists = window._studio?.getLoadedLists?.() || {};
-            return loadedLists[GRAMMAR_LIST_NAME] || [];
-        }
-
-        function parseGrammarPoint(meaning) {
-            const match = (meaning || '').match(/\[([^\]]+)\]\s*$/);
-            return match ? match[1].trim() : 'Grammar point';
-        }
-
-        function stripGrammarPoint(meaning) {
-            return (meaning || '').replace(/\s*\[[^\]]+\]\s*$/, '').trim();
-        }
-
-        function grammarRowKey(item) {
-            return `${(item?.jp || '').trim().toLowerCase()}|${(item?.en || '').trim().toLowerCase()}`;
-        }
-
-        async function saveGrammarEntry(event) {
-            if (event) event.preventDefault();
-            if (isSavingGrammarEntry) return;
-
-            const grammarPointInput = document.getElementById('grammar-point-input');
-            const patternInput = document.getElementById('grammar-pattern-input');
-            const explanationInput = document.getElementById('grammar-explanation-input');
-
-            const grammarPoint = grammarPointInput?.value.trim() || '';
-            const pattern = patternInput?.value.trim() || '';
-            const explanation = explanationInput?.value.trim() || '';
-
-            if (!grammarPoint || !pattern || !explanation) {
-                window.showToast?.('Fill in grammar point, pattern, and explanation.', 'warning');
-                return;
-            }
-
-            const entry = {
-                jp: pattern,
-                en: `${explanation} [${grammarPoint}]`
-            };
-
-            const rows = getGrammarRows();
-            const nextKey = grammarRowKey(entry);
-            const hasDuplicate = rows.some((item) => grammarRowKey(item) === nextKey);
-            if (hasDuplicate) {
-                window.showToast?.('That grammar entry already exists.', 'warning');
-                return;
-            }
-
-            const saveButton = document.getElementById('grammar-save-btn');
-            try {
-                isSavingGrammarEntry = true;
-                if (saveButton) {
-                    saveButton.disabled = true;
-                    saveButton.setAttribute('aria-busy', 'true');
-                    saveButton.textContent = 'Saving...';
-                }
-
-                const response = await fetch('studio_api.php?lang=nihongo&action=save_list', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        name: GRAMMAR_LIST_NAME,
-                        words: [...rows, entry]
-                    })
-                });
-
-                const payload = await response.json().catch(() => ({}));
-                if (!response.ok || payload.error) {
-                    throw new Error(payload.error || 'Failed to save grammar entry.');
-                }
-
-                await StudioCore.fetchLists();
-                renderGrammarCorner();
-                window.showToast?.('Grammar entry added.', 'success');
-            } catch (error) {
-                window.showToast?.(error.message || 'Failed to save grammar entry.', 'error');
-            } finally {
-                isSavingGrammarEntry = false;
-                if (saveButton) {
-                    saveButton.disabled = false;
-                    saveButton.removeAttribute('aria-busy');
-                    saveButton.textContent = 'Add Entry';
-                }
-            }
-        }
-
-        function renderGrammarCorner() {
-            const results = document.getElementById('grammar-corner-results');
-            const rows = getGrammarRows();
-
-            results.innerHTML = `
-                <div class="mb-5 rounded-xl border border-gray-200 bg-gray-50 px-4 py-4">
-                    <div class="text-xs font-semibold tracking-[0.12em] text-gray-400">Add Grammar Entry</div>
-                    <form class="mt-3 grid gap-3 md:grid-cols-2" onsubmit="saveGrammarEntry(event)">
-                        <div class="md:col-span-1">
-                            <label for="grammar-point-input" class="mb-1 block text-[11px] font-semibold tracking-[0.06em] text-gray-500">Grammar Point</label>
-                            <input id="grammar-point-input" type="text" maxlength="80" placeholder="e.g. たことがある"
-                                class="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-700 focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400/30">
-                        </div>
-                        <div class="md:col-span-1">
-                            <label for="grammar-pattern-input" class="mb-1 block text-[11px] font-semibold tracking-[0.06em] text-gray-500">Japanese Pattern</label>
-                            <input id="grammar-pattern-input" type="text" maxlength="220" placeholder="Pattern in Japanese / romaji"
-                                class="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-700 focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400/30">
-                        </div>
-                        <div class="md:col-span-2">
-                            <label for="grammar-explanation-input" class="mb-1 block text-[11px] font-semibold tracking-[0.06em] text-gray-500">Explanation</label>
-                            <textarea id="grammar-explanation-input" rows="2" maxlength="260" placeholder="Meaning or usage note"
-                                class="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-700 focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400/30 resize-none"></textarea>
-                        </div>
-                        <div class="md:col-span-2 flex justify-end">
-                            <button id="grammar-save-btn" type="submit"
-                                class="rounded-lg bg-blue-500 px-4 py-2 text-sm font-semibold text-white transition hover:bg-blue-600">
-                                Add Entry
-                            </button>
-                        </div>
-                    </form>
-                </div>
-                <div class="mb-4 flex items-end justify-between gap-4 border-b border-gray-200 pb-3">
-                    <div>
-                        <div class="text-xs font-semibold tracking-[0.12em] text-gray-400">Grammar Points</div>
-                    </div>
-                    <div class="text-xs text-gray-400">${rows.length} entries</div>
-                </div>
-                <div class="border-t border-gray-200">
-                    ${rows.length ? rows.map((item) => {
-                        const jp = item.jp || '';
-                        const en = item.en || '';
-                        const grammarPoint = parseGrammarPoint(en);
-                        const explanation = stripGrammarPoint(en);
-                        return `
-                            <div class="grid gap-1 border-b border-gray-200 px-1 py-3 md:grid-cols-[minmax(0,220px)_minmax(0,1fr)] md:gap-6 md:px-0 md:items-start">
-                                <div class="min-w-0">
-                                    <div class="text-[11px] font-semibold tracking-[0.08em] text-gray-400">${grammarEscapeHTML(grammarPoint)}</div>
-                                </div>
-                                <div class="min-w-0">
-                                    <div class="text-sm font-medium text-gray-700 whitespace-pre-line leading-relaxed break-words">${grammarEscapeHTML(jp)}</div>
-                                    <div class="mt-1 text-xs text-gray-500 leading-relaxed break-words">${grammarEscapeHTML(explanation)}</div>
-                                </div>
-                            </div>
-                        `;
-                    }).join('') : '<p class="py-8 text-center text-gray-400">No grammar points found yet.</p>'}
-                </div>
-            `;
-        }
-
-        function openGrammarCorner() {
-            renderGrammarCorner();
-            window.StudioUI?.openDialog(document.getElementById('grammar-corner-modal'), {
-                initialFocusSelector: '#grammar-point-input',
-                labelId: 'grammar-corner-title'
-            });
-        }
-
-        function closeGrammarCorner() {
-            window.StudioUI?.closeDialog(document.getElementById('grammar-corner-modal'));
-        }
-
-        async function lookupWord() {
-            const input = document.getElementById('dict-search-input');
-            const word = input.value.trim();
-            if (!word) return;
-            const results = document.getElementById('dict-results');
-            results.innerHTML = '<p class="text-gray-400 text-center py-8"><i class="fas fa-spinner fa-spin mr-2"></i>Searching...</p>';
-            try {
-                const res = await fetch(`studio_api.php?lang=nihongo&action=lookup&word=${encodeURIComponent(word)}`);
-                const data = await res.json();
-                if (data.error) { results.innerHTML = `<p class="text-red-500 text-center py-8">${data.error}</p>`; return; }
-                if (!data.data || data.data.length === 0) { results.innerHTML = '<p class="text-gray-400 text-center py-8">No results found</p>'; return; }
-                const entry = data.data[0];
-                const wordText = entry.japanese[0]?.word || entry.japanese[0]?.reading || '';
-                const reading = entry.japanese[0]?.reading || '';
-                const meanings = entry.senses.map(s => s.english_definitions.join(', ')).slice(0, 5);
-                results.innerHTML = `
-                    <div class="space-y-4">
-                        <div class="flex items-center gap-4">
-                            <span class="text-4xl font-bold text-gray-800">${wordText}</span>
-                            <button onclick="window.StudioConfigs.nihongo.speakText('${wordText.replace(/'/g, "\\'")}')" 
-                                type="button" aria-label="Play pronunciation for ${wordText.replace(/"/g, '&quot;')}"
-                                class="text-blue-500 hover:text-blue-700 p-2 rounded-full hover:bg-blue-50 transition">
-                                <i class="fas fa-volume-up text-xl"></i>
-                            </button>
-                        </div>
-                        ${reading && reading !== wordText ? `<p class="text-xl text-gray-500">${reading}</p>` : ''}
-                        <div class="space-y-2 pt-2 border-t border-gray-100">
-                            ${meanings.map((m, i) => `<p class="text-gray-700"><span class="text-blue-400 font-bold mr-2">${i + 1}.</span>${m}</p>`).join('')}
-                        </div>
-                    </div>`;
-            } catch (e) { results.innerHTML = `<p class="text-red-500 text-center py-8">Error: ${e.message}</p>`; }
-        }
-
-        function handleSearchKeyup(event) {
-            if (event.key === 'Enter') {
-                const term = document.getElementById('list-search').value.trim();
-                if (term) openDictionary(term);
-            } else if (window.filterLists) {
-                window.filterLists();
-            }
-        }
-        window.openDictionary = openDictionary;
-        window.closeDictionary = closeDictionary;
-        window.lookupWord = lookupWord;
-        window.handleSearchKeyup = handleSearchKeyup;
-        window.saveGrammarEntry = saveGrammarEntry;
-        window.openGrammarCorner = openGrammarCorner;
-        window.closeGrammarCorner = closeGrammarCorner;
     </script>
 </body>
 
