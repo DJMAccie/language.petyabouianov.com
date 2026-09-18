@@ -570,7 +570,7 @@ function studioHandleGoogleCallback($googleClientId, $googleClientSecret, $curre
         $account = $created['account'];
     }
 
-    studioPrepareAccountData($account, $lang, $basenames, false);
+    studioPrepareAccountData($account, $lang, $basenames);
     studioLoginSession($account);
     studioTouchLogin($account);
 
@@ -616,7 +616,7 @@ if (in_array($action, $authActions, true)) {
                 'scores' => $scoresBasename,
                 'stats' => $statsBasename,
                 'sync_events' => $syncEventsBasename,
-            ], true);
+            ]);
             studioLoginSession($newAccount);
             studioTouchLogin($newAccount);
 
@@ -648,7 +648,7 @@ if (in_array($action, $authActions, true)) {
                 'scores' => $scoresBasename,
                 'stats' => $statsBasename,
                 'sync_events' => $syncEventsBasename,
-            ], false);
+            ]);
             studioLoginSession($account);
             studioTouchLogin($account);
 
@@ -738,30 +738,66 @@ if (in_array($action, $authActions, true)) {
     outputJSON(["error" => "Invalid action requested"], 400);
 }
 
-// Every data action below reads and writes account-owned files only.
-if (!$currentAccount) {
+// --- SHARED LIBRARY ---
+//
+// The studio is open to everyone: study content is public and read-only, while
+// progress is private to an account (or kept in the browser for guests).
+$sharedListsFile = __DIR__ . '/' . $defaultListsBasename;
+
+if (!file_exists($sharedListsFile)) {
+    file_put_contents(
+        $sharedListsFile,
+        json_encode([$lang => []], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE)
+    );
+}
+
+function readSharedLists($sharedListsFile, $lang) {
+    $decoded = json_decode(safeRead($sharedListsFile), true);
+    $lists = is_array($decoded) ? ($decoded[$lang] ?? []) : [];
+    return is_array($lists) ? $lists : [];
+}
+
+// Actions a visitor may use without an account.
+$publicActions = ['get_shared_lists', 'get_kanji_mnemonics', 'lookup'];
+$isPublicAction = in_array($action, $publicActions, true);
+
+// Everything else reads or writes account-owned files.
+if (!$currentAccount && !$isPublicAction) {
     outputJSON([
         "error" => "Please sign in to continue.",
         "code" => "unauthenticated",
     ], 401);
 }
 
-studioPrepareAccountData($currentAccount, $lang, [
-    'lists' => $defaultListsBasename,
-    'scores' => $scoresBasename,
-    'stats' => $statsBasename,
-    'sync_events' => $syncEventsBasename,
-], false);
+// Account-owned paths (only resolved when a session exists).
+$listsFile = null;
+$scoresFile = null;
+$statsFile = null;
+$processedSyncEventsFile = null;
 
-$accountListBasename = $defaultListsBasename;
-$listsFile = studioAccountDataFile($currentAccount, $accountListBasename);
-$scoresFile = studioAccountDataFile($currentAccount, $scoresBasename);
-$statsFile = studioAccountDataFile($currentAccount, $statsBasename);
-$processedSyncEventsFile = studioAccountDataFile($currentAccount, $syncEventsBasename);
+if ($currentAccount) {
+    studioPrepareAccountData($currentAccount, $lang, [
+        'lists' => $defaultListsBasename,
+        'scores' => $scoresBasename,
+        'stats' => $statsBasename,
+        'sync_events' => $syncEventsBasename,
+    ], false);
 
-if (!$listsFile || !$scoresFile || !$statsFile || !$processedSyncEventsFile) {
-    error_log('Account storage path resolution failed for account ' . ($currentAccount['id'] ?? 'unknown'));
-    outputJSON(["error" => "Account storage is unavailable."], 500);
+    $listsFile = studioAccountDataFile($currentAccount, $defaultListsBasename);
+    $scoresFile = studioAccountDataFile($currentAccount, $scoresBasename);
+    $statsFile = studioAccountDataFile($currentAccount, $statsBasename);
+    $processedSyncEventsFile = studioAccountDataFile($currentAccount, $syncEventsBasename);
+
+    if (!$listsFile || !$scoresFile || !$statsFile || !$processedSyncEventsFile) {
+        error_log('Account storage path resolution failed for account ' . ($currentAccount['id'] ?? 'unknown'));
+        outputJSON(["error" => "Account storage is unavailable."], 500);
+    }
+}
+
+$isOwner = false;
+if ($currentAccount) {
+    $ownerAccount = studioOwnerAccount();
+    $isOwner = is_array($ownerAccount) && ($ownerAccount['id'] ?? '') === ($currentAccount['id'] ?? '');
 }
 
 $defaultBuckets = [];
@@ -770,11 +806,7 @@ foreach ($allowedLangs as $allowedLang) {
 }
 
 $defaultFileContents = [
-    $listsFile => [$lang => []],
     $kanjiMnemonicsFile => ['nihongo' => []],
-    $scoresFile => $defaultBuckets,
-    $statsFile => $defaultBuckets,
-    $processedSyncEventsFile => [],
     $rateLimitFile => [],
 ];
 
@@ -788,9 +820,34 @@ foreach ($defaultFileContents as $path => $defaults) {
 // --- MAIN LOGIC ---
 
 switch ($action) {
+    // Public: the shared study library every visitor can read.
+    case 'get_shared_lists':
+        studioRateLimit($rateLimitFile, 'get_shared_lists|' . $lang . '|' . studioClientIpAddress(), 120, 60);
+        outputJSON(readSharedLists($sharedListsFile, $lang));
+        break;
+
+    // The account's own lists. A personal list with the same name as a shared one
+    // overrides it for that account only; the shared copy is untouched.
     case 'get_lists':
-        $data = json_decode(safeRead($listsFile), true) ?? [];
-        outputJSON($data[$lang] ?? []);
+        outputJSON(readSharedLists($listsFile, $lang));
+        break;
+
+    // Combined view: shared library plus this account's personal lists.
+    case 'get_visible_lists':
+        $shared = readSharedLists($sharedListsFile, $lang);
+        $personal = readSharedLists($listsFile, $lang);
+
+        $sharedNames = array_map('strval', array_keys($shared));
+        $personalNames = array_map('strval', array_keys($personal));
+
+        $merged = $personal + $shared; // personal wins on a name collision
+
+        outputJSON([
+            'lists' => (object) $merged,
+            'shared_names' => $sharedNames,
+            'personal_names' => $personalNames,
+            'is_owner' => $isOwner,
+        ]);
         break;
 
     case 'get_scores':
@@ -847,11 +904,24 @@ switch ($action) {
             outputJSON(["error" => "No valid words were provided"], 400);
         }
 
-        safeModifyJSON($listsFile, function($rootData) use ($lang, $name, $words) {
+        // The shared library is owner-curated; everyone else writes personal
+        // lists only. Personal lists never touch the shared copy.
+        $scope = ($data['scope'] ?? 'personal') === 'shared' ? 'shared' : 'personal';
+        if ($scope === 'shared' && !$isOwner) {
+            outputJSON(["error" => "Only the owner can edit the shared library.", "code" => "forbidden"], 403);
+        }
+        $targetListsFile = $scope === 'shared' ? $sharedListsFile : $listsFile;
+
+        safeModifyJSON($targetListsFile, function($rootData) use ($lang, $name, $words) {
             if (!isset($rootData[$lang])) $rootData[$lang] = [];
             $rootData[$lang][$name] = $words;
             return $rootData;
         });
+
+        // Editing a shared list must not create progress for the curator.
+        if ($scope === 'shared') {
+            outputJSON(["status" => "success", "scope" => "shared"]);
+        }
 
         safeModifyJSON($scoresFile, function($rootData) use ($lang, $name, $now) {
             if (!isset($rootData[$lang])) $rootData[$lang] = [];
@@ -867,7 +937,7 @@ switch ($action) {
             return $rootData;
         });
         
-        outputJSON(["status" => "success"]);
+        outputJSON(["status" => "success", "scope" => "personal"]);
         break;
 
     case 'delete_list':
@@ -883,15 +953,26 @@ switch ($action) {
             outputJSON(["error" => "List name is required"], 400);
         }
 
-        safeModifyJSON($listsFile, function($rootData) use ($lang, $name) {
+        // Shared lists are owner-curated; anyone may delete their own copy.
+        $scope = ($data['scope'] ?? 'personal') === 'shared' ? 'shared' : 'personal';
+        if ($scope === 'shared' && !$isOwner) {
+            outputJSON(["error" => "Only the owner can edit the shared library.", "code" => "forbidden"], 403);
+        }
+        $targetListsFile = $scope === 'shared' ? $sharedListsFile : $listsFile;
+
+        safeModifyJSON($targetListsFile, function($rootData) use ($lang, $name) {
             if (isset($rootData[$lang][$name])) unset($rootData[$lang][$name]);
             return $rootData;
         });
-        safeModifyJSON($scoresFile, function($rootData) use ($lang, $name) {
-            if (isset($rootData[$lang][$name])) unset($rootData[$lang][$name]);
-            return $rootData;
-        });
-        outputJSON(["status" => "success"]);
+
+        if ($scope === 'personal') {
+            safeModifyJSON($scoresFile, function($rootData) use ($lang, $name) {
+                if (isset($rootData[$lang][$name])) unset($rootData[$lang][$name]);
+                return $rootData;
+            });
+        }
+
+        outputJSON(["status" => "success", "scope" => $scope]);
         break;
 
     case 'save_score':

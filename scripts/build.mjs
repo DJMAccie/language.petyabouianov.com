@@ -17,6 +17,8 @@ const CleanCSS = CleanCSSModule.default || CleanCSSModule;
 const HTML_FILES = ['index.html', 'nihongo-studio.html', 'login.html'];
 const CSS_FILES = ['studio.css', 'auth.css'];
 const JS_FILES = [
+  'studio-session.js',
+  'studio-guest.js',
   'studio-api.js',
   'studio-ui.js',
   'studio-daily.js',

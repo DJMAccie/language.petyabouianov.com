@@ -713,6 +713,31 @@ body #system-bar {
     background: var(--zen-surface);
 }
 
+/* Distinguishes shared-library lists from a member's own lists. */
+.studio-list-badge {
+    margin-left: 0.5rem;
+    padding: 0.08rem 0.4rem;
+    border: 1px solid var(--zen-line);
+    border-radius: 999px;
+    color: var(--zen-muted);
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.studio-list-badge--personal {
+    border-color: rgba(46, 110, 232, 0.35);
+    color: var(--zen-blue);
+}
+
+.finder-table tr:hover .studio-list-badge {
+    border-color: rgba(255, 255, 255, 0.6);
+    color: #fff;
+}
+
 .library-toolbar h1 {
     margin: 0;
     color: var(--zen-ink);

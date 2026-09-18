@@ -608,18 +608,18 @@ if (!function_exists('studioAccountsDir')) {
     // The very first account (the site owner) inherits the pre-accounts runtime
     // files that used to be global. Everyone else starts with an empty progress
     // record, optionally seeded with the bundled study lists.
-    function studioPrepareAccountData($account, $lang, $basenames, $seedListsFromBundle) {
+    function studioPrepareAccountData($account, $lang, $basenames) {
         if (!is_array($account) || !studioEnsureAccountStorage($account)) {
             return false;
         }
 
+        // Progress only. Study content now lives in the shared library
+        // (nihongo_lists.json), which every visitor reads, so migrating the
+        // owner's list file into a private copy would duplicate it and stop the
+        // shared library from being the single source of truth.
         $legacySource = [
-            'lists' => __DIR__ . '/global_lists.json',
             'scores' => __DIR__ . '/global_scores.json',
             'stats' => __DIR__ . '/global_word_stats.json',
-        ];
-        $bundledLists = [
-            'lists' => __DIR__ . '/nihongo_lists.json',
         ];
 
         $isOwner = false;
@@ -640,13 +640,9 @@ if (!function_exists('studioAccountsDir')) {
                 continue;
             }
 
-            // 2. New accounts start from bundled reference content (lists only).
-            if ($seedListsFromBundle && isset($bundledLists[$key]) && file_exists($bundledLists[$key])) {
-                $seed = json_decode((string) @file_get_contents($bundledLists[$key]), true);
-                $langLists = is_array($seed) ? ($seed[$lang] ?? null) : null;
-                if (is_array($langLists) && !empty($langLists)) {
-                    studioWriteJsonFile($target, [$lang => $langLists]);
-                }
+            // 2. Personal lists start empty; the shared library supplies content.
+            if ($key === 'lists') {
+                studioWriteJsonFile($target, [$lang => []]);
             }
         }
 

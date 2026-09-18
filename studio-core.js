@@ -5,6 +5,10 @@
  */
 const StudioCore = window.StudioCore = (() => {
     let loadedLists = {};
+    // Names of shared-library lists, so the UI can mark them read-only and keep
+    // personal copies distinguishable from the owner's library.
+    let sharedListNames = [];
+    let personalListNames = [];
     let loadedScores = {};
     let wordStats = {};
     let kanjiMnemonics = {};
@@ -154,6 +158,10 @@ const StudioCore = window.StudioCore = (() => {
             loadedScores = data.loadedScores || {};
             wordStats = data.wordStats || {};
             kanjiMnemonics = data.kanjiMnemonics || {};
+            sharedListNames = data.sharedNames || [];
+            personalListNames = data.personalNames || [];
+            window._studioSharedNames = sharedListNames;
+            window._studioPersonalNames = personalListNames;
 
             window.loadedLists = loadedLists;
             window.loadedScores = loadedScores;
@@ -285,6 +293,16 @@ const StudioCore = window.StudioCore = (() => {
         config = { ...userConfig };
 
         window.StudioAPI.init(config);
+
+        // Scope helpers: the library uses these to decide what is editable.
+        window.StudioScope = {
+            isShared: (name) => sharedListNames.indexOf(name) !== -1,
+            isPersonal: (name) => personalListNames.indexOf(name) !== -1,
+            sharedNames: () => sharedListNames.slice(),
+            personalNames: () => personalListNames.slice(),
+            canEditShared: () => !!window.StudioSession?.can?.('editShared'),
+            canEditPersonal: () => !!window.StudioSession?.can?.('editPersonal')
+        };
         exportGlobals();
 
         injectMultipleChoiceOption();

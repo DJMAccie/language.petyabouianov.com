@@ -484,9 +484,11 @@ window.StudioAPI = (() => {
         });
     }
 
+    // The studio is open: the shared library and kanji notes need no account.
+    // Progress is private and only fetched when a session exists.
     async function fetchStudioData() {
         const requests = [
-            fetch(config.apiUrl + '&action=get_lists&t=' + Date.now()),
+            fetch(config.apiUrl + '&action=get_visible_lists&t=' + Date.now()),
             fetch(config.apiUrl + '&action=get_scores&t=' + Date.now()),
             fetch(config.apiUrl + '&action=get_word_stats&t=' + Date.now())
         ];
@@ -499,19 +501,36 @@ window.StudioAPI = (() => {
 
         const [lRes, sRes, statsRes, mnemonicRes] = await Promise.all(requests);
 
-        // Private account data: bounce to sign-in when the session has expired.
+        // No session: fall back to the public shared library so a visitor can
+        // study immediately. Progress then lives in the browser.
         if (isUnauthenticatedResponse(lRes) || isUnauthenticatedResponse(sRes) || isUnauthenticatedResponse(statsRes)) {
-            redirectToSignIn();
-            throw new Error('Not signed in');
+            window.StudioSession?.markSignedOut?.();
+
+            const sharedRes = await fetch(config.apiUrl + '&action=get_shared_lists&t=' + Date.now());
+            const loadedLists = await safeJson(sharedRes, {});
+            const { scores, stats } = window.StudioGuest?.read?.() || { scores: {}, stats: {} };
+            return {
+                loadedLists,
+                loadedScores: scores,
+                wordStats: stats,
+                kanjiMnemonics: {},
+                sharedNames: Object.keys(loadedLists),
+                personalNames: [],
+                isOwner: false,
+                signedIn: false
+            };
         }
 
-        const loadedLists = await safeJson(lRes, {});
+        const payload = await safeJson(lRes, {});
+        const loadedLists = payload.lists || {};
         const loadedScores = await safeJson(sRes, {});
         const wordStats = await safeJson(statsRes, {});
         let kanjiMnemonics = {};
         if (mnemonicRes && mnemonicRes.ok) {
             kanjiMnemonics = await safeJson(mnemonicRes, {});
         }
+
+        window.StudioSession?.markSignedIn?.(payload.is_owner === true);
 
         if (isOfflineSyncEnabled()) {
             saveSnapshotCache({
@@ -522,22 +541,31 @@ window.StudioAPI = (() => {
             });
         }
 
-        return { loadedLists, loadedScores, wordStats, kanjiMnemonics };
+        return {
+            loadedLists,
+            loadedScores,
+            wordStats,
+            kanjiMnemonics,
+            sharedNames: payload.shared_names || [],
+            personalNames: payload.personal_names || [],
+            isOwner: payload.is_owner === true,
+            signedIn: true
+        };
     }
 
-    async function saveList(name, words) {
+    async function saveList(name, words, scope) {
         return apiFetch(config.apiUrl + '&action=save_list', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name, words, ...getWriteAuthPayload() })
+            body: JSON.stringify({ name, words, scope: scope || 'personal', ...getWriteAuthPayload() })
         });
     }
 
-    async function deleteList(name) {
+    async function deleteList(name, scope) {
         return apiFetch(config.apiUrl + '&action=delete_list', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name, ...getWriteAuthPayload() })
+            body: JSON.stringify({ name, scope: scope || 'personal', ...getWriteAuthPayload() })
         });
     }
 

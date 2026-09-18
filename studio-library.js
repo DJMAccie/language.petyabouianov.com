@@ -4,6 +4,9 @@
 window.StudioLibrary = (() => {
     let tableStatusSortDirection = null;
     let editingOriginalName = null;
+    // Scope of the list being edited: 'shared' for the owner's library,
+    // 'personal' for a member's own list.
+    let editingScope = 'personal';
     let isSavingList = false;
 
     function getUniqueStudyWords(lists = null) {
@@ -463,9 +466,18 @@ window.StudioLibrary = (() => {
             }
 
             const safeName = window.StudioUI.escapeAttr(name);
-            let actionButtons = `
+
+            // Shared lists belong to the library and are only editable by the
+            // owner; personal lists are editable by whoever is signed in. Guests
+            // study but never modify.
+            const isShared = !!window.StudioScope?.isShared?.(name);
+            const mayEdit = isShared
+                ? !!window.StudioScope?.canEditShared?.()
+                : !!window.StudioScope?.canEditPersonal?.();
+
+            let actionButtons = mayEdit ? `
                 <button type="button" onclick="window.StudioLibrary.editList('${safeName}')" class="studio-table-icon-btn" title="Edit ${safeName}" aria-label="Edit ${safeName}"><i class="fas fa-edit"></i></button>
-                <button type="button" onclick="window.StudioLibrary.deleteListConfirm('${safeName}')" class="studio-table-icon-btn danger" title="Delete ${safeName}" aria-label="Delete ${safeName}"><i class="fas fa-trash"></i></button>`;
+                <button type="button" onclick="window.StudioLibrary.deleteListConfirm('${safeName}')" class="studio-table-icon-btn danger" title="Delete ${safeName}" aria-label="Delete ${safeName}"><i class="fas fa-trash"></i></button>` : '';
 
             if (config.startTraining) {
                 actionButtons += `
@@ -477,7 +489,7 @@ window.StudioLibrary = (() => {
 
             rows.push(`
             <tr class="border-b border-gray-100 transition cursor-default group">
-                <td class="p-3 pl-6 font-medium text-gray-800"><i class="fas fa-list-ul mr-3 text-gray-400 group-hover:text-white"></i>${window.StudioUI.escapeHTML(name)}</td>
+                <td class="p-3 pl-6 font-medium text-gray-800"><i class="fas fa-list-ul mr-3 text-gray-400 group-hover:text-white"></i>${window.StudioUI.escapeHTML(name)}${isShared ? '<span class="studio-list-badge" title="From the shared library">Shared</span>' : '<span class="studio-list-badge studio-list-badge--personal" title="Your own list">Personal</span>'}</td>
                 <td class="p-3 text-gray-500">${words.length} words</td>
                 <td class="p-3 hidden md:table-cell text-gray-500">${activeScore}%</td>
                 <td class="p-3 hidden md:table-cell"><div class="flex items-center gap-2"><div class="w-2.5 h-2.5 rounded-full ${dotColor} shadow-sm"></div><span class="text-gray-500">${statusText}</span></div></td>
@@ -512,17 +524,29 @@ window.StudioLibrary = (() => {
         });
     }
 
+    // Only the owner curates the shared library, so only they see the choice.
+    function syncScopeField(scope) {
+        const field = document.getElementById('list-scope-field');
+        const select = document.getElementById('list-scope-select');
+        const allowed = !!window.StudioScope?.canEditShared?.();
+        if (field) field.classList.toggle('hidden', !allowed);
+        if (select && allowed) select.value = scope === 'shared' ? 'shared' : 'personal';
+    }
+
     function openCreateNew() {
         editingOriginalName = null;
+        editingScope = 'personal';
         const nameInput = document.getElementById('list-name-input');
         const wordInput = document.getElementById('word-input');
         if (nameInput) nameInput.value = '';
         if (wordInput) wordInput.value = '';
+        syncScopeField(editingScope);
         window.StudioCore?.showSection('setup');
     }
 
     function editList(name) {
         editingOriginalName = name;
+        editingScope = window.StudioScope?.isShared?.(name) ? 'shared' : 'personal';
         const loadedLists = window._studio?.getLoadedLists?.() || {};
         const words = loadedLists[name] || [];
         const nameInput = document.getElementById('list-name-input');
@@ -535,6 +559,7 @@ window.StudioLibrary = (() => {
                 return `${p.jp}, ${p.en}${extras.length ? ` | ${extras.join(' | ')}` : ''}`;
             }).join('\n');
         }
+        syncScopeField(editingScope);
         window.StudioCore?.showSection('setup');
     }
 
@@ -579,14 +604,22 @@ window.StudioLibrary = (() => {
                 saveButton.textContent = 'Saving...';
             }
 
-            if (editingOriginalName && editingOriginalName !== name) {
-                await window.StudioAPI?.deleteList(editingOriginalName);
+            const scopeSelect = document.getElementById('list-scope-select');
+            const chosenScope = (scopeSelect && !document.getElementById('list-scope-field')?.classList.contains('hidden'))
+                ? (scopeSelect.value === 'shared' ? 'shared' : 'personal')
+                : editingScope;
+
+            // Renamed, or moved between the shared library and personal lists:
+            // remove the previous entry from wherever it used to live.
+            if (editingOriginalName && (editingOriginalName !== name || editingScope !== chosenScope)) {
+                await window.StudioAPI?.deleteList(editingOriginalName, editingScope);
             }
-            await window.StudioAPI?.saveList(name, words);
+            await window.StudioAPI?.saveList(name, words, chosenScope);
 
             await window.StudioCore?.fetchLists();
             window.StudioCore?.showSection('select');
-            window.StudioUI?.showToast(`Saved "${name}".`, 'success');
+            const where = chosenScope === 'shared' ? 'the shared library' : 'your lists';
+            window.StudioUI?.showToast(`Saved "${name}" to ${where}.`, 'success');
         } catch (e) {
             window.StudioUI?.showToast(e.message || "Failed to save list", 'error');
         } finally {
@@ -602,7 +635,7 @@ window.StudioLibrary = (() => {
     async function deleteListConfirm(name) {
         if (!confirm(`Are you sure you want to delete "${name}"?`)) return;
         try {
-            await window.StudioAPI?.deleteList(name);
+            await window.StudioAPI?.deleteList(name, window.StudioScope?.isShared?.(name) ? 'shared' : 'personal');
             await window.StudioCore?.fetchLists();
             window.StudioUI?.showToast(`Deleted "${name}".`, 'success');
         } catch (e) {

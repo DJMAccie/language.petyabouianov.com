@@ -399,15 +399,34 @@ window.StudioQuiz = (() => {
             await window.StudioAPI.enqueueSyncEvent(sessionEvent);
         }
 
-        try {
-            const apiCalls = [
-                window.StudioAPI?.updateWordStats(sessionResults, isPurificationSession)
-            ];
-            if (persistScore) {
-                apiCalls.push(window.StudioAPI?.saveScore(currentListName, pct, mode));
-            }
-            await Promise.all(apiCalls);
-        } catch (e) { }
+        if (!window.StudioSession?.isSignedIn?.()) {
+            // Guest: nothing goes to the server. Progress is kept in this browser
+            // so the review deck and the progress panel still work.
+            window.StudioGuest?.recordSession({
+                listName: currentListName,
+                score: pct,
+                mode,
+                results: sessionResults,
+                isPurification: isPurificationSession
+            });
+
+            const guestState = window.StudioGuest?.read?.() || {};
+            const loadedScores = window._studio?.getLoadedScores?.() || {};
+            const wordStats = window._studio?.getWordStats?.() || {};
+            Object.assign(loadedScores, guestState.scores || {});
+            Object.assign(wordStats, guestState.stats || {});
+            window.StudioLibrary?.renderTable?.(window._studio?.getLoadedLists?.() || {}, loadedScores);
+        } else {
+            try {
+                const apiCalls = [
+                    window.StudioAPI?.updateWordStats(sessionResults, isPurificationSession)
+                ];
+                if (persistScore) {
+                    apiCalls.push(window.StudioAPI?.saveScore(currentListName, pct, mode));
+                }
+                await Promise.all(apiCalls);
+            } catch (e) { }
+        }
 
         if (sessionEvent) {
             window.StudioAPI?.flushQueueWhenOnline({ silent: true });
