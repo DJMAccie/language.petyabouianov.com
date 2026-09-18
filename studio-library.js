@@ -524,6 +524,18 @@ window.StudioLibrary = (() => {
         });
     }
 
+    // Guests can study everything but cannot create or edit, so the create
+    // control is hidden for them rather than failing on save.
+    function syncCreateControl() {
+        const button = document.querySelector('.library-toolbar-actions .library-action-btn');
+        if (!button) return;
+        const canCreate = !!window.StudioSession?.isSignedIn?.();
+        button.classList.toggle('hidden', !canCreate);
+        button.setAttribute('aria-hidden', canCreate ? 'false' : 'true');
+        if (!canCreate) button.setAttribute('tabindex', '-1');
+        else button.removeAttribute('tabindex');
+    }
+
     // Only the owner curates the shared library, so only they see the choice.
     function syncScopeField(scope) {
         const field = document.getElementById('list-scope-field');
@@ -807,6 +819,7 @@ window.StudioLibrary = (() => {
         syncStatusSortUI,
         openCreateNew,
         editList,
+        syncCreateControl,
         saveListToServer,
         deleteListConfirm,
         startQuiz,

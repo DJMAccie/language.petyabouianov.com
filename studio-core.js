@@ -145,6 +145,7 @@ const StudioCore = window.StudioCore = (() => {
         } else if (id === 'select') {
             renderDailyQuote();
             window.StudioLibrary?.renderTable(loadedLists, loadedScores);
+            window.StudioLibrary?.syncCreateControl?.();
         }
     }
 
@@ -168,6 +169,7 @@ const StudioCore = window.StudioCore = (() => {
             window.mockWordStats = wordStats;
 
             window.StudioLibrary?.renderTable(loadedLists, loadedScores);
+            window.StudioLibrary?.syncCreateControl?.();
             window.StudioDaily?.renderDailyDashboard();
         } catch (e) {
             const cached = window.StudioAPI.loadSnapshotCache();
