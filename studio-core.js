@@ -48,7 +48,7 @@ const StudioCore = window.StudioCore = (() => {
         const leftSlot = header.querySelector('[data-studio-header-left]');
         if (leftSlot) {
             leftSlot.innerHTML = '';
-            leftSlot.className = 'flex items-center gap-1.5';
+            leftSlot.className = 'studio-header-left flex items-center gap-1.5';
             const statsBtn = document.createElement('button');
             statsBtn.type = 'button';
             statsBtn.className = 'header-icon-btn';
@@ -73,7 +73,7 @@ const StudioCore = window.StudioCore = (() => {
         const rightSlot = header.querySelector('[data-studio-header-right]');
         if (rightSlot) {
             rightSlot.innerHTML = '';
-            rightSlot.className = 'flex items-center justify-end gap-1.5';
+            rightSlot.className = 'studio-header-right flex items-center justify-end gap-1.5';
 
             // Account: opens the sign-in screen, or the account panel when the
             // visitor already has a session.

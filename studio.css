@@ -162,6 +162,59 @@ body.dark [data-studio-header] {
     display: none;
 }
 
+/* --- Title bar layout ---
+   The title is absolutely centred on the column, so it stays optically centred
+   regardless of how wide the icon groups on either side grow. */
+.studio-header-layout {
+    position: relative;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.studio-header-left,
+.studio-header-right {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    z-index: 1; /* keep the controls above the centred title */
+}
+
+.studio-header-left {
+    justify-content: flex-start;
+}
+
+.studio-header-right {
+    justify-content: flex-end;
+    margin-left: auto;
+}
+
+.studio-header-title {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--zen-muted);
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+.studio-header-title i {
+    color: var(--zen-faint);
+}
+
+/* On narrow screens the icon groups meet in the middle, so the title steps
+   aside rather than colliding with them. */
+@media (max-width: 560px) {
+    .studio-header-title {
+        display: none;
+    }
+}
+
 /* Shared column: centres the bar and content rows on one width and one gutter. */
 .studio-column {
     width: 100%;
