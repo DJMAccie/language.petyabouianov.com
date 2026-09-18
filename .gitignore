@@ -27,6 +27,7 @@ upload_image_config.php
 studio_api_config.php
 config_check.php
 admin_accounts.php
+cleanup_test_accounts.php
 api_rate_limits.json
 sync_processed_events.json
 
