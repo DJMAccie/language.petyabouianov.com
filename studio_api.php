@@ -682,10 +682,18 @@ if (in_array($action, $authActions, true)) {
 
         case 'providers':
             // Lets the sign-in page show only the buttons that can actually work.
+            // The diagnostics report whether credentials were read and how long
+            // they are, never their values, so a misconfigured config file is
+            // easy to spot without leaking the secret.
             outputJSON([
                 "status" => "success",
                 "google" => $has_google_signin,
                 "apple" => false,
+                "diagnostics" => [
+                    "config_file_present" => file_exists($config_path),
+                    "google_client_id_length" => strlen($google_client_id),
+                    "google_secret_length" => strlen($google_client_secret),
+                ],
             ]);
             break;
 
