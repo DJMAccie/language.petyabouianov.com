@@ -48,6 +48,7 @@ const SERVER_AND_SEO_FILES = [
 // Forbidden filenames and patterns that must NEVER enter /dist
 const FORBIDDEN_NAME_PATTERNS = [
   /^\.env/i,
+  /^config_check\.php$/i,
   /^\.git/i,
   /^node_modules$/i,
   /^scripts$/i,

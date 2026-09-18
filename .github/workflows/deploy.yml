@@ -23,9 +23,13 @@ jobs:
         with:
           php-version: '8.3'
 
+      # Keeps the committed runtime JSON current. Non-fatal: a data refresh must
+      # never block shipping code.
       - name: Pull live runtime JSON from Namecheap
+        continue-on-error: true
         env:
           STUDIO_SYNC_BASE_URL: https://language.petyabouianov.com/studio_api.php
+          STUDIO_API_SYNC_TOKEN: ${{ secrets.STUDIO_API_SYNC_TOKEN }}
         run: php .github/scripts/sync-namecheap-runtime.php
 
       - name: Set up Node.js
@@ -39,6 +43,26 @@ jobs:
 
       - name: Build production site (/dist)
         run: npm run build
+
+      # The config file is gitignored, so it is generated from repository secrets
+      # instead of being uploaded by hand.
+      - name: Generate api config from secrets
+        env:
+          STUDIO_ADMIN_PASSWORD: ${{ secrets.STUDIO_ADMIN_PASSWORD }}
+          STUDIO_API_SYNC_TOKEN: ${{ secrets.STUDIO_API_SYNC_TOKEN }}
+          STUDIO_API_WRITE_TOKEN: ${{ secrets.STUDIO_API_WRITE_TOKEN }}
+          GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
+          GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+        run: bash .github/scripts/write-api-config.sh
+
+      # Stops a typo in the client id or secret from reaching production: the
+      # sign-in button would simply never appear, which is hard to diagnose.
+      - name: Verify Google credentials with Google
+        env:
+          GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
+          GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+          GOOGLE_REDIRECT_URI: https://language.petyabouianov.com/studio_api.php?lang=nihongo&action=auth_google_callback
+        run: php .github/scripts/check-google-credentials.php
 
       - name: Deploy tracked site files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.6
@@ -63,7 +87,6 @@ jobs:
             uploads/**
             newsletter/emails.txt
             upload_image_config.php
-            studio_api_config.php
             ios-app/**
             expo-go-client/**
             **/*.mp3
