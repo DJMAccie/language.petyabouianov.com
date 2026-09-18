@@ -323,6 +323,9 @@ body #system-bar {
 .studio-mode-select {
     position: relative;
     flex: 0 0 auto;
+    /* The section bar lays its children out left to right, so the picker is
+       pushed to the far right rather than sitting beside the nav links. */
+    margin-left: auto;
 }
 
 .studio-mode-select select {
