@@ -28,6 +28,18 @@ jobs:
           STUDIO_SYNC_BASE_URL: https://language.petyabouianov.com/studio_api.php
         run: php .github/scripts/sync-namecheap-runtime.php
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install build dependencies
+        run: npm ci
+
+      - name: Build production site (/dist)
+        run: npm run build
+
       - name: Deploy tracked site files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
@@ -36,6 +48,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftps
           port: 21
+          local-dir: ./dist/
           server-dir: /language.petyabouianov.com/
           dangerous-clean-slate: false
           exclude: |
@@ -51,6 +64,8 @@ jobs:
             newsletter/emails.txt
             upload_image_config.php
             studio_api_config.php
+            ios-app/**
+            expo-go-client/**
             **/*.mp3
             **/*.wav
             **/*.flac

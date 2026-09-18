@@ -31,6 +31,10 @@ sync_processed_events.json
 # Account registry and per-account study data live only on the server.
 users/
 
+# Build output and dependencies
+node_modules/
+/dist/
+
 # iOS wrapper local build artifacts
 ios-app/node_modules/
 ios-app/.derivedData/
