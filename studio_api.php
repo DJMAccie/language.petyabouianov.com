@@ -52,6 +52,15 @@ $require_list_write_auth = isset($require_list_write_auth)
     ? filter_var($require_list_write_auth, FILTER_VALIDATE_BOOLEAN)
     : (getenv('STUDIO_API_REQUIRE_LIST_WRITE_AUTH') === '1');
 
+// --- EXTERNAL SIGN-IN CONFIG ---
+$google_client_id = isset($google_client_id) && is_string($google_client_id)
+    ? trim($google_client_id)
+    : trim((string) (getenv('STUDIO_GOOGLE_CLIENT_ID') ?: ''));
+$google_client_secret = isset($google_client_secret) && is_string($google_client_secret)
+    ? trim($google_client_secret)
+    : trim((string) (getenv('STUDIO_GOOGLE_CLIENT_SECRET') ?: ''));
+$has_google_signin = $google_client_id !== '' && $google_client_secret !== '';
+
 // --- PARSE REQUEST ---
 $lang = $_GET['lang'] ?? 'nihongo';
 $action = $_GET['action'] ?? '';
@@ -67,19 +76,27 @@ if ($contentLength > 512000) {
 $inputJSON = file_get_contents('php://input');
 $data = json_decode($inputJSON, true);
 $data = is_array($data) ? $data : [];
-$client_password = $data['password'] ?? '';
+$allow_legacy_token_owner_access = isset($allow_legacy_token_owner_access)
+    ? filter_var($allow_legacy_token_owner_access, FILTER_VALIDATE_BOOLEAN)
+    : (getenv('STUDIO_ALLOW_LEGACY_TOKEN_ACCESS') !== '0');
+
+// --- ACCOUNT LAYER ---
+require_once __DIR__ . '/studio_accounts.php';
+require_once __DIR__ . '/studio_oauth.php';
 
 // --- ROUTING CONFIG ---
 $legacyGlobalListsFile = __DIR__ . '/global_lists.json';
 $listsFilesByLang = [
-    'nihongo' => __DIR__ . '/nihongo_lists.json',
+    'nihongo' => 'nihongo_lists.json',
 ];
 $allowedLangs = array_keys($listsFilesByLang);
-$listsFile = $listsFilesByLang[$lang] ?? null;
-$scoresFile = __DIR__ . '/global_scores.json';
-$statsFile = __DIR__ . '/global_word_stats.json';
+$defaultListsBasename = $listsFilesByLang[$lang] ?? null;
+$scoresBasename = 'global_scores.json';
+$statsBasename = 'global_word_stats.json';
+$syncEventsBasename = 'sync_processed_events.json';
+
+// Shared, read-only reference content (not account data).
 $kanjiMnemonicsFile = __DIR__ . '/kanji_mnemonics.json';
-$processedSyncEventsFile = __DIR__ . '/sync_processed_events.json';
 $rateLimitFile = __DIR__ . '/api_rate_limits.json';
 
 // --- HELPER FUNCTIONS ---
@@ -91,74 +108,14 @@ function outputJSON($data, $statusCode = 200) {
     exit;
 }
 
-// Atomically reads checking for locks
+// Locking JSON helpers live in studio_accounts.php so account directories can be
+// created on demand; these wrappers keep the existing call sites unchanged.
 function safeRead($filename) {
-    if (!file_exists($filename)) return '{}';
-    $fp = fopen($filename, 'r');
-    if (!$fp) return '{}';
-    
-    // Wait for a shared lock (allows multiple readers, blocks writers)
-    flock($fp, LOCK_SH);
-    $content = stream_get_contents($fp);
-    flock($fp, LOCK_UN);
-    fclose($fp);
-    
-    if ($content === false || trim($content) === '') return '{}';
-    return $content;
+    return studioReadJsonFile($filename);
 }
 
-// Atomically read, modify, and write
 function safeModifyJSON($filename, $callback) {
-    if (!file_exists($filename)) file_put_contents($filename, '{}');
-    $fp = fopen($filename, 'c+'); // Open for read/write, pointer at beginning
-    if (!$fp) {
-        error_log("Failed to open $filename for writing.");
-        return false;
-    }
-
-    // Wait for an exclusive lock (blocks readers and writers)
-    if (flock($fp, LOCK_EX)) {
-        // Read current content
-        $content = '';
-        while (!feof($fp)) {
-            $content .= fread($fp, 8192);
-        }
-        
-        $data = json_decode($content, true) ?? [];
-        
-        // Apply modification callback
-        $data = $callback($data);
-        
-        // Write back
-        ftruncate($fp, 0); // Clear file
-        rewind($fp);      // Reset pointer
-        fwrite($fp, json_encode($data, JSON_PRETTY_PRINT));
-        
-        // Flush and unlock
-        fflush($fp);
-        flock($fp, LOCK_UN);
-        fclose($fp);
-        return true;
-    } else {
-        error_log("Could not obtain lock on $filename.");
-        fclose($fp);
-        return false;
-    }
-}
-
-function requirePostRequest($requestMethod) {
-    if ($requestMethod !== 'POST') {
-        outputJSON(["error" => "This action requires POST"], 405);
-    }
-}
-
-function requireJsonContentTypeForPost($requestMethod) {
-    if ($requestMethod !== 'POST') return;
-    $contentType = strtolower((string) ($_SERVER['CONTENT_TYPE'] ?? ''));
-    if ($contentType === '') return;
-    if (strpos($contentType, 'application/json') !== 0) {
-        outputJSON(["error" => "Content-Type must be application/json"], 415);
-    }
+    return studioModifyJsonFile($filename, $callback);
 }
 
 function hasValidSyncToken($data, $syncToken, $hasSyncToken) {
@@ -182,11 +139,11 @@ function hasValidAdminPassword($data, $adminPassword, $hasAdminPassword) {
     return $clientPassword !== '' && hash_equals($adminPassword, $clientPassword);
 }
 
+// Data requests reach this point only with a signed-in account (or the legacy
+// owner bridge), so authorization is already established. These checks remain
+// to keep the opt-in config switches meaningful.
 function requireWriteAuthorization($data, $writeToken, $hasWriteToken, $syncToken, $hasSyncToken, $adminPassword, $hasAdminPassword) {
-    $hasAnyAuthConfig = $hasWriteToken || $hasSyncToken || $hasAdminPassword;
-    if (!$hasAnyAuthConfig) {
-        outputJSON(["error" => "Write authorization is not configured"], 503);
-    }
+    if (!empty($GLOBALS['currentAccount'])) return;
     if (hasValidWriteToken($data, $writeToken, $hasWriteToken)) return;
     if (hasValidSyncToken($data, $syncToken, $hasSyncToken)) return;
     if (hasValidAdminPassword($data, $adminPassword, $hasAdminPassword)) return;
@@ -194,74 +151,24 @@ function requireWriteAuthorization($data, $writeToken, $hasWriteToken, $syncToke
 }
 
 function requireSyncToken($data, $syncToken, $hasSyncToken) {
-    if (!$hasSyncToken) {
-        outputJSON(["error" => "Sync endpoint is not configured"], 503);
-    }
+    if (!empty($GLOBALS['currentAccount'])) return;
     if (!hasValidSyncToken($data, $syncToken, $hasSyncToken)) {
         outputJSON(["error" => "Invalid sync token"], 403);
     }
 }
 
-function getClientIpAddress() {
-    $cloudflareIp = trim((string) ($_SERVER['HTTP_CF_CONNECTING_IP'] ?? ''));
-    if ($cloudflareIp !== '') return $cloudflareIp;
-
-    $forwardedFor = trim((string) ($_SERVER['HTTP_X_FORWARDED_FOR'] ?? ''));
-    if ($forwardedFor !== '') {
-        $parts = explode(',', $forwardedFor);
-        $first = trim((string) ($parts[0] ?? ''));
-        if ($first !== '') return $first;
+function requirePostRequest($requestMethod) {
+    if ($requestMethod !== 'POST') {
+        outputJSON(["error" => "This action requires POST"], 405);
     }
-
-    $remoteAddr = trim((string) ($_SERVER['REMOTE_ADDR'] ?? ''));
-    return $remoteAddr !== '' ? $remoteAddr : 'unknown';
 }
 
-function enforceRateLimit($rateLimitFile, $bucketKey, $maxRequests, $windowSeconds) {
-    $now = time();
-    $windowStart = $now - max(1, $windowSeconds);
-    $allowed = true;
-
-    safeModifyJSON($rateLimitFile, function($rootData) use ($bucketKey, $maxRequests, $windowStart, $now, &$allowed) {
-        if (!is_array($rootData)) $rootData = [];
-        if (!isset($rootData[$bucketKey]) || !is_array($rootData[$bucketKey])) {
-            $rootData[$bucketKey] = [];
-        }
-
-        $recent = [];
-        foreach ($rootData[$bucketKey] as $timestamp) {
-            $ts = (int) $timestamp;
-            if ($ts >= $windowStart) $recent[] = $ts;
-        }
-
-        if (count($recent) >= $maxRequests) {
-            $allowed = false;
-            $rootData[$bucketKey] = $recent;
-            return $rootData;
-        }
-
-        $recent[] = $now;
-        $rootData[$bucketKey] = $recent;
-
-        if (count($rootData) > 2000) {
-            $trimmed = [];
-            foreach ($rootData as $key => $values) {
-                if (!is_array($values)) continue;
-                $clean = [];
-                foreach ($values as $value) {
-                    $ts = (int) $value;
-                    if ($ts >= $windowStart) $clean[] = $ts;
-                }
-                if (!empty($clean)) $trimmed[$key] = $clean;
-            }
-            $rootData = $trimmed;
-        }
-
-        return $rootData;
-    });
-
-    if (!$allowed) {
-        outputJSON(["error" => "Too many requests"], 429);
+function requireJsonContentTypeForPost($requestMethod) {
+    if ($requestMethod !== 'POST') return;
+    $contentType = strtolower((string) ($_SERVER['CONTENT_TYPE'] ?? ''));
+    if ($contentType === '') return;
+    if (strpos($contentType, 'application/json') !== 0) {
+        outputJSON(["error" => "Content-Type must be application/json"], 415);
     }
 }
 
@@ -547,11 +454,307 @@ function seedLangListsFromLegacyGlobal($lang, $targetPath, $legacyGlobalPath) {
     );
 }
 
-if (!in_array($lang, $allowedLangs, true) || !$listsFile) {
+if (!in_array($lang, $allowedLangs, true) || !$defaultListsBasename) {
     outputJSON(["error" => "Invalid language"], 400);
 }
 
-migrateBundledRuntimeSnapshot([$listsFile, $scoresFile, $statsFile]);
+// --- AUTHENTICATION & ACCOUNT STORAGE ---
+
+$authActions = ['register', 'login', 'logout', 'whoami', 'session', 'providers', 'auth_google_start', 'auth_google_callback'];
+$requirePostActions = ['register', 'login', 'logout'];
+$currentAccount = studioCurrentAccount();
+
+// Unauthenticated clients may still act as the owner account with a configured
+// secret (transitional: pre-accounts iOS wrapper and deploy-time runtime sync).
+if (!$currentAccount) {
+    $currentAccount = studioLegacyOwnerAccount(
+        $data,
+        [$sync_token, $write_token, $admin_password],
+        $has_sync_token || $has_write_token || $has_admin_password,
+        $allow_legacy_token_owner_access
+    );
+}
+
+// --- EXTERNAL SIGN-IN (Google) ---
+//
+// Sign-in uses the authorization-code flow with PKCE. Passing a code to
+// ?action=auth_google_callback finishes the round trip and starts a session.
+// Accounts are matched on the provider's immutable subject id only; a provider
+// identity is never merged into an existing account automatically.
+
+function studioSignInRedirect($query) {
+    $target = '/login?' . $query;
+    if (!headers_sent()) {
+        header('Location: ' . $target, true, 302);
+    } else {
+        echo '<!doctype html><meta http-equiv="refresh" content="0;url=' . htmlspecialchars($target, ENT_QUOTES) . '">';
+    }
+    // The browser is being sent away; stop here so no JSON error is appended.
+    exit;
+}
+
+function studioGoogleUseRequested($currentAccount, $hasGoogleSignin) {
+    if (!$hasGoogleSignin) return false;
+    // Already signed in: no need to start a provider round trip.
+    return !$currentAccount;
+}
+
+function studioHandleGoogleCallback($googleClientId, $googleClientSecret, $currentAccount, $lang, $basenames, $rateLimitFile) {
+    // The provider redirects the browser here; any failure returns the visitor to
+    // the sign-in page with a short reason instead of a bare JSON error.
+    $state = (string) ($_GET['state'] ?? '');
+    $code = (string) ($_GET['code'] ?? '');
+    $providerError = (string) ($_GET['error'] ?? '');
+
+    if ($providerError !== '') {
+        studioSignInRedirect('error=' . urlencode('Google sign-in was cancelled.'));
+        return;
+    }
+
+    if (!studioOAuthConsumeState('google', $state)) {
+        studioSignInRedirect('error=' . urlencode('That sign-in link expired. Please try again.'));
+        return;
+    }
+
+    if ($code === '') {
+        studioSignInRedirect('error=' . urlencode('Google did not return an authorization code.'));
+        return;
+    }
+
+    $nonce = studioOAuthConsumeNonce();
+    $verifier = studioOAuthConsumePkce();
+
+    $idToken = studioGoogleExchangeCode($googleClientId, $googleClientSecret, $code, studioGoogleRedirectUri($lang), $verifier);
+    if (!$idToken) {
+        studioSignInRedirect('error=' . urlencode('Could not complete sign-in with Google. Please try again.'));
+        return;
+    }
+
+    $claims = studioVerifyIdToken(
+        $idToken,
+        STUDIO_GOOGLE_JWKS_ENDPOINT,
+        $googleClientId,
+        STUDIO_GOOGLE_ISSUERS,
+        $nonce
+    );
+    if (!$claims) {
+        error_log('Google ID token failed verification');
+        studioSignInRedirect('error=' . urlencode('Google returned a token we could not verify. Please try again.'));
+        return;
+    }
+
+    $identity = studioGoogleIdentityFromClaims($claims);
+    if (!$identity) {
+        studioSignInRedirect('error=' . urlencode('Google did not return an account identifier.'));
+        return;
+    }
+
+    // Never merge: an existing account is only reused when this exact provider
+    // identity is already linked to it.
+    $account = studioFindAccountByIdentity('google', $identity['subject']);
+    if (!$account) {
+        if (!studioRateLimit($rateLimitFile, 'oauth_create|' . studioClientIpAddress(), 20, 3600)) {
+            studioSignInRedirect('error=' . urlencode('Too many sign-up attempts. Please try again later.'));
+            return;
+        }
+
+        $created = studioCreateSocialAccount('google', $identity['subject'], $identity['email'], [
+            'preferred_username' => $identity['name'],
+            'is_admin' => studioCountAccounts() === 0,
+        ]);
+
+        if (isset($created['error'])) {
+            studioSignInRedirect('error=' . urlencode($created['error']));
+            return;
+        }
+        $account = $created['account'];
+    }
+
+    studioPrepareAccountData($account, $lang, $basenames, false);
+    studioLoginSession($account);
+    studioTouchLogin($account);
+
+    studioSignInRedirect('signedin=1');
+}
+
+if (in_array($action, $authActions, true)) {
+    if (in_array($action, $requirePostActions, true)) {
+        requirePostRequest($requestMethod);
+        requireJsonContentTypeForPost($requestMethod);
+    }
+
+    $clientIp = studioClientIpAddress();
+
+    switch ($action) {
+        case 'register':
+            // Open sign-up, but throttled hard per IP to limit abuse.
+            if (!studioRateLimit($rateLimitFile, 'register|' . $clientIp, 5, 3600)) {
+                outputJSON(["error" => "Too many sign-up attempts. Please try again later.", "code" => "rate_limited"], 429);
+            }
+
+            $requestedUsername = studioNormalizeUsername($data['username'] ?? '');
+            if ($requestedUsername !== '') {
+                $usernameKey = studioUsernameKey($requestedUsername);
+                if (!studioRateLimit($rateLimitFile, 'register_user|' . $usernameKey, 3, 3600)) {
+                    outputJSON(["error" => "Too many sign-up attempts for that username.", "code" => "rate_limited"], 429);
+                }
+            }
+
+            $created = studioCreateAccount(
+                $data['username'] ?? '',
+                (string) ($data['password'] ?? ''),
+                ['is_admin' => studioCountAccounts() === 0]
+            );
+
+            if (isset($created['error'])) {
+                outputJSON(["error" => $created['error'], "code" => $created['code'] ?? 'register_failed'], $created['status'] ?? 400);
+            }
+
+            $newAccount = $created['account'];
+            studioPrepareAccountData($newAccount, $lang, [
+                'lists' => $defaultListsBasename,
+                'scores' => $scoresBasename,
+                'stats' => $statsBasename,
+                'sync_events' => $syncEventsBasename,
+            ], true);
+            studioLoginSession($newAccount);
+            studioTouchLogin($newAccount);
+
+            outputJSON([
+                "status" => "success",
+                "account" => studioPublicAccount($newAccount),
+            ]);
+            break;
+
+        case 'login':
+            if (!studioRateLimit($rateLimitFile, 'login|' . $clientIp, 20, 900)) {
+                outputJSON(["error" => "Too many sign-in attempts. Please wait a few minutes.", "code" => "rate_limited"], 429);
+            }
+
+            $attemptedUsername = studioNormalizeUsername($data['username'] ?? '');
+            if ($attemptedUsername !== '') {
+                if (!studioRateLimit($rateLimitFile, 'login_user|' . studioUsernameKey($attemptedUsername), 10, 900)) {
+                    outputJSON(["error" => "Too many sign-in attempts for that account.", "code" => "rate_limited"], 429);
+                }
+            }
+
+            $account = studioAuthenticate($attemptedUsername, (string) ($data['password'] ?? ''));
+            if (!$account) {
+                outputJSON(["error" => "Incorrect username or password.", "code" => "invalid_credentials"], 401);
+            }
+
+            studioPrepareAccountData($account, $lang, [
+                'lists' => $defaultListsBasename,
+                'scores' => $scoresBasename,
+                'stats' => $statsBasename,
+                'sync_events' => $syncEventsBasename,
+            ], false);
+            studioLoginSession($account);
+            studioTouchLogin($account);
+
+            outputJSON([
+                "status" => "success",
+                "account" => studioPublicAccount($account),
+            ]);
+            break;
+
+        case 'logout':
+            studioLogoutSession();
+            outputJSON(["status" => "success"]);
+            break;
+
+        case 'whoami':
+        case 'session':
+            if (!$currentAccount) {
+                outputJSON([
+                    "error" => "Not signed in.",
+                    "code" => "unauthenticated",
+                    "authenticated" => false,
+                ], 401);
+            }
+
+            outputJSON([
+                "status" => "success",
+                "authenticated" => true,
+                "account" => studioPublicAccount($currentAccount),
+            ]);
+            break;
+
+        case 'providers':
+            // Lets the sign-in page show only the buttons that can actually work.
+            outputJSON([
+                "status" => "success",
+                "google" => $has_google_signin,
+                "apple" => false,
+            ]);
+            break;
+
+        case 'auth_google_start':
+            if (!$has_google_signin) {
+                outputJSON(["error" => "Google sign-in is not configured.", "code" => "provider_not_configured"], 503);
+            }
+
+            // The page navigates to this URL itself, so it works the same in a
+            // normal browser and inside the iOS wrapper.
+            $state = studioOAuthBeginState('google');
+            $nonce = studioOAuthNonce();
+            list(, $challenge) = studioOAuthPkcePair();
+
+            outputJSON([
+                "status" => "success",
+                "authorize_url" => studioGoogleAuthorizeUrl(
+                    $google_client_id,
+                    studioGoogleRedirectUri($lang),
+                    $state,
+                    $challenge,
+                    $nonce
+                ),
+            ]);
+            break;
+
+        case 'auth_google_callback':
+            if (!$has_google_signin) {
+                studioSignInRedirect('error=' . urlencode('Google sign-in is not configured.'));
+                return;
+            }
+
+            studioHandleGoogleCallback($google_client_id, $google_client_secret, $currentAccount, $lang, [
+                'lists' => $defaultListsBasename,
+                'scores' => $scoresBasename,
+                'stats' => $statsBasename,
+                'sync_events' => $syncEventsBasename,
+            ], $rateLimitFile);
+            break;
+    }
+
+    outputJSON(["error" => "Invalid action requested"], 400);
+}
+
+// Every data action below reads and writes account-owned files only.
+if (!$currentAccount) {
+    outputJSON([
+        "error" => "Please sign in to continue.",
+        "code" => "unauthenticated",
+    ], 401);
+}
+
+studioPrepareAccountData($currentAccount, $lang, [
+    'lists' => $defaultListsBasename,
+    'scores' => $scoresBasename,
+    'stats' => $statsBasename,
+    'sync_events' => $syncEventsBasename,
+], false);
+
+$accountListBasename = $defaultListsBasename;
+$listsFile = studioAccountDataFile($currentAccount, $accountListBasename);
+$scoresFile = studioAccountDataFile($currentAccount, $scoresBasename);
+$statsFile = studioAccountDataFile($currentAccount, $statsBasename);
+$processedSyncEventsFile = studioAccountDataFile($currentAccount, $syncEventsBasename);
+
+if (!$listsFile || !$scoresFile || !$statsFile || !$processedSyncEventsFile) {
+    error_log('Account storage path resolution failed for account ' . ($currentAccount['id'] ?? 'unknown'));
+    outputJSON(["error" => "Account storage is unavailable."], 500);
+}
 
 $defaultBuckets = [];
 foreach ($allowedLangs as $allowedLang) {
@@ -559,7 +762,7 @@ foreach ($allowedLangs as $allowedLang) {
 }
 
 $defaultFileContents = [
-    __DIR__ . '/nihongo_lists.json' => ['nihongo' => []],
+    $listsFile => [$lang => []],
     $kanjiMnemonicsFile => ['nihongo' => []],
     $scoresFile => $defaultBuckets,
     $statsFile => $defaultBuckets,
@@ -572,8 +775,6 @@ foreach ($defaultFileContents as $path => $defaults) {
         file_put_contents($path, json_encode($defaults, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
     }
 }
-
-seedLangListsFromLegacyGlobal($lang, $listsFile, $legacyGlobalListsFile);
 
 
 // --- MAIN LOGIC ---
@@ -603,7 +804,7 @@ switch ($action) {
     case 'save_list':
         requirePostRequest($requestMethod);
         requireJsonContentTypeForPost($requestMethod);
-        enforceRateLimit($rateLimitFile, 'save_list|' . $lang . '|' . getClientIpAddress(), 30, 60);
+        studioRateLimit($rateLimitFile, 'save_list|' . $lang . '|' . $currentAccount['id'] . '|' . studioClientIpAddress(), 30, 60);
         if ($require_list_write_auth) {
             requireWriteAuthorization($data, $write_token, $has_write_token, $sync_token, $has_sync_token, $admin_password, $has_admin_password);
         }
@@ -664,7 +865,7 @@ switch ($action) {
     case 'delete_list':
         requirePostRequest($requestMethod);
         requireJsonContentTypeForPost($requestMethod);
-        enforceRateLimit($rateLimitFile, 'delete_list|' . $lang . '|' . getClientIpAddress(), 30, 60);
+        studioRateLimit($rateLimitFile, 'delete_list|' . $lang . '|' . $currentAccount['id'] . '|' . studioClientIpAddress(), 30, 60);
         if ($require_list_write_auth) {
             requireWriteAuthorization($data, $write_token, $has_write_token, $sync_token, $has_sync_token, $admin_password, $has_admin_password);
         }
@@ -688,7 +889,7 @@ switch ($action) {
     case 'save_score':
         requirePostRequest($requestMethod);
         requireJsonContentTypeForPost($requestMethod);
-        enforceRateLimit($rateLimitFile, 'save_score|' . $lang . '|' . getClientIpAddress(), 180, 60);
+        studioRateLimit($rateLimitFile, 'save_score|' . $lang . '|' . $currentAccount['id'] . '|' . studioClientIpAddress(), 180, 60);
         if ($enforce_score_auth) {
             requireWriteAuthorization($data, $write_token, $has_write_token, $sync_token, $has_sync_token, $admin_password, $has_admin_password);
         }
@@ -712,7 +913,7 @@ switch ($action) {
     case 'update_word_stats':
         requirePostRequest($requestMethod);
         requireJsonContentTypeForPost($requestMethod);
-        enforceRateLimit($rateLimitFile, 'update_word_stats|' . $lang . '|' . getClientIpAddress(), 180, 60);
+        studioRateLimit($rateLimitFile, 'update_word_stats|' . $lang . '|' . $currentAccount['id'] . '|' . studioClientIpAddress(), 180, 60);
         if ($enforce_score_auth) {
             requireWriteAuthorization($data, $write_token, $has_write_token, $sync_token, $has_sync_token, $admin_password, $has_admin_password);
         }
@@ -742,7 +943,7 @@ switch ($action) {
     case 'sync_progress_batch':
         requirePostRequest($requestMethod);
         requireJsonContentTypeForPost($requestMethod);
-        enforceRateLimit($rateLimitFile, 'sync_progress_batch|' . $lang . '|' . getClientIpAddress(), 120, 60);
+        studioRateLimit($rateLimitFile, 'sync_progress_batch|' . $lang . '|' . $currentAccount['id'] . '|' . studioClientIpAddress(), 120, 60);
         requireSyncToken($data, $sync_token, $has_sync_token);
 
         $requestLang = trim((string) ($data['lang'] ?? $lang));
@@ -814,7 +1015,7 @@ switch ($action) {
         break;
 
     case 'lookup': // Jisho proxy (Nihongo only really)
-        enforceRateLimit($rateLimitFile, 'lookup|' . $lang . '|' . getClientIpAddress(), 120, 60);
+        studioRateLimit($rateLimitFile, 'lookup|' . $lang . '|' . $currentAccount['id'] . '|' . studioClientIpAddress(), 120, 60);
         $word = $_GET['word'] ?? '';
         if (empty($word)) outputJSON(["error" => "No word provided"]);
         $url = "https://jisho.org/api/v1/search/words?keyword=" . urlencode($word);

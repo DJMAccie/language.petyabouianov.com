@@ -14,10 +14,19 @@ function fail(string $message): never
 
 function fetchRemoteJson(string $baseUrl, string $action, string $lang, int $timeoutSeconds): array
 {
-    $url = $baseUrl . '?' . http_build_query([
+    $query = [
         'action' => $action,
         'lang' => $lang,
-    ]);
+    ];
+
+    // The API requires the owner's credentials for account data; the preflight
+    // above guarantees a token is present by the time we get here.
+    $syncToken = trim((string) (getenv('STUDIO_API_SYNC_TOKEN') ?: ''));
+    if ($syncToken !== '') {
+        $query['sync_token'] = $syncToken;
+    }
+
+    $url = $baseUrl . '?' . http_build_query($query);
 
     $ch = curl_init($url);
     if ($ch === false) {
@@ -114,6 +123,16 @@ function isValidKanjiMnemonicPayload(array $payload): bool
     }
 
     return true;
+}
+
+// Since accounts were introduced, runtime data is private and the API answers 401
+// to anonymous callers. Without a token there is nothing to mirror, so skip the
+// step entirely: failing here would block the code deploy, and continuing would
+// rewrite the committed JSON with empty payloads.
+if (trim((string) (getenv('STUDIO_API_SYNC_TOKEN') ?: '')) === '') {
+    fwrite(STDOUT, "Skipping runtime sync: STUDIO_API_SYNC_TOKEN is not set." . PHP_EOL);
+    fwrite(STDOUT, "Set it as a repository secret to keep the committed runtime JSON current." . PHP_EOL);
+    exit(0);
 }
 
 $listsByLang = [];

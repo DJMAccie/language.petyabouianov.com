@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Sign In | Nihongo Studio</title>
+    <meta name="description" content="Sign in to Nihongo Studio to study your own vocabulary lists, scores, and review progress.">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="canonical" href="https://language.petyabouianov.com/login">
+    <link rel="stylesheet" href="studio.css?v=20260819-auth1">
+    <link rel="stylesheet" href="auth.css?v=20260819-auth1">
+</head>
+
+<body class="auth-page">
+    <main class="auth-shell">
+        <div class="mac-window auth-window">
+            <header class="auth-window-bar">
+                <span class="auth-window-title"><i class="auth-title-mark">語</i> Nihongo Studio</span>
+            </header>
+
+            <div class="auth-body">
+                <!-- SIGN IN / CREATE ACCOUNT -->
+                <section id="auth-gate" aria-labelledby="auth-heading">
+                    <h1 id="auth-heading" class="auth-heading">Sign in</h1>
+                    <p class="auth-subheading" id="auth-subheading">Your lists and progress stay with your account.</p>
+
+                    <div class="auth-tabs" role="tablist" aria-label="Account access">
+                        <button type="button" id="tab-signin" class="auth-tab is-active" role="tab"
+                            aria-selected="true" aria-controls="auth-form" data-mode="signin">Sign in</button>
+                        <button type="button" id="tab-signup" class="auth-tab" role="tab" aria-selected="false"
+                            aria-controls="auth-form" data-mode="signup">Create account</button>
+                    </div>
+
+                    <form id="auth-form" novalidate>
+                        <div class="auth-field">
+                            <label for="auth-username">Username</label>
+                            <input type="text" id="auth-username" name="username" autocomplete="username"
+                                autocapitalize="none" autocorrect="off" spellcheck="false"
+                                aria-describedby="auth-username-hint" required>
+                            <p class="auth-hint" id="auth-username-hint" hidden>3–32 letters, numbers, dots, dashes, or underscores.</p>
+                        </div>
+
+                        <div class="auth-field">
+                            <label for="auth-password">Password</label>
+                            <div class="auth-password-row">
+                                <input type="password" id="auth-password" name="password"
+                                    autocomplete="current-password" aria-describedby="auth-password-hint" required>
+                                <button type="button" id="auth-reveal" class="auth-reveal"
+                                    aria-label="Show password" aria-pressed="false">Show</button>
+                            </div>
+                            <p class="auth-hint" id="auth-password-hint" hidden>At least 8 characters.</p>
+                        </div>
+
+                        <div class="auth-field" id="auth-confirm-field" hidden>
+                            <label for="auth-confirm">Confirm password</label>
+                            <input type="password" id="auth-confirm" name="confirm" autocomplete="new-password">
+                        </div>
+
+                        <p id="auth-error" class="auth-message auth-message--error" role="alert" hidden></p>
+                        <p id="auth-notice" class="auth-message auth-message--notice" role="status" hidden></p>
+
+                        <button type="submit" id="auth-submit" class="auth-submit">Sign in</button>
+                    </form>
+
+                    <div id="auth-providers" hidden>
+                        <p class="auth-divider"><span>or</span></p>
+                        <button type="button" id="auth-google" class="auth-provider">
+                            <svg class="auth-provider-mark" viewBox="0 0 18 18" aria-hidden="true" focusable="false">
+                                <path fill="#4285F4" d="M17.64 9.2c0-.64-.06-1.25-.16-1.84H9v3.48h4.84a4.14 4.14 0 0 1-1.8 2.72v2.26h2.92c1.7-1.57 2.68-3.88 2.68-6.62Z"/>
+                                <path fill="#34A853" d="M9 18c2.43 0 4.47-.8 5.96-2.18l-2.92-2.26c-.8.54-1.84.86-3.04.86-2.34 0-4.32-1.58-5.03-3.7H.96v2.33A9 9 0 0 0 9 18Z"/>
+                                <path fill="#FBBC05" d="M3.97 10.72a5.41 5.41 0 0 1 0-3.44V4.95H.96a9 9 0 0 0 0 8.1l3.01-2.33Z"/>
+                                <path fill="#EA4335" d="M9 3.58c1.32 0 2.5.45 3.44 1.35l2.58-2.58C13.46.89 11.43 0 9 0A9 9 0 0 0 .96 4.95l3.01 2.33C4.68 5.16 6.66 3.58 9 3.58Z"/>
+                            </svg>
+                            <span id="auth-google-label">Continue with Google</span>
+                        </button>
+                        <p class="auth-provider-note">Signing in with Google creates its own account. It is not linked to a username and password.</p>
+                    </div>
+
+                    <p class="auth-footnote" id="auth-footnote">
+                        New here? <button type="button" class="auth-link" data-mode="signup">Create an account</button>
+                        to start your own study library.
+                    </p>
+                </section>
+
+                <!-- ALREADY SIGNED IN -->
+                <section id="auth-account" aria-labelledby="account-heading" hidden>
+                    <h1 id="account-heading" class="auth-heading">Account</h1>
+                    <p class="auth-subheading">You are signed in on this device.</p>
+
+                    <dl class="auth-details">
+                        <div class="auth-detail-row">
+                            <dt>Username</dt>
+                            <dd id="account-username">—</dd>
+                        </div>
+                        <div class="auth-detail-row">
+                            <dt>Member since</dt>
+                            <dd id="account-created">—</dd>
+                        </div>
+                        <div class="auth-detail-row" id="account-role-row" hidden>
+                            <dt>Role</dt>
+                            <dd id="account-role">—</dd>
+                        </div>
+                    </dl>
+
+                    <p id="account-notice" class="auth-message auth-message--notice" role="status" hidden></p>
+
+                    <div class="auth-actions">
+                        <a class="auth-submit auth-submit--link" href="/nihongo-studio">Open Nihongo Studio</a>
+                        <button type="button" id="account-signout" class="auth-secondary">Sign out</button>
+                    </div>
+
+                    <p class="auth-footnote">
+                        Signed in as someone else? <button type="button" class="auth-link"
+                            id="account-switch">Use another account</button>
+                    </p>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <noscript>
+        <p class="auth-noscript">Signing in needs JavaScript. Please enable it and reload this page.</p>
+    </noscript>
+
+    <script>
+        (function () {
+            'use strict';
+
+            var API = 'studio_api.php?lang=nihongo';
+            var STUDIO_URL = '/nihongo-studio';
+            var mode = 'signin';
+            var isSubmitting = false;
+
+            var gate = document.getElementById('auth-gate');
+            var accountPanel = document.getElementById('auth-account');
+            var form = document.getElementById('auth-form');
+            var heading = document.getElementById('auth-heading');
+            var subheading = document.getElementById('auth-subheading');
+            var usernameInput = document.getElementById('auth-username');
+            var passwordInput = document.getElementById('auth-password');
+            var confirmInput = document.getElementById('auth-confirm');
+            var confirmField = document.getElementById('auth-confirm-field');
+            var usernameHint = document.getElementById('auth-username-hint');
+            var passwordHint = document.getElementById('auth-password-hint');
+            var errorBox = document.getElementById('auth-error');
+            var noticeBox = document.getElementById('auth-notice');
+            var submitButton = document.getElementById('auth-submit');
+            var footnote = document.getElementById('auth-footnote');
+            var revealButton = document.getElementById('auth-reveal');
+            var tabSignIn = document.getElementById('tab-signin');
+            var tabSignUp = document.getElementById('tab-signup');
+            var accountNotice = document.getElementById('account-notice');
+
+            // Match the studio's saved appearance preference.
+            try {
+                if (localStorage.getItem('studio_dark_mode') === 'true') {
+                    document.body.classList.add('dark');
+                }
+            } catch (e) { /* private mode */ }
+
+            function showError(message) {
+                errorBox.textContent = message || '';
+                errorBox.hidden = !message;
+            }
+
+            function showNotice(message) {
+                noticeBox.textContent = message || '';
+                noticeBox.hidden = !message;
+            }
+
+            function setMode(next) {
+                mode = next;
+                var isSignup = mode === 'signup';
+
+                tabSignIn.classList.toggle('is-active', !isSignup);
+                tabSignUp.classList.toggle('is-active', isSignup);
+                tabSignIn.setAttribute('aria-selected', String(!isSignup));
+                tabSignUp.setAttribute('aria-selected', String(isSignup));
+
+                heading.textContent = isSignup ? 'Create account' : 'Sign in';
+                subheading.textContent = isSignup
+                    ? 'Pick a username and password to start your own study library.'
+                    : 'Your lists and progress stay with your account.';
+
+                confirmField.hidden = !isSignup;
+                usernameHint.hidden = !isSignup;
+                passwordHint.hidden = !isSignup;
+
+                passwordInput.setAttribute('autocomplete', isSignup ? 'new-password' : 'current-password');
+                submitButton.textContent = isSignup ? 'Create account' : 'Sign in';
+
+                footnote.innerHTML = isSignup
+                    ? 'Already have an account? <button type="button" class="auth-link" data-mode="signin">Sign in</button>'
+                    : 'New here? <button type="button" class="auth-link" data-mode="signup">Create an account</button> to start your own study library.';
+
+                showError('');
+                showNotice('');
+            }
+
+            document.addEventListener('click', function (event) {
+                var trigger = event.target.closest('[data-mode]');
+                if (!trigger) return;
+                event.preventDefault();
+                setMode(trigger.getAttribute('data-mode'));
+                usernameInput.focus();
+            });
+
+            revealButton.addEventListener('click', function () {
+                var revealed = passwordInput.type === 'text';
+                passwordInput.type = revealed ? 'password' : 'text';
+                revealButton.textContent = revealed ? 'Show' : 'Hide';
+                revealButton.setAttribute('aria-pressed', String(!revealed));
+                revealButton.setAttribute('aria-label', revealed ? 'Show password' : 'Hide password');
+                passwordInput.focus();
+            });
+
+            async function callApi(action, payload) {
+                var response = await fetch(API + '&action=' + action, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload || {})
+                });
+
+                var data = null;
+                try {
+                    data = await response.json();
+                } catch (e) {
+                    data = null;
+                }
+
+                return { ok: response.ok, status: response.status, data: data || {} };
+            }
+
+            function showAccount(account) {
+                gate.hidden = true;
+                accountPanel.hidden = false;
+
+                document.getElementById('account-username').textContent = account.username || '—';
+
+                var created = Number(account.created_at || 0);
+                document.getElementById('account-created').textContent = created
+                    ? new Date(created * 1000).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })
+                    : '—';
+
+                var roleRow = document.getElementById('account-role-row');
+                if (account.is_admin) {
+                    roleRow.hidden = false;
+                    document.getElementById('account-role').textContent = 'Owner';
+                } else {
+                    roleRow.hidden = true;
+                }
+            }
+
+            function showGate() {
+                accountPanel.hidden = true;
+                gate.hidden = false;
+            }
+
+            async function refreshSession() {
+                try {
+                    var response = await fetch(API + '&action=whoami', { method: 'GET' });
+                    if (response.ok) {
+                        var data = await response.json();
+                        if (data && data.authenticated && data.account) {
+                            showAccount(data.account);
+                            return true;
+                        }
+                    }
+                } catch (e) { /* offline: fall through to the form */ }
+
+                showGate();
+                return false;
+            }
+
+            // Google sign-in is offered only when the server has credentials configured.
+            var providersBox = document.getElementById('auth-providers');
+            var googleButton = document.getElementById('auth-google');
+            var googleLabel = document.getElementById('auth-google-label');
+
+            async function loadProviders() {
+                try {
+                    var response = await fetch(API + '&action=providers', { method: 'GET' });
+                    if (!response.ok) return;
+                    var info = await response.json();
+                    if (info && info.google) providersBox.hidden = false;
+                } catch (e) { /* offline: leave provider buttons hidden */ }
+            }
+
+            googleButton.addEventListener('click', async function () {
+                if (googleButton.disabled) return;
+                googleButton.disabled = true;
+                googleLabel.textContent = 'Connecting…';
+                showError('');
+                showNotice('');
+
+                try {
+                    var response = await fetch(API + '&action=auth_google_start', { method: 'GET' });
+                    var data = await response.json().catch(function () { return {}; });
+
+                    if (response.ok && data && data.authorize_url) {
+                        window.location.href = data.authorize_url;
+                        return;
+                    }
+
+                    showError((data && data.error) || 'Google sign-in is unavailable right now.');
+                } catch (e) {
+                    showError('Could not reach the server. Check your connection and try again.');
+                }
+
+                googleButton.disabled = false;
+                googleLabel.textContent = 'Continue with Google';
+            });
+
+            form.addEventListener('submit', async function (event) {
+                event.preventDefault();
+                if (isSubmitting) return;
+
+                var username = usernameInput.value.trim();
+                var password = passwordInput.value;
+
+                showError('');
+                showNotice('');
+
+                if (!username) {
+                    showError('Please enter your username.');
+                    usernameInput.focus();
+                    return;
+                }
+                if (!password) {
+                    showError('Please enter your password.');
+                    passwordInput.focus();
+                    return;
+                }
+                if (mode === 'signup') {
+                    if (password.length < 8) {
+                        showError('Password must be at least 8 characters.');
+                        passwordInput.focus();
+                        return;
+                    }
+                    if (password !== confirmInput.value) {
+                        showError('Those passwords do not match.');
+                        confirmInput.focus();
+                        return;
+                    }
+                }
+
+                isSubmitting = true;
+                submitButton.disabled = true;
+                submitButton.classList.add('is-busy');
+                var originalLabel = submitButton.textContent;
+                submitButton.textContent = mode === 'signup' ? 'Creating account…' : 'Signing in…';
+
+                try {
+                    var result = await callApi(mode === 'signup' ? 'register' : 'login', {
+                        username: username,
+                        password: password
+                    });
+
+                    if (result.ok && result.data && result.data.account) {
+                        submitButton.textContent = 'Signed in';
+                        window.location.replace(STUDIO_URL);
+                        return;
+                    }
+
+                    showError((result.data && result.data.error) || 'Something went wrong. Please try again.');
+                } catch (e) {
+                    showError('Could not reach the server. Check your connection and try again.');
+                } finally {
+                    isSubmitting = false;
+                    submitButton.disabled = false;
+                    submitButton.classList.remove('is-busy');
+                    if (submitButton.textContent !== 'Signed in') {
+                        submitButton.textContent = originalLabel;
+                    }
+                }
+            });
+
+            document.getElementById('account-signout').addEventListener('click', async function () {
+                var button = this;
+                button.disabled = true;
+                try {
+                    await callApi('logout', {});
+                } catch (e) { /* clear locally regardless */ }
+                button.disabled = false;
+                accountPanel.hidden = true;
+                gate.hidden = false;
+                setMode('signin');
+                showNotice('You have been signed out.');
+                usernameInput.value = '';
+                passwordInput.value = '';
+                confirmInput.value = '';
+                usernameInput.focus();
+            });
+
+            document.getElementById('account-switch').addEventListener('click', async function () {
+                try {
+                    await callApi('logout', {});
+                } catch (e) { /* ignore */ }
+                accountPanel.hidden = true;
+                gate.hidden = false;
+                setMode('signin');
+                usernameInput.value = '';
+                passwordInput.value = '';
+                confirmInput.value = '';
+                usernameInput.focus();
+            });
+
+            // Arriving from the studio with ?signedout=1 prefills the notice; the
+            // ?mode=signup deep link opens the create-account form. The provider
+            // callback returns to us with ?signedin=1 or ?error=...
+            try {
+                var params = new URLSearchParams(window.location.search);
+                if (params.get('signedout') === '1') {
+                    showNotice('You have been signed out.');
+                }
+                if (params.get('mode') === 'signup') {
+                    setMode('signup');
+                }
+                var providerError = params.get('error');
+                if (providerError) {
+                    showError(providerError);
+                    // Keep the query out of the address bar so a refresh is clean.
+                    window.history.replaceState({}, '', window.location.pathname);
+                }
+            } catch (e) { /* ignore */ }
+
+            var signedInComingBack = false;
+            try {
+                signedInComingBack = new URLSearchParams(window.location.search).get('signedin') === '1';
+            } catch (e) { /* ignore */ }
+
+            refreshSession().then(function (signedIn) {
+                if (signedIn && signedInComingBack) {
+                    window.location.replace(STUDIO_URL);
+                    return;
+                }
+                if (!signedIn) {
+                    usernameInput.focus();
+                    loadProviders();
+                }
+            });
+        })();
+    </script>
+</body>
+
+</html>

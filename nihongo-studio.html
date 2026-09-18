@@ -72,12 +72,14 @@
 
         <!-- HEADER -->
         <div data-studio-header
-            class="bg-gradient-to-b from-gray-100 to-gray-200 border-b border-gray-300 h-10 flex items-center px-4 justify-between shrink-0 select-none relative z-50">
-            <div class="w-10" data-studio-header-left></div>
-            <div class="text-sm font-semibold text-gray-600 flex items-center gap-2">
-                <i class="fas fa-language text-gray-500"></i> Nihongo Studio
+            class="bg-gradient-to-b from-gray-100 to-gray-200 border-b border-gray-300 h-10 flex items-center shrink-0 select-none relative z-50">
+            <div class="studio-column">
+                <div class="w-10" data-studio-header-left></div>
+                <div class="text-sm font-semibold text-gray-600 flex items-center gap-2">
+                    <i class="fas fa-language text-gray-500"></i> Nihongo Studio
+                </div>
+                <div class="w-10" data-studio-header-right></div>
             </div>
-            <div class="w-10" data-studio-header-right></div>
         </div>
 
         <link rel="icon"
@@ -85,33 +87,36 @@
 
         <!-- PRIMARY NAVIGATION -->
         <nav id="system-bar" class="studio-primary-nav" aria-label="Nihongo Studio sections">
-            <div class="studio-primary-links">
-                <button id="nav-today" type="button" class="studio-primary-link is-active" onclick="showSection('today')">
-                    <i class="fas fa-home" aria-hidden="true"></i><span>Today</span>
-                </button>
-                <button id="nav-select" type="button" class="studio-primary-link" onclick="showSection('select')">
-                    <i class="fas fa-book-open" aria-hidden="true"></i><span>Word Library</span>
-                </button>
-                <button type="button" class="studio-primary-link" onclick="openGrammarCorner()">
-                    <i class="fas fa-shapes" aria-hidden="true"></i><span>Grammar</span>
-                </button>
-                <button type="button" class="studio-primary-link" onclick="openDictionary()">
-                    <i class="fas fa-search" aria-hidden="true"></i><span>Dictionary</span>
-                </button>
-            </div>
-            <div class="studio-mode-select">
-                <label for="global-quiz-mode" class="sr-only">Review direction</label>
-                <select id="global-quiz-mode" onchange="renderTable(loadedLists, loadedScores)" aria-label="Review direction">
-                    <option value="en-jp" selected>EN → JP</option>
-                    <option value="jp-en">JP → EN</option>
-                    <option value="speech">🗣 はなす</option>
-                </select>
-                <i class="fas fa-chevron-down" aria-hidden="true"></i>
+            <div class="studio-column">
+                <div class="studio-primary-links">
+                    <button id="nav-today" type="button" class="studio-primary-link is-active" onclick="showSection('today')">
+                        <i class="fas fa-home" aria-hidden="true"></i><span>Today</span>
+                    </button>
+                    <button id="nav-select" type="button" class="studio-primary-link" onclick="showSection('select')">
+                        <i class="fas fa-book-open" aria-hidden="true"></i><span>Lists</span>
+                    </button>
+                    <button type="button" class="studio-primary-link" onclick="openGrammarCorner()">
+                        <i class="fas fa-shapes" aria-hidden="true"></i><span>Grammar</span>
+                    </button>
+                    <button type="button" class="studio-primary-link" onclick="openDictionary()">
+                        <i class="fas fa-search" aria-hidden="true"></i><span>Dictionary</span>
+                    </button>
+                </div>
+                <div class="studio-mode-select">
+                    <label for="global-quiz-mode" class="sr-only">Review direction</label>
+                    <select id="global-quiz-mode" onchange="renderTable(loadedLists, loadedScores)" aria-label="Review direction">
+                        <option value="en-jp" selected>EN → JP</option>
+                        <option value="jp-en">JP → EN</option>
+                        <option value="speech">🗣 はなす</option>
+                    </select>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                </div>
             </div>
         </nav>
 
         <!-- CONTENT -->
         <div class="flex-1 min-h-0 bg-white relative flex flex-col z-0" data-studio-content>
+            <div class="studio-column">
 
             <!-- TODAY SECTION -->
             <section id="today-section" class="flex-1 overflow-y-auto animate-fade-in" aria-labelledby="today-heading">
@@ -124,8 +129,7 @@
             <section id="select-section" class="hidden flex flex-1 overflow-auto animate-fade-in flex-col" aria-labelledby="library-heading">
                 <div class="library-toolbar">
                     <div>
-                        <h1 id="library-heading">Word Library</h1>
-                        <p>Your lists live here when you need them. Today stays small.</p>
+                        <h1 id="library-heading">Lists</h1>
                     </div>
                     <div class="library-toolbar-actions">
                         <button type="button" onclick="openCreateNew()" class="library-action-btn">
@@ -276,6 +280,7 @@
                     </button>
                 </footer>
             </section>
+            </div>
 
             <!-- QUIZ SECTION -->
             <div id="quiz-section"

@@ -5,19 +5,29 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 IOS_WEB_DIR="$ROOT_DIR/ios-app/web"
 
 cp "$ROOT_DIR/nihongo-studio.html" "$IOS_WEB_DIR/index.html"
+cp "$ROOT_DIR/login.html" "$IOS_WEB_DIR/login.html"
 cp "$ROOT_DIR/studio-core.js" "$IOS_WEB_DIR/studio-core.js"
 cp "$ROOT_DIR/language-configs.js" "$IOS_WEB_DIR/language-configs.js"
 cp "$ROOT_DIR/studio.css" "$IOS_WEB_DIR/studio.css"
+cp "$ROOT_DIR/auth.css" "$IOS_WEB_DIR/auth.css"
 cp "$ROOT_DIR/nihongo_lists.json" "$IOS_WEB_DIR/nihongo_lists.json"
 cp "$ROOT_DIR/global_scores.json" "$IOS_WEB_DIR/global_scores.json"
 cp "$ROOT_DIR/global_word_stats.json" "$IOS_WEB_DIR/global_word_stats.json"
 cp "$ROOT_DIR/kanji_mnemonics.json" "$IOS_WEB_DIR/kanji_mnemonics.json"
-mkdir -p "$IOS_WEB_DIR/assets/images"
-cp "$ROOT_DIR/assets/images/akihabara-background.jpg" "$IOS_WEB_DIR/assets/images/akihabara-background.jpg"
-cp "$ROOT_DIR/assets/images/mt-aso-green-hills.jpg" "$IOS_WEB_DIR/assets/images/mt-aso-green-hills.jpg"
-cp "$ROOT_DIR/assets/images/tokyo-backstreet.jpg" "$IOS_WEB_DIR/assets/images/tokyo-backstreet.jpg"
-cp "$ROOT_DIR/assets/images/hokkaido-summer-lake.jpg" "$IOS_WEB_DIR/assets/images/hokkaido-summer-lake.jpg"
-cp "$ROOT_DIR/assets/images/hokkaido-flower-field.webp" "$IOS_WEB_DIR/assets/images/hokkaido-flower-field.webp"
+# Study illustrations are optional here: they are already tracked inside the
+# bundle and the pages reference them by an in-app path, so a missing source
+# must not abort the sync (the patch steps below are what matter).
+for illustration in \
+  akihabara-background.jpg \
+  mt-aso-green-hills.jpg \
+  tokyo-backstreet.jpg \
+  hokkaido-summer-lake.jpg \
+  hokkaido-flower-field.webp; do
+  if [ -f "$ROOT_DIR/assets/images/$illustration" ]; then
+    mkdir -p "$IOS_WEB_DIR/assets/images"
+    cp "$ROOT_DIR/assets/images/$illustration" "$IOS_WEB_DIR/assets/images/$illustration"
+  fi
+done
 
 API_URL="${NIHONGO_API_URL:-https://language.petyabouianov.com/studio_api.php?lang=nihongo}"
 SYNC_TOKEN="${STUDIO_API_SYNC_TOKEN:-}"
@@ -40,6 +50,11 @@ fi
 
 if ! rg -q 'offlineSeedPaths' "$IOS_WEB_DIR/index.html"; then
   perl -0pi -e 's#StudioCore\.init\(window\.StudioConfigs\.nihongo\);#if (window.StudioConfigs?.nihongo) {\n                window.StudioConfigs.nihongo.apiUrl = (window.NIHONGO_IOS_CONFIG?.apiUrl || window.StudioConfigs.nihongo.apiUrl);\n                window.StudioConfigs.nihongo.syncToken = window.NIHONGO_IOS_CONFIG?.syncToken || \"\";\n                window.StudioConfigs.nihongo.writeToken = window.NIHONGO_IOS_CONFIG?.writeToken || \"\";\n                window.StudioConfigs.nihongo.enableOfflineSync = true;\n                window.StudioConfigs.nihongo.confettiScriptPath = \"vendor/canvas-confetti.browser.min.js\";\n                window.StudioConfigs.nihongo.offlineSeedPaths = {\n                    lists: \"nihongo_lists.json\",\n                    scores: \"global_scores.json\",\n                    stats: \"global_word_stats.json\",\n                    mnemonics: \"kanji_mnemonics.json\"\n                };\n            }\n\n            StudioCore.init(window.StudioConfigs.nihongo);#' "$IOS_WEB_DIR/index.html"
+fi
+
+# Older bundles predate accounts; point the sign-in redirect at the bundled copy.
+if ! rg -q 'signInUrl' "$IOS_WEB_DIR/index.html"; then
+  perl -0pi -e 's#(window\.StudioConfigs\.nihongo\.enableOfflineSync = true;)#$1\n                window.StudioConfigs.nihongo.signInUrl = "login.html";#' "$IOS_WEB_DIR/index.html"
 fi
 
 echo "Synced and patched offline web assets into ios-app/web."

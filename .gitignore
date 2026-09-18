@@ -28,6 +28,9 @@ studio_api_config.php
 api_rate_limits.json
 sync_processed_events.json
 
+# Account registry and per-account study data live only on the server.
+users/
+
 # iOS wrapper local build artifacts
 ios-app/node_modules/
 ios-app/.derivedData/

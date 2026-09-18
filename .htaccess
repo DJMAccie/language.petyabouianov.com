@@ -19,6 +19,9 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}.html -f
 RewriteRule ^([A-Za-z0-9_-]+)$ $1.html [L]
 
+# Account data lives in users/<account>/ and is reachable only through studio_api.php.
+RewriteRule ^users/ - [F,L]
+
 <IfModule mod_headers.c>
   <FilesMatch "\.html$">
     Header always set Cache-Control "public, max-age=300, must-revalidate"

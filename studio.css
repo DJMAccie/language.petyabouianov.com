@@ -1942,12 +1942,65 @@ body.dark .choice-btn.wrong {
     --zen-faint: #9aa3b1;
     --zen-line: #dce2ea;
     --zen-canvas: #f5f7f9;
+    /* One column width shared by the title bar, the section bar, and the study
+       content, so every surface lines up on the same left/right edges. */
+    --studio-column: 1180px;
+    --studio-column-gutter: clamp(1rem, 3.5vw, 3.25rem);
 }
 
 body.nihongo-page {
     background: var(--zen-canvas);
     background-image: none;
     padding: 0;
+}
+
+/* Shared column: centers the bar and content rows on one width and one gutter. */
+.studio-column {
+    width: 100%;
+    max-width: var(--studio-column);
+    margin: 0 auto;
+    padding-left: var(--studio-column-gutter);
+    padding-right: var(--studio-column-gutter);
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    box-sizing: border-box;
+}
+
+/* The content row is tall and scrolls; the bars stay compact. */
+[data-studio-content] > .studio-column {
+    flex: 1;
+    min-height: 0;
+    align-items: stretch;
+    flex-direction: column;
+}
+
+[data-studio-content] > .studio-column > section {
+    flex: 1;
+    min-height: 0;
+}
+
+/* The column owns the page gutter; inner rows keep their own vertical rhythm. */
+[data-studio-content] .daily-study-panel {
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+[data-studio-content] .library-toolbar,
+[data-studio-content] .library-search-row {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/* The shell adds its own bar padding at small widths and #system-bar sets it with
+   !important. Zero the horizontal side only, using a selector that outranks the
+   id rule, so the gutter stays identical to the header and content rows while the
+   vertical rhythm is preserved. */
+body [data-studio-header],
+body #system-bar {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
 }
 
 /* Nihongo is a full-bleed workspace, not a floating window. */
@@ -1970,7 +2023,9 @@ body.dark.nihongo-page > .studio-app-shell {
 
 .studio-primary-nav {
     min-height: 4.6rem;
-    padding: 0 2.2rem;
+    /* Horizontal gutter comes from .studio-column so the bar lines up with the
+       title bar and the study content on the same left/right edges. */
+    padding: 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -2850,7 +2905,8 @@ body.dark .daily-progress-track { background: #323740; }
 
     .studio-primary-nav {
         min-height: 4.15rem;
-        padding: 0 1rem;
+        /* The shared column supplies the page gutter at every width. */
+        padding: 0;
     }
 
     .studio-primary-links {

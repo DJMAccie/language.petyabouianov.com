@@ -1532,12 +1532,11 @@ const StudioCore = (() => {
             <div class="daily-intro">
                 <div>
                     <h1 id="today-heading">${getGreeting()}</h1>
-                    <p>A little each day adds up. No rush.</p>
                 </div>
                 <button type="button" class="daily-settings-btn" onclick="showStats()" aria-label="Open progress"><i class="fas fa-chart-pie" aria-hidden="true"></i><span>Progress</span></button>
             </div>
 
-            <div class="daily-section-label">Today’s path</div>
+            <div class="daily-section-label">Today</div>
             <div class="daily-actions-grid">
                 <section class="daily-action-card daily-action-card--lesson">
                     <div class="daily-action-illustration"><img src="assets/lesson-words.png" alt="" aria-hidden="true"></div>
@@ -1575,7 +1574,7 @@ const StudioCore = (() => {
                 </div>
                 <div class="daily-streak-line">
                     <span><i class="fas fa-fire" aria-hidden="true"></i> <strong>${streak} day streak</strong></span>
-                    <span>${total.toLocaleString()} words currently in your studio</span>
+                    <span>${total.toLocaleString()} words total</span>
                 </div>
             </section>
         `;
@@ -1966,9 +1965,17 @@ const StudioCore = (() => {
             }
 
             const [lRes, sRes, statsRes, mnemonicRes] = await Promise.all(requests);
-            loadedLists = await lRes.json();
-            loadedScores = await sRes.json();
-            wordStats = await statsRes.json();
+
+            // Account data is private; an expired session sends the user to sign in
+            // instead of silently rendering an empty library.
+            if (isUnauthenticatedResponse(lRes) || isUnauthenticatedResponse(sRes) || isUnauthenticatedResponse(statsRes)) {
+                redirectToSignIn();
+                throw new Error('Not signed in');
+            }
+
+            loadedLists = await safeJson(lRes, {});
+            loadedScores = await safeJson(sRes, {});
+            wordStats = await safeJson(statsRes, {});
             kanjiMnemonics = (mnemonicRes && mnemonicRes.ok)
                 ? normalizeKanjiMnemonicPayload(await mnemonicRes.json().catch(() => ({})))
                 : {};
@@ -2838,8 +2845,41 @@ const StudioCore = (() => {
     // =========================================================
     // API WRAPPER WITH AUTHENTICATION
     // =========================================================
+    let authRedirectPending = false;
+
+    // True when the API rejected the request because no account session is
+    // active. Account data is only readable while signed in.
+    function isUnauthenticatedResponse(response) {
+        return !!response && response.status === 401;
+    }
+
+    function redirectToSignIn() {
+        if (authRedirectPending) return;
+        authRedirectPending = true;
+        // The browser sends the session cookie automatically, so no secret is ever
+        // stored in page JavaScript. Wrappers (iOS) can point this at a local page.
+        const target = typeof config.signInUrl === 'string' && config.signInUrl
+            ? config.signInUrl
+            : '/login';
+        window.location.replace(target + (target.indexOf('?') === -1 ? '?signedout=1' : '&signedout=1'));
+    }
+
+    async function safeJson(response, fallback) {
+        try {
+            const parsed = await response.json();
+            return parsed === null || parsed === undefined ? fallback : parsed;
+        } catch (e) {
+            return fallback;
+        }
+    }
+
     async function apiFetch(url, options = {}) {
         let response = await fetch(url, options);
+
+        if (isUnauthenticatedResponse(response)) {
+            redirectToSignIn();
+            throw new Error('Not signed in');
+        }
 
         if (!response.ok) {
             let errorMsg = "Unknown API error.";
@@ -3440,13 +3480,27 @@ const StudioCore = (() => {
             }
         }
 
-        // Right side: Dark mode toggle
+        // Right side: account + dark mode toggle
         const rightSlot = header.querySelector('[data-studio-header-right]');
         if (rightSlot) {
             rightSlot.innerHTML = '';
             rightSlot.style.display = 'flex';
             rightSlot.style.alignItems = 'center';
+            rightSlot.style.gap = '0.35rem';
             rightSlot.style.justifyContent = 'flex-end';
+
+            const accountBtn = document.createElement('button');
+            accountBtn.type = 'button';
+            accountBtn.className = 'header-icon-btn';
+            accountBtn.onclick = () => {
+                const target = typeof config.signInUrl === 'string' && config.signInUrl ? config.signInUrl : '/login';
+                window.location.href = target;
+            };
+            accountBtn.title = 'Account';
+            accountBtn.setAttribute('aria-label', 'Open account settings');
+            accountBtn.innerHTML = '<i class="fas fa-user-circle"></i>';
+            rightSlot.appendChild(accountBtn);
+
             const toggleLabel = document.createElement('label');
             toggleLabel.className = 'dark-mode-switch';
             toggleLabel.title = 'Dark Mode (D)';
