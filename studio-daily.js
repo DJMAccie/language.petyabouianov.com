@@ -195,12 +195,11 @@ window.StudioDaily = (() => {
             <div class="daily-intro">
                 <div>
                     <h1 id="today-heading">${getGreeting()}</h1>
-                    <p>A little each day adds up. No rush.</p>
                 </div>
                 <button type="button" class="daily-settings-btn" onclick="window.StudioUI.showStats()" aria-label="Open progress"><i class="fas fa-chart-pie" aria-hidden="true"></i><span>Progress</span></button>
             </div>
 
-            <div class="daily-section-label">Today’s path</div>
+            <div class="daily-section-label">Today</div>
 
             <div class="daily-actions-grid">
                 <section class="daily-action-card daily-action-card--lesson">
@@ -239,7 +238,7 @@ window.StudioDaily = (() => {
                 </div>
                 <div class="daily-streak-line">
                     <span><i class="fas fa-fire" aria-hidden="true"></i> <strong>${streak} day streak</strong></span>
-                    <span>${total.toLocaleString()} words currently in your studio</span>
+                    <span>${total.toLocaleString()} words total</span>
                 </div>
             </section>
         `;

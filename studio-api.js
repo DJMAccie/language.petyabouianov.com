@@ -91,8 +91,40 @@ window.StudioAPI = (() => {
         }
     }
 
+    // Account data is private: an expired session sends the user to sign in
+    // instead of silently rendering an empty library.
+    let authRedirectPending = false;
+
+    function isUnauthenticatedResponse(response) {
+        return !!response && response.status === 401;
+    }
+
+    function redirectToSignIn() {
+        if (authRedirectPending) return;
+        authRedirectPending = true;
+        const target = typeof config.signInUrl === 'string' && config.signInUrl
+            ? config.signInUrl
+            : '/login.html';
+        window.location.replace(target + (target.indexOf('?') === -1 ? '?signedout=1' : '&signedout=1'));
+    }
+
+    async function safeJson(response, fallback) {
+        try {
+            const parsed = await response.json();
+            return parsed === null || parsed === undefined ? fallback : parsed;
+        } catch (e) {
+            return fallback;
+        }
+    }
+
     async function apiFetch(url, options = {}) {
         const response = await fetch(url, options);
+
+        if (isUnauthenticatedResponse(response)) {
+            redirectToSignIn();
+            throw new Error('Not signed in');
+        }
+
         if (!response.ok) {
             let errorMsg = `API Error HTTP ${response.status}`;
             try {
@@ -466,12 +498,19 @@ window.StudioAPI = (() => {
         }
 
         const [lRes, sRes, statsRes, mnemonicRes] = await Promise.all(requests);
-        const loadedLists = await lRes.json();
-        const loadedScores = await sRes.json();
-        const wordStats = await statsRes.json();
+
+        // Private account data: bounce to sign-in when the session has expired.
+        if (isUnauthenticatedResponse(lRes) || isUnauthenticatedResponse(sRes) || isUnauthenticatedResponse(statsRes)) {
+            redirectToSignIn();
+            throw new Error('Not signed in');
+        }
+
+        const loadedLists = await safeJson(lRes, {});
+        const loadedScores = await safeJson(sRes, {});
+        const wordStats = await safeJson(statsRes, {});
         let kanjiMnemonics = {};
         if (mnemonicRes && mnemonicRes.ok) {
-            kanjiMnemonics = await mnemonicRes.json().catch(() => ({}));
+            kanjiMnemonics = await safeJson(mnemonicRes, {});
         }
 
         if (isOfflineSyncEnabled()) {

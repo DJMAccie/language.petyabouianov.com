@@ -69,7 +69,22 @@ const StudioCore = window.StudioCore = (() => {
         const rightSlot = header.querySelector('[data-studio-header-right]');
         if (rightSlot) {
             rightSlot.innerHTML = '';
-            rightSlot.className = 'flex items-center justify-end';
+            rightSlot.className = 'flex items-center justify-end gap-1.5';
+
+            // Account: opens the sign-in screen, or the account panel when the
+            // visitor already has a session.
+            const accountBtn = document.createElement('button');
+            accountBtn.type = 'button';
+            accountBtn.className = 'header-icon-btn';
+            accountBtn.onclick = () => {
+                const target = typeof config.signInUrl === 'string' && config.signInUrl ? config.signInUrl : '/login.html';
+                window.location.href = target;
+            };
+            accountBtn.title = 'Account';
+            accountBtn.setAttribute('aria-label', 'Sign in or open account settings');
+            accountBtn.innerHTML = '<i class="fas fa-user-circle"></i>';
+            rightSlot.appendChild(accountBtn);
+
             const toggleLabel = document.createElement('label');
             toggleLabel.className = 'dark-mode-switch';
             toggleLabel.title = 'Dark Mode (D)';

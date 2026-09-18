@@ -22,6 +22,10 @@ RewriteRule ^([A-Za-z0-9_-]+)$ $1.html [L]
 # Account data lives in users/<account>/ and is reachable only through studio_api.php.
 RewriteRule ^users/ - [F,L]
 
+# Sign-in page. The generic *.html rule below only matches names containing an
+# uppercase letter, so give /login an explicit mapping.
+RewriteRule ^login/?$ login.html [L,NC]
+
 <IfModule mod_headers.c>
   <FilesMatch "\.html$">
     Header always set Cache-Control "public, max-age=300, must-revalidate"

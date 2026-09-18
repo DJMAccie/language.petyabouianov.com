@@ -14,8 +14,8 @@ const distDir = path.join(rootDir, 'dist');
 const CleanCSS = CleanCSSModule.default || CleanCSSModule;
 
 // Production files specification
-const HTML_FILES = ['index.html', 'nihongo-studio.html'];
-const CSS_FILES = ['studio.css'];
+const HTML_FILES = ['index.html', 'nihongo-studio.html', 'login.html'];
+const CSS_FILES = ['studio.css', 'auth.css'];
 const JS_FILES = [
   'studio-api.js',
   'studio-ui.js',
@@ -38,7 +38,11 @@ const SERVER_AND_SEO_FILES = [
   '.htaccess',
   'robots.txt',
   'sitemap.xml',
-  'studio_api.php'
+  'studio_api.php',
+  // Account, session, and sign-in code. studio_api.php requires both, so the
+  // API returns a fatal error if they are missing from the deploy.
+  'studio_accounts.php',
+  'studio_oauth.php'
 ];
 
 // Forbidden filenames and patterns that must NEVER enter /dist

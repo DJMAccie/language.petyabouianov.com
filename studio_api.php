@@ -483,7 +483,7 @@ if (!$currentAccount) {
 // identity is never merged into an existing account automatically.
 
 function studioSignInRedirect($query) {
-    $target = '/login?' . $query;
+    $target = '/login.html?' . $query;
     if (!headers_sent()) {
         header('Location: ' . $target, true, 302);
     } else {
