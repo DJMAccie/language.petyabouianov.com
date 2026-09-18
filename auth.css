@@ -1,6 +1,41 @@
 /* --- auth.css ---
-   Sign-in / account surface. Reuses the shared tokens declared in studio.css so
-   the account screens match the studio's chrome in both light and dark mode. */
+   Sign-in / account surface.
+
+   This file was written against an earlier palette whose tokens were named
+   --studio-* (surface, border, text, accent). studio.css now exposes the same
+   palette as --zen-*. The aliases below map the old names onto the current ones
+   so every rule in this file keeps working; because the --zen-* values are
+   redefined under body.dark, dark mode resolves correctly with no extra work.
+   Do not hard-code colours here: use these tokens. */
+/* Declared on :root AND body on purpose. A custom property is substituted where
+   it is declared and then inherits as a fixed value, so aliases left on :root
+   would freeze the light palette and ignore the body.dark overrides in
+   studio.css. Repeating them on body means each element resolves the alias
+   against the palette in force on that element. */
+:root,
+body {
+    --studio-surface: var(--zen-surface);
+    --studio-surface-elevated: var(--zen-surface);
+    --studio-surface-subtle: var(--zen-surface-alt);
+    --studio-border: var(--zen-line);
+    --studio-border-soft: var(--zen-line);
+    --studio-text: var(--zen-ink);
+    --studio-text-muted: var(--zen-muted);
+    --studio-text-faint: var(--zen-faint);
+    --studio-accent: var(--zen-blue);
+    --studio-accent-strong: var(--zen-blue-dark);
+    --studio-accent-soft: var(--zen-blue-soft);
+    --studio-accent-ring: rgba(46, 110, 232, 0.18);
+    --studio-shadow-soft: 0 1px 2px rgba(15, 23, 42, 0.08), 0 1px 1px rgba(15, 23, 42, 0.04);
+}
+
+/* This file is linked before studio.css, so a bare body.dark block here would be
+   parsed before --zen-* exists and resolve to nothing. :has() keeps the alias in
+   the same origin as :root while still applying only in dark mode. */
+:root:has(body.dark) {
+    /* A translucent ring reads better on the dark canvas. */
+    --studio-accent-ring: rgba(96, 165, 250, 0.28);
+}
 
 body.auth-page {
     display: flex;
@@ -265,10 +300,6 @@ body.dark .auth-message--notice {
 .auth-submit.is-busy {
     opacity: 0.7;
     cursor: default;
-}
-
-.auth-submit--link {
-    color: #fff;
 }
 
 .auth-actions {

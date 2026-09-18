@@ -51,6 +51,7 @@ const SERVER_AND_SEO_FILES = [
 const FORBIDDEN_NAME_PATTERNS = [
   /^\.env/i,
   /^config_check\.php$/i,
+  /^admin_accounts\.php$/i,
   /^\.git/i,
   /^node_modules$/i,
   /^scripts$/i,

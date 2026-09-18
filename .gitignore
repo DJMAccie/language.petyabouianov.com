@@ -26,11 +26,15 @@ newsletter/emails.txt
 upload_image_config.php
 studio_api_config.php
 config_check.php
+admin_accounts.php
 api_rate_limits.json
 sync_processed_events.json
 
 # Account registry and per-account study data live only on the server.
 users/
+
+# Local data snapshots (never deployed)
+backups/
 
 # Build output and dependencies
 node_modules/
