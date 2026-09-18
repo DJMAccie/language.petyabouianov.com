@@ -1030,6 +1030,14 @@ body #system-bar {
     line-height: 1.05;
 }
 
+/* Romaji leads the card; the kanji and kana below support it. */
+.lesson-word-main h1.lesson-romaji-main {
+    font-family: var(--studio-font-sans);
+    font-size: clamp(2.8rem, 6vw, 4.4rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
 .lesson-word-main p {
     margin: 0.55rem 0 0;
     color: var(--zen-green-dark);
@@ -1054,16 +1062,23 @@ body #system-bar {
 
 .lesson-readings dd {
     margin: 0.35rem 0 0;
-    color: var(--zen-ink);
-    font-size: 1.4rem;
-    font-weight: 620;
+    color: var(--zen-muted);
+    font-size: 1.15rem;
+    font-weight: 600;
+}
+
+/* The kanji keeps the Japanese face so it renders as written. */
+.lesson-readings dd.lesson-kanji-value {
+    font-family: var(--studio-font-jp);
 }
 
 .lesson-detail-row {
     margin-top: 1.8rem;
     padding-top: 1.5rem;
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    /* Single column: the memory hook block was removed, so the example takes the
+       full width instead of leaving an empty second column. */
+    grid-template-columns: minmax(0, 1fr);
     gap: 2.5rem;
     border-top: 1px solid var(--zen-line);
 }

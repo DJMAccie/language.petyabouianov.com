@@ -282,25 +282,8 @@ window.StudioDaily = (() => {
         return Math.abs(hash);
     }
 
-    function buildMemoryHook(word, romaji) {
-        const { japanese } = splitJapaneseLabel(word);
-        const mnemonics = window._studio?.getKanjiMnemonics?.() || {};
-        const kanjiEntry = mnemonics[japanese];
-        if (kanjiEntry?.mnemonic) return String(kanjiEntry.mnemonic);
-        if (word?.mnemonic) return String(word.mnemonic);
-
-        const sound = romaji || japanese;
-        const meaning = String(word?.en || 'this meaning').split(/[\/;]/)[0].trim();
-        const hooks = [
-            `Picture ${meaning} wearing a tiny name tag that says “${sound}”.`,
-            `Imagine shouting “${sound}!” when ${meaning} suddenly appears.`,
-            `Put ${meaning} inside the Reptilian Birdhaus and label it “${sound}”.`,
-            `Make ${meaning} move in a ridiculous way while you say “${sound}”.`,
-            `Link “${sound}” to the strangest version of ${meaning} you can picture.`
-        ];
-        return hooks[hashText(word?.jp) % hooks.length];
-    }
-
+    // Fills the kana slot from the dictionary when a list does not supply a
+    // reading. Guests cannot reach the lookup endpoint, so the slot stays hidden.
     async function enrichLessonKana(word, japanese, requestId) {
         if (getLessonKana(word, japanese) !== '…' || !japanese) return;
         try {
@@ -314,7 +297,11 @@ window.StudioDaily = (() => {
             readingCache.set(japanese, reading);
             if (requestId === lessonLookupRequest && lessonWords[lessonIndex]?.jp === word.jp) {
                 const kanaEl = document.getElementById('lesson-kana');
-                if (kanaEl) kanaEl.textContent = reading;
+                if (kanaEl) {
+                    kanaEl.textContent = reading;
+                    const kanaWrap = kanaEl.closest('div');
+                    if (kanaWrap) kanaWrap.hidden = false;
+                }
             }
         } catch (error) { }
     }
@@ -332,11 +319,18 @@ window.StudioDaily = (() => {
         document.getElementById('lesson-batch-label').textContent = `Lesson ${lessonBatchIndex + 1} of ${batchTotal}`;
         document.getElementById('lesson-count-text').textContent = `${lessonIndex + 1} / ${lessonWords.length}`;
         document.getElementById('lesson-progress-bar').style.width = `${((lessonIndex + 1) / lessonWords.length) * 100}%`;
-        document.getElementById('lesson-word').textContent = japanese;
+        // Romaji leads; the kanji and kana below it are supporting detail.
+        document.getElementById('lesson-word').textContent = romaji || japanese;
         document.getElementById('lesson-meaning').textContent = word.en || '';
-        document.getElementById('lesson-kana').textContent = kana;
-        document.getElementById('lesson-romaji').textContent = romaji || '—';
-        document.getElementById('lesson-mnemonic').textContent = buildMemoryHook(word, romaji);
+        const kanaEl = document.getElementById('lesson-kana');
+        if (kanaEl) {
+            const kanaWrap = kanaEl.closest('div');
+            const hasKana = !!kana && kana !== '…';
+            kanaEl.textContent = hasKana ? kana : '';
+            if (kanaWrap) kanaWrap.hidden = !hasKana;
+        }
+        const kanjiEl = document.getElementById('lesson-kanji');
+        if (kanjiEl) kanjiEl.textContent = japanese;
 
         if (exampleJp || exampleEn) {
             exampleBlock.hidden = false;
@@ -481,7 +475,6 @@ window.StudioDaily = (() => {
         playLessonAudio,
         completeDailySession,
         splitJapaneseLabel,
-        buildMemoryHook,
         getLessonKana
     };
 })();

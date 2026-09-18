@@ -214,7 +214,7 @@
                         </div>
                         <div>
                             <label class="block text-xs font-bold text-gray-500 uppercase mb-2">Words <span
-                                    class="text-gray-400 font-normal normal-case ml-1">(Word, Meaning — optional: | kana | romaji | example JP | example EN | memory hook)</span></label>
+                                    class="text-gray-400 font-normal normal-case ml-1">(Word, Meaning — optional: | kana | romaji | example JP | example EN)</span></label>
                             <textarea id="word-input" spellcheck="false"
                                 class="w-full h-64 px-4 py-3 bg-gray-50 border border-gray-300 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition resize-none font-mono text-sm shadow-sm leading-relaxed"></textarea>
                         </div>
@@ -249,18 +249,19 @@
                 <main class="lesson-body">
                     <article class="lesson-word-card">
                         <div class="lesson-word-main">
-                            <h1 id="lesson-word">手</h1>
-                            <p id="lesson-meaning">hand</p>
+                            <!-- Romaji leads; the Japanese forms support it. -->
+                            <h1 id="lesson-word" class="lesson-romaji-main">Kippu</h1>
+                            <p id="lesson-meaning">Ticket</p>
                         </div>
 
                         <dl class="lesson-readings">
                             <div>
                                 <dt>かな</dt>
-                                <dd id="lesson-kana">て</dd>
+                                <dd id="lesson-kana">きっぷ</dd>
                             </div>
                             <div>
-                                <dt>romaji</dt>
-                                <dd id="lesson-romaji">te</dd>
+                                <dt>漢字</dt>
+                                <dd id="lesson-kanji" class="lesson-kanji-value">切符</dd>
                             </div>
                         </dl>
 
@@ -269,12 +270,7 @@
                                 <h2>Example</h2>
                                 <p id="lesson-example-jp" class="lesson-example-jp">手を洗います。</p>
                                 <p id="lesson-example-en" class="lesson-example-en">I wash my hands.</p>
-                            </section>
-                            <section class="lesson-detail-block lesson-memory-block">
-                                <h2>Memory hook</h2>
-                                <p id="lesson-mnemonic">A tiny cup of TEA balances in your HAND.</p>
-                            </section>
-                        </div>
+                            </section>                        </div>
                     </article>
                 </main>
 
