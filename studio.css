@@ -1322,6 +1322,16 @@ body #system-bar {
     padding: 1rem;
 }
 
+/* These overlays must be invisible until opened. They are positioned and given a
+   dark translucent background by the rule above, so relying on Tailwind's .hidden
+   utility (a CDN script that loads asynchronously) leaves a window where they
+   cover the whole app. Hide them in CSS instead, keyed on the id for specificity. */
+#studio-results-overlay.hidden,
+#studio-stats-overlay.hidden,
+#studio-kanji-picker-overlay.hidden {
+    display: none;
+}
+
 #studio-stats-overlay > div,
 #studio-kanji-picker-overlay > div {
     background: var(--zen-surface);
