@@ -5,7 +5,9 @@
 window.StudioDaily = (() => {
     const DAILY_LESSON_BATCH_SIZE = 5;
     const DAILY_LESSON_DEFAULT = 10;
-    const DAILY_LESSON_MAX = 15;
+    // There is no daily ceiling: the optional action keeps adding a batch at a
+    // time. This bound only stops a corrupted stored value from exploding the UI.
+    const DAILY_LESSON_HARD_CAP = 60;
     const DAILY_REVIEW_LIMIT = 10;
 
     let lessonWords = [];
@@ -41,11 +43,14 @@ window.StudioDaily = (() => {
             const stored = JSON.parse(localStorage.getItem(getDailyPathStorageKey()) || 'null');
             if (!stored || stored.date !== fallback.date) return fallback;
 
-            const target = Number(stored.lessonTarget);
+            const rawTarget = Math.floor(Number(stored.lessonTarget) / DAILY_LESSON_BATCH_SIZE) * DAILY_LESSON_BATCH_SIZE;
+            const target = Number.isFinite(rawTarget) && rawTarget >= DAILY_LESSON_DEFAULT
+                ? Math.min(rawTarget, DAILY_LESSON_HARD_CAP)
+                : DAILY_LESSON_DEFAULT;
             return {
                 ...fallback,
                 ...stored,
-                lessonTarget: target === DAILY_LESSON_MAX ? DAILY_LESSON_MAX : DAILY_LESSON_DEFAULT,
+                lessonTarget: target,
                 lessonBatches: Array.isArray(stored.lessonBatches)
                     ? stored.lessonBatches.map(batch => Array.isArray(batch) ? batch.filter(Boolean) : []).filter(batch => batch.length > 0)
                     : [],
@@ -165,30 +170,26 @@ window.StudioDaily = (() => {
             if (!completedSet.has(i)) { nextBatchIndex = i; break; }
         }
 
-        const completedLessonWords = [...completedSet]
-            .filter(index => index >= 0 && index < targetBatchCount)
-            .reduce((sum, index) => sum + (state.lessonBatches[index]?.length || DAILY_LESSON_BATCH_SIZE), 0);
         const lessonsDone = nextBatchIndex === -1;
         const reviewQueue = ensureDailyReviewQueue(state);
         const reviewReady = state.reviewCompleted ? 0 : reviewQueue.length;
         const streak = window.StudioQuiz?.getStoredStreak?.() || 0;
 
-        const quotaSteps = [0, 1, 2].map(index => {
-            const isOptional = index === 2;
-            const isUnlocked = !isOptional || state.lessonTarget === DAILY_LESSON_MAX;
+        // One step per batch in play; completed batches show a check mark and no
+        // greyed-out placeholder is rendered for batches that do not exist yet.
+        const quotaSteps = Array.from({ length: Math.max(targetBatchCount, 1) }, (_, index) => {
             const isComplete = completedSet.has(index);
-            const isCurrent = isUnlocked && index === nextBatchIndex;
-            const stateClass = isComplete ? 'is-complete' : isCurrent ? 'is-current' : isUnlocked ? 'is-ready' : 'is-optional';
+            const isCurrent = index === nextBatchIndex;
+            const stateClass = isComplete ? 'is-complete' : isCurrent ? 'is-current' : 'is-ready';
             const icon = isComplete ? '<i class="fas fa-check" aria-hidden="true"></i>' : String(index + 1);
-            const label = isOptional && !isUnlocked ? 'optional 5' : '5 words';
-            return `<div class="daily-quota-step ${stateClass}"><span>${icon}</span><small>${label}</small></div>`;
+            return `<div class="daily-quota-step ${stateClass}"><span>${icon}</span><small>5 words</small></div>`;
         }).join('');
 
         const lessonButtonLabel = lessonsDone
             ? 'Today’s lessons done'
             : (state.lessonBatches[nextBatchIndex]?.length ? 'Continue 5 words' : 'Learn 5 words');
-        const optionalAction = lessonsDone && state.lessonTarget < DAILY_LESSON_MAX && fresh > 0
-            ? `<button type="button" class="daily-optional-btn" onclick="window.StudioDaily.addFiveMoreWords()"><i class="fas fa-plus" aria-hidden="true"></i> I feel good — add 5 more</button>`
+        const optionalAction = fresh > 0
+            ? `<button type="button" class="daily-optional-btn" onclick="window.StudioDaily.addFiveMoreWords()"><i class="fas fa-plus" aria-hidden="true"></i> Add 5 more words</button>`
             : '';
 
         panel.innerHTML = `
@@ -206,7 +207,7 @@ window.StudioDaily = (() => {
                     <div class="daily-action-illustration"><img src="assets/lesson-words.png" alt="" aria-hidden="true"></div>
                     <div class="daily-action-content">
                         <h2>Lessons</h2>
-                        <div class="daily-action-number"><strong>${Math.max(0, state.lessonTarget - completedLessonWords)}</strong><span>new words</span></div>
+                        <div class="daily-action-number"><strong>${lessonsDone ? 0 : (state.lessonBatches[nextBatchIndex]?.length || DAILY_LESSON_BATCH_SIZE)}</strong><span>new words</span></div>
                         <p>See each word first. Learn in groups of five.</p>
                         <button type="button" class="daily-primary-btn daily-primary-btn--lesson" onclick="window.StudioDaily.startDailyLesson()" ${lessonsDone || fresh === 0 ? 'disabled' : ''}>${lessonButtonLabel}</button>
                         <div class="daily-quota" aria-label="Daily lesson quota">${quotaSteps}</div>
@@ -246,10 +247,13 @@ window.StudioDaily = (() => {
 
     function addFiveMoreWords() {
         const state = readDailyPathState();
-        state.lessonTarget = DAILY_LESSON_MAX;
+        state.lessonTarget = Math.min(
+            state.lessonTarget + DAILY_LESSON_BATCH_SIZE,
+            DAILY_LESSON_HARD_CAP
+        );
         writeDailyPathState(state);
         renderDailyDashboard();
-        window.StudioUI?.showToast('Optional five unlocked. Still no pressure.', 'success');
+        window.StudioUI?.showToast('Five more words added.', 'success');
     }
 
     function splitJapaneseLabel(word) {

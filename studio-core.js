@@ -318,6 +318,18 @@ const StudioCore = window.StudioCore = (() => {
         const modeSelect = document.getElementById('global-quiz-mode');
         if (modeSelect) modeSelect.value = 'en-jp';
 
+        // Enter submits a typed answer. The global keydown shortcuts deliberately
+        // ignore inputs, so without this the answer input can never be submitted.
+        const answerInput = document.getElementById('answer-input');
+        if (answerInput && !answerInput.dataset.enterBound) {
+            answerInput.addEventListener('keydown', (event) => {
+                if (event.key !== 'Enter') return;
+                event.preventDefault();
+                if (typeof window.checkAnswer === 'function') window.checkAnswer();
+            });
+            answerInput.dataset.enterBound = 'true';
+        }
+
         await fetchLists();
         showSection('today');
     }
