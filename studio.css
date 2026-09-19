@@ -1595,6 +1595,29 @@ body #system-bar {
     font-size: 0.72rem;
 }
 
+/* Progress panel density.
+   The panel was 909px tall against 836px of usable height on a 900px display - a
+   9px scroll for no benefit. Each stat card carried 29px of padding around a
+   number and a label, and each table row 16px around one line of text. Trimming
+   padding (never font size or line height) removes the overflow without rewrapping
+   a single cell. */
+#studio-stats-overlay .stat-card {
+    padding: 0.65rem 0.7rem;
+}
+
+#studio-stats-overlay .stats-header {
+    margin-bottom: 1rem;
+}
+
+#studio-stats-overlay .stats-grid {
+    margin-bottom: 1.1rem;
+}
+
+#studio-stats-overlay .stats-table td,
+#studio-stats-overlay .stats-table th {
+    padding: 0.4rem 0.35rem;
+}
+
 /* STATS MODAL & OVERLAYS */
 #studio-results-overlay,
 #studio-stats-overlay,
@@ -1624,7 +1647,16 @@ body #system-bar {
 /* The stats and kanji overlays have no single wrapper element: their content is
    a set of sibling blocks. The overlay is therefore treated as the card - bounded,
    centred, and scrollable - and its children simply stack full width. Without this
-   the blocks sized themselves and drifted apart across the backdrop. */
+   the blocks sized themselves and drifted apart across the backdrop.
+
+   The width is viewport-aware rather than a fixed 640px. At 640 the Progress table
+   wrapped its meanings onto two and three lines, which is what pushed the panel
+   past the fold; the wider measure folds those back and the panel fits without
+   scrolling. Capped so it never becomes a wall of text on a large display, and
+   floored by the viewport so small screens are unchanged. */
+:root {
+    --studio-panel-roomy: min(94vw - 3rem, 980px);
+}
 #studio-stats-overlay,
 #studio-kanji-picker-overlay {
     background: rgba(0, 0, 0, 0.45);
@@ -1648,8 +1680,9 @@ body #system-bar {
 #studio-kanji-picker-overlay > * {
     /* flex-basis must be auto or it wins over width and the block shrinks. */
     flex: 0 0 auto;
-    width: min(100%, 640px);
-    max-width: 640px;
+    width: var(--studio-panel-roomy);
+    max-width: var(--studio-panel-roomy);
+    /* The blocks are the card, so they are never capped below the viewport either. */
     background: var(--zen-surface);
     padding: 0 1.8rem;
     box-sizing: border-box;
@@ -1939,6 +1972,53 @@ body #system-bar {
 .kanji-picker-groups {
     display: block;
     margin-top: 1rem;
+}
+
+/* Five equal pack groups, each about 271px tall. Columns divide that height,
+   which is what lets the picker fit on screen instead of scrolling through 840px
+   of list. The panel is wide enough for the columns to hold real rows rather than
+   being squeezed. */
+@media (min-width: 900px) {
+    #studio-kanji-picker-overlay .kanji-picker-groups {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0 2rem;
+        align-items: start;
+    }
+}
+
+@media (min-width: 1180px) {
+    #studio-kanji-picker-overlay .kanji-picker-groups {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+/* Vertical rhythm, tightened as one block so the total height is legible at a
+   glance. Every margin here stacks between the header, intro, toolbar, groups and
+   footer, and together they were pushing the picker past the fold. */
+#studio-kanji-picker-overlay .kanji-picker-header {
+    margin-bottom: 0.7rem;
+}
+
+#studio-kanji-picker-overlay .kanji-picker-intro {
+    margin: 0 0 0.7rem;
+}
+
+#studio-kanji-picker-overlay .kanji-picker-toolbar {
+    margin-bottom: 0.7rem;
+}
+
+#studio-kanji-picker-overlay .kanji-picker-group {
+    margin-bottom: 1rem;
+}
+
+#studio-kanji-picker-overlay .kanji-picker-row {
+    padding: 0.45rem 0.6rem;
+}
+
+#studio-kanji-picker-overlay .kanji-picker-footer {
+    margin-top: 0.9rem;
+    padding-top: 0.8rem;
 }
 
 .kanji-picker-group-list {
