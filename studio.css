@@ -95,6 +95,49 @@ body.nihongo-page {
     overflow: hidden;
 }
 
+/* SUPPORT
+   A slim strip at the foot of the shell, centred. It uses the page's own blue
+   rather than Ko-fi's brand teal so it belongs to this interface, and it is a
+   real anchor with a visible label and a focus ring, not a floating widget. */
+.studio-support-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    padding: 0.4rem 1rem;
+    border-top: 1px solid var(--zen-line);
+    background: var(--zen-surface);
+}
+
+.studio-support-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    min-height: 1.9rem;
+    padding: 0 0.9rem;
+    border: 1px solid var(--zen-blue-dark);
+    border-radius: 999px;
+    background: var(--zen-blue);
+    color: #fff;
+    font-size: 0.78rem;
+    font-weight: 650;
+    text-decoration: none;
+    transition: background-color 140ms ease;
+}
+
+.studio-support-btn:hover {
+    background: var(--zen-blue-dark);
+}
+
+.studio-support-btn:focus-visible {
+    outline: 2px solid var(--zen-blue);
+    outline-offset: 2px;
+}
+
+.studio-support-btn i {
+    font-size: 0.82em;
+}
+
 /* TITLE BAR
    The element also carries Tailwind's bg-gradient-to-b from-gray-100 to-gray-200.
    A gradient paints as a background-image, so setting only background-color left
