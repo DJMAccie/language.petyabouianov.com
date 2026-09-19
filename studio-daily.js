@@ -1,5 +1,5 @@
 /**
- * studio-daily.js — Calm Daily Path Engine for Nihongo Studio
+ * studio-daily.js: Calm Daily Path Engine for Nihongo Studio
  * 5-word lessons, 10-word reviews, flashcard walkthrough, and daily progress
  */
 window.StudioDaily = (() => {

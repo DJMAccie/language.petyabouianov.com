@@ -1,5 +1,5 @@
 /**
- * studio-quiz.js — Stateful, Policy-Driven Quiz Engine for Nihongo Studio
+ * studio-quiz.js: Stateful, Policy-Driven Quiz Engine for Nihongo Studio
  */
 window.StudioQuiz = (() => {
     let wordList = [];

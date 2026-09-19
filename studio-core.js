@@ -1,5 +1,5 @@
 /**
- * studio-core.js — Nihongo Studio Learning Engine (Facade & Coordinator)
+ * studio-core.js: Nihongo Studio Learning Engine (Facade & Coordinator)
  * 
  * Initialize with: StudioCore.init(config)
  */

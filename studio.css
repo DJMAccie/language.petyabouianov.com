@@ -1,4 +1,4 @@
-/* studio.css — Unified Stylesheet for Nihongo Studio */
+/* studio.css: Unified Stylesheet for Nihongo Studio */
 
 :root {
     --zen-green: #27b95d;
@@ -184,7 +184,7 @@ body.nihongo-page {
    About page, so the story, the mechanics and the invitation now live on a single
    URL with a single chrome: the same grey window bar as the app, and the app's
    measure, surface and type scale rather than a second visual language. It
-   deliberately uses no cards — the content is a plain column, separated by rule
+   deliberately uses no cards: the content is a plain column, separated by rule
    lines and space. The `about-*` class names are this page's inherited vocabulary
    from that merge. */
 .about-page,
@@ -434,6 +434,60 @@ html.dark .home-page {
     flex-wrap: wrap;
     gap: 0.6rem;
     margin-top: 1.5rem;
+}
+
+/* Ko-fi. The widget is a third-party card with its own minimum width: below about
+   420px it clips its own controls, so phones keep the plain button and wider
+   screens get the widget. Both live in the same frame, and the frame stays light
+   inside because the card is a light UI and may paint no background of its own. */
+.donate-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 1.35rem;
+}
+
+.donate-embed {
+    display: none;
+    max-width: 28rem;
+    margin-top: 0.9rem;
+    padding: 0.55rem 0.55rem 0.35rem;
+    border: 1px solid var(--zen-line);
+    border-radius: 0.9rem;
+    background: var(--zen-surface);
+}
+
+@media (min-width: 560px) {
+    .donate-actions {
+        display: none;
+    }
+
+    .donate-embed {
+        display: block;
+    }
+}
+
+.donate-embed iframe {
+    display: block;
+    width: 100%;
+    height: 712px;
+    border: 0;
+    border-radius: 0.6rem;
+    /* Kept light in both themes: the card inside assumes a light backdrop, and on
+       the dark canvas the frame then reads as a mat around it. */
+    background: #ffffff;
+    /* The widget is a light UI, so keep its own controls light in either theme. */
+    color-scheme: light;
+}
+
+.donate-fallback {
+    margin: 0.5rem 0 0.15rem;
+    color: var(--zen-muted);
+    font-size: 0.75rem;
+}
+
+.donate-fallback a {
+    color: var(--zen-blue);
 }
 
 /* Buttons. Written with the element qualifier so the prose link rule above can
@@ -1247,8 +1301,8 @@ body #system-bar {
 .daily-progress-values .is-new strong { color: var(--zen-blue); }
 .daily-progress-values .is-goal strong { color: var(--zen-muted); }
 
-/* Status line. Every item shares one recipe — same size, same weight, same
-   colour role — so the row reads as one line of data. The number carries the
+/* Status line. Every item shares one recipe (same size, same weight, same
+   colour role) so the row reads as one line of data. The number carries the
    emphasis and the words stay quiet; yesterday the streak was bold, "days
    studied" was a size smaller, and "words total" was neither. */
 .daily-streak-line {

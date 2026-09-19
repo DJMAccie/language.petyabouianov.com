@@ -1,5 +1,5 @@
 /**
- * studio-ui.js — Accessible Dialogs, Overlays, Modals, and Notifications for Nihongo Studio
+ * studio-ui.js: Accessible Dialogs, Overlays, Modals, and Notifications for Nihongo Studio
  */
 window.StudioUI = (() => {
     let activeDialogState = null;
@@ -561,9 +561,9 @@ window.StudioUI = (() => {
         if (days === null || days === undefined) {
             status.textContent = '';
         } else if (days > 0) {
-            status.textContent = `${days} ${days === 1 ? 'day' : 'days'} to go — shown in the status line under your progress.`;
+            status.textContent = `Counting down in the status line: ${days} ${days === 1 ? 'day' : 'days'} to go.`;
         } else if (days === 0) {
-            status.textContent = 'That is today: the status line says the trip is today, then hides.';
+            status.textContent = 'That is today. The status line says the trip is today, then hides.';
         } else {
             status.textContent = 'That date has passed, so the countdown stays hidden until you set a new one.';
         }

@@ -1,5 +1,5 @@
 /**
- * studio-api.js — Canonical API & Offline Sync Client for Nihongo Studio
+ * studio-api.js: Canonical API & Offline Sync Client for Nihongo Studio
  */
 window.StudioAPI = (() => {
     let config = {};

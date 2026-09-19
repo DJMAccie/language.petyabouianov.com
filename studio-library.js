@@ -1,5 +1,5 @@
 /**
- * studio-library.js — Word Library Table, List CRUD, and SRS Focus Metrics for Nihongo Studio
+ * studio-library.js: Word Library Table, List CRUD, and SRS Focus Metrics for Nihongo Studio
  */
 window.StudioLibrary = (() => {
     let tableStatusSortDirection = null;
