@@ -1365,9 +1365,7 @@ body #system-bar {
 }
 
 /* The panel is the dialog surface: centred, bounded, and scrollable inside. */
-.studio-modal-panel,
-#studio-stats-overlay > div,
-#studio-kanji-picker-overlay > div {
+.studio-modal-panel {
     background: var(--zen-surface);
     border-radius: 1rem;
     width: min(100%, 640px);
@@ -1381,7 +1379,7 @@ body #system-bar {
 }
 
 .studio-modal-panel--wide {
-    width: min(100%, 720px);
+    width: min(100%, 640px);
 }
 
 .studio-modal-panel--tall {
@@ -1414,6 +1412,106 @@ body #system-bar {
 /* Body padding was previously supplied per-instance by Tailwind utilities. */
 .studio-modal-body--padded {
     padding: 1.25rem;
+}
+
+/* Study focus panel (shown above the library table) */
+.study-focus-kicker {
+    color: var(--zen-muted);
+    font-size: 0.68rem;
+    font-weight: 760;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.study-focus-title {
+    margin-top: 0.15rem;
+    color: var(--zen-ink);
+    font-size: 1.05rem;
+    font-weight: 700;
+}
+
+.study-focus-summary,
+.study-focus-meta {
+    margin-top: 0.2rem;
+    color: var(--zen-muted);
+    font-size: 0.82rem;
+}
+
+.study-focus-progress {
+    margin-top: 0.5rem;
+    font-variant-numeric: tabular-nums;
+    color: var(--zen-muted);
+    font-size: 0.8rem;
+}
+
+/* Save row at the foot of the list editor */
+.studio-save-row {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.studio-save-btn {
+    min-height: 2.6rem;
+    padding: 0 1.3rem;
+    border: 1px solid var(--zen-blue-dark);
+    border-radius: 0.5rem;
+    background: var(--zen-blue);
+    color: #fff;
+    font: inherit;
+    font-size: 0.9rem;
+    font-weight: 650;
+    cursor: pointer;
+    transition: background-color 140ms ease;
+}
+
+.studio-save-btn:hover {
+    background: var(--zen-blue-dark);
+}
+
+.studio-save-btn:disabled {
+    opacity: 0.6;
+    cursor: default;
+}
+
+/* Small inline action next to a section label */
+.studio-inline-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.3rem 0.6rem;
+    border: 1px solid var(--zen-line);
+    border-radius: 0.45rem;
+    background: var(--zen-surface);
+    color: var(--zen-ink);
+    font: inherit;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 140ms ease, border-color 140ms ease;
+}
+
+.studio-inline-action:hover {
+    background: var(--zen-surface-alt);
+    border-color: var(--zen-text-faint, var(--zen-faint));
+}
+
+/* The rotating study quote in the library footer */
+.quote-text {
+    color: var(--zen-ink);
+    font-size: 0.82rem;
+    font-weight: 600;
+}
+
+.quote-meaning {
+    margin-top: 0.1rem;
+    color: var(--zen-muted);
+    font-size: 0.75rem;
+}
+
+.quote-reading {
+    margin-top: 0.1rem;
+    color: var(--zen-faint);
+    font-size: 0.72rem;
 }
 
 /* STATS MODAL & OVERLAYS */
@@ -1453,7 +1551,7 @@ body #system-bar {
        to a shared width instead of each shrinking to its own content. */
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     padding: 2rem 1rem;
     overflow-y: auto;
     gap: 0;
@@ -1596,6 +1694,65 @@ body #system-bar {
     min-height: 3px;
 }
 
+/* The stats panel is assembled from these blocks. The rules were missing from the
+   stylesheet, so the sections ran together and the accent tones never applied. */
+.stats-section {
+    margin: 1.4rem 0 0;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--zen-line);
+}
+
+.stats-section:first-of-type {
+    border-top: 0;
+    padding-top: 0;
+}
+
+.stats-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.9rem;
+}
+
+.stats-label {
+    margin-bottom: 0.6rem;
+    color: var(--zen-muted);
+    font-size: 0.72rem;
+    font-weight: 760;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.stats-summary-note {
+    margin-top: 0.6rem;
+    color: var(--zen-muted);
+    font-size: 0.8rem;
+}
+
+/* Accent tones used by the stat values. */
+.stat-value.tone-accent { color: var(--zen-blue); }
+.stat-value.tone-success { color: var(--zen-green-dark); }
+.stat-value.tone-warning { color: #d78d00; }
+
+/* Mastery bar: mastered then learning, on a neutral track. */
+.mastery-bar {
+    display: flex;
+    height: 0.6rem;
+    margin-top: 0.2rem;
+    border-radius: 99px;
+    overflow: hidden;
+    background: #e4e8ed;
+}
+
+.mastery-bar .bar-mastered {
+    background: var(--zen-green);
+}
+
+.mastery-bar .bar-learning {
+    background: var(--zen-amber);
+}
+
 .stats-table {
     width: 100%;
     font-size: 0.85rem;
@@ -1675,6 +1832,49 @@ body #system-bar {
     font-size: 0.85rem;
     color: var(--zen-muted);
     margin: 0 0 1rem;
+}
+
+/* Missing picker rules: without these the pack list had no row rhythm and the
+   checkboxes rendered as raw browser inputs. */
+.kanji-picker-checkbox {
+    width: 1rem;
+    height: 1rem;
+    flex: 0 0 auto;
+    accent-color: var(--zen-blue);
+    cursor: pointer;
+}
+
+.kanji-picker-body {
+    display: block;
+    padding: 0 0.2rem;
+}
+
+.kanji-picker-groups {
+    display: block;
+    margin-top: 1rem;
+}
+
+.kanji-picker-group-list {
+    display: block;
+}
+
+.kanji-picker-close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border: 0;
+    border-radius: 999px;
+    background: transparent;
+    color: var(--zen-muted);
+    cursor: pointer;
+    transition: background-color 140ms ease, color 140ms ease;
+}
+
+.kanji-picker-close:hover {
+    background: var(--zen-surface-alt);
+    color: var(--zen-ink);
 }
 
 .kanji-picker-toolbar {
