@@ -10,7 +10,10 @@
     --zen-amber: #e8a51e;
     --zen-amber-dark: #b87808;
     --zen-ink: #171b22;
-    --zen-muted: #6d7685;
+    /* 5.6:1 on the surface, 5.2:1 on the canvas, 4.5:1 on the grey window
+       chrome. The previous #6d7685 cleared AA on white and failed it on every
+       other light surface it is used on (.about-lede sat at 4.27:1). */
+    --zen-muted: #606876;
     --zen-faint: #9aa3b1;
     --zen-line: #dce2ea;
     --zen-canvas: #f5f7f9;
@@ -29,7 +32,11 @@
     --studio-font-jp: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
 }
 
-body.dark {
+/* The studio's switch stores the preference; the document pages carry the same
+   class on <html> (set in their head, before paint) so the whole site turns over
+   together instead of only the app. */
+body.dark,
+html.dark {
     --zen-ink: #edf0f4;
     --zen-muted: #9aa3b1;
     --zen-faint: #636c7b;
@@ -172,18 +179,40 @@ body.nihongo-page {
     font-size: 0.82em;
 }
 
-/* ABOUT PAGE
-   The one page on the site written for a reader rather than for a task, so it is
-   the only place with running text. It borrows the app's measure, surface and type
-   scale instead of introducing a second visual language, and it deliberately uses
-   no cards: the content is a plain column, separated by rule lines and space. */
-.about-page {
+/* DOCUMENT PAGES (/ and /about)
+   The two pages written for a reader rather than for a task, and the only places
+   with running text. Both use this one chrome — the same header bar, brand
+   lockup, column and pill actions — so the launcher and the explanation cannot
+   drift into two visual languages. They borrow the app's measure, surface and
+   type scale rather than inventing a second one, and they deliberately use no
+   cards: the content is a plain column, separated by rule lines and space. */
+.about-page,
+.home-page {
     min-height: 100dvh;
     margin: 0;
     background: var(--zen-canvas);
     color: var(--zen-ink);
     font-family: var(--studio-font-sans);
     line-height: 1.65;
+    /* Browser surfaces belong to the design too: the scrollbar and the selection
+       wash are themed from the palette instead of keeping platform defaults. */
+    scrollbar-color: var(--zen-line) transparent;
+}
+
+.about-page ::selection,
+.home-page ::selection {
+    background: rgba(46, 110, 232, 0.16);
+    color: var(--zen-ink);
+}
+
+/* On these two pages the accent carries link text, and the app's blue only
+   reaches 3.96:1 on the dark canvas. Lightened along the same hue to 5.0:1; the
+   pill's fill is a separate token, so it stays exactly as designed. */
+html.dark .about-page,
+html.dark .home-page {
+    --zen-blue: #4b82eb;
+    /* Lets the browser draw scrollbars and native controls for the dark theme. */
+    color-scheme: dark;
 }
 
 .about-header {
@@ -222,6 +251,13 @@ body.nihongo-page {
 .about-main {
     padding-top: 2.75rem;
     padding-bottom: 4rem;
+}
+
+/* The launcher is one decision rather than a document, so it gets a narrower
+   column than the About page's reading measure and starts higher on the screen. */
+.home-main {
+    width: min(100%, 38rem);
+    padding-top: clamp(2.5rem, 10vh, 6rem);
 }
 
 .about-main h1 {
@@ -311,6 +347,15 @@ body.nihongo-page {
     border-top: 1px solid var(--zen-line);
 }
 
+/* The closing block is the one place the page asks for something, so it gets a
+   surface of its own rather than reading as one more section. */
+.about-note--cta {
+    padding: 1.5rem 1.6rem 1.6rem;
+    border: 1px solid var(--zen-line);
+    border-radius: 0.9rem;
+    background: var(--zen-surface);
+}
+
 .about-note h2 {
     margin-top: 0;
     padding-top: 0;
@@ -319,6 +364,74 @@ body.nihongo-page {
 
 .about-note p:last-child {
     margin-bottom: 0;
+}
+
+/* A real lesson, shown rather than described: the opening words of the list this
+   page recommends. Romaji sits under the Japanese the way the lesson card shows
+   it, and the rows are separated by the same rule lines as the sections. */
+.lesson-sample-label {
+    margin: 1.75rem 0 0.6rem;
+    color: var(--zen-muted);
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.lesson-sample-list {
+    margin: 0 0 1rem;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--zen-line);
+}
+
+.lesson-sample-list li {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 0.25rem 1.5rem;
+    align-items: baseline;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid var(--zen-line);
+}
+
+.lesson-sample-word {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    min-width: 0;
+}
+
+.lesson-sample-word [lang="ja"] {
+    font-family: var(--studio-font-jp);
+    font-size: 1.02rem;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--zen-ink);
+}
+
+.lesson-sample-romaji {
+    color: var(--zen-muted);
+    font-size: 0.78rem;
+    letter-spacing: 0.01em;
+}
+
+.lesson-sample-meaning {
+    min-width: 0;
+    color: var(--zen-ink);
+    font-size: 0.92rem;
+    line-height: 1.45;
+}
+
+/* One column on a phone: the figures drop to two rows of two so the last keeps a
+   partner, and each sample word takes the full width instead of sharing it. */
+@media (max-width: 560px) {
+    .about-stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .lesson-sample-list li {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 0.2rem;
+        padding: 0.75rem 0;
+    }
 }
 
 .about-actions {
@@ -746,7 +859,7 @@ body #system-bar {
     min-height: 22rem;
     display: grid;
     place-items: center;
-    color: var(--zen-faint);
+    color: var(--zen-muted);
     font-size: 0.9rem;
 }
 
@@ -785,7 +898,10 @@ body #system-bar {
     justify-content: center;
     gap: 0.5rem;
     border: 1px solid var(--zen-line);
-    border-bottom: 3px solid var(--zen-line);
+    /* The thick bottom edge is the key-cap press affordance this whole button
+       family shares. It stays a border rather than a shadow so the ledge follows
+       the corner radius exactly. */
+    border-bottom: 3px solid var(--zen-line); /* impeccable-disable-line border-accent-on-rounded: key-cap ledge, deliberate */
     border-radius: 0.55rem;
     background: var(--zen-surface);
     color: var(--zen-ink);
@@ -793,7 +909,7 @@ body #system-bar {
     font-size: 0.8rem;
     font-weight: 720;
     cursor: pointer;
-    transition: border-color 140ms ease, border-bottom-width 140ms ease, color 140ms ease, background-color 140ms ease, transform 140ms ease;
+    transition: border-color 140ms ease, color 140ms ease, background-color 140ms ease, transform 140ms ease;
 }
 
 .daily-settings-btn:hover,
@@ -942,7 +1058,7 @@ body #system-bar {
     display: inline-flex;
     align-items: center;
     border: 1px solid #707984;
-    border-bottom: 4px solid #626b76;
+    border-bottom: 4px solid #626b76; /* impeccable-disable-line border-accent-on-rounded: key-cap ledge, deliberate */
     border-radius: 0.58rem;
     background: var(--zen-surface);
     color: var(--zen-ink);
@@ -952,7 +1068,7 @@ body #system-bar {
     letter-spacing: -0.01em;
     cursor: pointer;
     box-shadow: 0 1px 0 var(--zen-inset-highlight, rgba(255, 255, 255, 0.9)) inset;
-    transition: background-color 140ms ease, border-bottom-width 140ms ease, transform 140ms ease, opacity 140ms ease;
+    transition: background-color 140ms ease, transform 140ms ease, opacity 140ms ease;
 }
 
 .daily-primary-btn--lesson,
@@ -1017,7 +1133,7 @@ body #system-bar {
     display: flex;
     align-items: center;
     gap: 0.4rem;
-    color: var(--zen-faint);
+    color: var(--zen-muted);
 }
 
 .daily-quota-step > span {
@@ -1065,7 +1181,7 @@ body #system-bar {
     min-height: 2.2rem;
     padding: 0 0.75rem;
     border: 1px solid var(--zen-line);
-    border-bottom: 3px solid var(--zen-line);
+    border-bottom: 3px solid var(--zen-line); /* impeccable-disable-line border-accent-on-rounded: key-cap ledge, deliberate */
     border-radius: 0.5rem;
     background: var(--zen-surface);
     color: var(--zen-green-dark);
@@ -1073,7 +1189,7 @@ body #system-bar {
     font-size: 0.72rem;
     font-weight: 720;
     cursor: pointer;
-    transition: border-bottom-width 140ms ease, transform 140ms ease;
+    transition: transform 140ms ease;
 }
 
 .daily-optional-btn:hover {
@@ -1362,7 +1478,7 @@ body #system-bar {
     min-height: 2.2rem;
     padding: 0 0.85rem;
     border: 1px solid #707984;
-    border-bottom: 3px solid #626b76;
+    border-bottom: 3px solid #626b76; /* impeccable-disable-line border-accent-on-rounded: key-cap ledge, deliberate */
     border-radius: 0.5rem;
     background: var(--zen-surface);
     color: var(--zen-ink);
@@ -1370,7 +1486,7 @@ body #system-bar {
     font-size: 0.78rem;
     font-weight: 700;
     cursor: pointer;
-    transition: border-bottom-width 120ms ease, background-color 120ms ease;
+    transition: background-color 120ms ease;
 }
 
 .studio-table-start-btn:hover {
@@ -1433,9 +1549,14 @@ body #system-bar {
 .lesson-progress-track span {
     display: block;
     height: 100%;
-    border-radius: inherit;
+    width: 100%;
     background: var(--zen-green);
-    transition: width 220ms ease;
+    transform: scaleX(0);
+    transform-origin: left center;
+    /* The track clips the fill, so the span needs no radius of its own: a
+       radius would deform under the non-uniform scale. Scaling also composites
+       instead of re-running layout on every frame the way animating width did. */
+    transition: transform 220ms ease;
 }
 
 .lesson-audio-btn {
@@ -1921,7 +2042,7 @@ body #system-bar {
 
 .quote-reading {
     margin-top: 0.1rem;
-    color: var(--zen-faint);
+    color: var(--zen-muted);
     font-size: 0.72rem;
 }
 

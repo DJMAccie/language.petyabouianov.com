@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Nihongo Studio: Learn Japanese Words for Travel</title>
     <meta name="description" content="84 themed Japanese word lists, 1,313 everyday words, free. Short daily lessons and quizzes for your trip or to build vocabulary fast.">
     <link rel="canonical" href="https://language.petyabouianov.com/">
@@ -15,110 +15,24 @@
     <meta name="twitter:title" content="Nihongo Studio: Learn Japanese Words for Travel">
     <meta name="twitter:description" content="84 themed Japanese word lists, 1,313 everyday words, free. Short daily lessons and quizzes for your trip or to build vocabulary fast.">
     <meta name="twitter:image" content="https://petyabouianov.com/images/Petya-2.jpg">
-    <style>
-        :root {
-            --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            min-height: 100svh;
-            display: grid;
-            place-items: center;
-            padding: clamp(1rem, 3vw, 2rem);
-            background: #fff;
-            color: #000;
-            font-family: "SF Pro Display", "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-        }
-
-        .home-nav {
-            width: min(100%, 22rem);
-            display: grid;
-            gap: 0.7rem;
-        }
-
-        .home-link {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 3rem;
-            width: 100%;
-            border: 2px solid #000;
-            background: #fff;
-            color: #000;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            font-size: 0.96rem;
-            font-weight: 700;
-            transition: background-color 0.18s var(--ease-out-quart), color 0.18s var(--ease-out-quart);
-            animation: button-in 0.42s var(--ease-out-quart) both;
-        }
-
-        .home-link:nth-child(2) {
-            animation-delay: 0.06s;
-        }
-
-        .home-link:nth-child(3) {
-            animation-delay: 0.12s;
-        }
-
-        .home-link:nth-child(4) {
-            animation-delay: 0.18s;
-        }
-
-        /* Account access reads as a secondary action next to the studio. */
-        .home-link--quiet {
-            border-width: 1px;
-            border-color: #c7c7c7;
-            font-size: 0.82rem;
-            font-weight: 600;
-            letter-spacing: 0.04em;
-            color: #5f5f5f;
-        }
-
-        .home-link--quiet:hover,
-        .home-link--quiet:focus-visible {
-            border-color: #000;
-            color: #fff;
-        }
-
-        .home-link:hover,
-        .home-link:focus-visible {
-            background: #000;
-            color: #fff;
-            outline: none;
-        }
-
-        .home-link:focus-visible {
-            outline: 2px solid #000;
-            outline-offset: 3px;
-        }
-
-        @keyframes button-in {
-            from {
-                opacity: 0;
-                transform: translateY(8px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .home-link {
-                animation: none;
-                transition: none;
-            }
-
-        }
-    </style>
+    <meta name="theme-color" content="#f5f7f9">
+    <script>
+        // The studio's dark-mode switch stores the choice; this page follows it so
+        // the whole site turns over together. It runs before the body paints, so
+        // there is never a flash of the light theme.
+        (function () {
+            try {
+                if (localStorage.getItem('studio_dark_mode') !== 'true') return;
+                document.documentElement.classList.add('dark');
+                var meta = document.querySelector('meta[name="theme-color"]');
+                if (meta) meta.setAttribute('content', '#121417');
+            } catch (e) { /* private mode: stay light */ }
+        })();
+    </script>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 900 600%22><rect width=%22900%22 height=%22600%22 fill=%22white%22/><circle cx=%22450%22 cy=%22300%22 r=%22180%22 fill=%22%23bc002d%22/></svg>">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="studio.css?v=20260919-home">
     <script type="application/ld+json">
 {
       "@context": "https://schema.org",
@@ -177,10 +91,38 @@
     }
     </script>
 </head>
-<body>
-    <nav class="home-nav" aria-label="Nihongo Studio">
-        <a class="home-link" href="/nihongo-studio">Open Nihongo Studio</a>
-        <a class="home-link home-link--quiet" href="/login">Sign In / Create Account</a>
-    </nav>
+
+<body class="about-page home-page">
+    <!-- The launcher is a document page, so it uses the About page's chrome and
+         studio.css tokens rather than a private stylesheet. The two pages are the
+         only long-form surfaces in the product and must not drift apart. -->
+    <header class="about-header">
+        <div class="about-header-inner">
+            <a class="about-brand" href="/">
+                <i class="fas fa-language" aria-hidden="true"></i>
+                <span>Nihongo Studio</span>
+            </a>
+        </div>
+    </header>
+
+    <main class="about-main home-main">
+        <h1>Learn 1,313 everyday Japanese words, five at a time.</h1>
+        <p class="about-lede">
+            84 themed lists, already built. No account, no setup, free in full.
+        </p>
+
+        <div class="about-actions">
+            <a class="about-open" href="/nihongo-studio">Start a five-word lesson</a>
+            <a class="about-open about-quiet" href="/about">See what's inside</a>
+        </div>
+
+        <div class="about-note">
+            <p>
+                Your progress is saved in this browser. <a href="/login">Sign in</a> to keep it
+                across devices — the whole app works without an account.
+            </p>
+        </div>
+    </main>
 </body>
+
 </html>

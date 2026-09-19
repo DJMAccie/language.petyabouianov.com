@@ -322,7 +322,7 @@ window.StudioDaily = (() => {
 
         document.getElementById('lesson-batch-label').textContent = `Lesson ${lessonBatchIndex + 1} of ${batchTotal}`;
         document.getElementById('lesson-count-text').textContent = `${lessonIndex + 1} / ${lessonWords.length}`;
-        document.getElementById('lesson-progress-bar').style.width = `${((lessonIndex + 1) / lessonWords.length) * 100}%`;
+        document.getElementById('lesson-progress-bar').style.transform = `scaleX(${(lessonIndex + 1) / lessonWords.length})`;
         // Romaji leads; the kanji and kana below it are supporting detail.
         document.getElementById('lesson-word').textContent = romaji || japanese;
         document.getElementById('lesson-meaning').textContent = word.en || '';
