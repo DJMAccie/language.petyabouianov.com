@@ -95,14 +95,28 @@ body.nihongo-page {
     overflow: hidden;
 }
 
-/* HEADER BAR */
-[data-studio-header] {
-    background: var(--zen-surface);
+/* TITLE BAR
+   The element also carries Tailwind's bg-gradient-to-b from-gray-100 to-gray-200.
+   A gradient paints as a background-image, so setting only background-color left
+   the light gradient sitting on top of the dark colour and the bar stayed light in
+   dark mode. The image is cleared so the themed colour shows, and the border is
+   themed with it. */
+body [data-studio-header] {
+    background-color: var(--zen-surface);
+    background-image: none;
     border-bottom: 1px solid var(--zen-line);
 }
 
-body.dark [data-studio-header] {
-    border-color: var(--zen-line);
+/* The nav bar and the footer strip carry light Tailwind fills too. */
+body #system-bar {
+    background-color: var(--zen-surface);
+    background-image: none;
+}
+
+body [data-studio-footer] {
+    background-color: var(--zen-surface-alt);
+    background-image: none;
+    border-top-color: var(--zen-line);
 }
 
 .header-icon-btn {
@@ -478,27 +492,20 @@ body #system-bar {
     gap: 1.15rem;
 }
 
-/* The illustration sits above the text and leads the card. The body is a grid so
-   the two cards keep the same row rhythm - heading, count and description all line
-   up across the pair - and the action button is pushed to the bottom, which fills
-   the empty space the review card used to have. */
+/* Compact and side by side: artwork beside the text, kept shallow so the whole
+   day fits on one screen. */
 .daily-action-card {
     min-height: 17.5rem;
     padding: 1.6rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+    display: grid;
+    grid-template-columns: 9.5rem minmax(0, 1fr);
+    gap: 1.35rem;
     border: 1px solid var(--zen-line);
     border-radius: 1rem;
     background: var(--zen-surface);
 }
 
 .daily-action-card > .daily-action-content {
-    flex: 1;
-    display: grid;
-    grid-template-rows: 9.5rem auto auto auto 1fr auto;
-    align-content: start;
-    row-gap: 0.5rem;
 }
 
 .daily-action-card--lesson {
@@ -511,33 +518,34 @@ body #system-bar {
     background: var(--zen-blue-soft);
 }
 
-/* Prominent, and a fixed height so both cards reserve the same space whether or
-   not the artwork is taller. */
+/* The artwork fills the card's height rather than a small fixed square, so it
+   reads as the card's subject and the column beside the text stops being mostly
+   empty. min-height:0 lets the grid row decide the height, which keeps the card
+   exactly as tall as its text - the compactness is unchanged. */
 .daily-action-illustration {
-    width: 100%;
-    height: 9.5rem;
+    width: 9.5rem;
+    height: 100%;
+    min-height: 0;
     display: grid;
-    place-items: center;
-    align-self: center;
+    /* start, not center: the artwork and the heading then share a top line, which
+       is what a side-by-side card wants. Centring floated it below the heading. */
+    place-items: start center;
     overflow: hidden;
 }
 
-/* Anchored to the container so the artwork fits inside it. The image keeps its
-   own aspect ratio, so a wide illustration stays legible without overflowing the
-   card or sitting on top of the text. */
 /* Bounded by the row height rather than a percentage. A percentage max-height
    needs a definite parent height to resolve against, and the grid row did not
    provide one, so the artwork overflowed and sat on top of the text. */
-/* Every dimension is pinned. Tailwind's preflight sets img { max-width: 100%;
-   height: auto } at the same specificity but from a sheet that loads later, and it
-   was stretching the artwork to the full row width. Height and width are both
-   forced to auto so the file's own aspect ratio decides the other axis. */
+/* Dimensions are pinned because Tailwind's preflight sets img { max-width:100%;
+   height:auto } from a sheet that loads later. auto on both axes keeps the file's
+   own aspect ratio; the caps stop it exceeding its column, which is now a
+   definite height so a percentage cap resolves. */
 .daily-action-illustration > img {
     display: block;
     width: auto !important;
     height: auto !important;
     max-width: 100% !important;
-    max-height: 9.5rem !important;
+    max-height: 100% !important;
     object-fit: contain;
 }
 
@@ -567,7 +575,7 @@ body #system-bar {
 }
 
 .daily-action-number {
-    min-height: 3.2rem;
+    min-height: 2.9rem;
     display: flex;
     align-items: baseline;
     gap: 0.7rem;
@@ -587,11 +595,12 @@ body #system-bar {
 }
 
 .daily-action-content > p {
-    min-height: 2.5rem;
-    margin: 0.5rem 0 1rem;
+    /* No reserved min-height: the copy decides, and the space above stays larger
+       than the space below so the paragraph reads as attached to its heading. */
+    margin: 0.45rem 0 0.9rem;
     color: var(--zen-muted);
     font-size: 0.88rem;
-    line-height: 1.5;
+    line-height: 1.45;
 }
 
 .daily-primary-btn,
@@ -666,8 +675,8 @@ body #system-bar {
 }
 
 .daily-quota {
-    margin-top: 1.15rem;
-    padding-top: 0.8rem;
+    margin-top: 0.95rem;
+    padding-top: 0.7rem;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 0.35rem;
@@ -722,7 +731,7 @@ body #system-bar {
 }
 
 .daily-optional-btn {
-    margin-top: 0.7rem;
+    margin-top: 0.55rem;
     min-height: 2.2rem;
     padding: 0 0.75rem;
     border: 1px solid var(--zen-line);
@@ -803,9 +812,15 @@ body #system-bar {
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
+    flex-wrap: wrap;
     border-top: 1px solid var(--zen-line);
     color: var(--zen-muted);
     font-size: 0.77rem;
+}
+
+.daily-study-days {
+    color: var(--zen-faint);
+    font-size: 0.72rem;
 }
 
 .daily-streak-line i {
@@ -1412,8 +1427,10 @@ body #system-bar {
     inset: 0;
     z-index: 60;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    /* safe centring: a tall dialog falls back to start alignment instead of
+       overflowing past the top, where scrolling cannot reach it. */
+    align-items: safe center;
+    justify-content: safe center;
     padding: 1rem;
     background: rgba(0, 0, 0, 0.45);
     backdrop-filter: blur(4px);
@@ -1431,7 +1448,10 @@ body #system-bar {
     border-radius: 1rem;
     width: min(100%, 640px);
     max-height: 90vh;
+    /* Without this a flex child refuses to shrink below its content height. */
+    min-height: 0;
     overflow-y: auto;
+    overscroll-behavior: contain;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
 }
 
@@ -1609,10 +1629,16 @@ body #system-bar {
 #studio-kanji-picker-overlay {
     background: rgba(0, 0, 0, 0.45);
     /* Column, not row: the blocks stack vertically, and a column lets them stretch
-       to a shared width instead of each shrinking to its own content. */
+       to a shared width instead of each shrinking to its own content.
+
+       "safe" centring matters: plain center centres the content box, and when the
+       content is taller than the viewport the overflow spills equally in both
+       directions. A scroll container cannot scroll above its own start, so the top
+       of the panel became unreachable - the header and close button were cut off
+       with no way to reach them. safe falls back to start alignment on overflow. */
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    align-items: safe center;
+    justify-content: safe center;
     padding: 2rem 1rem;
     overflow-y: auto;
     gap: 0;
@@ -2167,20 +2193,7 @@ body #system-bar {
     .daily-action-card {
         min-height: 0;
         padding: 1.2rem;
-    }
-
-    .daily-action-card > .daily-action-content {
-        grid-template-rows: 7rem auto auto auto 1fr auto;
-    }
-
-    .daily-action-illustration {
-        height: 7rem;
-    }
-
-    .daily-action-illustration > img {
-        width: auto !important;
-        height: auto !important;
-        max-height: 7rem !important;
+        grid-template-columns: 4.2rem minmax(0, 1fr);
     }
 
     .daily-action-illustration {

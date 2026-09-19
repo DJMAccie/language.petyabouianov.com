@@ -103,10 +103,6 @@
                             <dt>Member since</dt>
                             <dd id="account-created">—</dd>
                         </div>
-                        <div class="auth-detail-row" id="account-role-row" hidden>
-                            <dt>Role</dt>
-                            <dd id="account-role">—</dd>
-                        </div>
                     </dl>
 
                     <p id="account-notice" class="auth-message auth-message--notice" role="status" hidden></p>
@@ -249,13 +245,6 @@
                     ? new Date(created * 1000).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })
                     : '—';
 
-                var roleRow = document.getElementById('account-role-row');
-                if (account.is_admin) {
-                    roleRow.hidden = false;
-                    document.getElementById('account-role').textContent = 'Owner';
-                } else {
-                    roleRow.hidden = true;
-                }
             }
 
             function showGate() {

@@ -41,6 +41,14 @@ window.StudioQuiz = (() => {
         return Math.max(0, Number.parseInt(localStorage.getItem(`${prefix}_streak`) || '0', 10) || 0);
     }
 
+    // Distinct days with at least one finished session. Unlike the streak this is
+    // never reset, so it only ever grows.
+    function getStoredStudyDays() {
+        const config = window.StudioAPI?.getConfig?.() || {};
+        const prefix = config.streakKey || 'studio';
+        return Math.max(0, Number.parseInt(localStorage.getItem(`${prefix}_study_days`) || '0', 10) || 0);
+    }
+
     function checkStreak() {
         const config = window.StudioAPI?.getConfig?.() || {};
         const prefix = config.streakKey || 'studio';
@@ -65,6 +73,8 @@ window.StudioQuiz = (() => {
             streak = (diff === 1) ? streak + 1 : 1;
             localStorage.setItem(`${prefix}_streak`, streak);
             localStorage.setItem(`${prefix}_last_study_date`, today);
+            // First session of the day also counts as a day studied.
+            localStorage.setItem(`${prefix}_study_days`, getStoredStudyDays() + 1);
         }
         updateStreakUI(streak);
     }
@@ -589,6 +599,7 @@ window.StudioQuiz = (() => {
         toggleKanjiHint,
         updateKanjiHintView,
         getStoredStreak,
+        getStoredStudyDays,
         checkStreak,
         incrementStreak,
         updateStreakUI,

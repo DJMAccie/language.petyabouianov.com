@@ -41,6 +41,14 @@ backups/
 node_modules/
 /dist/
 
+# Impeccable design-review skills. Local tooling: the engine ships a ~14MB
+# platform binary, and none of it is deployed (the build whitelist covers only
+# the web files, so nothing here reaches dist/).
+.github/skills/
+.github/agents/
+.github/hooks/
+.impeccable/
+
 # iOS wrapper local build artifacts
 ios-app/node_modules/
 ios-app/.derivedData/

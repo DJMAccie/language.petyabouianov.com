@@ -174,6 +174,7 @@ window.StudioDaily = (() => {
         const reviewQueue = ensureDailyReviewQueue(state);
         const reviewReady = state.reviewCompleted ? 0 : reviewQueue.length;
         const streak = window.StudioQuiz?.getStoredStreak?.() || 0;
+        const studyDays = window.StudioQuiz?.getStoredStudyDays?.() || 0;
 
         // One step per batch in play; completed batches show a check mark and no
         // greyed-out placeholder is rendered for batches that do not exist yet.
@@ -239,6 +240,7 @@ window.StudioDaily = (() => {
                 </div>
                 <div class="daily-streak-line">
                     <span><i class="fas fa-fire" aria-hidden="true"></i> <strong>${streak} day streak</strong></span>
+                    <span class="daily-study-days">${studyDays.toLocaleString()} ${studyDays === 1 ? 'day' : 'days'} studied</span>
                     <span>${total.toLocaleString()} words total</span>
                 </div>
             </section>
