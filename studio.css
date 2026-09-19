@@ -1660,62 +1660,45 @@ body #system-bar {
 #studio-stats-overlay,
 #studio-kanji-picker-overlay {
     background: rgba(0, 0, 0, 0.45);
-    /* Column, not row: the blocks stack vertically, and a column lets them stretch
-       to a shared width instead of each shrinking to its own content.
-
-       "safe" centring matters: plain center centres the content box, and when the
-       content is taller than the viewport the overflow spills equally in both
-       directions. A scroll container cannot scroll above its own start, so the top
-       of the panel became unreachable - the header and close button were cut off
-       with no way to reach them. safe falls back to start alignment on overflow. */
+    backdrop-filter: blur(4px);
+    /* Column so the single panel child is the only thing laid out, and "safe"
+       centring so a panel taller than the viewport falls back to start alignment
+       instead of spilling past the top where a scroll container cannot reach it. */
     flex-direction: column;
     align-items: safe center;
     justify-content: safe center;
-    padding: 2rem 1rem;
+    padding: 1.25rem 1rem;
     overflow-y: auto;
     gap: 0;
 }
 
-#studio-stats-overlay > *,
-#studio-kanji-picker-overlay > * {
-    /* flex-basis must be auto or it wins over width and the block shrinks. */
+/* One panel, one surface. The overlay content is wrapped in a single
+   .studio-panel element rather than each sibling carrying its own background:
+   with a surface per block, the sections' own margins showed the dark backdrop
+   through as grey bands across the panel. */
+.studio-panel {
     flex: 0 0 auto;
     width: var(--studio-panel-roomy);
     max-width: var(--studio-panel-roomy);
-    /* The blocks are the card, so they are never capped below the viewport either. */
-    background: var(--zen-surface);
-    padding: 0 1.8rem;
+    max-height: 100%;
+    padding: 1.6rem 1.8rem;
     box-sizing: border-box;
-    /* The sections carry their own bottom margins; keep them inside the card so
-       adjacent blocks meet instead of showing a seam. */
-    margin: 0;
+    background: var(--zen-surface);
+    border-radius: 1rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+    overflow-y: auto;
+    overscroll-behavior: contain;
 }
 
-/* Nothing inside the card may spill past its padding. */
-#studio-stats-overlay table,
-#studio-kanji-picker-overlay table {
+/* Nothing inside the panel may spill past its padding. */
+.studio-panel table {
     width: 100%;
     table-layout: fixed;
 }
 
-#studio-stats-overlay table td,
-#studio-stats-overlay table th,
-#studio-kanji-picker-overlay table td,
-#studio-kanji-picker-overlay table th {
+.studio-panel table td,
+.studio-panel table th {
     overflow-wrap: anywhere;
-}
-
-#studio-stats-overlay > *:first-child,
-#studio-kanji-picker-overlay > *:first-child {
-    padding-top: 1.8rem;
-    border-radius: 1rem 1rem 0 0;
-}
-
-#studio-stats-overlay > *:last-child,
-#studio-kanji-picker-overlay > *:last-child {
-    padding-bottom: 1.8rem;
-    border-radius: 0 0 1rem 1rem;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
 }
 
 
@@ -1752,6 +1735,18 @@ body #system-bar {
     grid-template-columns: repeat(4, 1fr);
     gap: 0.75rem;
     margin-bottom: 1.5rem;
+}
+
+/* The goal card is the fifth tile, so it lands alone on a second row and left
+   three empty cells beside it. Spanning the row reads as the summary figure it is
+   rather than as a broken row. */
+.stats-grid > .stat-card:nth-child(5):last-child {
+    grid-column: 1 / -1;
+}
+
+/* The first section follows the grid, which already spaces itself below. */
+#studio-stats-overlay .stats-section:first-of-type {
+    padding-top: 0;
 }
 
 .stat-card {
@@ -1816,9 +1811,12 @@ body #system-bar {
 
 /* The stats panel is assembled from these blocks. The rules were missing from the
    stylesheet, so the sections ran together and the accent tones never applied. */
+/* A divider needs one interval, not two. The margin and the padding here used to
+   stack in front of every ruled section, which both padded the panel past the fold
+   and made the gaps look uneven next to the unruled ones. */
 .stats-section {
-    margin: 1.4rem 0 0;
-    padding-top: 1.2rem;
+    margin: 0;
+    padding-top: 1rem;
     border-top: 1px solid var(--zen-line);
 }
 

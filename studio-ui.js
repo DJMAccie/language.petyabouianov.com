@@ -318,6 +318,7 @@ window.StudioUI = (() => {
         `).join('');
 
         overlay.innerHTML = `
+            <div class="studio-panel">
             <div class="stats-header">
                 <span id="studio-stats-title" class="stats-header-title">Stats</span>
                 <button type="button" onclick="window.StudioUI.closeStats()" class="studio-overlay-close-btn" aria-label="Close statistics">
@@ -378,6 +379,7 @@ window.StudioUI = (() => {
                 <div class="stats-label">History</div>
                 ${sessionsHTML}
             </div>` : ''}
+            </div>
         `;
 
         openDialog(overlay, {
@@ -689,6 +691,7 @@ window.StudioUI = (() => {
         }).join('');
 
         overlay.innerHTML = `
+            <div class="studio-panel">
             <div class="kanji-picker-header">
                 <span id="studio-kanji-picker-title" class="kanji-picker-header-title">
                     <i class="fas fa-torii-gate"></i>
@@ -713,6 +716,7 @@ window.StudioUI = (() => {
                     <button type="button" id="kanji-picker-cancel" class="kanji-picker-cancel-btn">Cancel</button>
                     <button type="button" id="kanji-picker-start" class="kanji-picker-start-btn">Start Practice</button>
                 </div>
+            </div>
             </div>
         `;
 
