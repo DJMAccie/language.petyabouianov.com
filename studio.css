@@ -809,29 +809,10 @@ html {
 }
 
 .kana-page-title {
-    margin: 0 0 0.55rem;
+    margin: 0 0 1.4rem;
     font-size: clamp(1.6rem, 3.5vw, 2.05rem);
     font-weight: 760;
     letter-spacing: -0.02em;
-}
-
-.kana-page-lede {
-    margin: 0 0 1.5rem;
-    color: var(--zen-muted);
-    font-size: 1.02rem;
-    line-height: 1.6;
-}
-
-.kana-page-foot {
-    margin: 2rem 0 0;
-    color: var(--zen-muted);
-    font-size: 0.88rem;
-    line-height: 1.55;
-}
-
-.kana-page-foot a {
-    color: var(--zen-blue-text);
-    font-weight: 600;
 }
 
 .kana-stage {
@@ -953,12 +934,6 @@ html {
     letter-spacing: 0.04em;
     text-transform: uppercase;
     cursor: pointer;
-}
-
-.kana-options-note {
-    margin: 0.8rem 0 1rem;
-    color: var(--zen-muted);
-    font-size: 0.86rem;
 }
 
 .kana-group {

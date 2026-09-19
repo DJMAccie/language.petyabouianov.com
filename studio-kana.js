@@ -384,7 +384,6 @@ window.StudioKana = (() => {
 
             <details class="kana-options">
                 <summary>Options</summary>
-                <p class="kana-options-note">Grind a row until you stop making mistakes, then add another.</p>
                 ${optionsMarkup()}
                 <section class="kana-group">
                     <div class="kana-group-head"><h3>Misc</h3></div>
