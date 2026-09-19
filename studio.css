@@ -1567,7 +1567,9 @@ body #system-bar {
     min-height: 17.5rem;
     padding: 1.6rem;
     display: grid;
-    grid-template-columns: 9.5rem minmax(0, 1fr);
+    /* Text at the reading edge, artwork on the outer one, in a column a little wider
+       than the old left-hand slot so the drawing has room to be the card's subject. */
+    grid-template-columns: minmax(0, 1fr) clamp(9.5rem, 32%, 11.5rem);
     gap: 1.35rem;
     border: 1px solid var(--zen-line);
     border-radius: 1rem;
@@ -1589,7 +1591,8 @@ body #system-bar {
    empty. min-height:0 lets the grid row decide the height, which keeps the card
    exactly as tall as its text - the compactness is unchanged. */
 .daily-action-illustration {
-    width: 9.5rem;
+    width: 100%;
+    justify-self: end;
     height: 100%;
     min-height: 0;
     display: grid;
@@ -3464,7 +3467,7 @@ body.dark .settings-field input[type="date"] {
     }
 
     .daily-action-card {
-        grid-template-columns: 5rem minmax(0, 1fr);
+        grid-template-columns: minmax(0, 1fr) 5rem;
     }
 
     .daily-action-illustration {
@@ -3523,7 +3526,7 @@ body.dark .settings-field input[type="date"] {
     .daily-action-card {
         min-height: 0;
         padding: 1.2rem;
-        grid-template-columns: 4.2rem minmax(0, 1fr);
+        grid-template-columns: minmax(0, 1fr) 4.2rem;
     }
 
     .daily-action-illustration {

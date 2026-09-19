@@ -236,7 +236,6 @@ window.StudioDaily = (() => {
 
             <div class="daily-actions-grid">
                 <section class="daily-action-card daily-action-card--lesson">
-                    <div class="daily-action-illustration"><img src="assets/lesson-words.png" alt="" aria-hidden="true"></div>
                     <div class="daily-action-content">
                         <h2>Lessons</h2>
                         <div class="daily-action-number"><strong>${lessonValue}</strong><span>${lessonUnit}</span></div>
@@ -248,10 +247,10 @@ window.StudioDaily = (() => {
                         </div>
                         ${lessonExtra}
                     </div>
+                    <div class="daily-action-illustration"><img src="assets/lesson-words.png" alt="" aria-hidden="true"></div>
                 </section>
 
                 <section class="daily-action-card daily-action-card--review">
-                    <div class="daily-action-illustration"><img src="assets/review-words.png" alt="" aria-hidden="true"></div>
                     <div class="daily-action-content">
                         <h2>Reviews</h2>
                         <div class="daily-action-number"><strong>${reviewReady}</strong><span>words due</span></div>
@@ -262,6 +261,7 @@ window.StudioDaily = (() => {
                             <span class="daily-today-count">${reviewCount}</span>
                         </div>
                     </div>
+                    <div class="daily-action-illustration"><img src="assets/review-words.png" alt="" aria-hidden="true"></div>
                 </section>
             </div>
 
