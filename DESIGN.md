@@ -4,9 +4,11 @@ description: A calm, list-first Japanese vocabulary studio that lives in one win
 colors:
   studio-blue: "#2e6ee8"
   studio-blue-deep: "#1f56c4"
+  studio-blue-text: "#1f56c4"
   studio-blue-wash: "#eef4ff"
   lesson-green: "#27b95d"
   lesson-green-deep: "#148844"
+  lesson-green-text: "#127a3e"
   lesson-green-wash: "#edf9f1"
   streak-amber: "#e8a51e"
   streak-amber-deep: "#b87808"
@@ -133,13 +135,18 @@ comes from the content, and the interface stays out of its way.
 - **Studio Blue Deep** (#1f56c4): the fill colour when white text sits on top. White on Studio
   Blue measures about 4.0:1, under the 4.5:1 body-text floor, so filled buttons and the
   landing page's primary pill use the deep step instead.
+- **Studio Blue Text** (#1f56c4 light, #5b8ff0 dark): the foreground twin of the deep step,
+  for blue text and icons. Dark mode re-points it because the deep step is a *fill* there:
+  white sits on it, so it cannot lighten, and blue-deep text on the dark tints measured 2.50:1.
 - **Studio Blue Wash** (#eef4ff): tinted backgrounds for blue-tinted surfaces, dark mode swaps
   it for #141f33.
 
 ### Secondary
-- **Lesson Green** (#27b95d) with **Lesson Green Deep** (#148844): the Lessons card border and
-  heading, the lesson progress fill, and the meaning line on a lesson card. Green means
-  "learning", nothing else.
+- **Lesson Green** (#27b95d) with **Lesson Green Deep** (#148844): the Lessons card border,
+  the lesson progress fill, and the quota checks. Green means "learning", nothing else.
+- **Lesson Green Text** (#127a3e light, #27b95d dark): the foreground twin, for green text and
+  icons. The deep step is the fill behind the Start Practice button's white label, and on the
+  green-soft tint it measured 4.19:1 in light mode and 2.50:1 of its blue sibling in dark.
 - **Streak Amber** (#e8a51e) with **Streak Amber Deep** (#b87808): the streak flame and the
   lesson quota markers. Amber means "streak", nothing else.
 
@@ -156,9 +163,10 @@ comes from the content, and the interface stays out of its way.
   place a gradient is allowed.
 
 ### Named Rules
-**The One Loud Element Rule.** The progress spectrum (magenta through orange, green and blue)
-is the single place in the product where colour runs free. It is a signature, it stays, and
-nothing else may compete with it. Do not tone it down and do not multiply it.
+**The One Loud Element Rule.** The progress spectrum (crimson #c7003d through magenta #a126bd
+and indigo #4c54d9 to teal #148fb7 and green #23ad5b, left to right) is the single place in the
+product where colour runs free. It is a signature, it stays, and nothing else may compete with
+it. Do not tone it down and do not multiply it.
 
 **The Muted Floor Rule.** Muted Ink is the lightest value that may carry words. It measures
 5.6:1 on surface, 5.2:1 on canvas and 4.5:1 on the window chrome. Faint Ink is for decorative

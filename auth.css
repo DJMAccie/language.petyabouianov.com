@@ -93,12 +93,38 @@ body.dark .auth-window-bar {
     font-size: 0.875rem;
     font-weight: 600;
     color: var(--studio-text-muted);
+    text-decoration: none;
 }
 
+.auth-window-title:hover {
+    color: var(--studio-text);
+}
+
+.auth-window-title:focus-visible {
+    outline: 2px solid var(--studio-accent);
+    outline-offset: 3px;
+    border-radius: 0.2rem;
+}
+
+/* Decorative: the wordmark beside it carries the name. The deeper blue is what
+   clears 4.5:1 on the grey window bar; the lighter one measured 3.76:1. */
 .auth-title-mark {
     font-style: normal;
     font-size: 0.95rem;
-    color: var(--studio-accent);
+    color: var(--studio-accent-strong);
+}
+
+/* The guest's way out, directly under the submit button. */
+.auth-exit {
+    margin: 0.9rem 0 0;
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: var(--studio-text-muted);
+}
+
+.auth-exit a {
+    color: var(--studio-accent-strong);
+    font-weight: 600;
 }
 
 .auth-body {
@@ -186,7 +212,7 @@ body.dark .auth-tab.is-active {
 }
 
 .auth-field input::placeholder {
-    color: var(--studio-text-faint);
+    color: var(--studio-text-muted);
 }
 
 .auth-field input:focus {
@@ -202,7 +228,7 @@ body.dark .auth-tab.is-active {
 .auth-hint {
     margin: 0.35rem 0 0;
     font-size: 0.75rem;
-    color: var(--studio-text-faint);
+    color: var(--studio-text-muted);
 }
 
 .auth-password-row {
@@ -327,7 +353,7 @@ body.dark .auth-message--notice {
 
 .auth-secondary:hover {
     background: var(--studio-surface-subtle);
-    border-color: var(--studio-text-faint);
+    border-color: var(--studio-text-muted);
 }
 
 .auth-secondary:focus-visible {
@@ -374,7 +400,7 @@ body.dark .auth-message--notice {
     align-items: center;
     gap: 0.75rem;
     margin: 1.35rem 0 1rem;
-    color: var(--studio-text-faint);
+    color: var(--studio-text-muted);
     font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.08em;
@@ -409,7 +435,7 @@ body.dark .auth-message--notice {
 
 .auth-provider:hover {
     background: var(--studio-surface-subtle);
-    border-color: var(--studio-text-faint);
+    border-color: var(--studio-text-muted);
 }
 
 .auth-provider:focus-visible {
@@ -460,7 +486,7 @@ body.dark .auth-provider--apple:hover {
     margin: 0.7rem 0 0;
     font-size: 0.75rem;
     line-height: 1.45;
-    color: var(--studio-text-faint);
+    color: var(--studio-text-muted);
     text-align: center;
 }
 

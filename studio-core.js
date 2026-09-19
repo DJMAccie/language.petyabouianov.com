@@ -55,15 +55,9 @@ const StudioCore = window.StudioCore = (() => {
             // Append rather than clear: the slot carries the static About link in the
             // markup, which is the crawlable path to that page.
             leftSlot.className = 'studio-header-left flex items-center gap-1.5';
-            const statsBtn = document.createElement('button');
-            statsBtn.type = 'button';
-            statsBtn.className = 'header-icon-btn';
-            statsBtn.onclick = () => window.StudioUI.showStats();
-            statsBtn.title = 'Stats (S)';
-            statsBtn.setAttribute('aria-label', 'Open statistics');
-            statsBtn.innerHTML = '<i class="fas fa-chart-pie"></i>';
-            leftSlot.appendChild(statsBtn);
-
+            // No Progress button here: the daily screen carries a labelled one, both
+            // open the same panel, and the S shortcut still reaches it from anywhere.
+            // Dropping it also removes one of the four unlabelled 32px header icons.
             if (config.enableKanjiCorner) {
                 const kanjiBtn = document.createElement('button');
                 kanjiBtn.type = 'button';
@@ -115,8 +109,8 @@ const StudioCore = window.StudioCore = (() => {
 
         quoteBox.innerHTML = `
             <div class="quote-text font-japanese text-sm font-semibold">${window.StudioUI.escapeHTML(quote.jp)}</div>
-            ${quote.reading ? `<div class="quote-reading text-xs text-gray-400 mt-0.5">${window.StudioUI.escapeHTML(quote.reading)}</div>` : ''}
-            <div class="quote-meaning text-xs text-gray-400 mt-1">${window.StudioUI.escapeHTML(quote.en)}</div>
+            ${quote.reading ? `<div class="quote-reading text-xs mt-0.5">${window.StudioUI.escapeHTML(quote.reading)}</div>` : ''}
+            <div class="quote-meaning text-xs mt-1">${window.StudioUI.escapeHTML(quote.en)}</div>
         `;
     }
 

@@ -22,7 +22,7 @@
     <main class="auth-shell">
         <div class="mac-window auth-window">
             <header class="auth-window-bar">
-                <span class="auth-window-title"><i class="auth-title-mark">語</i> Nihongo Studio</span>
+                <a class="auth-window-title" href="/"><i class="auth-title-mark" aria-hidden="true">語</i> Nihongo Studio</a>
             </header>
 
             <div class="auth-body">
@@ -67,6 +67,15 @@
                         <p id="auth-notice" class="auth-message auth-message--notice" role="status" hidden></p>
 
                         <button type="submit" id="auth-submit" class="auth-submit">Sign in</button>
+
+                        <!-- The way out. The only other exit lived in the signed-in
+                             panel, so a visitor who did not want an account had
+                             nothing to press on the page promising they did not need
+                             one. -->
+                        <p class="auth-exit">
+                            No account needed to study.
+                            <a href="/nihongo-studio">Open the studio</a>.
+                        </p>
                     </form>
 
                     <div id="auth-providers" hidden>

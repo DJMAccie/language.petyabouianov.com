@@ -161,7 +161,10 @@ window.StudioDaily = (() => {
         const config = window.StudioAPI?.getConfig?.() || {};
         const goal = Number(config.vocabularyGoal) || 2000;
         const goalBase = Math.max(goal, 1);
-        const catalogPct = Math.min(100, (total / goalBase) * 100);
+        // The bar tracks what the learner has done, not what the library holds. The
+        // catalog figure never moves once the lists are in place, which made the
+        // loudest element on the screen the one number that could not change.
+        const learnedPct = Math.min(100, ((mastered + learning) / goalBase) * 100);
 
         const completedSet = new Set(state.completedLessonBatches);
         const targetBatchCount = state.lessonTarget / DAILY_LESSON_BATCH_SIZE;
@@ -186,11 +189,15 @@ window.StudioDaily = (() => {
             return `<div class="daily-quota-step ${stateClass}"><span>${icon}</span><small>5 words</small></div>`;
         }).join('');
 
-        const lessonButtonLabel = lessonsDone
-            ? 'Today’s lessons done'
-            : (state.lessonBatches[nextBatchIndex]?.length ? 'Continue 5 words' : 'Learn 5 words');
+        // One primary action, always enabled. The card used to render a disabled
+        // "Today's lessons done" beside an enabled "Add 5 more words", so at the
+        // moment the day was finished the biggest control on the screen was the one
+        // that could not be pressed and nothing said whether the day was over.
+        const lessonButton = lessonsDone
+            ? `<p class="daily-action-done"><i class="fas fa-check" aria-hidden="true"></i> Today's five-word sets are done</p>`
+            : `<button type="button" class="daily-primary-btn daily-primary-btn--lesson" onclick="window.StudioDaily.startDailyLesson()">${state.lessonBatches[nextBatchIndex]?.length ? 'Continue 5 words' : 'Learn 5 words'}</button>`;
         const optionalAction = fresh > 0
-            ? `<button type="button" class="daily-optional-btn" onclick="window.StudioDaily.addFiveMoreWords()"><i class="fas fa-plus" aria-hidden="true"></i> Add 5 more words</button>`
+            ? `<button type="button" class="${lessonsDone ? 'daily-primary-btn daily-primary-btn--lesson' : 'daily-optional-btn'}" onclick="window.StudioDaily.addFiveMoreWords()"><i class="fas fa-plus" aria-hidden="true"></i> Add 5 more words</button>`
             : '';
 
         panel.innerHTML = `
@@ -208,8 +215,8 @@ window.StudioDaily = (() => {
                     <div class="daily-action-illustration"><img src="assets/lesson-words.png" alt="" aria-hidden="true"></div>
                     <div class="daily-action-content">
                         <h2>Lessons</h2>
-                        <div class="daily-action-number"><strong>${lessonsDone ? 0 : (state.lessonBatches[nextBatchIndex]?.length || DAILY_LESSON_BATCH_SIZE)}</strong><span>new words</span></div>
-                        <button type="button" class="daily-primary-btn daily-primary-btn--lesson" onclick="window.StudioDaily.startDailyLesson()" ${lessonsDone || fresh === 0 ? 'disabled' : ''}>${lessonButtonLabel}</button>
+                        <div class="daily-action-number"><strong>${lessonsDone ? fresh.toLocaleString() : (state.lessonBatches[nextBatchIndex]?.length || DAILY_LESSON_BATCH_SIZE)}</strong><span>${lessonsDone ? 'still new in the library' : 'new words'}</span></div>
+                        ${lessonButton}
                         <div class="daily-quota" aria-label="Daily lesson quota">${quotaSteps}</div>
                         ${optionalAction}
                     </div>
@@ -228,10 +235,10 @@ window.StudioDaily = (() => {
             <section class="daily-progress-section" aria-label="Progress toward two thousand words">
                 <div class="daily-section-label">Your progress</div>
                 <div class="daily-progress-track" aria-hidden="true">
-                    <span class="is-rainbow" style="width:${catalogPct}%"></span>
+                    <span class="is-rainbow" style="width:${learnedPct}%"></span>
                 </div>
                 <div class="daily-progress-values">
-                    <div class="is-mastered"><strong>${mastered.toLocaleString()}</strong><span>steady</span></div>
+                    <div class="is-mastered"><strong>${mastered.toLocaleString()}</strong><span>mastered</span></div>
                     <div class="is-learning"><strong>${learning.toLocaleString()}</strong><span>learning</span></div>
                     <div class="is-new"><strong>${fresh.toLocaleString()}</strong><span>new</span></div>
                     <div class="is-goal"><strong>${goal.toLocaleString()}</strong><span>word goal</span></div>

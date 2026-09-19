@@ -186,7 +186,10 @@
                         <h1 id="library-heading">Lists</h1>
                     </div>
                     <div class="library-toolbar-actions">
-                        <button type="button" onclick="openCreateNew()" class="library-action-btn">
+                        <!-- Starts hidden: a guest never sees a control they cannot use
+                             (syncCreateControl reveals it once a session is known). -->
+                        <button type="button" onclick="openCreateNew()" class="library-action-btn hidden"
+                            aria-hidden="true" tabindex="-1">
                             <i class="fas fa-plus" aria-hidden="true"></i> New list
                         </button>
                         <button type="button" onclick="startMixSession()" class="library-action-btn library-action-btn--quiet">
@@ -225,7 +228,7 @@
                 <div
                     data-studio-footer
                     class="bg-gray-50 border-t border-gray-200 py-2 px-4 shrink-0 flex justify-between items-center select-none relative h-10">
-                    <div class="flex items-center gap-2 text-[11px] text-gray-400 font-medium z-10 relative">
+                    <div class="flex items-center gap-2 text-[11px] studio-muted font-medium z-10 relative">
                         <span id="total-lists-count">0 lists</span>
                         <span>•</span>
                         <span id="total-words-count">0 words</span>
@@ -237,7 +240,7 @@
                         <!-- JS injects quote here -->
                     </div>
 
-                    <div class="flex items-center gap-1.5 text-[11px] text-gray-400 font-medium hover:text-gray-600 transition-colors cursor-default z-10 relative"
+                    <div class="flex items-center gap-1.5 text-[11px] studio-muted font-medium hover:text-gray-600 transition-colors cursor-default z-10 relative"
                         title="Your current study streak">
                         <i id="streak-icon" class="fas fa-fire text-gray-300 transition-colors"></i>
                         <span id="streak-text">0 Day Streak</span>
@@ -249,7 +252,7 @@
             <div id="setup-section" class="hidden absolute inset-0 bg-white z-20 flex flex-col animate-fade-in">
                 <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex justify-between items-center shrink-0">
                     <h2 class="font-semibold text-gray-700">Edit Collection</h2>
-                    <button type="button" onclick="showSection('select')" class="text-gray-400 hover:text-gray-600 transition" aria-label="Close editor"><i
+                    <button type="button" onclick="showSection('select')" class="studio-muted hover:text-gray-600 transition" aria-label="Close editor"><i
                             class="fas fa-times text-lg"></i></button>
                 </div>
                 <div class="flex-1 overflow-y-auto p-6 w-full max-w-3xl mx-auto">
@@ -269,7 +272,7 @@
                         </div>
                         <div>
                             <label class="block text-xs font-bold text-gray-500 uppercase mb-2">Words <span
-                                    class="text-gray-400 font-normal normal-case ml-1">(Word, Meaning. Optional: | kana | romaji | example JP | example EN)</span></label>
+                                    class="studio-muted font-normal normal-case ml-1">(Word, Meaning. Optional: | kana | romaji | example JP | example EN)</span></label>
                             <textarea id="word-input" spellcheck="false"
                                 class="w-full h-64 px-4 py-3 bg-gray-50 border border-gray-300 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition resize-none font-mono text-sm shadow-sm leading-relaxed"></textarea>
                         </div>
@@ -347,7 +350,7 @@
                 style="padding-bottom: max(2rem, env(safe-area-inset-bottom));">
                 <div class="w-full max-w-3xl text-center">
                     <div
-                        class="flex justify-between items-center text-xs font-bold tracking-wider text-gray-400 mb-4 uppercase">
+                        class="flex justify-between items-center text-xs font-bold tracking-wider studio-muted mb-4 uppercase">
                         <span id="quiz-mode-label">Translating</span>
                         <span id="current-count-text">0 / 0</span>
                     </div>
@@ -391,14 +394,14 @@
                                 class="relative w-20 h-20 rounded-full bg-gray-100 hover:bg-blue-50 text-blue-500 text-3xl shadow-md border border-gray-200 transition-all active:scale-95 flex items-center justify-center animate-fade-in">
                                 <i id="mic-icon" class="fas fa-microphone"></i>
                             </button>
-                            <p id="speech-status" class="text-sm text-gray-400 font-mono h-6">Click mic to speak</p>
+                            <p id="speech-status" class="text-sm studio-muted font-mono h-6">Click mic to speak</p>
                         </div>
                     </div>
 
                     <div id="feedback" class="h-10 mt-6 md:mt-8 text-lg font-semibold transition-opacity opacity-0" aria-live="polite">
                     </div>
                     <button type="button" onclick="quitCurrentSession()"
-                        class="mt-8 md:mt-12 text-gray-400 hover:text-red-500 text-sm font-medium transition flex items-center gap-2 mx-auto"><i
+                        class="mt-8 md:mt-12 studio-muted hover:text-red-500 text-sm font-medium transition flex items-center gap-2 mx-auto"><i
                             class="fas fa-stop-circle"></i> Quit Session</button>
                 </div>
             </div>
@@ -422,7 +425,7 @@
             <div class="studio-modal-header">
                 <span id="dictionary-modal-title" class="studio-modal-title"><i
                         class="fas fa-book text-blue-500"></i>Dictionary</span>
-                <button type="button" onclick="closeDictionary()" class="text-gray-400 hover:text-gray-600 transition studio-overlay-close-btn" aria-label="Close dictionary"><i
+                <button type="button" onclick="closeDictionary()" class="studio-muted hover:text-gray-600 transition studio-overlay-close-btn" aria-label="Close dictionary"><i
                         class="fas fa-times"></i></button>
             </div>
             <div class="studio-modal-body studio-modal-body--padded">
@@ -436,7 +439,7 @@
                     </button>
                 </div>
                 <div id="dict-results" class="min-h-[200px] max-h-[400px] overflow-y-auto" aria-live="polite">
-                    <p class="text-gray-400 text-center py-8">Enter a word to search</p>
+                    <p class="studio-muted text-center py-8">Enter a word to search</p>
                 </div>
             </div>
         </div>
@@ -449,11 +452,11 @@
             <div class="studio-modal-header">
                 <span id="grammar-corner-title" class="studio-modal-title"><i
                         class="fas fa-book-open text-blue-500"></i>Grammar</span>
-                <button type="button" onclick="closeGrammarCorner()" class="text-gray-400 hover:text-gray-600 transition studio-overlay-close-btn" aria-label="Close grammar notes"><i
+                <button type="button" onclick="closeGrammarCorner()" class="studio-muted hover:text-gray-600 transition studio-overlay-close-btn" aria-label="Close grammar notes"><i
                         class="fas fa-times"></i></button>
             </div>
             <div id="grammar-corner-results" class="studio-modal-body flex-1 overflow-y-auto p-4 md:p-6" aria-live="polite">
-                <p class="text-gray-400 text-center py-8">Loading grammar...</p>
+                <p class="studio-muted text-center py-8">Loading grammar...</p>
             </div>
         </div>
     </div>
@@ -468,7 +471,7 @@
             <div class="studio-modal-header">
                 <span id="studio-settings-title" class="studio-modal-title"><i
                         class="fas fa-sliders text-blue-500"></i>Settings</span>
-                <button type="button" onclick="closeStudioSettings()" class="text-gray-400 hover:text-gray-600 transition studio-overlay-close-btn" aria-label="Close settings"><i
+                <button type="button" onclick="closeStudioSettings()" class="studio-muted hover:text-gray-600 transition studio-overlay-close-btn" aria-label="Close settings"><i
                         class="fas fa-times"></i></button>
             </div>
             <div class="studio-modal-body studio-modal-body--padded">

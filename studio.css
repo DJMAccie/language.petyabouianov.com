@@ -9,6 +9,11 @@
     --zen-blue-soft: #eef4ff;
     --zen-amber: #e8a51e;
     --zen-amber-dark: #b87808;
+    /* Foreground accents. The deep steps below are fills (white sits on them), so
+       text that has to survive the theme switch gets its own pair: green-dark on
+       the green-soft tint measured 4.19:1 even in light mode. */
+    --zen-green-text: #127a3e;
+    --zen-blue-text: var(--zen-blue-dark);
     --zen-ink: #171b22;
     /* 5.6:1 on the surface, 5.2:1 on the canvas, 4.5:1 on the grey window
        chrome. The previous #6d7685 cleared AA on white and failed it on every
@@ -50,6 +55,8 @@ html.dark {
     --zen-chrome-lo: #101215;
     --zen-green-soft: #14271c;
     --zen-blue-soft: #141f33;
+    --zen-green-text: #27b95d;
+    --zen-blue-text: #5b8ff0;
     --zen-amber-soft: #2a2113;
     --zen-green-border: #2c4a37;
     --zen-blue-border: #2b3d63;
@@ -1192,11 +1199,11 @@ body #system-bar {
 }
 
 .daily-action-card--lesson h2 {
-    color: var(--zen-green-dark);
+    color: var(--zen-green-text);
 }
 
 .daily-action-card--review h2 {
-    color: var(--zen-blue-dark);
+    color: var(--zen-blue-text);
 }
 
 .daily-action-number {
@@ -1243,7 +1250,7 @@ body #system-bar {
 
 .daily-primary-btn--lesson,
 .lesson-primary-btn {
-    --study-action-accent: var(--zen-green-dark);
+    --study-action-accent: var(--zen-green-text);
 }
 
 .daily-primary-btn--review {
@@ -1328,7 +1335,7 @@ body #system-bar {
 .daily-quota-step.is-current,
 .daily-quota-step.is-ready,
 .daily-quota-step.is-complete {
-    color: var(--zen-green-dark);
+    color: var(--zen-green-text);
 }
 
 .daily-quota-step.is-current > span {
@@ -1346,6 +1353,19 @@ body #system-bar {
     opacity: 0.55;
 }
 
+/* The Lessons card's finished state. It used to be a disabled primary button, which
+   put the biggest control on the screen out of reach at the moment the day was
+   done; it is a statement now, and the enabled primary beside it is "Add 5 more". */
+.daily-action-done {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    color: var(--zen-green-text);
+    font-size: 0.86rem;
+    font-weight: 650;
+}
+
 .daily-optional-btn {
     margin-top: 0.55rem;
     min-height: 2.2rem;
@@ -1354,7 +1374,7 @@ body #system-bar {
     border-bottom: 3px solid var(--zen-line); /* impeccable-disable-line border-accent-on-rounded: key-cap ledge, deliberate */
     border-radius: 0.5rem;
     background: var(--zen-surface);
-    color: var(--zen-green-dark);
+    color: var(--zen-green-text);
     font: inherit;
     font-size: 0.72rem;
     font-weight: 720;
@@ -1417,7 +1437,7 @@ body #system-bar {
     font-size: 0.74rem;
 }
 
-.daily-progress-values .is-mastered strong { color: var(--zen-green-dark); }
+.daily-progress-values .is-mastered strong { color: var(--zen-green-text); }
 .daily-progress-values .is-learning strong { color: var(--zen-amber-dark); }
 .daily-progress-values .is-new strong { color: var(--zen-blue); }
 .daily-progress-values .is-goal strong { color: var(--zen-muted); }
@@ -1506,9 +1526,23 @@ body #system-bar {
     white-space: nowrap;
 }
 
+/* Secondary text and glyphs. This is the class Tailwind's gray-400 was standing in
+   for: #9ca3af measures 2.54:1 on white, Muted Ink measures 5.6:1 there and 5.2:1 on
+   the canvas. The CDN's utilities load after this file, so a lone colour declaration
+   loses to them, which is exactly how the failing greys got in. */
+.studio-muted {
+    color: var(--zen-muted);
+}
+
 .studio-list-badge--personal {
     border-color: rgba(46, 110, 232, 0.35);
     color: var(--zen-blue);
+}
+
+/* The recommendation badge on the three lists the copy names. Neutral rather than
+   green, because green carries learning state in this system and this is guidance. */
+.studio-list-badge--start {
+    color: var(--zen-ink);
 }
 
 /* The blue row highlight on hover. This used to come from Tailwind utilities on
@@ -1578,7 +1612,7 @@ body #system-bar {
 
 .library-action-btn {
     border-color: #bdd0f4;
-    color: var(--zen-blue-dark);
+    color: var(--zen-blue-text);
 }
 
 .library-action-btn--quiet {
@@ -1810,7 +1844,7 @@ body #system-bar {
 
 .lesson-word-main p {
     margin: 0.55rem 0 0;
-    color: var(--zen-green-dark);
+    color: var(--zen-green-text);
     font-size: clamp(1.45rem, 2.4vw, 2rem);
     font-weight: 560;
 }
@@ -1878,7 +1912,7 @@ body #system-bar {
 }
 
 .lesson-memory-block h2 {
-    color: var(--zen-green-dark);
+    color: var(--zen-green-text);
 }
 
 .lesson-detail-block p {
@@ -1947,7 +1981,7 @@ body #system-bar {
 
 .lesson-dot.is-seen {
     border-color: #9fd7b2;
-    color: var(--zen-green-dark);
+    color: var(--zen-green-text);
 }
 
 .lesson-dot.is-active {
@@ -1994,7 +2028,7 @@ body #system-bar {
 .choice-btn.correct {
     border-color: var(--zen-green);
     background: var(--zen-green-soft);
-    color: var(--zen-green-dark);
+    color: var(--zen-green-text);
 }
 
 .choice-btn.wrong {
@@ -2053,7 +2087,7 @@ body #system-bar {
 }
 
 .results-wrong-item .correct-answer {
-    color: var(--zen-green-dark);
+    color: var(--zen-green-text);
     font-weight: 600;
 }
 
@@ -2497,44 +2531,39 @@ body.dark .settings-field input[type="date"] {
     background: var(--zen-surface-alt);
 }
 
-.stats-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0.75rem;
+/* Figures as a rule-separated list, the same recipe as the status line: labels in
+   Muted Ink, numbers in Ink with tabular figures, one rule between rows. They were
+   five tiles of large colour-coded numbers over small labels, which this system
+   refuses, and the tiles made the fifth figure sit alone on its own row. */
+.stats-figures {
     margin-bottom: 1.5rem;
+    border-top: 1px solid var(--zen-line);
 }
 
-/* The goal card is the fifth tile, so it lands alone on a second row and left
-   three empty cells beside it. Spanning the row reads as the summary figure it is
-   rather than as a broken row. */
-.stats-grid > .stat-card:nth-child(5):last-child {
-    grid-column: 1 / -1;
+.stats-figure {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.62rem 0;
+    border-bottom: 1px solid var(--zen-line);
 }
 
-/* The first section follows the grid, which already spaces itself below. */
+.stats-figure span {
+    color: var(--zen-muted);
+    font-size: 0.82rem;
+}
+
+.stats-figure strong {
+    color: var(--zen-ink);
+    font-size: 1.05rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+
+/* The first section follows the figure list, which already spaces itself below. */
 #studio-stats-overlay .stats-section:first-of-type {
     padding-top: 0;
-}
-
-.stat-card {
-    padding: 0.9rem;
-    border-radius: 0.75rem;
-    background: var(--zen-surface-alt);
-    text-align: center;
-}
-
-.stat-value {
-    font-size: 1.65rem;
-    font-weight: 800;
-}
-
-.stat-label {
-    font-size: 0.72rem;
-    font-weight: 650;
-    color: var(--zen-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-top: 0.2rem;
 }
 
 .mastery-bar {
@@ -2616,10 +2645,6 @@ body.dark .settings-field input[type="date"] {
 }
 
 /* Accent tones used by the stat values. */
-.stat-value.tone-accent { color: var(--zen-blue); }
-.stat-value.tone-success { color: var(--zen-green-dark); }
-.stat-value.tone-warning { color: #d78d00; }
-
 /* Mastery bar: mastered then learning, on a neutral track. */
 .mastery-bar {
     display: flex;
@@ -2687,7 +2712,7 @@ body.dark .settings-field input[type="date"] {
 }
 
 /* COLOR TONES */
-.tone-success { color: var(--zen-green-dark); }
+.tone-success { color: var(--zen-green-text); }
 .tone-warning { color: var(--zen-amber-dark); }
 .tone-danger { color: #e11d48; }
 .tone-accent { color: var(--zen-blue); }

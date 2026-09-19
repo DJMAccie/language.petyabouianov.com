@@ -9,6 +9,12 @@ window.StudioLibrary = (() => {
     let editingScope = 'personal';
     let isSavingList = false;
 
+    // The three lists the copy tells a newcomer to open, in the order it names
+    // them. They lead a library nobody has studied yet, and they carry the badge
+    // that makes the curation visible. The library file already stores Starter Kit
+    // first; the table's alphabetical tiebreak was the thing hiding it.
+    const START_HERE_LISTS = ['Starter Kit', 'Travel Essentials', 'Restaurant & Bar'];
+
     function getUniqueStudyWords(lists = null) {
         const targetLists = lists || window._studio?.getLoadedLists?.() || {};
         const words = [];
@@ -432,10 +438,28 @@ window.StudioLibrary = (() => {
 
         const kanjiNameSet = new Set(getKanjiListNames(lists));
         const hideKanjiRows = !!config.hideKanjiListsFromMainTable;
+
+        // Curated order for a first-run library. With no timestamps to sort by, the
+        // comparator fell through to the alphabet and opened on Action Verbs and
+        // Aizuchi, which buries the one thing this product promises: the useful
+        // lists, already made. Any activity at all means the learner's own recency
+        // is the better order, so this applies only to a library nobody has touched.
+        const hasActivity = Object.keys(lists).some(name => getTs(name) > 0);
+        const startHereRank = (name) => {
+            const rank = START_HERE_LISTS.indexOf(name);
+            return rank === -1 ? START_HERE_LISTS.length : rank;
+        };
+
         const sortedKeys = Object.keys(lists)
             .filter(name => !(hideKanjiRows && kanjiNameSet.has(name)))
             .sort((a, b) => {
-                if (!tableStatusSortDirection) return compareByRecent(a, b);
+                if (!tableStatusSortDirection) {
+                    if (!hasActivity) {
+                        const curatedDiff = startHereRank(a) - startHereRank(b);
+                        if (curatedDiff !== 0) return curatedDiff;
+                    }
+                    return compareByRecent(a, b);
+                }
 
                 const aScore = getModeProgress(currentMode, getScoreSet(scores, a)).value || 0;
                 const bScore = getModeProgress(currentMode, getScoreSet(scores, b)).value || 0;
@@ -489,7 +513,7 @@ window.StudioLibrary = (() => {
 
             rows.push(`
             <tr class="border-b border-gray-100 transition cursor-default group">
-                <td class="p-3 pl-6 font-medium text-gray-800"><i class="fas fa-list-ul mr-3 text-gray-400 group-hover:text-white"></i>${window.StudioUI.escapeHTML(name)}${isShared ? '' : '<span class="studio-list-badge studio-list-badge--personal" title="Your own list">Personal</span>'}</td>
+                <td class="p-3 pl-6 font-medium text-gray-800"><i class="fas fa-list-ul mr-3 studio-muted group-hover:text-white"></i>${window.StudioUI.escapeHTML(name)}${START_HERE_LISTS.includes(name) ? '<span class="studio-list-badge studio-list-badge--start" title="A good place to start">Start here</span>' : ''}${isShared ? '' : '<span class="studio-list-badge studio-list-badge--personal" title="Your own list">Personal</span>'}</td>
                 <td class="p-3 text-gray-500">${words.length} words</td>
                 <td class="p-3 hidden md:table-cell text-gray-500">${activeScore}%</td>
                 <td class="p-3 hidden md:table-cell"><div class="flex items-center gap-2"><div class="w-2.5 h-2.5 rounded-full ${dotColor} shadow-sm"></div><span class="text-gray-500">${statusText}</span></div></td>
@@ -546,6 +570,14 @@ window.StudioLibrary = (() => {
     }
 
     function openCreateNew() {
+        // The create control is hidden for a guest, but the editor is also reachable
+        // through window.createList, so the requirement is stated here rather than
+        // after the work is written. A guest used to compose a whole list and lose it
+        // to a 401 at the last click.
+        if (!window.StudioSession?.isSignedIn?.()) {
+            window.StudioUI?.showToast('Sign in to build your own list. The account icon is in the header.', 'info');
+            return;
+        }
         editingOriginalName = null;
         editingScope = 'personal';
         const nameInput = document.getElementById('list-name-input');
@@ -633,7 +665,15 @@ window.StudioLibrary = (() => {
             const where = chosenScope === 'shared' ? 'the shared library' : 'your lists';
             window.StudioUI?.showToast(`Saved "${name}" to ${where}.`, 'success');
         } catch (e) {
-            window.StudioUI?.showToast(e.message || "Failed to save list", 'error');
+            // Name the recovery, not just the refusal: "Please sign in to continue."
+            // was the whole message a guest got after writing a list.
+            const needsAccount = !window.StudioSession?.isSignedIn?.();
+            window.StudioUI?.showToast(
+                needsAccount
+                    ? 'Sign in to save your list. The account icon is in the header.'
+                    : (e.message || "Failed to save list"),
+                needsAccount ? 'info' : 'error'
+            );
         } finally {
             isSavingList = false;
             if (saveButton) {

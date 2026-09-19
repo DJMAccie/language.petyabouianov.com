@@ -286,7 +286,6 @@ window.StudioUI = (() => {
         const total = allWords.length || 1;
         const masteredPct = (totalMastered / total) * 100;
         const learningPct = (totalLearning / total) * 100;
-        const accuracyTone = avgAccuracy >= 70 ? 'tone-success' : 'tone-warning';
         const vocabularyGoal = Number(config.vocabularyGoal) || 0;
         const goalPct = vocabularyGoal > 0 ? Math.min(100, Math.round((totalMastered / vocabularyGoal) * 100)) : 0;
 
@@ -320,34 +319,22 @@ window.StudioUI = (() => {
         overlay.innerHTML = `
             <div class="studio-panel">
             <div class="stats-header">
-                <span id="studio-stats-title" class="stats-header-title">Stats</span>
-                <button type="button" onclick="window.StudioUI.closeStats()" class="studio-overlay-close-btn" aria-label="Close statistics">
+                <span id="studio-stats-title" class="stats-header-title">Progress</span>
+                <button type="button" onclick="window.StudioUI.closeStats()" class="studio-overlay-close-btn" aria-label="Close progress">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
 
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-value tone-accent">${allWords.length}</div>
-                    <div class="stat-label">Words</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value tone-success">${totalMastered}</div>
-                    <div class="stat-label">Mastered</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value tone-warning">${totalLearning}</div>
-                    <div class="stat-label">Learning</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value ${accuracyTone}">${avgAccuracy}%</div>
-                    <div class="stat-label">Accuracy</div>
-                </div>
-                ${vocabularyGoal > 0 ? `
-                <div class="stat-card">
-                    <div class="stat-value tone-accent">${goalPct}%</div>
-                    <div class="stat-label">2K Goal</div>
-                </div>` : ''}
+            <!-- Figures as a rule-separated list. These were five tiles of large
+                 colour-coded numbers over small labels, which the design system
+                 refuses: numbers are data, so they read in Ink with tabular figures
+                 and the same formatting the status line uses. -->
+            <div class="stats-figures">
+                <div class="stats-figure"><span>Words in the library</span><strong>${allWords.length.toLocaleString()}</strong></div>
+                <div class="stats-figure"><span>Mastered</span><strong>${totalMastered.toLocaleString()}</strong></div>
+                <div class="stats-figure"><span>Learning</span><strong>${totalLearning.toLocaleString()}</strong></div>
+                <div class="stats-figure"><span>Accuracy</span><strong>${avgAccuracy}%</strong></div>
+                ${vocabularyGoal > 0 ? `<div class="stats-figure"><span>Of the ${vocabularyGoal.toLocaleString()} word goal</span><strong>${goalPct}%</strong></div>` : ''}
             </div>
 
             <div class="stats-section">
@@ -355,7 +342,7 @@ window.StudioUI = (() => {
                     <div class="bar-mastered" style="width:${masteredPct}%"></div>
                     <div class="bar-learning" style="width:${learningPct}%"></div>
                 </div>
-                <div class="stats-summary-note">${totalNew} still new to the system.</div>
+                <div class="stats-summary-note">${totalNew.toLocaleString()} still new to the system.</div>
             </div>
 
             ${recentScores.length > 1 ? `<div class="stats-section"><div class="stats-label">Recent</div>${sparklineHTML}</div>` : ''}
@@ -474,7 +461,7 @@ window.StudioUI = (() => {
 
         results.innerHTML = `
             <div class="mb-5 rounded-xl border border-gray-200 bg-gray-50 px-4 py-4">
-                <div class="text-xs font-semibold tracking-[0.12em] text-gray-400">Add Grammar Entry</div>
+                <div class="text-xs font-semibold tracking-[0.12em] studio-muted">Add Grammar Entry</div>
                 <form class="mt-3 grid gap-3 md:grid-cols-2" onsubmit="window.StudioUI.saveGrammarEntry(event)">
                     <div class="md:col-span-1">
                         <label for="grammar-point-input" class="mb-1 block text-[11px] font-semibold tracking-[0.06em] text-gray-500">Grammar Point</label>
@@ -501,9 +488,9 @@ window.StudioUI = (() => {
             </div>
             <div class="mb-4 flex items-end justify-between gap-4 border-b border-gray-200 pb-3">
                 <div>
-                    <div class="text-xs font-semibold tracking-[0.12em] text-gray-400">Grammar Points</div>
+                    <div class="text-xs font-semibold tracking-[0.12em] studio-muted">Grammar Points</div>
                 </div>
-                <div class="text-xs text-gray-400">${rows.length} entries</div>
+                <div class="text-xs studio-muted">${rows.length} entries</div>
             </div>
             <div class="border-t border-gray-200">
                 ${rows.length ? rows.map((item) => {
@@ -514,7 +501,7 @@ window.StudioUI = (() => {
             return `
                         <div class="grid gap-1 border-b border-gray-200 px-1 py-3 md:grid-cols-[minmax(0,220px)_minmax(0,1fr)] md:gap-6 md:px-0 md:items-start">
                             <div class="min-w-0">
-                                <div class="text-[11px] font-semibold tracking-[0.08em] text-gray-400">${escapeHTML(grammarPoint)}</div>
+                                <div class="text-[11px] font-semibold tracking-[0.08em] studio-muted">${escapeHTML(grammarPoint)}</div>
                             </div>
                             <div class="min-w-0">
                                 <div class="text-sm font-medium text-gray-700 whitespace-pre-line leading-relaxed break-words">${escapeHTML(jp)}</div>
@@ -522,7 +509,7 @@ window.StudioUI = (() => {
                             </div>
                         </div>
                     `;
-        }).join('') : '<p class="py-8 text-center text-gray-400">No grammar points found yet.</p>'}
+        }).join('') : '<p class="py-8 text-center studio-muted">No grammar points found yet.</p>'}
             </div>
         `;
     }
@@ -667,7 +654,7 @@ window.StudioUI = (() => {
         const results = document.getElementById('dict-results');
         if (!results) return;
 
-        results.innerHTML = '<p class="text-gray-400 text-center py-8"><i class="fas fa-spinner fa-spin mr-2"></i>Searching...</p>';
+        results.innerHTML = '<p class="studio-muted text-center py-8"><i class="fas fa-spinner fa-spin mr-2"></i>Searching...</p>';
         try {
             const data = await window.StudioAPI.lookupWord(word);
             if (data.error) {
@@ -675,7 +662,7 @@ window.StudioUI = (() => {
                 return;
             }
             if (!data.data || data.data.length === 0) {
-                results.innerHTML = '<p class="text-gray-400 text-center py-8">No results found</p>';
+                results.innerHTML = '<p class="studio-muted text-center py-8">No results found</p>';
                 return;
             }
             const entry = data.data[0];

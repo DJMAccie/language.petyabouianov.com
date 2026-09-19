@@ -158,7 +158,7 @@ Open product decisions, recorded rather than invented:
 5. **No setup before learning (the anti-Anki rule).** Decks, configuration, and accounts
    are never prerequisites; anything that inserts a setup step before the first five words
    is a regression against the audience the product is for.
-5. **One curator, maintainable by hand.** Content and code must stay editable by a single
+6. **One curator, maintainable by hand.** Content and code must stay editable by a single
    person on shared hosting, without new infrastructure or a team to operate it.
 
 ## Accessibility & Inclusion
