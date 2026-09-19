@@ -493,7 +493,12 @@ body [data-studio-footer] {
     bottom: calc((100% - var(--studio-nav-height)) / 2);
     left: 50%;
     transform: translateX(-50%);
-    width: min(100%, var(--studio-column));
+    /* Subtracts the gutter on each side so it matches where the content actually
+       begins and ends. The shared column carries the page gutter INSIDE its
+       width, so matching the column's padding box instead leaves the line
+       overhanging the headings and cards by one gutter at each end. */
+    width: calc(100% - (var(--studio-column-gutter) * 2));
+    max-width: calc(var(--studio-column) - (var(--studio-column-gutter) * 2));
     height: 1px;
     background: var(--zen-line);
     pointer-events: none;
