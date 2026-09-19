@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Kana Quiz: Practise Hiragana and Katakana | Nihongo Studio</title>
+    <meta name="description" content="Drill hiragana and katakana one kana at a time. Type the romaji, and the ones you get wrong come back until you stop missing them. Free, no account needed.">
+    <link rel="canonical" href="https://language.petyabouianov.com/kana">
+    <meta property="og:title" content="Kana Quiz: Practise Hiragana and Katakana | Nihongo Studio">
+    <meta property="og:description" content="Drill hiragana and katakana one kana at a time. Type the romaji, and the ones you get wrong come back until you stop missing them. Free, no account needed.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://language.petyabouianov.com/kana">
+    <meta property="og:image" content="https://petyabouianov.com/images/Petya-2.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Kana Quiz: Practise Hiragana and Katakana | Nihongo Studio">
+    <meta name="twitter:description" content="Drill hiragana and katakana one kana at a time. Type the romaji, and the ones you get wrong come back until you stop missing them. Free, no account needed.">
+    <meta name="twitter:image" content="https://petyabouianov.com/images/Petya-2.jpg">
+    <meta name="theme-color" content="#f5f7f9">
+    <script>
+        // The studio's dark-mode switch stores the choice; this page follows it so the
+        // whole site turns over together, before the body paints.
+        (function () {
+            try {
+                if (localStorage.getItem('studio_dark_mode') !== 'true') return;
+                document.documentElement.classList.add('dark');
+                var meta = document.querySelector('meta[name="theme-color"]');
+                if (meta) meta.setAttribute('content', '#121417');
+            } catch (e) { /* private mode: stay light */ }
+        })();
+    </script>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 900 600%22><rect width=%22900%22 height=%22600%22 fill=%22white%22/><circle cx=%22450%22 cy=%22300%22 r=%22180%22 fill=%22%23bc002d%22/></svg>">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="studio.css?v=20260919-kana">
+</head>
+
+<body class="nihongo-page min-h-screen w-full p-0 overflow-x-hidden">
+
+    <div class="mac-window studio-app-shell w-full min-h-[100dvh] flex flex-col relative">
+
+        <!-- The same bar as the studio, so the tool reads as part of the same program.
+             Its links are static here: this page loads no app script. -->
+        <div class="bg-gradient-to-b from-gray-100 to-gray-200 border-b border-gray-300 h-10 flex items-center shrink-0 select-none relative z-50">
+            <div class="studio-column studio-header-layout">
+                <div class="studio-header-left">
+                    <a class="header-icon-btn" href="/nihongo-studio" title="Back to the studio">
+                        <i class="fas fa-arrow-left" aria-hidden="true"></i>
+                        <span class="sr-only">Back to the studio</span>
+                    </a>
+                </div>
+                <div class="studio-header-title">
+                    <i class="fas fa-language" aria-hidden="true"></i> Nihongo Studio
+                </div>
+                <div class="studio-header-right">
+                    <label class="dark-mode-switch" title="Dark mode">
+                        <input type="checkbox" id="dark-mode-checkbox" aria-label="Toggle dark mode">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <main class="kana-page">
+            <div class="kana-page-inner">
+                <h1 class="kana-page-title">Kana quiz</h1>
+                <p class="kana-page-lede">
+                    One kana at a time. Type its romaji, and the ones you get wrong come back
+                    until you stop missing them.
+                </p>
+                <div id="kana-root"></div>
+                <p class="kana-page-foot">
+                    Round the corner there is
+                    <a href="/nihongo-studio">the studio</a>, where the same idea runs over
+                    1,313 words in five-word lessons.
+                </p>
+            </div>
+        </main>
+    </div>
+
+    <script src="studio-kana.js?v=20260919"></script>
+</body>
+
+</html>

@@ -793,6 +793,234 @@ html {
     color: var(--zen-blue-text);
 }
 
+/* The kana quiz at /kana. It follows the drill at kuuuube.github.io/kana-quiz, rebuilt
+   in this studio's vocabulary: one stage holding a single kana, the answer field under
+   it, and the options in a disclosure the way the reference keeps them, so the drill
+   stays the first thing on the page. It loads no app script, only the tokens. */
+.kana-page {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    padding: clamp(1.6rem, 4.5vh, 2.6rem) 0 3rem;
+}
+
+.kana-page-inner {
+    width: min(100% - 2rem, 44rem);
+    margin: 0 auto;
+}
+
+.kana-page-title {
+    margin: 0 0 0.55rem;
+    font-size: clamp(1.6rem, 3.5vw, 2.05rem);
+    font-weight: 760;
+    letter-spacing: -0.02em;
+}
+
+.kana-page-lede {
+    margin: 0 0 1.5rem;
+    color: var(--zen-muted);
+    font-size: 1.02rem;
+    line-height: 1.6;
+}
+
+.kana-page-foot {
+    margin: 2rem 0 0;
+    color: var(--zen-muted);
+    font-size: 0.88rem;
+    line-height: 1.55;
+}
+
+.kana-page-foot a {
+    color: var(--zen-blue-text);
+    font-weight: 600;
+}
+
+.kana-stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.9rem;
+    padding: 1.4rem 1rem 1.2rem;
+    border: 1px solid var(--zen-line);
+    border-radius: 0.85rem;
+    background: var(--zen-surface-alt);
+}
+
+.kana-glyph-wrap {
+    position: relative;
+    min-height: 8.2rem;
+    display: grid;
+    place-items: center;
+    cursor: default;
+}
+
+.kana-glyph {
+    font-size: 6.4rem;
+    font-weight: 500;
+    line-height: 1;
+    color: var(--zen-ink);
+}
+
+/* Hidden until the pointer rests on the kana, which is the reference's own gesture. */
+.kana-answer {
+    position: absolute;
+    bottom: -0.2rem;
+    color: var(--zen-green-text);
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+.kana-answer.is-hidden {
+    visibility: hidden;
+}
+
+.kana-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+}
+
+.kana-input {
+    width: 11rem;
+    min-height: 2.9rem;
+    padding: 0 0.8rem;
+    border: 1px solid var(--zen-line);
+    border-bottom: 3px solid var(--zen-muted); /* impeccable-disable-line border-accent-on-rounded: key-cap ledge, deliberate */
+    border-radius: 0.6rem;
+    background: var(--zen-surface);
+    color: var(--zen-ink);
+    font: inherit;
+    font-size: 1.05rem;
+    text-align: center;
+}
+
+.kana-input:focus-visible {
+    outline: 2px solid var(--zen-blue);
+    outline-offset: 2px;
+}
+
+.kana-count {
+    color: var(--zen-ink);
+    font-size: 1rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
+
+.kana-message {
+    margin: 0;
+    min-height: 1.4rem;
+    font-size: 0.9rem;
+}
+
+.kana-wrong {
+    color: var(--zen-amber-dark);
+    font-weight: 600;
+}
+
+.kana-tools {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.82rem;
+    color: var(--zen-muted);
+}
+
+.kana-link {
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--zen-blue-text);
+    font: inherit;
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+    cursor: pointer;
+}
+
+.kana-link:hover {
+    color: var(--zen-ink);
+}
+
+.kana-options {
+    margin-top: 1.2rem;
+}
+
+.kana-options > summary {
+    color: var(--zen-muted);
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.kana-options-note {
+    margin: 0.8rem 0 1rem;
+    color: var(--zen-muted);
+    font-size: 0.86rem;
+}
+
+.kana-group {
+    margin-bottom: 1.1rem;
+}
+
+.kana-group-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-bottom: 0.35rem;
+    border-bottom: 1px solid var(--zen-line);
+}
+
+.kana-group-head h3 {
+    margin: 0;
+    font-size: 0.92rem;
+    font-weight: 600;
+}
+
+.kana-group-actions {
+    display: flex;
+    gap: 0.8rem;
+}
+
+.kana-row {
+    display: grid;
+    grid-template-columns: 1.1rem minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.3rem 0;
+    border-bottom: 1px solid var(--zen-line);
+    cursor: pointer;
+}
+
+.kana-row input {
+    width: 1rem;
+    height: 1rem;
+    accent-color: var(--zen-blue);
+}
+
+.kana-row-glyphs {
+    font-size: 0.95rem;
+    color: var(--zen-ink);
+}
+
+.kana-row-readings {
+    color: var(--zen-muted);
+    font-size: 0.82rem;
+}
+
+.kana-row--misc {
+    grid-template-columns: 1.1rem minmax(0, 1fr);
+}
+
+/* The icon slot carries a kana instead of a Font Awesome glyph. */
+.header-icon-glyph {
+    font-size: 1rem;
+    line-height: 1;
+}
+
 /* The page's one authored moment, and it is the product's own rhythm rather than a
    generic fade-and-rise: the spectrum travels into place and the five sample words rise
    in sequence, the way a lesson arrives. Nothing here hides content: the motion is

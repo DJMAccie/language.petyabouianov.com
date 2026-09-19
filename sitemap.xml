@@ -8,4 +8,9 @@
     <loc>https://language.petyabouianov.com/nihongo-studio</loc>
     <lastmod>2026-09-19</lastmod>
   </url>
+  <url>
+    <loc>https://language.petyabouianov.com/kana</loc>
+    <lastmod>2026-09-19</lastmod>
+      <priority>0.8</priority>
+  </url>
 </urlset>

@@ -79,6 +79,11 @@ Confirmed capabilities, in the product's own terminology:
   choice. Typed answers accept romaji and Enter submits.
 - **Kanji Corner** — 20 kanji packs behind the header's torii icon, with a picker and
   mnemonics.
+- **Kana quiz** — its own page at `/kana`, reached from the header icon beside the torii.
+  One kana at a time, type the romaji, wrong answers come back in the same sitting. The
+  gojuon rows are the unit of selection, and the settings persist in the browser. It is the
+  only surface that needs no library, no account and no backend, so it loads on its own with
+  nothing but the stylesheet and one script.
 - **Lists** — the shared library is read-only for visitors; signing in allows editing,
   creating, and splitting lists, and personal edits never touch the shared library.
 - **Dictionary** — Jisho-powered lookup proxied by the backend; grammar notes sit beside

@@ -87,6 +87,8 @@ window.StudioConfigs = {};
         gauntletLabel: "GAUNTLET (EN → JP)",
         speechLabel: "SPEAKING (EN → JP)",
         enableKanjiCorner: true,
+        // The kana quiz is a practice side tool like the kanji corner, so it ships on.
+        enableKanaQuiz: true,
         enableKanjiCornerListPicker: true,
         showKanjiCornerTableRow: false,
         hideKanjiListsFromMainTable: true,

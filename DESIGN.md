@@ -233,6 +233,12 @@ Responsive behaviour is structural, not scaled. Two-column bands collapse to one
 to a single column at 560px, and the donation card is a plain button until the viewport can give
 its column the 432px the Ko-fi widget needs, which is 1120px.
 
+**The kana page.** `/kana` is the one surface with no app chrome around it: the same window
+bar and wordmark, a single 44rem column, and the drill as the first thing on the page, with
+the options in a disclosure underneath so the exercise never competes with its own settings.
+It loads the stylesheet and one script, nothing else, and carries its own copy of the
+dark-mode switch because it loads no app script.
+
 **The parallel card rule.** The daily screen's two action cards sit side by side and run the
 same four rows in the same order: heading, value, action, today. The action is always the third
 row, and its row holds its height whether it carries a button or the sentence that replaces it,

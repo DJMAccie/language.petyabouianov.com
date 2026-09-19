@@ -68,6 +68,19 @@ const StudioCore = window.StudioCore = (() => {
                 kanjiBtn.innerHTML = '<i class="fas fa-torii-gate"></i>';
                 leftSlot.appendChild(kanjiBtn);
             }
+
+            if (config.enableKanaQuiz !== false) {
+                // The drill has its own page, so this is a link and not a dialog. The
+                // glyph is the icon: there is no Font Awesome stand-in for a kana, and
+                // the character is what the tool drills.
+                const kanaLink = document.createElement('a');
+                kanaLink.className = 'header-icon-btn';
+                kanaLink.href = '/kana';
+                kanaLink.title = 'Kana quiz (Q)';
+                kanaLink.setAttribute('aria-label', 'Open the kana quiz');
+                kanaLink.innerHTML = '<span class="header-icon-glyph" lang="ja" aria-hidden="true">あ</span>';
+                leftSlot.appendChild(kanaLink);
+            }
         }
 
         const rightSlot = header.querySelector('[data-studio-header-right]');
@@ -239,6 +252,11 @@ const StudioCore = window.StudioCore = (() => {
                     if (!document.getElementById('select-section').classList.contains('hidden') && config.enableKanjiCorner) {
                         window.StudioLibrary.startKanjiCorner();
                     }
+                    break;
+                case 'q':
+                    // The drill is its own page, so this is a shortcut to a route rather
+                    // than a panel. Progress lives in storage, so nothing is lost by it.
+                    if (config.enableKanaQuiz !== false) window.location.href = '/kana';
                     break;
             }
         });
