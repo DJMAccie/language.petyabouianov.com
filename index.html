@@ -10,11 +10,11 @@
     <meta property="og:description" content="84 themed Japanese word lists and 1,313 everyday words, free. Five-word lessons and reviews to get ready for a trip.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://language.petyabouianov.com/">
-    <meta property="og:image" content="https://petyabouianov.com/images/Petya-2.jpg">
+    <meta property="og:image" content="https://language.petyabouianov.com/assets/app-daily.png">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Nihongo Studio: Learn Japanese Words for Travel">
     <meta name="twitter:description" content="84 themed Japanese word lists and 1,313 everyday words, free. Five-word lessons and reviews to get ready for a trip.">
-    <meta name="twitter:image" content="https://petyabouianov.com/images/Petya-2.jpg">
+    <meta name="twitter:image" content="https://language.petyabouianov.com/assets/app-daily.png">
     <meta name="theme-color" content="#f5f7f9">
     <script>
         // The studio's dark-mode switch stores the choice; this page follows it so
@@ -32,7 +32,7 @@
     <link rel="icon"
         href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 900 600%22><rect width=%22900%22 height=%22600%22 fill=%22white%22/><circle cx=%22450%22 cy=%22300%22 r=%22180%22 fill=%22%23bc002d%22/></svg>">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="studio.css?v=20260919-merged">
+    <link rel="stylesheet" href="studio.css?v=20260919-landing">
     <script type="application/ld+json">
 {
       "@context": "https://schema.org",
@@ -91,10 +91,11 @@
 </head>
 
 <body class="about-page home-page">
-    <!-- One page for the whole story: why it exists, what is inside, and how to
-         start. The About page was merged in here so the two halves of the pitch
-         could not compete with each other in search. The chrome classes are the
-         shared document vocabulary this page inherited from that merge. -->
+    <!-- The landing page shows the product: the daily screen and the lesson card
+         are real captures of the running app in assets/, not mockups. One page for
+         the whole story, because the About page was merged in here so the two
+         halves of the pitch could not compete with each other in search. The
+         `about-*` classes are this page's inherited vocabulary from that merge. -->
     <header class="about-header">
         <div class="about-header-inner">
             <a class="about-brand" href="/">
@@ -105,175 +106,177 @@
     </header>
 
     <main class="about-main home-main">
-        <h1>I built this to learn enough Japanese for my trip.</h1>
-        <p class="about-lede">
-            There's a theory that you can understand about 80% of a language with about 20% of
-            the words. I had five months before my trip, so that was the whole plan, and this is
-            what came out of it.
-        </p>
-
-        <div class="about-actions">
-            <a class="about-open" href="/nihongo-studio">Start a five-word lesson</a>
-            <a class="about-open about-quiet" href="#why">Why I built it</a>
-        </div>
-
-        <h2 id="why">Why this exists</h2>
-        <p>
-            I searched the internet for lists, and I had lessons with my sensei, who wrote down
-            most of the language I was missing. I'd point at things and ask what the word for them
-            was. The lists here are built from what I actually needed.
-        </p>
-        <p>
-            I've been to Japan since, and it worked. I had real conversations with people I'd
-            never met. I'd like to offer the same experience to you.
-        </p>
-
-        <h2>The lists are already made</h2>
-        <p>
-            Finding a decent vocabulary list is usually the first job. That part is done. There
-            are 84 lists and 1,313 words, grouped by theme instead of alphabetised, so a list is
-            something you can finish and actually use: City and Transport, Restaurant &amp; Bar,
-            Travel Essentials, Body Parts, Numbers, Basic Question Words, and eighty more.
-        </p>
-        <p>
-            The useful words come first in each list. Starter Kit has 74 words and covers the
-            greetings, pronouns and polite forms that most sentences lean on. Travel Essentials
-            and Restaurant &amp; Bar are the two to open before a trip.
-        </p>
-        <p>
-            These are the lists I used, pre-loaded so you don't have to go looking. Every list is
-            editable once you have an account: delete what you already know, add words from your
-            own reading, or split a big list into smaller ones. Your edits stay in your account
-            and leave the shared library alone for everyone else.
-        </p>
-
-        <h2>Lessons come in fives</h2>
-        <p>
-            I took the idea of a daily lesson and daily reviews from WaniKani, which I got on
-            with. I hated Anki: too much setting up before you learn anything. I wanted the same
-            habit, but simpler and with more words.
-        </p>
-        <p>
-            A lesson introduces five words. You see each word first and answer for it afterwards,
-            so nothing is tested before it's been shown. Finishing a set brings up the next one,
-            and the daily screen keeps track of how many sets you've cleared. Five is small on
-            purpose. It takes a couple of minutes, and that's a much easier habit than an hour
-            once a week.
-        </p>
-
-        <div class="lesson-sample">
-            <p class="lesson-sample-label">The first five words of Starter Kit:</p>
-            <ul class="lesson-sample-list">
-                <li>
-                    <span class="lesson-sample-word"><span lang="ja">初めまして</span><span
-                            class="lesson-sample-romaji">Hajimemashite</span></span>
-                    <span class="lesson-sample-meaning">Nice to meet you</span>
-                </li>
-                <li>
-                    <span class="lesson-sample-word"><span lang="ja">いただけますか</span><span
-                            class="lesson-sample-romaji">Itadakemasu ka?</span></span>
-                    <span class="lesson-sample-meaning">Can I have a…? / Could I receive…?</span>
-                </li>
-                <li>
-                    <span class="lesson-sample-word"><span lang="ja">いいね</span><span
-                            class="lesson-sample-romaji">Ii ne</span></span>
-                    <span class="lesson-sample-meaning">Nice! / That's good</span>
-                </li>
-                <li>
-                    <span class="lesson-sample-word"><span lang="ja">少し</span><span
-                            class="lesson-sample-romaji">Sukoshi</span></span>
-                    <span class="lesson-sample-meaning">A little</span>
-                </li>
-                <li>
-                    <span class="lesson-sample-word"><span lang="ja">お会計お願いします</span><span
-                            class="lesson-sample-romaji">O kaikei onegaishimasu</span></span>
-                    <span class="lesson-sample-meaning">Can I have the bill please</span>
-                </li>
-            </ul>
-        </div>
-
-        <p>
-            Four answering modes cover the same words from different directions:
-        </p>
-        <ul>
-            <li><strong>JP &rarr; EN</strong> shows the Japanese and asks for the meaning.</li>
-            <li><strong>EN &rarr; JP</strong> gives the meaning and asks you to produce the Japanese.</li>
-            <li><strong>Speech</strong> asks you to say the word aloud.</li>
-            <li><strong>Multiple choice</strong> is the quick pass when you want speed over recall.</li>
-        </ul>
-        <p>
-            Kana and kanji are shown alongside romaji rather than instead of it, so you can read a
-            word from day one and pick up the script as you go. Words you get wrong come back
-            sooner than words you know, and every word keeps an accuracy figure, so you can see
-            what's sticking. Typed answers accept romaji, and Enter submits.
-        </p>
-
-        <h2>Review works on what you got wrong</h2>
-        <p>
-            The review queue holds words you've already met and haven't mastered yet. It puts the
-            words that are due first, then the ones you've struggled with, so a short session goes
-            where it's needed. Words leave the queue as you get them right consistently.
-        </p>
-
-        <h2>You can use it without an account</h2>
-        <p>
-            The whole app is open. No sign-up wall, no trial, no limits on which lists you can
-            open. Without an account your progress is saved in your own browser, which is fine on
-            a single device. Making an account keeps that progress, syncs it across devices, and
-            lets you edit and create your own lists. You can
-            <a href="/login">sign in or make one</a> whenever you want that. Signing in with
-            Google or Apple creates a separate account from a username and password, so pick one
-            route and stay with it.
-        </p>
-        <p>
-            Accounts store your lists and progress and nothing else.
-        </p>
-
-        <h2>It's free, and donations are welcome</h2>
-        <p>
-            Nihongo Studio is free, all of it. There are no ads and nothing costs money. One
-            person builds it and pays for it, which covers the hosting and the time to keep the
-            lists and the quizzes in good shape.
-        </p>
-        <p>
-            A donation is welcome and never expected. If the app has been useful and you want to
-            put something back, it goes straight into keeping it running.
-        </p>
-        <!-- Phones get the button; from 560px the full Ko-fi widget appears, because
-             the widget has its own minimum width and clips its controls below about
-             420px. Lazy-loaded: it is the only third-party request on the page. -->
-        <div class="donate-actions">
-            <a class="about-open about-quiet" href="https://ko-fi.com/petya_bouianov" target="_blank"
-                rel="noopener noreferrer">Support on Ko-fi</a>
-        </div>
-        <div class="donate-embed">
-            <iframe id="kofiframe"
-                src="https://ko-fi.com/petya_bouianov/?hidefeed=true&amp;widget=true&amp;embed=true&amp;preview=true"
-                title="Support Nihongo Studio on Ko-fi" loading="lazy" height="712"></iframe>
-            <p class="donate-fallback">Widget not loading? <a href="https://ko-fi.com/petya_bouianov">Open
-                    the Ko-fi page</a>.</p>
-        </div>
-
-        <div class="about-note">
-            <p>
-                I've been refining this ever since, a bit at a time. If something is missing or
-                awkward, tell me. I'm at <a href="https://petyabouianov.com">petyabouianov.com</a>.
-                We're on this journey together, and right now I'm trying to cram more kanji.
-            </p>
-        </div>
-
-        <div class="about-note about-note--cta">
-            <h2>Where to start</h2>
-            <p>
-                Open <a href="/nihongo-studio">the studio</a> and work through Starter Kit, or jump
-                straight to Travel Essentials and Restaurant &amp; Bar if a trip is coming up. The
-                library is on the Lists tab, the dictionary lookup and grammar notes are next to
-                it, and the kanji packs are behind the torii icon in the header.
-            </p>
-            <div class="about-actions">
-                <a class="about-open" href="/nihongo-studio">Start with Starter Kit</a>
+        <section class="home-hero">
+            <div class="home-hero-copy">
+                <h1>I built this to learn enough Japanese for my trip.</h1>
+                <p class="about-lede">
+                    There's a theory that you can understand about 80% of a language with about
+                    20% of the words. I had five months before my trip, so that was the whole
+                    plan, and this is what came out of it.
+                </p>
+                <div class="about-actions">
+                    <a class="about-open" href="/nihongo-studio">Start a five-word lesson</a>
+                    <a class="about-open about-quiet" href="#why">Why I built it</a>
+                </div>
+                <p class="home-trust">Free. No account. Nothing to install.</p>
             </div>
-        </div>
+            <figure class="home-shot home-shot--app">
+                <img src="assets/app-daily.png" width="1024" height="700" decoding="async"
+                    alt="The Nihongo Studio daily screen: illustrated Lessons and Reviews cards above the studio's colour progress bar, with the study streak and word count under it.">
+            </figure>
+        </section>
+
+        <section class="home-lists">
+            <h2>The lists are already made</h2>
+            <p>
+                Finding a decent vocabulary list is usually the first job. That part is done. 84
+                lists and 1,313 words, grouped by theme instead of alphabetised, with the useful
+                words first.
+            </p>
+            <p class="home-themes">
+                City and Transport. Restaurant &amp; Bar. Travel Essentials. Body Parts. Numbers.
+                Basic Question Words. Eighty more.
+            </p>
+            <p>
+                Starter Kit holds 74 words: the greetings, pronouns and polite forms most
+                sentences lean on. Travel Essentials and Restaurant &amp; Bar are the two to open
+                before a trip.
+            </p>
+            <p>
+                These are the lists I used, pre-loaded so you don't have to go looking. With an
+                account you can edit them, split them, or make your own.
+            </p>
+        </section>
+
+        <section class="home-band">
+            <div class="home-band-copy">
+                <h2>Lessons come in fives</h2>
+                <p>
+                    A lesson is five words. You see each one first and answer for it afterwards,
+                    so nothing is tested before it's been shown. It takes a couple of minutes,
+                    which is a much easier habit than an hour once a week.
+                </p>
+                <div class="lesson-sample">
+                    <p class="lesson-sample-label">The first five words of Starter Kit:</p>
+                    <ul class="lesson-sample-list">
+                        <li>
+                            <span class="lesson-sample-word"><span lang="ja">初めまして</span><span
+                                    class="lesson-sample-romaji">Hajimemashite</span></span>
+                            <span class="lesson-sample-meaning">Nice to meet you</span>
+                        </li>
+                        <li>
+                            <span class="lesson-sample-word"><span lang="ja">いただけますか</span><span
+                                    class="lesson-sample-romaji">Itadakemasu ka?</span></span>
+                            <span class="lesson-sample-meaning">Can I have a…? / Could I receive…?</span>
+                        </li>
+                        <li>
+                            <span class="lesson-sample-word"><span lang="ja">いいね</span><span
+                                    class="lesson-sample-romaji">Ii ne</span></span>
+                            <span class="lesson-sample-meaning">Nice! / That's good</span>
+                        </li>
+                        <li>
+                            <span class="lesson-sample-word"><span lang="ja">少し</span><span
+                                    class="lesson-sample-romaji">Sukoshi</span></span>
+                            <span class="lesson-sample-meaning">A little</span>
+                        </li>
+                        <li>
+                            <span class="lesson-sample-word"><span lang="ja">お会計お願いします</span><span
+                                    class="lesson-sample-romaji">O kaikei onegaishimasu</span></span>
+                            <span class="lesson-sample-meaning">Can I have the bill please</span>
+                        </li>
+                    </ul>
+                </div>
+                <p>
+                    Four ways to answer the same words: <strong>JP &rarr; EN</strong>,
+                    <strong>EN &rarr; JP</strong>, <strong>speech</strong>, or
+                    <strong>multiple choice</strong>. Kana and kanji sit alongside romaji, so you
+                    can read a word from day one. Reviews work the same way as lessons: words come
+                    back when they're due, and the ones you got wrong come back first.
+                </p>
+                <p>
+                    I took the daily lesson and the daily reviews from WaniKani, which I got on
+                    with. Anki I hated: too much setting up before you learn anything.
+                </p>
+            </div>
+            <figure class="home-shot home-shot--phone">
+                <img src="assets/app-lesson.png" width="780" height="1520" loading="lazy" decoding="async"
+                    alt="A lesson card on a phone: the word Kippu with its meaning, its kana and kanji, a 1 of 5 progress bar, and Previous and Next word buttons.">
+                <figcaption>The lesson card. One word at a time.</figcaption>
+            </figure>
+        </section>
+
+        <section class="home-prose">
+            <h2 id="why">Why I built it</h2>
+            <p>
+                I searched the internet for lists, and I had lessons with my sensei, who wrote
+                down most of the language I was missing. I'd point at things and ask what the word
+                for them was. The lists here are built from what I actually needed.
+            </p>
+            <p>
+                I've been to Japan since, and it worked. I had real conversations with people I'd
+                never met. I'd like to offer the same experience to you.
+            </p>
+        </section>
+
+        <section class="home-pair">
+            <div class="home-pair-item">
+                <h2>No account needed</h2>
+                <p>
+                    The whole app is open. Your progress saves in your browser, and an account
+                    keeps it across devices and lets you edit or build your own lists. You can
+                    <a href="/login">sign in or make one</a> whenever you want that.
+                </p>
+                <p>
+                    Accounts store your lists and progress and nothing else.
+                </p>
+            </div>
+            <div class="home-pair-item">
+                <h2>It's free</h2>
+                <p>
+                    There are no ads and nothing costs money. One person builds it and pays for
+                    it. A donation is welcome and never expected, and it goes straight into
+                    keeping it running.
+                </p>
+                <!-- Phones get the button; from 560px the full Ko-fi widget appears,
+                     because the widget has its own minimum width and clips its controls
+                     below about 420px. Lazy-loaded: the only third-party request here. -->
+                <div class="donate-actions">
+                    <a class="about-open about-quiet" href="https://ko-fi.com/petya_bouianov" target="_blank"
+                        rel="noopener noreferrer">Support on Ko-fi</a>
+                </div>
+                <div class="donate-embed">
+                    <iframe id="kofiframe"
+                        src="https://ko-fi.com/petya_bouianov/?hidefeed=true&amp;widget=true&amp;embed=true&amp;preview=true"
+                        title="Support Nihongo Studio on Ko-fi" loading="lazy" height="712"></iframe>
+                    <p class="donate-fallback">Widget not loading? <a href="https://ko-fi.com/petya_bouianov">Open
+                            the Ko-fi page</a>.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="home-prose">
+            <div class="about-note">
+                <p>
+                    I've been refining this ever since, a bit at a time. If something is missing
+                    or awkward, tell me. I'm at
+                    <a href="https://petyabouianov.com">petyabouianov.com</a>. We're on this
+                    journey together, and right now I'm trying to cram more kanji.
+                </p>
+            </div>
+
+            <div class="about-note about-note--cta">
+                <h2>Where to start</h2>
+                <p>
+                    Open <a href="/nihongo-studio">the studio</a> and work through Starter Kit, or
+                    jump straight to Travel Essentials and Restaurant &amp; Bar if a trip is coming
+                    up. The library is on the Lists tab, and the dictionary, grammar notes and
+                    kanji packs are in the header.
+                </p>
+                <div class="about-actions">
+                    <a class="about-open" href="/nihongo-studio">Start with Starter Kit</a>
+                </div>
+            </div>
+        </section>
     </main>
 </body>
 

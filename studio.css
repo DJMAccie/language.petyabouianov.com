@@ -248,11 +248,13 @@ html.dark .home-page {
 }
 
 /* Matches .studio-header-title exactly, so the lockup is the same object on both
-   chromes rather than two near-misses. */
+   chromes rather than two near-misses. The minimum height is the hit area, not the
+   type: the text box alone came to 23.1px, just under the 24px target minimum. */
 .about-brand {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
+    min-height: 1.6rem;
     color: var(--zen-muted);
     font-size: 0.875rem;
     font-weight: 600;
@@ -279,11 +281,133 @@ html.dark .home-page {
     padding-bottom: 4rem;
 }
 
-/* The launcher is one decision rather than a document, so it gets a narrower
-   column than the About page's reading measure and starts higher on the screen. */
+/* THE LANDING PAGE LAYOUT
+   This page uses the viewport rather than a document column, because a landing
+   page has to show the product rather than describe it. Prose still sits at a
+   reading measure inside the wide grid, and the bands change shape as you scroll:
+   product, statement, product, quiet story, a pair, then the close. */
 .home-main {
-    width: min(100%, 38rem);
-    padding-top: clamp(2.5rem, 10vh, 6rem);
+    width: min(100%, 72rem);
+    padding-top: clamp(1.75rem, 5vh, 3rem);
+}
+
+.home-page .about-header-inner {
+    width: min(100%, 72rem);
+}
+
+.home-hero,
+.home-band {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.12fr);
+    gap: 2.5rem 3rem;
+    align-items: center;
+}
+
+.home-hero {
+    margin-bottom: clamp(3.5rem, 9vh, 6rem);
+}
+
+.home-hero-copy {
+    max-width: 32rem;
+}
+
+.home-trust {
+    margin: 1.5rem 0 0;
+    color: var(--zen-muted);
+    font-size: 0.82rem;
+    font-weight: 600;
+}
+
+/* Product shots are objects on the page, not decoration. The capture already
+   contains the app's own window, so nothing is drawn around it: it is lifted with
+   the same shadow the app's own windows use, and no border, because a hairline
+   edge plus a wide diffuse shadow is its own kind of tell. */
+.home-shot {
+    margin: 0;
+}
+
+.home-shot img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 0.85rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+}
+
+.home-shot--phone img {
+    /* min() so the 26rem cap can never beat the column on a narrow screen: the
+       plain max-width let the image stay 416px wide inside a 343px column. */
+    width: auto;
+    max-width: min(100%, 26rem);
+    margin: 0 auto;
+}
+
+.home-shot figcaption {
+    margin-top: 0.9rem;
+    color: var(--zen-muted);
+    font-size: 0.78rem;
+    text-align: center;
+}
+
+/* The statement band: the promise in prose, then the theme names as texture. */
+.home-lists {
+    max-width: 46rem;
+    margin-bottom: clamp(3.5rem, 9vh, 6rem);
+}
+
+.home-themes {
+    color: var(--zen-muted);
+    font-size: 1.02rem;
+    line-height: 1.8;
+}
+
+.home-band,
+.home-pair,
+.home-prose {
+    margin-bottom: clamp(3.5rem, 9vh, 6rem);
+}
+
+.home-band-copy {
+    max-width: 34rem;
+}
+
+.home-prose {
+    max-width: 38rem;
+}
+
+.home-pair {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 2.5rem 3rem;
+    align-items: start;
+}
+
+.home-pair-item {
+    max-width: 32rem;
+}
+
+/* A band's heading opens it, so it carries the rule but no leading margin. */
+.home-lists>h2,
+.home-band-copy>h2,
+.home-prose>h2,
+.home-pair-item>h2 {
+    margin-top: 0;
+}
+
+@media (max-width: 900px) {
+    .home-hero,
+    .home-band,
+    .home-pair {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .home-hero-copy,
+    .home-band-copy,
+    .home-pair-item,
+    .home-prose,
+    .home-lists {
+        max-width: none;
+    }
 }
 
 .about-main h1 {
@@ -351,7 +475,7 @@ html.dark .home-page {
 .about-note--cta {
     padding: 1.5rem 1.6rem 1.6rem;
     border: 1px solid var(--zen-line);
-    border-radius: 0.9rem;
+    border-radius: 0.85rem;
     background: var(--zen-surface);
 }
 
@@ -438,8 +562,8 @@ html.dark .home-page {
 
 /* Ko-fi. The widget is a third-party card with its own minimum width: below about
    420px it clips its own controls, so phones keep the plain button and wider
-   screens get the widget. Both live in the same frame, and the frame stays light
-   inside because the card is a light UI and may paint no background of its own. */
+   screens get the widget. It is treated as an object, like the product shots: the
+   card already has its own edges, so nothing is drawn around it. */
 .donate-actions {
     display: flex;
     flex-wrap: wrap;
@@ -449,12 +573,8 @@ html.dark .home-page {
 
 .donate-embed {
     display: none;
-    max-width: 28rem;
-    margin-top: 0.9rem;
-    padding: 0.55rem 0.55rem 0.35rem;
-    border: 1px solid var(--zen-line);
-    border-radius: 0.9rem;
-    background: var(--zen-surface);
+    max-width: 27rem;
+    margin-top: 1.35rem;
 }
 
 @media (min-width: 560px) {
@@ -472,16 +592,17 @@ html.dark .home-page {
     width: 100%;
     height: 712px;
     border: 0;
-    border-radius: 0.6rem;
-    /* Kept light in both themes: the card inside assumes a light backdrop, and on
-       the dark canvas the frame then reads as a mat around it. */
+    border-radius: 0.85rem;
+    /* Kept light in both themes: the card inside assumes a light backdrop, and the
+       site's own shadow is what lifts it off the page. */
     background: #ffffff;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
     /* The widget is a light UI, so keep its own controls light in either theme. */
     color-scheme: light;
 }
 
 .donate-fallback {
-    margin: 0.5rem 0 0.15rem;
+    margin: 0.7rem 0 0;
     color: var(--zen-muted);
     font-size: 0.75rem;
 }

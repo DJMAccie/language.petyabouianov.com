@@ -19,6 +19,12 @@ error_log
 !assets/lesson-words.png
 !assets/review-words.png
 
+# Real captures of the app, used as the landing page's product evidence. Not
+# mockups: both are screenshots of the running studio, re-captured when the app's
+# daily screen or lesson card changes.
+!assets/app-daily.png
+!assets/app-lesson.png
+
 uploads/
 newsletter/emails.txt
 
