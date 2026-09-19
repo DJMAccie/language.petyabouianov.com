@@ -103,11 +103,10 @@ body.nihongo-page {
    above, which is the same surface. Only the button reads. */
 .studio-support-row {
     display: flex;
-    /* Stacked: Ko-fi first, then About beneath it. */
-    flex-direction: column;
+    /* Ko-fi on the left, About on the right, on one line. */
     align-items: center;
-    justify-content: center;
-    gap: 0.35rem;
+    justify-content: space-between;
+    gap: 0.5rem;
     flex: 0 0 auto;
     padding: 0.5rem 1rem 0.6rem;
 }
