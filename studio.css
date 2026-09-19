@@ -451,14 +451,18 @@ body [data-studio-footer] {
 
 /* PRIMARY NAVIGATION */
 .studio-primary-nav {
-    min-height: 4.6rem;
+    --studio-nav-height: 4.6rem;
+    position: relative;
+    min-height: var(--studio-nav-height);
     /* Horizontal gutter comes from .studio-column so the bar lines up with the
        title bar and the study content on the same edges. */
     padding: 0;
     display: flex;
-    /* Stretch, so the inner rule element spans the bar's full height and its
-       bottom border lands on the bar's bottom edge. */
-    align-items: stretch;
+    /* Centred, so the section tabs and their active underline sit on the bar's
+       midline as they always have. An earlier version stretched the bar's items to
+       make the divider reach the bottom edge, which pushed the underline down onto
+       the divider itself. */
+    align-items: center;
     justify-content: space-between;
     gap: 1.25rem;
     flex-shrink: 0;
@@ -466,18 +470,22 @@ body [data-studio-footer] {
     z-index: 15;
 }
 
-/* The divider under the section tabs. It is drawn by this element rather than by
-   a border on the bar, because a border on the bar runs the full width of the
-   viewport and every other edge on the page stops at the shared column.
-   The width subtracts the column's own gutter on each side: without that the line
-   is inset by the gutter twice, landing well inside the content it should match. */
-.studio-nav-rule {
-    width: calc(100% - (var(--studio-column-gutter) * 2));
-    margin: 0 auto;
-    border-bottom: 1px solid var(--zen-line);
-    /* The bar is align-items: stretch, so this spans its full height and the
-       border lands on the bar's bottom edge. */
-    align-self: stretch;
+/* The divider under the section tabs. It is a pseudo-element so it takes part in
+   no layout at all: it cannot move the tabs, and the bar can stay centred.
+   Spans the shared column, matching the width of the study content below, and is
+   centred horizontally on the bar so it lands on the column's edges. Vertically it
+   is pushed to the bar's bottom edge, whatever height the column's content gives
+   it. */
+.studio-primary-nav::after {
+    content: "";
+    position: absolute;
+    bottom: calc((100% - var(--studio-nav-height)) / 2);
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(100%, var(--studio-column));
+    height: 1px;
+    background: var(--zen-line);
+    pointer-events: none;
 }
 
 .studio-primary-nav.is-hidden {
@@ -2469,7 +2477,8 @@ body #system-bar {
 /* RESPONSIVE BREAKPOINTS */
 @media (max-width: 900px) {
     .studio-primary-nav {
-        min-height: 4.15rem;
+        --studio-nav-height: 4.15rem;
+        min-height: var(--studio-nav-height);
         /* The shared column supplies the page gutter at every width. */
         padding: 0;
     }
