@@ -179,13 +179,14 @@ body.nihongo-page {
     font-size: 0.82em;
 }
 
-/* DOCUMENT PAGES (/ and /about)
-   The two pages written for a reader rather than for a task, and the only places
-   with running text. Both use this one chrome — the same header bar, brand
-   lockup, column and pill actions — so the launcher and the explanation cannot
-   drift into two visual languages. They borrow the app's measure, surface and
-   type scale rather than inventing a second one, and they deliberately use no
-   cards: the content is a plain column, separated by rule lines and space. */
+/* THE LANDING PAGE (/)
+   The one page written for a reader rather than for a task. It absorbed the old
+   About page, so the story, the mechanics and the invitation now live on a single
+   URL with a single chrome: the same grey window bar as the app, and the app's
+   measure, surface and type scale rather than a second visual language. It
+   deliberately uses no cards — the content is a plain column, separated by rule
+   lines and space. The `about-*` class names are this page's inherited vocabulary
+   from that merge. */
 .about-page,
 .home-page {
     min-height: 100dvh;
@@ -215,8 +216,19 @@ html.dark .home-page {
     color-scheme: dark;
 }
 
+/* The document pages wear the same themed window chrome as the app, so the site
+   reads as one place from the launcher through to the studio. It carries identity
+   only; the controls in the app's bar (progress, kanji packs, account, the dark
+   switch) belong to the app. It sticks so the lockup stays put while reading. */
 .about-header {
-    background: var(--zen-surface);
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    min-height: 2.5rem;
+    display: flex;
+    align-items: center;
+    background-color: var(--zen-chrome-lo);
+    background-image: linear-gradient(to bottom, var(--zen-chrome-hi), var(--zen-chrome-lo));
     border-bottom: 1px solid var(--zen-line);
 }
 
@@ -230,22 +242,36 @@ html.dark .home-page {
 .about-header-inner {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     gap: 1rem;
-    min-height: 3.25rem;
+    min-height: 2.5rem;
 }
 
+/* Matches .studio-header-title exactly, so the lockup is the same object on both
+   chromes rather than two near-misses. */
 .about-brand {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    color: var(--zen-ink);
-    font-weight: 700;
+    color: var(--zen-muted);
+    font-size: 0.875rem;
+    font-weight: 600;
     text-decoration: none;
+    white-space: nowrap;
 }
 
 .about-brand i {
-    color: var(--zen-blue);
+    color: var(--zen-faint);
+}
+
+.about-brand:hover {
+    color: var(--zen-ink);
+}
+
+.about-brand:focus-visible {
+    outline: 2px solid var(--zen-blue);
+    outline-offset: 3px;
+    border-radius: 0.2rem;
 }
 
 .about-main {
@@ -286,11 +312,12 @@ html.dark .home-page {
     letter-spacing: -0.01em;
 }
 
-.about-main h1 + .about-lede + *,
-.about-main > h2:first-of-type {
+/* The element straight after the lede carries the lede's own bottom margin, so it
+   does not add one of its own. (The old About page also suppressed the first h2's
+   rule here; on this page the first h2 follows the buttons, where the section rule
+   is exactly what separates the hero from the story.) */
+.about-main h1 + .about-lede + * {
     margin-top: 0;
-    padding-top: 0;
-    border-top: 0;
 }
 
 .about-main p {
@@ -311,34 +338,6 @@ html.dark .home-page {
 .about-main p a,
 .about-main li a {
     color: var(--zen-blue);
-}
-
-/* Figures as a plain row of labelled numbers, not tiles. */
-.about-stats {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(7.5rem, 1fr));
-    gap: 0.25rem 1.5rem;
-    margin: 0 0 1.5rem;
-    padding: 0 0 1.25rem;
-    border-bottom: 1px solid var(--zen-line);
-    list-style: none;
-}
-
-.about-stats li {
-    margin: 0;
-}
-
-.about-stats strong {
-    display: block;
-    color: var(--zen-blue);
-    font-size: 1.4rem;
-    font-weight: 760;
-    line-height: 1.2;
-}
-
-.about-stats span {
-    color: var(--zen-muted);
-    font-size: 0.8rem;
 }
 
 .about-note {
@@ -420,13 +419,9 @@ html.dark .home-page {
     line-height: 1.45;
 }
 
-/* One column on a phone: the figures drop to two rows of two so the last keeps a
-   partner, and each sample word takes the full width instead of sharing it. */
+/* One column on a phone: each sample word takes the full width instead of
+   sharing it with its meaning. */
 @media (max-width: 560px) {
-    .about-stats {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
     .lesson-sample-list li {
         grid-template-columns: minmax(0, 1fr);
         gap: 0.2rem;

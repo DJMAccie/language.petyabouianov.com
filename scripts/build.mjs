@@ -14,7 +14,7 @@ const distDir = path.join(rootDir, 'dist');
 const CleanCSS = CleanCSSModule.default || CleanCSSModule;
 
 // Production files specification
-const HTML_FILES = ['index.html', 'nihongo-studio.html', 'login.html', 'about.html'];
+const HTML_FILES = ['index.html', 'nihongo-studio.html', 'login.html'];
 const CSS_FILES = ['studio.css', 'auth.css'];
 const JS_FILES = [
   'studio-session.js',
