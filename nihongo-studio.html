@@ -393,6 +393,15 @@
         </div>
     </div>
 
+    <!-- DIALOG OVERLAYS -->
+    <!-- These are populated at runtime by studio-ui.js and studio-quiz.js. The
+         styles for these exact ids live in studio.css, so the elements must exist
+         in the document: without them the results screen, the stats panel and the
+         kanji pack picker silently do nothing. -->
+    <div id="studio-results-overlay" class="hidden" aria-hidden="true" tabindex="-1"></div>
+    <div id="studio-stats-overlay" class="hidden" aria-hidden="true" tabindex="-1"></div>
+    <div id="studio-kanji-picker-overlay" class="hidden" aria-hidden="true" tabindex="-1"></div>
+
     <!-- TOAST NOTIFICATIONS -->
     <div id="toast-container" class="fixed bottom-4 right-4 z-50 flex flex-col gap-2" role="status" aria-live="polite" aria-atomic="true"></div>
 
