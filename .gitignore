@@ -43,10 +43,12 @@ node_modules/
 
 # Impeccable design-review skills. Local tooling: the engine ships a ~14MB
 # platform binary, and none of it is deployed (the build whitelist covers only
-# the web files, so nothing here reaches dist/).
+# the web files, so nothing here reaches dist/). .github/ is the GitHub Copilot
+# copy; .dsh/skills/ is the one DeepSeek Harness discovers (project root rank).
 .github/skills/
 .github/agents/
 .github/hooks/
+.dsh/skills/
 .impeccable/
 
 # iOS wrapper local build artifacts

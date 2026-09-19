@@ -368,6 +368,40 @@ a.about-open.about-quiet:hover {
     background: var(--zen-surface-alt);
 }
 
+/* SCROLLING SURFACES
+   The Today and Lists sections scroll. A scrollbar reserves a gutter as soon as the
+   content overflows, 11px here, which inset the content and made it narrower than
+   the divider above it, so the two edges disagreed only on short windows.
+
+   The bar is hidden rather than restyled. A styled WebKit scrollbar is NOT an
+   overlay: measured on this machine it still takes 12px of layout width, so a
+   themed bar would reintroduce exactly the gap it was meant to remove. Hiding it
+   keeps the content at the full column width, and scrolling is unaffected - wheel,
+   trackpad, touch and keyboard all still work, which the checks confirm. macOS
+   behaves this way by default with overlay scrollbars. Firefox has no way to hide
+   it from CSS, so it keeps a thin themed bar there. */
+[data-studio-content] > *,
+[data-studio-content] .studio-column > * {
+    scrollbar-width: none;
+    /* Older WebKit only understands the pseudo-elements below. */
+    -ms-overflow-style: none;
+}
+
+[data-studio-content] > *::-webkit-scrollbar,
+[data-studio-content] .studio-column > *::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+/* Firefox still needs a visible affordance, so it keeps a thin themed bar. */
+@supports not selector(::-webkit-scrollbar) {
+    [data-studio-content] > *,
+    [data-studio-content] .studio-column > * {
+        scrollbar-width: thin;
+        scrollbar-color: var(--zen-line) transparent;
+    }
+}
+
 /* TITLE BAR
    The element also carries Tailwind's bg-gradient-to-b from-gray-100 to-gray-200.
    A gradient paints as a background-image, so setting only background-color left
