@@ -329,7 +329,7 @@ html {
     margin: 1.4rem 0 0;
     color: var(--zen-ink);
     font-size: 0.95rem;
-    font-weight: 650;
+    font-weight: 600;
     letter-spacing: -0.005em;
 }
 
@@ -431,7 +431,7 @@ html {
 
 .home-themes li:last-child {
     color: var(--zen-muted);
-    font-weight: 500;
+    font-weight: 400;
 }
 
 .home-lists-notes {
