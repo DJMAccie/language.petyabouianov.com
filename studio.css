@@ -322,7 +322,7 @@ html {
    action. With no object beside them the copy takes the full grid and the title is
    allowed the display size it could not have at half width. */
 .home-hero {
-    margin-bottom: clamp(3.5rem, 9vh, 6rem);
+    margin-bottom: clamp(2.6rem, 6.5vh, 4.25rem);
 }
 
 .home-hero-copy {
@@ -368,7 +368,7 @@ html {
 /* The statement band runs the full grid so the spectrum and the theme texture can use
    it, while the prose keeps a readable measure. */
 .home-lists {
-    margin-bottom: clamp(3.5rem, 9vh, 6rem);
+    margin-bottom: clamp(2.6rem, 6.5vh, 4.25rem);
 }
 
 .home-lists > p {
@@ -428,7 +428,7 @@ html {
 
 .home-band,
 .home-pair {
-    margin-bottom: clamp(3.5rem, 9vh, 6rem);
+    margin-bottom: clamp(2.6rem, 6.5vh, 4.25rem);
 }
 
 /* The app's own drawings, finally on the page. Both are 1x assets (328x260 and
@@ -467,7 +467,7 @@ html {
 .home-strip {
     width: 100vw;
     margin-left: calc(50% - 50vw);
-    margin-bottom: clamp(3.5rem, 9vh, 6rem);
+    margin-bottom: clamp(2.6rem, 6.5vh, 4.25rem);
     padding: clamp(2.5rem, 6vh, 4rem) 0;
     border-top: 1px solid var(--zen-line);
     border-bottom: 1px solid var(--zen-line);
@@ -487,7 +487,7 @@ html {
    712px card, which made the page's lowest-value section its tallest. */
 .home-close {
     max-width: 40rem;
-    margin-bottom: clamp(3.5rem, 9vh, 6rem);
+    margin-bottom: clamp(2.6rem, 6.5vh, 4.25rem);
 }
 
 .home-donate {
@@ -582,8 +582,8 @@ html {
 
 /* Rule lines carry the structure that cards would otherwise imply. */
 .about-main h2 {
-    margin: 2.5rem 0 0.75rem;
-    padding-top: 1.5rem;
+    margin: 1.9rem 0 0.6rem;
+    padding-top: 1.1rem;
     border-top: 1px solid var(--zen-line);
     /* 1.35rem: the band-heading step. At 1.12rem a heading sat barely above the
        1.08rem body, so nine of them gave a search visitor no outline to scan. */
