@@ -893,9 +893,11 @@ body #system-bar {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid var(--zen-line);
+    /* Borderless: the icon carries the meaning, and the row already has a
+       separator. A hover wash keeps them discoverable. */
+    border: 0;
     border-radius: 0.5rem;
-    background: var(--zen-surface);
+    background: transparent;
     color: var(--zen-muted);
     font-size: 0.85rem;
     cursor: pointer;
@@ -909,7 +911,6 @@ body #system-bar {
 
 .studio-table-icon-btn.danger:hover {
     color: #e11d48;
-    border-color: #fecdd3;
     background: #fff1f2;
 }
 
