@@ -16,6 +16,9 @@
     --zen-canvas: #f5f7f9;
     --zen-surface: #ffffff;
     --zen-surface-alt: #fafbfc;
+    /* Window-bar chrome: a light grey toolbar gradient in light mode. */
+    --zen-chrome-hi: #f3f4f6;
+    --zen-chrome-lo: #e5e7eb;
 
     /* One column width shared by the title bar, the section bar, and the study
        content, so every surface lines up on the same left/right edges. */
@@ -34,6 +37,10 @@ body.dark {
     --zen-canvas: #121417;
     --zen-surface: #1a1e24;
     --zen-surface-alt: #22262d;
+    /* Near-black chrome, so the bars read as one surface with the dark canvas
+       instead of a grey gradient floating on it. */
+    --zen-chrome-hi: #15181c;
+    --zen-chrome-lo: #101215;
     --zen-green-soft: #14271c;
     --zen-blue-soft: #141f33;
     --zen-amber-soft: #2a2113;
@@ -368,8 +375,11 @@ a.about-open.about-quiet:hover {
    dark mode. The image is cleared so the themed colour shows, and the border is
    themed with it. */
 body [data-studio-header] {
-    background-color: var(--zen-surface);
-    background-image: none;
+    /* The toolbar gradient of an old macOS window, themed. This element also
+       carries Tailwind's bg-gradient-to-b, which is why the image is set here
+       rather than left to the utility. */
+    background-color: var(--zen-chrome-lo);
+    background-image: linear-gradient(to bottom, var(--zen-chrome-hi), var(--zen-chrome-lo));
     border-bottom: 1px solid var(--zen-line);
 }
 
@@ -466,7 +476,8 @@ body [data-studio-footer] {
     justify-content: space-between;
     gap: 1.25rem;
     flex-shrink: 0;
-    background: var(--zen-surface);
+    background: var(--zen-chrome-lo);
+    background-image: linear-gradient(to bottom, var(--zen-chrome-hi), var(--zen-chrome-lo));
     z-index: 15;
 }
 

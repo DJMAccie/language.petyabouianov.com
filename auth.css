@@ -71,13 +71,19 @@ body.auth-page.dark {
     align-items: center;
     height: 2.5rem;
     padding: 0 0.95rem;
-    background: linear-gradient(to bottom, #f3f4f6, #e5e7eb);
+    /* Was hardcoded light, so it stayed white in dark mode. Now the shared chrome
+       tokens, which flip with the theme. */
+    background: var(--zen-chrome-lo);
+    background-image: linear-gradient(to bottom, var(--zen-chrome-hi), var(--zen-chrome-lo));
     border-bottom: 1px solid var(--studio-border);
 }
 
 body.dark .auth-window-bar {
-    background: linear-gradient(to bottom, #2a2a2a, #222);
-    border-bottom-color: #333;
+    /* Was a hardcoded #2a2a2a..#222. Now the shared chrome tokens, so the login
+       bar and the studio bars are the same colour in dark mode instead of two
+       slightly different greys that were only visible side by side. */
+    background: linear-gradient(to bottom, var(--zen-chrome-hi), var(--zen-chrome-lo));
+    border-bottom-color: var(--zen-line);
 }
 
 .auth-window-title {
