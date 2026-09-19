@@ -298,6 +298,13 @@ html.dark .home-page {
     padding-top: clamp(1.75rem, 5vh, 3rem);
 }
 
+/* The story strip bleeds to the viewport edges. overflow-x: clip contains that bleed
+   without making a scroll container, so the sticky masthead keeps working; without
+   support the strip is simply as wide as the page, which is not broken. */
+html {
+    overflow-x: clip;
+}
+
 .home-page .about-header-inner {
     width: min(100%, 72rem);
 }
@@ -319,10 +326,11 @@ html.dark .home-page {
 }
 
 .home-trust {
-    margin: 1.5rem 0 0;
-    color: var(--zen-muted);
-    font-size: 0.82rem;
-    font-weight: 600;
+    margin: 1.4rem 0 0;
+    color: var(--zen-ink);
+    font-size: 0.95rem;
+    font-weight: 650;
+    letter-spacing: -0.005em;
 }
 
 /* Product shots are objects on the page, not decoration. The capture already
@@ -341,6 +349,27 @@ html.dark .home-page {
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
 }
 
+/* Shown whole, the dashboard's text rendered at about 8.6px, which is decoration
+   rather than evidence. Source is 1024x700 and the Lessons card occupies
+   x 27..511, y 234..531, so the crop renders at about 1.1x and the card's own words
+   are legible. Percentages: width against the box width, top against the box height. */
+.home-shot--crop {
+    position: relative;
+    aspect-ratio: 484 / 297;
+    overflow: hidden;
+    border-radius: 0.85rem;
+}
+
+.home-shot--crop img {
+    position: absolute;
+    left: -5.579%;
+    top: -78.788%;
+    width: 211.57%;
+    max-width: none;
+    border-radius: 0;
+    box-shadow: none;
+}
+
 .home-shot--phone img {
     /* min() so the 26rem cap can never beat the column on a narrow screen: the
        plain max-width let the image stay 416px wide inside a 343px column. */
@@ -356,35 +385,148 @@ html.dark .home-page {
     text-align: center;
 }
 
-/* The statement band: the promise in prose, then the theme names as texture. */
+/* The statement band runs the full grid so the spectrum and the theme texture can use
+   it, while the prose keeps a readable measure. */
 .home-lists {
-    max-width: 46rem;
     margin-bottom: clamp(3.5rem, 9vh, 6rem);
 }
 
+.home-lists > p {
+    max-width: 46rem;
+}
+
+/* The page's one colour event: the studio's own progress spectrum, at the full width
+   of the page rather than 5px tall inside a screenshot. One tick per list in the
+   library. Decorative, so it is aria-hidden in the markup. */
+.home-spectrum {
+    height: 0.62rem;
+    margin: 2rem 0 0;
+    border-radius: 999px;
+    background-image:
+        repeating-linear-gradient(90deg,
+            rgba(255, 255, 255, 0.34) 0 1px,
+            transparent 1px calc(100% / 84)),
+        linear-gradient(90deg, #c7003d 0%, #a126bd 27%, #4c54d9 52%, #148fb7 76%, #23ad5b 100%);
+}
+
+/* The theme names as texture: four columns of short names, ruled, so the scale of the
+   library is felt instead of described in a line of grey. */
 .home-themes {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0 1.5rem;
+    margin: 1.5rem 0 0;
+    padding: 0;
+    list-style: none;
+    color: var(--zen-ink);
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+}
+
+.home-themes li {
+    padding: 0.55rem 0;
+    border-bottom: 1px solid var(--zen-line);
+}
+
+.home-themes li:last-child {
     color: var(--zen-muted);
-    font-size: 1.02rem;
-    line-height: 1.8;
+    font-weight: 500;
+}
+
+.home-lists-notes {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 3rem;
+    margin-top: 2rem;
+}
+
+.home-lists-notes p {
+    margin: 0;
 }
 
 .home-band,
-.home-pair,
-.home-prose {
+.home-pair {
     margin-bottom: clamp(3.5rem, 9vh, 6rem);
+}
+
+/* The app's own drawings, finally on the page. Both are 1x assets (328x260 and
+   399x260), so they are capped near their natural size rather than stretched. */
+.home-spot {
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: min(12rem, 55%);
+    margin: 0 0 1.1rem;
+}
+
+.home-spot-figure {
+    margin: 0;
+}
+
+.home-spot--review {
+    max-width: min(16rem, 100%);
+    margin: 0 auto;
+}
+
+/* The reviews band mirrors the lessons band: artwork on the left, copy on the right.
+   These two paragraphs used to be the tail of a forty-line column. */
+.home-band--review {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr);
+    align-items: center;
 }
 
 .home-band-copy {
     max-width: 34rem;
 }
 
-.home-prose {
-    max-width: 38rem;
+/* The story band, full bleed: after two bands of the same left column the page
+   changes shape here. The biography that used to open the page lives in it now that
+   the hero names the product. */
+.home-strip {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-bottom: clamp(3.5rem, 9vh, 6rem);
+    padding: clamp(2.5rem, 6vh, 4rem) 0;
+    border-top: 1px solid var(--zen-line);
+    border-bottom: 1px solid var(--zen-line);
+    background: var(--zen-surface-alt);
+}
+
+.home-strip-inner {
+    max-width: 46rem;
+    margin: 0 auto;
+    padding: 0 clamp(1rem, 4vw, 2rem);
+}
+
+/* The closing band: the sign-off and the CTA in the main column, the ask beside them
+   instead of ahead of the first lesson. */
+.home-close {
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+    gap: 2.5rem 3rem;
+    align-items: start;
+    margin-bottom: clamp(3.5rem, 9vh, 6rem);
+}
+
+.home-close-main {
+    max-width: 40rem;
+}
+
+.home-donate {
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--zen-line);
+}
+
+.home-donate-note {
+    margin: 0;
+    color: var(--zen-muted);
+    font-size: 0.92rem;
 }
 
 .home-pair {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
     gap: 2.5rem 3rem;
     align-items: start;
 }
@@ -396,24 +538,50 @@ html.dark .home-page {
 /* A band's heading opens it, so it carries the rule but no leading margin. */
 .home-lists>h2,
 .home-band-copy>h2,
-.home-prose>h2,
-.home-pair-item>h2 {
+.home-pair-item>h2,
+.home-close h2 {
     margin-top: 0;
 }
 
 @media (max-width: 900px) {
+
     .home-hero,
     .home-band,
-    .home-pair {
+    .home-band--review,
+    .home-pair,
+    .home-close {
         grid-template-columns: minmax(0, 1fr);
     }
 
     .home-hero-copy,
     .home-band-copy,
     .home-pair-item,
-    .home-prose,
-    .home-lists {
+    .home-lists,
+    .home-close-main,
+    .home-lists>p {
         max-width: none;
+    }
+
+    /* Two columns of theme names still read as texture on a tablet; one reads as a list. */
+    .home-themes {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    /* The reviews band flips to copy first, so the artwork follows the words it belongs to. */
+    .home-band--review .home-spot-figure {
+        order: 2;
+    }
+}
+
+@media (max-width: 700px) {
+    .home-themes,
+    .home-lists-notes {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    /* A spot illustration at 55% of a phone column is a smudge; give it its own line. */
+    .home-spot {
+        max-width: min(12rem, 70%);
     }
 }
 
@@ -468,7 +636,7 @@ html.dark .home-page {
    colour and render white-on-blue text as blue-on-blue. */
 .about-main p a,
 .about-main li a {
-    color: var(--zen-blue);
+    color: var(--zen-blue-text);
 }
 
 .about-note {
@@ -584,7 +752,11 @@ html.dark .home-page {
     margin-top: 1.35rem;
 }
 
-@media (min-width: 560px) {
+/* The widget needs about 432px, and it now sits in the closing band's narrower column,
+   so it appears only once that column can hold it. Below that the button carries the
+   ask, and the link to the Ko-fi page sits above the widget rather than after a blank
+   box, so a widget that fails to load does not strand the reader. */
+@media (min-width: 1120px) {
     .donate-actions {
         display: none;
     }
@@ -609,13 +781,59 @@ html.dark .home-page {
 }
 
 .donate-fallback {
-    margin: 0.7rem 0 0;
+    margin: 0 0 0.6rem;
     color: var(--zen-muted);
     font-size: 0.75rem;
 }
 
 .donate-fallback a {
-    color: var(--zen-blue);
+    color: var(--zen-blue-text);
+}
+
+/* The page's one authored moment, and it is the product's own rhythm rather than a
+   generic fade-and-rise: the spectrum travels into place and the five sample words rise
+   in sequence, the way a lesson arrives. Nothing here hides content: the motion is
+   transform and background-position only, so if the script or the observer never runs
+   the page is still complete and readable. .can-reveal is added by the page script,
+   which also refuses to run under prefers-reduced-motion. */
+.can-reveal [data-reveal="wipe"] {
+    background-size: 220% 100%, 220% 100%;
+    background-position: 100% 0, 100% 0;
+}
+
+.can-reveal [data-reveal="wipe"].is-revealed {
+    background-position: 0 0, 0 0;
+    transition: background-position 900ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.can-reveal [data-reveal="steps"] li {
+    transform: translateY(7px);
+}
+
+.can-reveal [data-reveal="steps"].is-revealed li {
+    transform: none;
+    transition: transform 340ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* The lesson's rhythm: five words, 70ms apart. */
+.can-reveal [data-reveal="steps"].is-revealed li:nth-child(2) { transition-delay: 70ms; }
+.can-reveal [data-reveal="steps"].is-revealed li:nth-child(3) { transition-delay: 140ms; }
+.can-reveal [data-reveal="steps"].is-revealed li:nth-child(4) { transition-delay: 210ms; }
+.can-reveal [data-reveal="steps"].is-revealed li:nth-child(5) { transition-delay: 280ms; }
+
+/* Belt and braces for a reader who turns reduced motion on after the page has loaded. */
+@media (prefers-reduced-motion: reduce) {
+    .can-reveal [data-reveal="wipe"],
+    .can-reveal [data-reveal="wipe"].is-revealed {
+        background-position: 0 0, 0 0;
+        transition: none;
+    }
+
+    .can-reveal [data-reveal="steps"] li,
+    .can-reveal [data-reveal="steps"].is-revealed li {
+        transform: none;
+        transition: none;
+    }
 }
 
 /* Buttons. Written with the element qualifier so the prose link rule above can
@@ -976,7 +1194,7 @@ body #system-bar {
 
 .studio-primary-link:hover,
 .studio-primary-link.is-active {
-    color: var(--zen-blue);
+    color: var(--zen-blue-text);
 }
 
 .studio-primary-link.is-active::after {
@@ -1439,7 +1657,7 @@ body #system-bar {
 
 .daily-progress-values .is-mastered strong { color: var(--zen-green-text); }
 .daily-progress-values .is-learning strong { color: var(--zen-amber-dark); }
-.daily-progress-values .is-new strong { color: var(--zen-blue); }
+.daily-progress-values .is-new strong { color: var(--zen-blue-text); }
 .daily-progress-values .is-goal strong { color: var(--zen-muted); }
 
 /* Status line. Every item shares one recipe (same size, same weight, same
@@ -1536,7 +1754,7 @@ body #system-bar {
 
 .studio-list-badge--personal {
     border-color: rgba(46, 110, 232, 0.35);
-    color: var(--zen-blue);
+    color: var(--zen-blue-text);
 }
 
 /* The recommendation badge on the three lists the copy names. Neutral rather than

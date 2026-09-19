@@ -211,17 +211,26 @@ another step.
 
 Two spatial models share one chrome. The app is a fixed column, `min(100%, 1180px)` with a
 `clamp(1rem, 3.5vw, 3.25rem)` gutter, so the title bar, the tab row and the study cards all
-line up on the same edges. The landing page is a 72rem grid of bands with prose capped at
-38rem inside it, because a page that has to show the product cannot be a document column.
+line up on the same edges. The landing page is a 72rem grid of bands with prose capped at a
+readable measure inside it, because a page that has to show the product cannot be a document
+column.
 
-Bands alternate shape on purpose: a two-column hero (copy and a product screenshot), a wide
-statement, a two-column band (list and phone screenshot), a narrow quiet band for the story, a
-pair of columns for the account and donation questions, then the closing panel. Vertical
-rhythm between bands is `clamp(3.5rem, 9vh, 6rem)`.
+Bands alternate shape, and the shape is the point: a two-column hero whose screenshot is
+cropped to the Lessons card so its words are legible; a full-width statement band carrying the
+progress spectrum at page width and the theme names as a four-column ruled texture; a
+two-column lessons band with the app's own drawing above the sample list and the phone capture
+beside it; a mirrored reviews band with the second drawing; a full-bleed `surface-alt` strip for
+the story; an unequal pair for the account and free questions; and a closing band with the
+sign-off and CTA beside the donation card. Vertical rhythm between bands is
+`clamp(3.5rem, 9vh, 6rem)`.
+
+Three quarters of a landing page that has to persuade cannot be the same 600px left column four
+times. When a band is added, give it a shape no neighbouring band already has.
 
 Responsive behaviour is structural, not scaled. Two-column bands collapse to one column at
-900px, the sample-word rows drop to a single column at 560px, and the donation card is a plain
-button below 560px because the Ko-fi widget clips its own controls under about 420px.
+900px, the theme texture drops to two columns there and one at 700px, the sample-word rows drop
+to a single column at 560px, and the donation card is a plain button until the viewport can give
+its column the 432px the Ko-fi widget needs, which is 1120px.
 
 ## Elevation & Depth
 
