@@ -311,7 +311,6 @@ html {
     width: min(100%, 72rem);
 }
 
-.home-hero,
 .home-band {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1.12fr);
@@ -319,12 +318,20 @@ html {
     align-items: center;
 }
 
+/* The hero is words and nothing else: the promise, the two facts under it, and the
+   action. With no object beside them the copy takes the full grid and the title is
+   allowed the display size it could not have at half width. */
 .home-hero {
     margin-bottom: clamp(3.5rem, 9vh, 6rem);
 }
 
 .home-hero-copy {
-    max-width: 32rem;
+    max-width: 52rem;
+}
+
+.home-hero h1 {
+    font-size: clamp(2rem, 5.2vw, 3.05rem);
+    letter-spacing: -0.025em;
 }
 
 .home-trust {
@@ -348,27 +355,6 @@ html {
     height: auto;
     border-radius: 0.85rem;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
-}
-
-/* Shown whole, the dashboard's text rendered at about 8.6px, which is decoration
-   rather than evidence. Source is 1024x700 and the Lessons card occupies
-   x 27..511, y 234..531, so the crop renders at about 1.1x and the card's own words
-   are legible. Percentages: width against the box width, top against the box height. */
-.home-shot--crop {
-    position: relative;
-    aspect-ratio: 484 / 297;
-    overflow: hidden;
-    border-radius: 0.85rem;
-}
-
-.home-shot--crop img {
-    position: absolute;
-    left: -5.579%;
-    top: -78.788%;
-    width: 211.57%;
-    max-width: none;
-    border-radius: 0;
-    box-shadow: none;
 }
 
 .home-shot--phone img {

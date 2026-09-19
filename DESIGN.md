@@ -184,7 +184,9 @@ weight, size and colour role, never a second typeface. Japanese text switches st
 keeps the same weight logic.
 
 ### Hierarchy
-- **Display** (760, `clamp(1.75rem, 4vw, 2.35rem)`, 1.18): page titles. Tight tracking
+- **Display** (760, `clamp(2rem, 5.2vw, 3.05rem)`, 1.18): the landing page's title, which
+  carries the hero on its own now that no image sits beside it. The studio's own page titles
+  stay at `clamp(1.75rem, 4vw, 2.35rem)`. Tight tracking
   (-0.02em) and balanced wrapping.
 - **Headline** (720, 1.35rem, 1.3): section headings, each opening with a hairline rule above.
   It was 1.12rem, which sat barely above the 1.08rem body, so nine headings gave a scanning
