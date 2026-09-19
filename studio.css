@@ -12,6 +12,8 @@
     /* Foreground accents. The deep steps below are fills (white sits on them), so
        text that has to survive the theme switch gets its own pair: green-dark on
        the green-soft tint measured 4.19:1 even in light mode. */
+    /* The key-cap's pressed-key edge, the one shadow-free depth cue in the system. */
+    --zen-key-edge: #707984;
     --zen-green-text: #127a3e;
     --zen-blue-text: var(--zen-blue-dark);
     --zen-ink: #171b22;
@@ -402,6 +404,7 @@ html {
     height: 0.62rem;
     margin: 2rem 0 0;
     border-radius: 999px;
+    /* One tick per list in the library: a data encoding, not a decorative stripe. */
     background-image:
         repeating-linear-gradient(90deg,
             rgba(255, 255, 255, 0.34) 0 1px,
@@ -1222,7 +1225,7 @@ body #system-bar {
     padding: 0 2.5rem 0 1rem;
     appearance: none;
     border: 1px solid var(--zen-line);
-    border-radius: 0.75rem;
+    border-radius: 0.6rem;
     background: var(--zen-surface);
     color: var(--zen-ink);
     font: inherit;
@@ -1297,7 +1300,7 @@ body #system-bar {
        family shares. It stays a border rather than a shadow so the ledge follows
        the corner radius exactly. */
     border-bottom: 3px solid var(--zen-line); /* impeccable-disable-line border-accent-on-rounded: key-cap ledge, deliberate */
-    border-radius: 0.55rem;
+    border-radius: 0.5rem;
     background: var(--zen-surface);
     color: var(--zen-ink);
     font: inherit;
@@ -1355,9 +1358,6 @@ body #system-bar {
     background: var(--zen-surface);
 }
 
-.daily-action-card > .daily-action-content {
-}
-
 .daily-action-card--lesson {
     border-color: var(--zen-green-border, #b8ddc6);
     background: var(--zen-green-soft);
@@ -1406,8 +1406,13 @@ body #system-bar {
     object-fit: contain;
 }
 
+/* An explicit rhythm for the rows, so both cards space their insides the same way.
+   Spacing used to come from whichever margins each element happened to carry. */
 .daily-action-content {
     min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 .daily-action-content h2 {
@@ -1452,8 +1457,8 @@ body #system-bar {
     padding: 0 3.2rem 0 1.05rem;
     display: inline-flex;
     align-items: center;
-    border: 1px solid #707984;
-    border-bottom: 4px solid #626b76; /* impeccable-disable-line border-accent-on-rounded: key-cap ledge, deliberate */
+    border: 1px solid var(--zen-key-edge);
+    border-bottom: 4px solid var(--zen-muted); /* impeccable-disable-line border-accent-on-rounded: key-cap ledge, deliberate */
     border-radius: 0.58rem;
     background: var(--zen-surface);
     color: var(--zen-ink);
@@ -1515,78 +1520,98 @@ body #system-bar {
     box-shadow: none;
 }
 
-.daily-quota {
+/* One strip per card, and the pair of them is the day's contract: the label, a tick
+   for each five-word set, and the count in tabular figures. It replaced a grid of
+   chips hardcoded to three columns, which left an empty cell at two sets and wrapped
+   3+1 at four, repeated "5 words" once per chip, and said the same thing a second
+   time in a sentence above it. */
+.daily-today {
     margin-top: 0.95rem;
     padding-top: 0.7rem;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.35rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
     border-top: 1px solid var(--zen-line);
 }
 
-.daily-quota-step {
+.daily-today-label {
+    color: var(--zen-muted);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.daily-ticks {
     display: flex;
     align-items: center;
-    gap: 0.4rem;
-    color: var(--zen-muted);
+    gap: 0.3rem;
 }
 
-.daily-quota-step > span {
-    width: 1.42rem;
-    height: 1.42rem;
-    display: grid;
-    place-items: center;
-    flex: 0 0 auto;
+.daily-tick {
+    width: 0.62rem;
+    height: 0.62rem;
     border: 1px solid var(--zen-line);
-    border-radius: 50%;
+    border-radius: 999px;
     background: var(--zen-surface);
-    font-size: 0.68rem;
-    font-weight: 760;
 }
 
-.daily-quota-step small {
-    font-size: 0.68rem;
-    font-weight: 620;
-    white-space: nowrap;
-}
-
-.daily-quota-step.is-current,
-.daily-quota-step.is-ready,
-.daily-quota-step.is-complete {
-    color: var(--zen-green-text);
-}
-
-.daily-quota-step.is-current > span {
+.daily-tick.is-current {
     border-color: var(--zen-green);
     box-shadow: 0 0 0 3px rgba(39, 185, 93, 0.15);
 }
 
-.daily-quota-step.is-complete > span {
+.daily-tick.is-done {
     border-color: var(--zen-green);
     background: var(--zen-green);
-    color: #fff;
 }
 
-.daily-quota-step.is-optional {
-    opacity: 0.55;
+/* The review card's own pass carries its own role colour, the way its heading does. */
+.daily-action-card--review .daily-tick.is-current {
+    border-color: var(--zen-blue);
+    box-shadow: 0 0 0 3px rgba(46, 110, 232, 0.15);
 }
 
-/* The Lessons card's finished state. It used to be a disabled primary button, which
-   put the biggest control on the screen out of reach at the moment the day was
-   done; it is a statement now, and the enabled primary beside it is "Add 5 more". */
-.daily-action-done {
-    margin: 0;
+.daily-action-card--review .daily-tick.is-done {
+    border-color: var(--zen-blue);
+    background: var(--zen-blue);
+}
+
+.daily-today-count {
+    margin-left: auto;
+    color: var(--zen-ink);
+    font-size: 0.82rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
+
+/* The primary row is a fixed height whether it holds a button or a sentence, so the
+   two cards' actions and strips stay on the same lines in every state. */
+.daily-action-primary {
+    min-height: 3.05rem;
     display: flex;
     align-items: center;
-    gap: 0.45rem;
-    color: var(--zen-green-text);
+}
+
+.daily-action-primary > .daily-primary-btn {
+    flex: 1 1 auto;
+}
+
+/* The replacement for an action that cannot be taken, so a learner never meets a
+   greyed-out button with no reason. */
+.daily-action-note {
+    margin: 0;
+    color: var(--zen-muted);
     font-size: 0.86rem;
-    font-weight: 650;
+    line-height: 1.45;
+}
+
+.daily-extra {
+    margin-top: 0.55rem;
 }
 
 .daily-optional-btn {
-    margin-top: 0.55rem;
-    min-height: 2.2rem;
+    min-height: 2.75rem;
     padding: 0 0.75rem;
     border: 1px solid var(--zen-line);
     border-bottom: 3px solid var(--zen-line); /* impeccable-disable-line border-accent-on-rounded: key-cap ledge, deliberate */
@@ -1866,7 +1891,7 @@ body #system-bar {
     height: 2.55rem;
     padding: 0 1rem 0 2.55rem;
     border: 1px solid var(--zen-line);
-    border-radius: 0.72rem;
+    border-radius: 0.6rem;
     background: var(--zen-surface);
     color: var(--zen-ink);
     font: inherit;
@@ -1935,8 +1960,8 @@ body #system-bar {
 .studio-table-start-btn {
     min-height: 2.2rem;
     padding: 0 0.85rem;
-    border: 1px solid #707984;
-    border-bottom: 3px solid #626b76; /* impeccable-disable-line border-accent-on-rounded: key-cap ledge, deliberate */
+    border: 1px solid var(--zen-key-edge);
+    border-bottom: 3px solid var(--zen-muted); /* impeccable-disable-line border-accent-on-rounded: key-cap ledge, deliberate */
     border-radius: 0.5rem;
     background: var(--zen-surface);
     color: var(--zen-ink);
@@ -2141,7 +2166,7 @@ body #system-bar {
 .lesson-example-jp {
     color: var(--zen-ink);
     font-size: 1.18rem;
-    font-weight: 620;
+    font-weight: 600;
 }
 
 .lesson-example-en {
@@ -3169,7 +3194,7 @@ body.dark .settings-field input[type="date"] {
 
 .kanji-picker-cancel-btn {
     border: 1px solid var(--zen-line);
-    border-radius: 0.55rem;
+    border-radius: 0.5rem;
     background: var(--zen-surface);
     color: var(--zen-muted);
     padding: 0.55rem 1rem;
@@ -3180,7 +3205,7 @@ body.dark .settings-field input[type="date"] {
 
 .kanji-picker-start-btn {
     border: 0;
-    border-radius: 0.55rem;
+    border-radius: 0.5rem;
     background: var(--zen-green-dark);
     color: #fff;
     padding: 0.55rem 1.25rem;

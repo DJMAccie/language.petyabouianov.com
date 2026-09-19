@@ -179,26 +179,50 @@ window.StudioDaily = (() => {
         const streak = window.StudioQuiz?.getStoredStreak?.() || 0;
         const studyDays = window.StudioQuiz?.getStoredStudyDays?.() || 0;
 
-        // One step per batch in play; completed batches show a check mark and no
-        // greyed-out placeholder is rendered for batches that do not exist yet.
-        const quotaSteps = Array.from({ length: Math.max(targetBatchCount, 1) }, (_, index) => {
-            const isComplete = completedSet.has(index);
-            const isCurrent = index === nextBatchIndex;
-            const stateClass = isComplete ? 'is-complete' : isCurrent ? 'is-current' : 'is-ready';
-            const icon = isComplete ? '<i class="fas fa-check" aria-hidden="true"></i>' : String(index + 1);
-            return `<div class="daily-quota-step ${stateClass}"><span>${icon}</span><small>5 words</small></div>`;
+        // Both cards run the same four rows in the same order, so the primary action is
+        // always the third row and the pair reads as one choice: heading, value, action,
+        // today. The Lessons card's extra row sits below the strip, never between the
+        // value and the action, which is what used to move the primary 70px down the
+        // card the moment the day was finished.
+        const nextBatchSize = state.lessonBatches[nextBatchIndex]?.length || DAILY_LESSON_BATCH_SIZE;
+        const setsDone = completedSet.size;
+        const setsPlanned = Math.max(targetBatchCount, 1);
+
+        // The value always sizes the session the button starts, in every state. It used
+        // to become the library remainder once the day was done, which put the loudest
+        // number on the card beyond the learner's reach.
+        const lessonValue = nextBatchSize;
+        const lessonUnit = 'words to learn';
+
+        const lessonPrimary = lessonsDone
+            ? (fresh > 0
+                ? `<button type="button" class="daily-primary-btn daily-primary-btn--lesson" onclick="window.StudioDaily.addFiveMoreWords()">Add 5 more words</button>`
+                : `<p class="daily-action-note">Every word in the library has been met.</p>`)
+            : `<button type="button" class="daily-primary-btn daily-primary-btn--lesson" onclick="window.StudioDaily.startDailyLesson()">${state.lessonBatches[nextBatchIndex]?.length ? 'Continue 5 words' : 'Learn 5 words'}</button>`;
+
+        const lessonTicks = Array.from({ length: setsPlanned }, (_, index) => {
+            const state_ = index < setsDone ? ' is-done' : (index === setsDone && !lessonsDone ? ' is-current' : '');
+            return `<span class="daily-tick${state_}"></span>`;
         }).join('');
 
-        // One primary action, always enabled. The card used to render a disabled
-        // "Today's lessons done" beside an enabled "Add 5 more words", so at the
-        // moment the day was finished the biggest control on the screen was the one
-        // that could not be pressed and nothing said whether the day was over.
-        const lessonButton = lessonsDone
-            ? `<p class="daily-action-done"><i class="fas fa-check" aria-hidden="true"></i> Today's five-word sets are done</p>`
-            : `<button type="button" class="daily-primary-btn daily-primary-btn--lesson" onclick="window.StudioDaily.startDailyLesson()">${state.lessonBatches[nextBatchIndex]?.length ? 'Continue 5 words' : 'Learn 5 words'}</button>`;
-        const optionalAction = fresh > 0
-            ? `<button type="button" class="${lessonsDone ? 'daily-primary-btn daily-primary-btn--lesson' : 'daily-optional-btn'}" onclick="window.StudioDaily.addFiveMoreWords()"><i class="fas fa-plus" aria-hidden="true"></i> Add 5 more words</button>`
+        // The quiet top-up is a different job from the primary (it extends today's plan
+        // rather than starting the next set), so it keeps this spot whenever it is not
+        // the only action left.
+        const lessonExtra = (!lessonsDone && fresh > 0)
+            ? `<div class="daily-extra"><button type="button" class="daily-optional-btn" onclick="window.StudioDaily.addFiveMoreWords()"><i class="fas fa-plus" aria-hidden="true"></i> 5 more words</button></div>`
             : '';
+
+        const reviewDriven = reviewReady > 0;
+        const reviewPrimary = reviewDriven
+            ? `<button type="button" class="daily-primary-btn daily-primary-btn--review" onclick="window.StudioDaily.startDailyReview()">Review ${reviewReady} words${state.reviewCompleted ? ' more' : ''}</button>`
+            : `<p class="daily-action-note">${state.reviewCompleted ? 'Nothing due right now.' : 'Nothing due yet. Reviews come back after a lesson.'}</p>`;
+        const reviewTickState = state.reviewCompleted ? ' is-done' : (reviewDriven ? ' is-current' : '');
+        const reviewCount = reviewDriven ? (state.reviewCompleted ? '1 of 1' : '0 of 1') : 'nothing due';
+        const reviewSpoken = reviewDriven
+            ? (state.reviewCompleted ? "Today's review is done" : "Today's review is still to do")
+            : 'Nothing due to review yet';
+
+        const lessonSpoken = `${setsDone} of ${setsPlanned} five-word sets done today`;
 
         panel.innerHTML = `
             <div class="daily-intro">
@@ -215,10 +239,14 @@ window.StudioDaily = (() => {
                     <div class="daily-action-illustration"><img src="assets/lesson-words.png" alt="" aria-hidden="true"></div>
                     <div class="daily-action-content">
                         <h2>Lessons</h2>
-                        <div class="daily-action-number"><strong>${lessonsDone ? fresh.toLocaleString() : (state.lessonBatches[nextBatchIndex]?.length || DAILY_LESSON_BATCH_SIZE)}</strong><span>${lessonsDone ? 'still new in the library' : 'new words'}</span></div>
-                        ${lessonButton}
-                        <div class="daily-quota" aria-label="Daily lesson quota">${quotaSteps}</div>
-                        ${optionalAction}
+                        <div class="daily-action-number"><strong>${lessonValue}</strong><span>${lessonUnit}</span></div>
+                        <div class="daily-action-primary">${lessonPrimary}</div>
+                        <div class="daily-today" role="group" aria-label="${lessonSpoken}">
+                            <span class="daily-today-label">Today</span>
+                            <span class="daily-ticks" aria-hidden="true">${lessonTicks}</span>
+                            <span class="daily-today-count">${setsDone} of ${setsPlanned}</span>
+                        </div>
+                        ${lessonExtra}
                     </div>
                 </section>
 
@@ -226,8 +254,13 @@ window.StudioDaily = (() => {
                     <div class="daily-action-illustration"><img src="assets/review-words.png" alt="" aria-hidden="true"></div>
                     <div class="daily-action-content">
                         <h2>Reviews</h2>
-                        <div class="daily-action-number"><strong>${reviewReady}</strong><span>${state.reviewCompleted ? 'finished today' : 'ready'}</span></div>
-                        <button type="button" class="daily-primary-btn daily-primary-btn--review" onclick="window.StudioDaily.startDailyReview()" ${reviewReady === 0 ? 'disabled' : ''}>${state.reviewCompleted ? 'Reviews done' : `Review ${reviewReady} words`}</button>
+                        <div class="daily-action-number"><strong>${reviewReady}</strong><span>words due</span></div>
+                        <div class="daily-action-primary">${reviewPrimary}</div>
+                        <div class="daily-today" role="group" aria-label="${reviewSpoken}">
+                            <span class="daily-today-label">Today</span>
+                            <span class="daily-ticks" aria-hidden="true"><span class="daily-tick${reviewTickState}"></span></span>
+                            <span class="daily-today-count">${reviewCount}</span>
+                        </div>
                     </div>
                 </section>
             </div>

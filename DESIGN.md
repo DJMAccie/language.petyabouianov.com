@@ -5,6 +5,7 @@ colors:
   studio-blue: "#2e6ee8"
   studio-blue-deep: "#1f56c4"
   studio-blue-text: "#1f56c4"
+  key-edge: "#707984"
   studio-blue-wash: "#eef4ff"
   lesson-green: "#27b95d"
   lesson-green-deep: "#148844"
@@ -231,6 +232,13 @@ Responsive behaviour is structural, not scaled. Two-column bands collapse to one
 900px, the theme texture drops to two columns there and one at 700px, the sample-word rows drop
 to a single column at 560px, and the donation card is a plain button until the viewport can give
 its column the 432px the Ko-fi widget needs, which is 1120px.
+
+**The parallel card rule.** The daily screen's two action cards sit side by side and run the
+same four rows in the same order: heading, value, action, today. The action is always the third
+row, and its row holds its height whether it carries a button or the sentence that replaces it,
+so both actions and both strips land on the same lines in every state and theme. The value
+always sizes the session the action starts, never a library total the learner cannot act on, and
+the today strip is one tick per five-word set with the count in tabular figures.
 
 ## Elevation & Depth
 
