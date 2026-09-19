@@ -1011,9 +1011,15 @@ html {
     font-weight: 600;
 }
 
-/* The brand mark is an inline SVG now, so the landing page carries no icon font. */
-.brand-mark {
+/* The two marks on this page are inline SVGs, so the landing page carries no icon
+   font. Both sit on the text baseline with the button's own gap doing the spacing. */
+.brand-mark,
+.heart-mark {
     flex: 0 0 auto;
+}
+
+.heart-mark {
+    margin-right: 0.05rem;
 }
 
 /* The page's one authored moment, and it is the product's own rhythm rather than a
