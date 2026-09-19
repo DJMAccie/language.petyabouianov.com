@@ -334,13 +334,6 @@ html {
     letter-spacing: -0.025em;
 }
 
-.home-trust {
-    margin: 1.3rem 0 0;
-    color: var(--zen-muted);
-    font-size: 0.92rem;
-    font-weight: 600;
-}
-
 /* Product shots are objects on the page, not decoration. The capture already
    contains the app's own window, so nothing is drawn around it: it is lifted with
    the same shadow the app's own windows use, and no border, because a hairline
