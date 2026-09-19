@@ -827,6 +827,9 @@ body #system-bar {
     padding: 0.85rem 1.6rem;
     border-bottom: 1px solid var(--zen-line);
     background: var(--zen-surface-alt);
+    /* The search field is the row's only child, so centring the row centres it. */
+    display: flex;
+    justify-content: center;
 }
 
 .library-search-field {
