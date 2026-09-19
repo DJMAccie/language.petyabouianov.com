@@ -41,6 +41,19 @@ RewriteRule ^login/?$ login.html [L,NC]
     Header always set Pragma "no-cache"
     Header always set Expires "0"
   </FilesMatch>
+  <!-- Assets are versioned with a ?v= query in the markup, but that is edited by hand,
+       so an hour of freshness keeps a change from hiding behind a stale cache for long.
+       Images and scripts change rarely; the stylesheet changes often. -->
+  <FilesMatch "\.(css|js|png|webp|jpg|jpeg|svg|woff2)$">
+    Header always set Cache-Control "public, max-age=3600, must-revalidate"
+  </FilesMatch>
+</IfModule>
+
+<!-- Compression. The stylesheet is 87KB raw and 21KB gzipped, which is the largest
+     single saving available before first paint. The images are already compressed, so
+     they are deliberately left out. -->
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/javascript application/json image/svg+xml
 </IfModule>
 
 <FilesMatch "\.(json|csv|env|log|config\.php|py|bak|sql)$">

@@ -328,11 +328,10 @@ html {
 }
 
 .home-trust {
-    margin: 1.4rem 0 0;
-    color: var(--zen-ink);
-    font-size: 0.95rem;
+    margin: 1.3rem 0 0;
+    color: var(--zen-muted);
+    font-size: 0.92rem;
     font-weight: 600;
-    letter-spacing: -0.005em;
 }
 
 /* Product shots are objects on the page, not decoration. The capture already
@@ -504,21 +503,19 @@ html {
 
 /* The closing band: the sign-off and the CTA in the main column, the ask beside them
    instead of ahead of the first lesson. */
+/* One column, so the ask sits under the closing panel instead of running 425px past
+   it in an empty second column. The band used to be a grid whose right column held a
+   712px card, which made the page's lowest-value section its tallest. */
 .home-close {
-    display: grid;
-    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
-    gap: 2.5rem 3rem;
-    align-items: start;
+    max-width: 40rem;
     margin-bottom: clamp(3.5rem, 9vh, 6rem);
 }
 
-.home-close-main {
-    max-width: 40rem;
-}
-
 .home-donate {
+    margin-top: 2rem;
     padding-top: 1.2rem;
     border-top: 1px solid var(--zen-line);
+    max-width: 30rem;
 }
 
 .home-donate-note {
@@ -609,9 +606,11 @@ html {
     margin: 2.5rem 0 0.75rem;
     padding-top: 1.5rem;
     border-top: 1px solid var(--zen-line);
-    font-size: 1.12rem;
+    /* 1.35rem: the band-heading step. At 1.12rem a heading sat barely above the
+       1.08rem body, so nine of them gave a search visitor no outline to scan. */
+    font-size: 1.35rem;
     font-weight: 720;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.015em;
 }
 
 /* The element straight after the lede carries the lede's own bottom margin, so it
@@ -1007,6 +1006,35 @@ html {
 .header-icon-glyph {
     font-size: 1rem;
     line-height: 1;
+}
+
+/* The page's foot: who runs it, that it is free, and where to go next. */
+.home-footer {
+    margin-top: clamp(2rem, 5vh, 3rem);
+    border-top: 1px solid var(--zen-line);
+}
+
+.home-footer-inner {
+    width: min(100%, 72rem);
+    margin: 0 auto;
+    padding: 1.4rem 2rem 2.4rem;
+}
+
+.home-footer p {
+    margin: 0;
+    color: var(--zen-muted);
+    font-size: 0.86rem;
+}
+
+.home-footer a {
+    margin-left: 0.9rem;
+    color: var(--zen-blue-text);
+    font-weight: 600;
+}
+
+/* The brand mark is an inline SVG now, so the landing page carries no icon font. */
+.brand-mark {
+    flex: 0 0 auto;
 }
 
 /* The page's one authored moment, and it is the product's own rhythm rather than a

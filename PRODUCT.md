@@ -54,6 +54,11 @@ vocabulary volume and speed to first value. The anti-reference is Anki: setup, d
 configuration before any learning. Simplicity of start is therefore a feature of the
 product, not a limitation of it.
 
+**The one-line answer to what this is**, in the owner's words: **"Learn Japanese vocabulary
+in a simple and effective way."** Simple is the anti-Anki half and effective is the WaniKani
+half, and it is broader than the trip story the page currently frames itself with: the trip
+is where the product came from, not the only reason to use it.
+
 ## Operating Context
 
 - Study happens in short, focused bursts on desktop and mobile web, often against a trip

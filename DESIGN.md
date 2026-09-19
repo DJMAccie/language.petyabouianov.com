@@ -186,7 +186,9 @@ keeps the same weight logic.
 ### Hierarchy
 - **Display** (760, `clamp(1.75rem, 4vw, 2.35rem)`, 1.18): page titles. Tight tracking
   (-0.02em) and balanced wrapping.
-- **Headline** (720, 1.12rem, 1.35): section headings, each opening with a hairline rule above
+- **Headline** (720, 1.35rem, 1.3): section headings, each opening with a hairline rule above.
+  It was 1.12rem, which sat barely above the 1.08rem body, so nine headings gave a scanning
+  reader no outline
   it and generous space before it.
 - **Body** (400, 1.08rem, 1.65): running text, held to a 38rem measure on the landing page and
   a 44rem column in the app's dialogs.
@@ -221,8 +223,10 @@ cropped to the Lessons card so its words are legible; a full-width statement ban
 progress spectrum at page width and the theme names as a four-column ruled texture; a
 two-column lessons band with the app's own drawing above the sample list and the phone capture
 beside it; a mirrored reviews band with the second drawing; a full-bleed `surface-alt` strip for
-the story; an unequal pair for the account and free questions; and a closing band with the
-sign-off and CTA beside the donation card. Vertical rhythm between bands is
+the story; an unequal pair for the account and free questions; and a closing column that
+carries the sign-off, the CTA and the ask in one flow, with a one-line footer under it. The ask
+used to sit in a second column beside the CTA, where it outlived its neighbour by 425px and
+made the lowest-value band the tallest on the page. Vertical rhythm between bands is
 `clamp(3.5rem, 9vh, 6rem)`.
 
 Three quarters of a landing page that has to persuade cannot be the same 600px left column four
@@ -232,6 +236,10 @@ Responsive behaviour is structural, not scaled. Two-column bands collapse to one
 900px, the theme texture drops to two columns there and one at 700px, the sample-word rows drop
 to a single column at 560px, and the donation card is a plain button until the viewport can give
 its column the 432px the Ko-fi widget needs, which is 1120px.
+
+**The landing page carries no icon font.** Its one glyph, the brand mark, is an inline SVG, so
+the page requests nothing from a third party before first paint beyond nothing at all: the only
+external request left is the Ko-fi iframe, which is lazy and below the fold.
 
 **The kana page.** `/kana` is the one surface with no app chrome around it: the same window
 bar and wordmark, a single 44rem column, and the drill as the first thing on the page, with
