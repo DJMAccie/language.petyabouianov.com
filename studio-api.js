@@ -591,6 +591,105 @@ window.StudioAPI = (() => {
         return response.json();
     }
 
+    // --- Account settings ---------------------------------------------------
+    // The Japan trip date is the first setting that belongs to a person rather
+    // than a device. A signed-in visitor reads and writes it on the server so it
+    // follows them between desktop and phone; a guest gets the same feature from
+    // localStorage, so the countdown never depends on having an account. The
+    // local copy doubles as the first-paint cache for the status line.
+    let prefsSignedIn = false;
+
+    function getPrefsStorageKey() {
+        return `studio_prefs_${getActiveLang()}_v1`;
+    }
+
+    function readLocalPrefs() {
+        try {
+            const parsed = JSON.parse(localStorage.getItem(getPrefsStorageKey()) || '{}');
+            return parsed && typeof parsed === 'object' && !Array.isArray(parsed) ? parsed : {};
+        } catch (e) {
+            return {};
+        }
+    }
+
+    function writeLocalPrefs(prefs) {
+        try {
+            localStorage.setItem(getPrefsStorageKey(), JSON.stringify(prefs || {}));
+        } catch (e) {
+            // Private browsing: the setting still applies for this session.
+        }
+    }
+
+    function getCachedPrefs() {
+        return readLocalPrefs();
+    }
+
+    function announcePrefs(prefs) {
+        window.dispatchEvent(new CustomEvent('studio:prefs-changed', { detail: { prefs } }));
+    }
+
+    // get_prefs answers 200 for a guest, so this never triggers the sign-in
+    // redirect that private account data uses. The reply is also how the client
+    // learns whether the account is the authority for these values.
+    async function refreshPrefs() {
+        try {
+            const response = await fetch(`${config.apiUrl}&action=get_prefs&t=${Date.now()}`);
+            if (!response.ok) return readLocalPrefs();
+
+            const payload = await response.json().catch(() => null);
+            prefsSignedIn = payload?.signedIn === true;
+
+            const remote = payload && payload.prefs && typeof payload.prefs === 'object' ? payload.prefs : {};
+            const previous = readLocalPrefs();
+            const next = prefsSignedIn ? remote : previous;
+            writeLocalPrefs(next);
+
+            if (JSON.stringify(previous) !== JSON.stringify(next)) announcePrefs(next);
+            return next;
+        } catch (e) {
+            return readLocalPrefs();
+        }
+    }
+
+    async function savePrefs(patch) {
+        const merged = { ...readLocalPrefs(), ...(patch || {}) };
+        Object.keys(merged).forEach((key) => {
+            if (merged[key] === null || merged[key] === '') delete merged[key];
+        });
+        writeLocalPrefs(merged);
+        announcePrefs(merged);
+
+        if (!prefsSignedIn && !window.StudioSession?.isSignedIn?.()) {
+            return { synced: false, prefs: merged };
+        }
+
+        try {
+            const response = await fetch(`${config.apiUrl}&action=save_prefs`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ ...(patch || {}), ...getWriteAuthPayload() })
+            });
+
+            // An expired session must not throw the visitor out of a settings
+            // dialog; the local copy already holds their change.
+            if (response.status === 401) {
+                window.StudioSession?.markSignedOut?.();
+                prefsSignedIn = false;
+                return { synced: false, prefs: merged, expired: true };
+            }
+            if (!response.ok) return { synced: false, prefs: merged };
+
+            const payload = await response.json().catch(() => null);
+            if (payload && payload.prefs && typeof payload.prefs === 'object') {
+                writeLocalPrefs(payload.prefs);
+                return { synced: true, prefs: payload.prefs };
+            }
+            return { synced: true, prefs: merged };
+        } catch (e) {
+            return { synced: false, prefs: merged, error: e };
+        }
+    }
+
     return {
         init,
         getConfig,
@@ -613,6 +712,9 @@ window.StudioAPI = (() => {
         deleteList,
         saveScore,
         updateWordStats,
-        lookupWord
+        lookupWord,
+        getCachedPrefs,
+        refreshPrefs,
+        savePrefs
     };
 })();

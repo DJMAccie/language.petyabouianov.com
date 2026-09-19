@@ -1252,26 +1252,62 @@ body #system-bar {
 .daily-progress-values .is-new strong { color: var(--zen-blue); }
 .daily-progress-values .is-goal strong { color: var(--zen-muted); }
 
+/* Status line. Every item shares one recipe — same size, same weight, same
+   colour role — so the row reads as one line of data. The number carries the
+   emphasis and the words stay quiet; yesterday the streak was bold, "days
+   studied" was a size smaller, and "words total" was neither. */
 .daily-streak-line {
     padding-top: 0.9rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 1rem;
+    gap: 1rem 1.5rem;
     flex-wrap: wrap;
     border-top: 1px solid var(--zen-line);
     color: var(--zen-muted);
     font-size: 0.77rem;
+    font-weight: 500;
 }
 
-.daily-study-days {
-    color: var(--zen-faint);
-    font-size: 0.72rem;
+.daily-stat {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.77rem;
+    font-weight: 500;
+    line-height: 1.2;
+    color: var(--zen-muted);
+    /* The numbers change in place; tabular figures keep the row from shifting. */
+    font-variant-numeric: tabular-nums;
 }
 
-.daily-streak-line i {
-    margin-right: 0.3rem;
+/* Study days and the trip countdown sit together, so the countdown reads as a
+   neighbour of the number it counts down alongside. */
+.daily-stat-cluster {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.35rem 1.5rem;
+    font-variant-numeric: tabular-nums;
+}
+
+.daily-stat strong {
+    color: var(--zen-ink);
+    font-weight: 700;
+}
+
+.daily-stat i {
+    font-size: 0.95em;
+    color: var(--zen-muted);
+}
+
+.daily-stat.is-streak i {
     color: #f18b2b;
+}
+
+.daily-stat.is-trip i {
+    color: var(--zen-blue);
 }
 
 /* WORD LIBRARY */
@@ -1944,6 +1980,116 @@ body #system-bar {
 /* Body padding was previously supplied per-instance by Tailwind utilities. */
 .studio-modal-body--padded {
     padding: 1.25rem;
+}
+
+/* SETTINGS DIALOG */
+.settings-group + .settings-group {
+    margin-top: 1.6rem;
+    padding-top: 1.4rem;
+    border-top: 1px solid var(--zen-line);
+}
+
+.settings-group-title {
+    margin: 0 0 0.4rem;
+    color: var(--zen-ink);
+    font-size: 0.82rem;
+    font-weight: 720;
+}
+
+.settings-hint {
+    margin: 0 0 0.9rem;
+    max-width: 46ch;
+    color: var(--zen-muted);
+    font-size: 0.78rem;
+    line-height: 1.55;
+}
+
+.settings-field {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+.settings-field label {
+    color: var(--zen-muted);
+    font-size: 0.78rem;
+    font-weight: 600;
+}
+
+.settings-field input[type="date"] {
+    height: 2.4rem;
+    padding: 0 0.7rem;
+    border: 1px solid var(--zen-line);
+    border-radius: 0.6rem;
+    background: var(--zen-surface);
+    color: var(--zen-ink);
+    font: inherit;
+    font-size: 0.82rem;
+    font-variant-numeric: tabular-nums;
+}
+
+.settings-field input[type="date"]:focus {
+    border-color: #9db9ec;
+    outline: 3px solid rgba(46, 110, 232, 0.15);
+}
+
+/* The picker glyph is drawn by the browser, so it needs telling that the field
+   it sits in went dark. */
+body.dark .settings-field input[type="date"] {
+    color-scheme: dark;
+}
+
+.settings-clear {
+    height: 2.4rem;
+    padding: 0 0.85rem;
+    border: 1px solid var(--zen-line);
+    border-radius: 0.6rem;
+    background: var(--zen-surface);
+    color: var(--zen-muted);
+    font: inherit;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: color 140ms ease, border-color 140ms ease;
+}
+
+.settings-clear:hover {
+    color: var(--zen-ink);
+    border-color: #aeb8c4;
+}
+
+.settings-clear:focus-visible {
+    outline: 2px solid var(--zen-blue);
+    outline-offset: 2px;
+}
+
+.settings-status {
+    margin: 0.75rem 0 0;
+    min-height: 1.05rem;
+    color: var(--zen-muted);
+    font-size: 0.75rem;
+}
+
+.settings-account-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.2rem;
+    color: var(--zen-blue);
+    font-size: 0.82rem;
+    font-weight: 650;
+    text-decoration: none;
+}
+
+.settings-account-link:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.settings-account-link:focus-visible {
+    outline: 2px solid var(--zen-blue);
+    outline-offset: 3px;
+    border-radius: 0.2rem;
 }
 
 /* Study focus panel (shown above the library table) */

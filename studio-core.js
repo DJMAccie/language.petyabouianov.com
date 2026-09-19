@@ -81,17 +81,14 @@ const StudioCore = window.StudioCore = (() => {
             rightSlot.innerHTML = '';
             rightSlot.className = 'studio-header-right flex items-center justify-end gap-1.5';
 
-            // Account: opens the sign-in screen, or the account panel when the
-            // visitor already has a session.
+            // Account: opens Settings, which carries the trip date and keeps the
+            // sign-in path for a visitor who has no session yet.
             const accountBtn = document.createElement('button');
             accountBtn.type = 'button';
             accountBtn.className = 'header-icon-btn';
-            accountBtn.onclick = () => {
-                const target = typeof config.signInUrl === 'string' && config.signInUrl ? config.signInUrl : '/login.html';
-                window.location.href = target;
-            };
-            accountBtn.title = 'Account';
-            accountBtn.setAttribute('aria-label', 'Sign in or open account settings');
+            accountBtn.onclick = () => window.StudioUI?.openStudioSettings?.();
+            accountBtn.title = 'Settings';
+            accountBtn.setAttribute('aria-label', 'Open settings and account');
             accountBtn.innerHTML = '<i class="fas fa-user-circle"></i>';
             rightSlot.appendChild(accountBtn);
 
@@ -177,6 +174,9 @@ const StudioCore = window.StudioCore = (() => {
             window.StudioLibrary?.renderTable(loadedLists, loadedScores);
             window.StudioLibrary?.syncCreateControl?.();
             window.StudioDaily?.renderDailyDashboard();
+            // Settings belong to the account when there is one; this settles the
+            // trip date and re-renders the status line if it changed.
+            window.StudioAPI?.refreshPrefs?.().catch(() => { });
         } catch (e) {
             const cached = window.StudioAPI.loadSnapshotCache();
             if (cached?.lists && Object.keys(cached.lists).length) {
@@ -285,6 +285,8 @@ const StudioCore = window.StudioCore = (() => {
 
         window.openGrammarCorner = () => window.StudioUI.openGrammarCorner();
         window.closeGrammarCorner = () => window.StudioUI.closeGrammarCorner();
+        window.openStudioSettings = () => window.StudioUI.openStudioSettings();
+        window.closeStudioSettings = () => window.StudioUI.closeStudioSettings();
         window.saveGrammarEntry = (e) => window.StudioUI.saveGrammarEntry(e);
 
         window.openDictionary = (word) => window.StudioUI.openDictionary(word);

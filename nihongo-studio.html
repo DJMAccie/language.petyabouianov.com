@@ -458,6 +458,42 @@
         </div>
     </div>
 
+    <!-- SETTINGS -->
+    <!-- Opened from the account icon in the header. The trip date is the only
+         setting here today; the account row keeps the sign-in path that the same
+         icon used to provide on its own. -->
+    <div id="studio-settings-modal" role="dialog" aria-modal="true" aria-labelledby="studio-settings-title" aria-hidden="true" tabindex="-1"
+        class="studio-modal hidden animate-fade-in">
+        <div class="mac-window studio-modal-panel studio-modal-panel--compact">
+            <div class="studio-modal-header">
+                <span id="studio-settings-title" class="studio-modal-title"><i
+                        class="fas fa-sliders text-blue-500"></i>Settings</span>
+                <button type="button" onclick="closeStudioSettings()" class="text-gray-400 hover:text-gray-600 transition studio-overlay-close-btn" aria-label="Close settings"><i
+                        class="fas fa-times"></i></button>
+            </div>
+            <div class="studio-modal-body studio-modal-body--padded">
+                <section class="settings-group" aria-labelledby="settings-trip-heading">
+                    <h3 class="settings-group-title" id="settings-trip-heading">Japan trip</h3>
+                    <p class="settings-hint">Set the day you land and the studio counts down to it beside your study
+                        days. Leave it empty and no countdown shows.</p>
+                    <div class="settings-field">
+                        <label for="settings-trip-date">Arrival date</label>
+                        <input type="date" id="settings-trip-date" name="japanTripDate">
+                        <button type="button" id="settings-trip-clear" class="settings-clear" hidden>Clear</button>
+                    </div>
+                    <p class="settings-status" id="settings-trip-status" role="status" aria-live="polite"></p>
+                </section>
+
+                <section class="settings-group" aria-labelledby="settings-account-heading">
+                    <h3 class="settings-group-title" id="settings-account-heading">Account</h3>
+                    <p class="settings-hint" id="settings-account-note">Settings are saved in this browser. Sign in to
+                        keep them across devices.</p>
+                    <a class="settings-account-link" id="settings-account-link" href="/login">Sign in</a>
+                </section>
+            </div>
+        </div>
+    </div>
+
     <!-- DIALOG OVERLAYS -->
     <!-- These are populated at runtime by studio-ui.js and studio-quiz.js. The
          styles for these exact ids live in studio.css, so the elements must exist
@@ -521,6 +557,9 @@
             });
             document.getElementById('grammar-corner-modal')?.addEventListener('click', (e) => {
                 if (e.target.id === 'grammar-corner-modal') window.StudioUI.closeGrammarCorner();
+            });
+            document.getElementById('studio-settings-modal')?.addEventListener('click', (e) => {
+                if (e.target.id === 'studio-settings-modal') window.StudioUI.closeStudioSettings();
             });
         };
     </script>

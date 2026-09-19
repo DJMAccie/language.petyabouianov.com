@@ -539,6 +539,107 @@ window.StudioUI = (() => {
         closeDialog(document.getElementById('grammar-corner-modal'));
     }
 
+    // --- SETTINGS MODAL ---
+    // The day arithmetic lives in studio-daily.js, which also renders the
+    // countdown; the dialog only reports what that countdown will say.
+    function tripDays(value) {
+        return window.StudioDaily?.daysUntilTrip?.(value);
+    }
+
+    function renderSettingsTrip(prefs) {
+        const input = document.getElementById('settings-trip-date');
+        const clear = document.getElementById('settings-trip-clear');
+        const status = document.getElementById('settings-trip-status');
+        if (!input) return;
+
+        const value = typeof prefs?.japanTripDate === 'string' ? prefs.japanTripDate : '';
+        input.value = value;
+        if (clear) clear.hidden = !value;
+        if (!status) return;
+
+        const days = tripDays(value);
+        if (days === null || days === undefined) {
+            status.textContent = '';
+        } else if (days > 0) {
+            status.textContent = `${days} ${days === 1 ? 'day' : 'days'} to go — shown in the status line under your progress.`;
+        } else if (days === 0) {
+            status.textContent = 'That is today: the status line says the trip is today, then hides.';
+        } else {
+            status.textContent = 'That date has passed, so the countdown stays hidden until you set a new one.';
+        }
+    }
+
+    function renderSettingsAccount() {
+        const note = document.getElementById('settings-account-note');
+        const link = document.getElementById('settings-account-link');
+        if (!note || !link) return;
+
+        const config = window.StudioAPI?.getConfig?.() || {};
+        const signInUrl = typeof config.signInUrl === 'string' && config.signInUrl ? config.signInUrl : '/login';
+        link.href = signInUrl;
+
+        if (window.StudioSession?.isSignedIn?.()) {
+            note.textContent = 'Signed in. Settings follow you to your other devices.';
+            link.textContent = 'Manage account';
+        } else {
+            note.textContent = 'Settings are saved in this browser. Sign in to keep them across devices.';
+            link.textContent = 'Sign in';
+        }
+    }
+
+    function wireSettingsModal() {
+        const input = document.getElementById('settings-trip-date');
+        const clear = document.getElementById('settings-trip-clear');
+
+        if (input && !input.dataset.studioSettingsBound) {
+            input.dataset.studioSettingsBound = '1';
+            input.addEventListener('change', async () => {
+                const value = input.value;
+                const result = await window.StudioAPI?.savePrefs?.({ japanTripDate: value || null });
+                renderSettingsTrip(result?.prefs || window.StudioAPI?.getCachedPrefs?.() || {});
+                if (result?.synced) {
+                    showToast('Trip date saved to your account.', 'success');
+                } else if (result?.expired) {
+                    showToast('Saved on this device. Sign in again to sync.', 'warning');
+                } else {
+                    showToast(value ? 'Trip date saved on this device.' : 'Trip date cleared.', 'success');
+                }
+            });
+        }
+
+        if (clear && !clear.dataset.studioSettingsBound) {
+            clear.dataset.studioSettingsBound = '1';
+            clear.addEventListener('click', async () => {
+                const result = await window.StudioAPI?.savePrefs?.({ japanTripDate: null });
+                renderSettingsTrip(result?.prefs || window.StudioAPI?.getCachedPrefs?.() || {});
+                showToast('Trip date cleared.', 'success');
+            });
+        }
+    }
+
+    function openStudioSettings() {
+        const modal = document.getElementById('studio-settings-modal');
+        if (!modal) return;
+
+        wireSettingsModal();
+        renderSettingsAccount();
+        renderSettingsTrip(window.StudioAPI?.getCachedPrefs?.() || {});
+
+        openDialog(modal, {
+            initialFocusSelector: '#settings-trip-date',
+            labelId: 'studio-settings-title'
+        });
+
+        // The cached copy paints immediately; the account copy may be newer.
+        window.StudioAPI?.refreshPrefs?.()
+            .then((prefs) => renderSettingsTrip(prefs))
+            .catch(() => { });
+    }
+
+    function closeStudioSettings() {
+        closeDialog(document.getElementById('studio-settings-modal'));
+    }
+
     // --- DICTIONARY MODAL ---
     function openDictionary(initialWord = '') {
         const modal = document.getElementById('dictionary-modal') || document.getElementById('dict-modal');
@@ -805,6 +906,8 @@ window.StudioUI = (() => {
         closeStatsModal: closeStats,
         openGrammarCorner,
         closeGrammarCorner,
+        openStudioSettings,
+        closeStudioSettings,
         renderGrammarCorner,
         saveGrammarEntry,
         openDictionary,

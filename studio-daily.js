@@ -237,9 +237,12 @@ window.StudioDaily = (() => {
                     <div class="is-goal"><strong>${goal.toLocaleString()}</strong><span>word goal</span></div>
                 </div>
                 <div class="daily-streak-line">
-                    <span><i class="fas fa-fire" aria-hidden="true"></i> <strong>${streak} day streak</strong></span>
-                    <span class="daily-study-days">${studyDays.toLocaleString()} ${studyDays === 1 ? 'day' : 'days'} studied</span>
-                    <span>${total.toLocaleString()} words total</span>
+                    <span class="daily-stat is-streak"><i class="fas fa-fire" aria-hidden="true"></i><strong>${streak}</strong> day streak</span>
+                    <span class="daily-stat-cluster">
+                        <span class="daily-stat"><strong>${studyDays.toLocaleString()}</strong> ${studyDays === 1 ? 'day' : 'days'} studied</span>
+                        ${tripCountdownMarkup()}
+                    </span>
+                    <span class="daily-stat"><strong>${total.toLocaleString()}</strong> words total</span>
                 </div>
             </section>
         `;
@@ -467,6 +470,40 @@ window.StudioDaily = (() => {
         writeDailyPathState(state);
     }
 
+    // --- Japan trip countdown -------------------------------------------------
+    // The stored value is a plain YYYY-MM-DD date, so it is compared as a local
+    // calendar day: a trip is "today" for the whole of that day wherever the
+    // visitor is, and never a day out because of a timezone offset.
+    function parseTripDate(value) {
+        const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(value || '').trim());
+        if (!match) return null;
+        const date = new Date(Number(match[1]), Number(match[2]) - 1, Number(match[3]));
+        return Number.isNaN(date.getTime()) ? null : date;
+    }
+
+    function daysUntilTrip(value) {
+        const target = parseTripDate(value);
+        if (!target) return null;
+        const now = new Date();
+        const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+        return Math.round((target - today) / 86400000);
+    }
+
+    // Only rendered when a trip date is set and still ahead of (or on) today.
+    function tripCountdownMarkup() {
+        const days = daysUntilTrip(window.StudioAPI?.getCachedPrefs?.()?.japanTripDate);
+        if (days === null || days < 0) return '';
+
+        if (days === 0) {
+            return `<span class="daily-stat is-trip"><i class="fas fa-plane-departure" aria-hidden="true"></i><strong>Today</strong> · Japan trip</span>`;
+        }
+        return `<span class="daily-stat is-trip"><i class="fas fa-plane-departure" aria-hidden="true"></i><strong>${days}</strong> ${days === 1 ? 'day' : 'days'} to Japan</span>`;
+    }
+
+    window.addEventListener('studio:prefs-changed', () => {
+        renderDailyDashboard();
+    });
+
     return {
         readDailyPathState,
         writeDailyPathState,
@@ -479,6 +516,7 @@ window.StudioDaily = (() => {
         playLessonAudio,
         completeDailySession,
         splitJapaneseLabel,
-        getLessonKana
+        getLessonKana,
+        daysUntilTrip
     };
 })();

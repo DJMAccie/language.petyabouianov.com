@@ -114,6 +114,7 @@ $defaultListsBasename = $listsFilesByLang[$lang] ?? null;
 $scoresBasename = 'global_scores.json';
 $statsBasename = 'global_word_stats.json';
 $syncEventsBasename = 'sync_processed_events.json';
+$prefsBasename = 'prefs.json';
 
 // Shared, read-only reference content (not account data).
 $kanjiMnemonicsFile = __DIR__ . '/kanji_mnemonics.json';
@@ -196,6 +197,30 @@ function normalizeListName($value) {
     $name = trim((string) $value);
     $name = preg_replace('/\s+/', ' ', $name);
     return function_exists('mb_substr') ? mb_substr($name, 0, 80) : substr($name, 0, 80);
+}
+
+// Account preferences are a small, fixed set of keys. Anything unknown is
+// dropped rather than stored, so a client typo can never grow the file, and a
+// null (or empty string) clears the key instead of persisting a blank value.
+function normalizePrefsPayload($data) {
+    $prefs = [];
+    if (!is_array($data)) return $prefs;
+
+    if (array_key_exists('japanTripDate', $data)) {
+        $raw = $data['japanTripDate'];
+        if ($raw === null || $raw === '') {
+            $prefs['japanTripDate'] = null;
+        } else {
+            $date = trim((string) $raw);
+            $parsed = DateTime::createFromFormat('!Y-m-d', $date);
+            if (!$parsed || $parsed->format('Y-m-d') !== $date) {
+                outputJSON(["error" => "Trip date must be a YYYY-MM-DD date"], 400);
+            }
+            $prefs['japanTripDate'] = $date;
+        }
+    }
+
+    return $prefs;
 }
 
 function normalizeWordEntry($item) {
@@ -932,8 +957,10 @@ function readSharedLists($sharedListsFile, $lang) {
     return is_array($lists) ? $lists : [];
 }
 
-// Actions a visitor may use without an account.
-$publicActions = ['get_shared_lists', 'get_kanji_mnemonics', 'lookup'];
+// Actions a visitor may use without an account. get_prefs is here because the
+// honest answer for a guest is an empty set, not a refusal: the studio has to be
+// able to ask what settings exist without being bounced to a sign-in screen.
+$publicActions = ['get_shared_lists', 'get_kanji_mnemonics', 'lookup', 'get_prefs'];
 $isPublicAction = in_array($action, $publicActions, true);
 
 // Everything else reads or writes account-owned files.
@@ -949,6 +976,7 @@ $listsFile = null;
 $scoresFile = null;
 $statsFile = null;
 $processedSyncEventsFile = null;
+$prefsFile = null;
 
 if ($currentAccount) {
     studioPrepareAccountData($currentAccount, $lang, [
@@ -962,8 +990,9 @@ if ($currentAccount) {
     $scoresFile = studioAccountDataFile($currentAccount, $scoresBasename);
     $statsFile = studioAccountDataFile($currentAccount, $statsBasename);
     $processedSyncEventsFile = studioAccountDataFile($currentAccount, $syncEventsBasename);
+    $prefsFile = studioAccountDataFile($currentAccount, $prefsBasename);
 
-    if (!$listsFile || !$scoresFile || !$statsFile || !$processedSyncEventsFile) {
+    if (!$listsFile || !$scoresFile || !$statsFile || !$processedSyncEventsFile || !$prefsFile) {
         error_log('Account storage path resolution failed for account ' . ($currentAccount['id'] ?? 'unknown'));
         outputJSON(["error" => "Account storage is unavailable."], 500);
     }
@@ -1039,6 +1068,56 @@ switch ($action) {
         $mnemonicData = json_decode(safeRead($kanjiMnemonicsFile), true) ?? [];
         $langPayload = $mnemonicData[$lang] ?? [];
         outputJSON(normalizeMnemonicPayload($langPayload));
+        break;
+
+    // Account settings. A guest keeps their own copy in the browser, so this
+    // answers 200 with signedIn=false rather than 401: the client has to be able
+    // to ask without being bounced to the sign-in screen mid-session.
+    case 'get_prefs':
+        studioRateLimit($rateLimitFile, 'get_prefs|' . $lang . '|' . studioClientIpAddress(), 120, 60);
+        $storedPrefs = null;
+        if ($prefsFile) {
+            $decodedPrefs = json_decode(safeRead($prefsFile), true);
+            if (is_array($decodedPrefs)) $storedPrefs = $decodedPrefs;
+        }
+        outputJSON([
+            "signedIn" => (bool) $currentAccount,
+            "prefs" => $storedPrefs ?: new stdClass(),
+        ]);
+        break;
+
+    case 'save_prefs':
+        requirePostRequest($requestMethod);
+        requireJsonContentTypeForPost($requestMethod);
+        if (!$currentAccount || !$prefsFile) {
+            outputJSON(["error" => "Sign in to sync settings across devices."], 401);
+        }
+        studioRateLimit($rateLimitFile, 'save_prefs|' . $lang . '|' . $currentAccount['id'] . '|' . studioClientIpAddress(), 120, 60);
+        if ($enforce_score_auth) {
+            requireWriteAuthorization($data, $write_token, $has_write_token, $sync_token, $has_sync_token, $admin_password, $has_admin_password);
+        }
+
+        // Accepts either {prefs:{...}} or a flat patch; unknown keys are dropped.
+        $normalizedPrefs = normalizePrefsPayload($data['prefs'] ?? $data);
+
+        safeModifyJSON($prefsFile, function($stored) use ($normalizedPrefs) {
+            if (!is_array($stored)) $stored = [];
+            foreach ($normalizedPrefs as $key => $value) {
+                if ($value === null) {
+                    unset($stored[$key]);
+                    continue;
+                }
+                $stored[$key] = $value;
+            }
+            $stored['updatedAt'] = time() * 1000;
+            return $stored;
+        });
+
+        $savedPrefs = json_decode(safeRead($prefsFile), true);
+        outputJSON([
+            "status" => "success",
+            "prefs" => is_array($savedPrefs) ? $savedPrefs : new stdClass(),
+        ]);
         break;
 
     case 'save_list':
