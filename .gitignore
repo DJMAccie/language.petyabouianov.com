@@ -24,6 +24,9 @@ error_log
 # daily screen or lesson card changes.
 !assets/app-daily.png
 !assets/app-lesson.png
+# The two captures are served as WebP; the PNGs above stay as their masters.
+!assets/app-daily.webp
+!assets/app-lesson.webp
 
 uploads/
 newsletter/emails.txt
