@@ -96,17 +96,17 @@ body.nihongo-page {
 }
 
 /* SUPPORT
-   A slim strip at the foot of the shell, centred. It uses the page's own blue
-   rather than Ko-fi's brand teal so it belongs to this interface, and it is a
-   real anchor with a visible label and a focus ring, not a floating widget. */
+   A slim strip at the foot of the shell, centred. It deliberately paints nothing:
+   no divider, and no background of its own. The app shell already carries the
+   themed surface, so the strip continues it exactly - a divider would draw a line
+   across the page, and any different fill would show as a seam against the content
+   above, which is the same surface. Only the button reads. */
 .studio-support-row {
     display: flex;
     align-items: center;
     justify-content: center;
     flex: 0 0 auto;
     padding: 0.4rem 1rem;
-    border-top: 1px solid var(--zen-line);
-    background: var(--zen-surface);
 }
 
 .studio-support-btn {
