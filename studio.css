@@ -138,6 +138,180 @@ body.nihongo-page {
     font-size: 0.82em;
 }
 
+/* ABOUT PAGE
+   The only page on the site written for a reader rather than for the task, so it
+   is the one place with running text. It borrows the app's own measure, surface and
+   type scale rather than introducing a second visual language. */
+.about-page {
+    min-height: 100dvh;
+    margin: 0;
+    background: var(--zen-canvas);
+    color: var(--zen-ink);
+    font-family: var(--studio-font-sans);
+    line-height: 1.6;
+}
+
+.about-header {
+    background: var(--zen-surface);
+    border-bottom: 1px solid var(--zen-line);
+}
+
+.about-header-inner,
+.about-main {
+    width: min(100%, 46rem);
+    margin: 0 auto;
+    padding: 0 clamp(1rem, 4vw, 2rem);
+}
+
+.about-header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 3.25rem;
+}
+
+.about-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--zen-ink);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.about-brand i {
+    color: var(--zen-blue);
+}
+
+.about-open {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    min-height: 2.2rem;
+    padding: 0 1rem;
+    border: 1px solid var(--zen-blue-dark);
+    border-radius: 999px;
+    background: var(--zen-blue);
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 650;
+    text-decoration: none;
+}
+
+.about-open:hover {
+    background: var(--zen-blue-dark);
+}
+
+.about-main {
+    padding-top: 2.5rem;
+    padding-bottom: 3.5rem;
+}
+
+.about-main h1 {
+    margin: 0 0 0.75rem;
+    font-size: clamp(1.7rem, 4vw, 2.3rem);
+    font-weight: 760;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    text-wrap: balance;
+}
+
+.about-lede {
+    margin: 0 0 2rem;
+    color: var(--zen-muted);
+    font-size: 1.05rem;
+}
+
+.about-main h2 {
+    margin: 2.25rem 0 0.6rem;
+    font-size: 1.15rem;
+    font-weight: 720;
+    letter-spacing: -0.01em;
+}
+
+.about-main p {
+    margin: 0 0 0.9rem;
+}
+
+.about-main ul {
+    margin: 0 0 0.9rem;
+    padding-left: 1.15rem;
+}
+
+.about-main li {
+    margin-bottom: 0.35rem;
+}
+
+.about-main a {
+    color: var(--zen-blue);
+}
+
+/* The word-count figures are the page's one piece of evidence, so they get a
+   block of their own rather than being buried in a sentence. */
+.about-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+    gap: 0.75rem;
+    margin: 0 0 0.9rem;
+    padding: 0;
+    list-style: none;
+}
+
+.about-stats li {
+    margin: 0;
+    padding: 0.9rem 1rem;
+    border: 1px solid var(--zen-line);
+    border-radius: 0.75rem;
+    background: var(--zen-surface);
+}
+
+.about-stats strong {
+    display: block;
+    color: var(--zen-blue);
+    font-size: 1.35rem;
+    font-weight: 760;
+}
+
+.about-stats span {
+    color: var(--zen-muted);
+    font-size: 0.8rem;
+}
+
+.about-note {
+    margin-top: 2.5rem;
+    padding: 1.1rem 1.25rem;
+    border: 1px solid var(--zen-line);
+    border-radius: 0.9rem;
+    background: var(--zen-surface);
+}
+
+.about-note p:last-child {
+    margin-bottom: 0;
+}
+
+.about-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 1.25rem;
+}
+
+.about-actions .about-open {
+    min-height: 2.6rem;
+    padding: 0 1.3rem;
+}
+
+.about-quiet {
+    border-color: var(--zen-line);
+    background: var(--zen-surface);
+    color: var(--zen-ink);
+}
+
+.about-quiet:hover {
+    background: var(--zen-surface-alt);
+}
+
 /* TITLE BAR
    The element also carries Tailwind's bg-gradient-to-b from-gray-100 to-gray-200.
    A gradient paints as a background-image, so setting only background-color left

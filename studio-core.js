@@ -45,9 +45,15 @@ const StudioCore = window.StudioCore = (() => {
         const header = document.querySelector('[data-studio-header]');
         if (!header) return;
 
+        // Guarded: the slot is appended to rather than replaced, so a second init
+        // would otherwise stack duplicate buttons next to the static About link.
+        if (header.dataset.toolbarReady === '1') return;
+        header.dataset.toolbarReady = '1';
+
         const leftSlot = header.querySelector('[data-studio-header-left]');
         if (leftSlot) {
-            leftSlot.innerHTML = '';
+            // Append rather than clear: the slot carries the static About link in the
+            // markup, which is the crawlable path to that page.
             leftSlot.className = 'studio-header-left flex items-center gap-1.5';
             const statsBtn = document.createElement('button');
             statsBtn.type = 'button';

@@ -67,3 +67,7 @@ expo-go-client/.expo/
 **/.env.local
 **/.env.production
 **/.env.*.local
+
+# Local dev server router. Emulates the .htaccess rewrites for extensionless
+# URLs; not deployed and not part of the site.
+dev-router.php
