@@ -17,6 +17,10 @@ if (!function_exists('studioOAuthBase64UrlDecode')) {
     define('STUDIO_GOOGLE_TOKEN_ENDPOINT', 'https://oauth2.googleapis.com/token');
     define('STUDIO_GOOGLE_JWKS_ENDPOINT', 'https://www.googleapis.com/oauth2/v3/certs');
     define('STUDIO_GOOGLE_ISSUERS', 'https://accounts.google.com,accounts.google.com');
+    define('STUDIO_APPLE_AUTHORIZE_ENDPOINT', 'https://appleid.apple.com/auth/authorize');
+    define('STUDIO_APPLE_TOKEN_ENDPOINT', 'https://appleid.apple.com/auth/token');
+    define('STUDIO_APPLE_JWKS_ENDPOINT', 'https://appleid.apple.com/auth/keys');
+    define('STUDIO_APPLE_ISSUER', 'https://appleid.apple.com');
     define('STUDIO_OAUTH_STATE_TTL', 600);
 
     function studioOAuthBase64UrlDecode($value) {
@@ -215,6 +219,43 @@ if (!function_exists('studioOAuthBase64UrlDecode')) {
             . "-----END PUBLIC KEY-----\n";
     }
 
+    // Apple publishes EC keys rather than RSA, so an ES256 JWK needs its own
+    // conversion. The uncompressed point is 0x04 || x || y, each coordinate
+    // left-padded to the curve size (32 bytes for P-256).
+    function studioEcJwkToPem($jwk) {
+        if (!is_array($jwk) || ($jwk['kty'] ?? '') !== 'EC') return null;
+        if (($jwk['crv'] ?? '') !== 'P-256') return null;
+
+        $x = studioOAuthBase64UrlDecode($jwk['x'] ?? '');
+        $y = studioOAuthBase64UrlDecode($jwk['y'] ?? '');
+        if ($x === false || $y === false || $x === '' || $y === '') return null;
+
+        $x = str_pad($x, 32, "\x00", STR_PAD_LEFT);
+        $y = str_pad($y, 32, "\x00", STR_PAD_LEFT);
+        $point = "\x04" . $x . $y;
+
+        // AlgorithmIdentifier ::= SEQUENCE { OID ecPublicKey, OID prime256v1 }
+        $algorithm = studioDerSequence(
+            studioDerTag(0x06, "\x2a\x86\x48\xce\x3d\x02\x01")   // id-ecPublicKey
+            . studioDerTag(0x06, "\x2a\x86\x48\xce\x3d\x03\x01\x07") // prime256v1
+        );
+
+        $subjectPublicKeyInfo = studioDerSequence(
+            $algorithm . studioDerTag(0x03, "\x00" . $point)
+        );
+
+        return "-----BEGIN PUBLIC KEY-----\n"
+            . chunk_split(base64_encode($subjectPublicKeyInfo), 64, "\n")
+            . "-----END PUBLIC KEY-----\n";
+    }
+
+    // Picks the right conversion for the key type the provider published.
+    function studioJwkToPemAny($jwk) {
+        $kty = is_array($jwk) ? ($jwk['kty'] ?? '') : '';
+        if ($kty === 'EC') return studioEcJwkToPem($jwk);
+        return studioJwkToPem($jwk);
+    }
+
     function studioDerTag($tag, $value) {
         return chr($tag) . studioDerLength(strlen($value)) . $value;
     }
@@ -271,7 +312,7 @@ if (!function_exists('studioOAuthBase64UrlDecode')) {
 
             foreach ($keys as $jwk) {
                 if (!is_array($jwk) || (string) ($jwk['kid'] ?? '') !== $kid) continue;
-                $pem = studioJwkToPem($jwk);
+                $pem = studioJwkToPemAny($jwk);
                 if (!$pem) continue;
 
                 $ok = @openssl_verify($signingInput, $signature, $pem, OPENSSL_ALGO_SHA256);
@@ -374,6 +415,154 @@ if (!function_exists('studioOAuthBase64UrlDecode')) {
 
         $idToken = (string) ($data['id_token'] ?? '');
         return $idToken !== '' ? $idToken : null;
+    }
+
+    // Returns the claims when the token verifies and its nonce matches the one we
+    // issued. Apple's documentation is ambiguous about whether the ID token carries
+    // the nonce or a SHA-256 of it, so both forms are accepted; every other
+    // provider uses the raw value, which is tried first.
+    function studioOAuthVerifyWithNonce($idToken, $jwksEndpoint, $audience, $issuers, $nonce) {
+        if ($nonce === '') {
+            return studioVerifyIdToken($idToken, $jwksEndpoint, $audience, $issuers, '');
+        }
+
+        $claims = studioVerifyIdToken($idToken, $jwksEndpoint, $audience, $issuers, $nonce);
+        if ($claims) return $claims;
+
+        $hashed = hash('sha256', $nonce);
+        return studioVerifyIdToken($idToken, $jwksEndpoint, $audience, $issuers, $hashed);
+    }
+
+    // ------------------------------------------------------------- apple flow
+
+    function studioAppleConfigured($serviceId, $teamId, $keyId, $privateKey) {
+        return trim((string) $serviceId) !== ''
+            && trim((string) $teamId) !== ''
+            && trim((string) $keyId) !== ''
+            && trim((string) $privateKey) !== '';
+    }
+
+    // Apple has no static client secret: it is a JWT this server signs with the
+    // .p8 key, and Apple caps its lifetime at six months. It is generated per
+    // request rather than stored, so it can never be stale.
+    function studioAppleClientSecret($teamId, $keyId, $serviceId, $privateKey, $lifetimeSeconds = 15552000) {
+        $key = @openssl_pkey_get_private((string) $privateKey);
+        if (!$key) {
+            error_log('Apple client secret: the private key could not be read');
+            return null;
+        }
+
+        $header = ['alg' => 'ES256', 'kid' => (string) $keyId, 'typ' => 'JWT'];
+        $claims = [
+            'iss' => (string) $teamId,
+            'iat' => time(),
+            'exp' => time() + max(60, min((int) $lifetimeSeconds, 15777000)),
+            'aud' => 'https://appleid.apple.com',
+            'sub' => (string) $serviceId,
+        ];
+
+        $input = studioOAuthBase64UrlEncode(json_encode($header))
+            . '.' . studioOAuthBase64UrlEncode(json_encode($claims));
+
+        if (!openssl_sign($input, $derSignature, $key, OPENSSL_ALGO_SHA256)) {
+            error_log('Apple client secret: signing failed');
+            return null;
+        }
+
+        return $input . '.' . studioOAuthBase64UrlEncode(studioEcdsaDerToRaw($derSignature));
+    }
+
+    // OpenSSL emits ECDSA signatures as DER SEQUENCE{INTEGER r, INTEGER s}, but a
+    // JWS ES256 signature must be the raw 64-byte r||s. Apple rejects DER, so this
+    // conversion is required rather than cosmetic.
+    function studioEcdsaDerToRaw($der) {
+        if ($der === '' || ord($der[0]) !== 0x30) return $der;
+
+        $offset = 2;
+        if ((ord($der[1]) & 0x80) !== 0) {
+            $offset += ord($der[1]) & 0x7F; // long-form length
+        }
+
+        $raw = '';
+        for ($i = 0; $i < 2; $i++) {
+            if (!isset($der[$offset]) || ord($der[$offset]) !== 0x02) return $der;
+            $offset++;
+            $length = ord($der[$offset]);
+            $offset++;
+            $value = substr($der, $offset, $length);
+            $offset += $length;
+            $value = ltrim($value, "\x00");
+            $raw .= str_pad($value, 32, "\x00", STR_PAD_LEFT);
+        }
+
+        return $raw;
+    }
+
+    function studioAppleRedirectUri($lang = 'nihongo') {
+        $host = (string) ($_SERVER['HTTP_HOST'] ?? '');
+        if ($host === '') return '/studio_api.php?lang=nihongo&action=auth_apple_callback';
+        $isHttps = (($_SERVER['HTTPS'] ?? '') !== '' && ($_SERVER['HTTPS'] ?? '') !== 'off')
+            || (($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '') === 'https')
+            || ((int) ($_SERVER['SERVER_PORT'] ?? 0) === 443);
+        $path = '/studio_api.php?lang=' . rawurlencode($lang) . '&action=auth_apple_callback';
+        return ($isHttps ? 'https://' : 'http://') . $host . $path;
+    }
+
+    // Apple wants form_post: it POSTs the authorization code back to the callback
+    // rather than appending it to the query string.
+    function studioAppleAuthorizeUrl($serviceId, $redirectUri, $state, $nonce) {
+        $params = [
+            'client_id' => $serviceId,
+            'redirect_uri' => $redirectUri,
+            'response_type' => 'code',
+            'scope' => 'name email',
+            'state' => $state,
+            'nonce' => $nonce,
+            'response_mode' => 'form_post',
+        ];
+        return STUDIO_APPLE_AUTHORIZE_ENDPOINT . '?' . http_build_query($params);
+    }
+
+    function studioAppleExchangeCode($serviceId, $clientSecret, $code, $redirectUri) {
+        $response = studioHttpPostForm(STUDIO_APPLE_TOKEN_ENDPOINT, [
+            'client_id' => $serviceId,
+            'client_secret' => $clientSecret,
+            'code' => $code,
+            'grant_type' => 'authorization_code',
+            'redirect_uri' => $redirectUri,
+        ]);
+
+        if (isset($response['error'])) {
+            error_log('Apple token exchange failed: ' . $response['error']);
+            return null;
+        }
+
+        $data = $response['data'];
+        if (isset($data['error'])) {
+            error_log('Apple token exchange rejected: ' . (string) ($data['error'] ?? ''));
+            return null;
+        }
+
+        $idToken = (string) ($data['id_token'] ?? '');
+        return $idToken !== '' ? $idToken : null;
+    }
+
+    function studioAppleIdentityFromClaims($claims) {
+        $subject = trim((string) ($claims['sub'] ?? ''));
+        if ($subject === '') return null;
+
+        $email = trim((string) ($claims['email'] ?? ''));
+        $emailVerified = filter_var($claims['email_verified'] ?? false, FILTER_VALIDATE_BOOLEAN);
+        // Apple relay addresses hide the real one, but it is still a deliverable,
+        // verified address, so it is kept when Apple says it is verified.
+        if (!$emailVerified) $email = '';
+
+        return [
+            'provider' => 'apple',
+            'subject' => $subject,
+            'email' => $email,
+            'name' => '',
+        ];
     }
 
     function studioGoogleIdentityFromClaims($claims) {

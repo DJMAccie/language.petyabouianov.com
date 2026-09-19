@@ -61,6 +61,26 @@ $google_client_secret = isset($google_client_secret) && is_string($google_client
     : trim((string) (getenv('STUDIO_GOOGLE_CLIENT_SECRET') ?: ''));
 $has_google_signin = $google_client_id !== '' && $google_client_secret !== '';
 
+$apple_service_id = isset($apple_service_id) && is_string($apple_service_id)
+    ? trim($apple_service_id)
+    : trim((string) (getenv('STUDIO_APPLE_SERVICE_ID') ?: ''));
+$apple_team_id = isset($apple_team_id) && is_string($apple_team_id)
+    ? trim($apple_team_id)
+    : trim((string) (getenv('STUDIO_APPLE_TEAM_ID') ?: ''));
+$apple_key_id = isset($apple_key_id) && is_string($apple_key_id)
+    ? trim($apple_key_id)
+    : trim((string) (getenv('STUDIO_APPLE_KEY_ID') ?: ''));
+$apple_private_key = isset($apple_private_key) && is_string($apple_private_key)
+    ? $apple_private_key
+    : (string) (getenv('STUDIO_APPLE_PRIVATE_KEY') ?: '');
+
+// Checked inline: studio_oauth.php is required further down, so its helpers do
+// not exist yet at this point.
+$has_apple_signin = $apple_service_id !== ''
+    && $apple_team_id !== ''
+    && $apple_key_id !== ''
+    && trim($apple_private_key) !== '';
+
 // --- PARSE REQUEST ---
 $lang = $_GET['lang'] ?? 'nihongo';
 $action = $_GET['action'] ?? '';
@@ -460,7 +480,7 @@ if (!in_array($lang, $allowedLangs, true) || !$defaultListsBasename) {
 
 // --- AUTHENTICATION & ACCOUNT STORAGE ---
 
-$authActions = ['register', 'login', 'logout', 'whoami', 'session', 'providers', 'auth_google_start', 'auth_google_callback'];
+$authActions = ['register', 'login', 'logout', 'whoami', 'session', 'providers', 'auth_google_start', 'auth_google_callback', 'auth_apple_start', 'auth_apple_callback'];
 $requirePostActions = ['register', 'login', 'logout'];
 $currentAccount = studioCurrentAccount();
 
@@ -497,6 +517,118 @@ function studioGoogleUseRequested($currentAccount, $hasGoogleSignin) {
     if (!$hasGoogleSignin) return false;
     // Already signed in: no need to start a provider round trip.
     return !$currentAccount;
+}
+
+// Finds or creates the account for a verified provider identity, then signs in.
+// Shared by every provider: identities are matched on the provider's immutable
+// subject id and an existing account is never merged automatically.
+function studioCompleteProviderSignIn($identity, $currentAccount, $lang, $basenames, $rateLimitFile) {
+    $account = studioFindAccountByIdentity($identity['provider'], $identity['subject']);
+    if (!$account) {
+        if (!studioRateLimit($rateLimitFile, 'oauth_create|' . studioClientIpAddress(), 20, 3600)) {
+            return ['error' => 'Too many sign-up attempts. Please try again later.'];
+        }
+
+        $created = studioCreateSocialAccount(
+            $identity['provider'],
+            $identity['subject'],
+            $identity['email'],
+            [
+                'preferred_username' => $identity['name'],
+                'is_admin' => studioCountAccounts() === 0,
+            ]
+        );
+
+        if (isset($created['error'])) return ['error' => $created['error']];
+        $account = $created['account'];
+    }
+
+    studioPrepareAccountData($account, $lang, $basenames);
+    studioLoginSession($account);
+    studioTouchLogin($account);
+
+    return ['account' => $account];
+}
+
+// Apple POSTs the authorization response back, so read the code from either the
+// form body or the query string.
+function studioOAuthRequestValue($key) {
+    if (isset($_POST[$key]) && is_string($_POST[$key])) return (string) $_POST[$key];
+    if (isset($_GET[$key]) && is_string($_GET[$key])) return (string) $_GET[$key];
+    return '';
+}
+
+function studioHandleAppleCallback($appleServiceId, $appleTeamId, $appleKeyId, $applePrivateKey, $currentAccount, $lang, $basenames) {
+    $state = studioOAuthRequestValue('state');
+    $code = studioOAuthRequestValue('code');
+    $providerError = studioOAuthRequestValue('error');
+
+    if ($providerError !== '') {
+        studioSignInRedirect('error=' . urlencode('Apple sign-in was cancelled.'));
+        return;
+    }
+
+    if (!studioOAuthConsumeState('apple', $state)) {
+        studioSignInRedirect('error=' . urlencode('That sign-in link expired. Please try again.'));
+        return;
+    }
+
+    if ($code === '') {
+        studioSignInRedirect('error=' . urlencode('Apple did not return an authorization code.'));
+        return;
+    }
+
+    $nonce = studioOAuthConsumeNonce();
+
+    $clientSecret = studioAppleClientSecret($appleTeamId, $appleKeyId, $appleServiceId, $applePrivateKey);
+    if (!$clientSecret) {
+        studioSignInRedirect('error=' . urlencode('Apple sign-in is misconfigured on the server.'));
+        return;
+    }
+
+    $idToken = studioAppleExchangeCode($appleServiceId, $clientSecret, $code, studioAppleRedirectUri($lang));
+    if (!$idToken) {
+        studioSignInRedirect('error=' . urlencode('Could not complete sign-in with Apple. Please try again.'));
+        return;
+    }
+
+    $claims = studioOAuthVerifyWithNonce(
+        $idToken,
+        STUDIO_APPLE_JWKS_ENDPOINT,
+        $appleServiceId,
+        STUDIO_APPLE_ISSUER,
+        $nonce
+    );
+    if (!$claims) {
+        error_log('Apple ID token failed verification');
+        studioSignInRedirect('error=' . urlencode('Apple returned a token we could not verify. Please try again.'));
+        return;
+    }
+
+    $identity = studioAppleIdentityFromClaims($claims);
+    if (!$identity) {
+        studioSignInRedirect('error=' . urlencode('Apple did not return an account identifier.'));
+        return;
+    }
+
+    // Apple only sends the name on the very first authorization. Capture it now
+    // or it is gone for good.
+    if (trim((string) $identity['name']) === '') {
+        $userJson = studioOAuthRequestValue('user');
+        if ($userJson !== '') {
+            $userData = json_decode($userJson, true);
+            $fullName = trim((string) (($userData['name']['firstName'] ?? '') . ' ' . ($userData['name']['lastName'] ?? '')));
+            if ($fullName !== '') $identity['name'] = $fullName;
+        }
+    }
+
+    $result = studioCompleteProviderSignIn($identity, $currentAccount, $lang, $basenames, $GLOBALS['rateLimitFile'] ?? null);
+    if (isset($result['error'])) {
+        studioSignInRedirect('error=' . urlencode($result['error']));
+        return;
+    }
+
+    studioSignInRedirect('signedin=1');
 }
 
 function studioHandleGoogleCallback($googleClientId, $googleClientSecret, $currentAccount, $lang, $basenames, $rateLimitFile) {
@@ -688,11 +820,13 @@ if (in_array($action, $authActions, true)) {
             outputJSON([
                 "status" => "success",
                 "google" => $has_google_signin,
-                "apple" => false,
+                "apple" => $has_apple_signin,
                 "diagnostics" => [
                     "config_file_present" => file_exists($config_path),
                     "google_client_id_length" => strlen($google_client_id),
                     "google_secret_length" => strlen($google_client_secret),
+                    "apple_service_id_length" => strlen($apple_service_id),
+                    "apple_private_key_present" => trim($apple_private_key) !== '',
                 ],
             ]);
             break;
@@ -718,6 +852,47 @@ if (in_array($action, $authActions, true)) {
                     $nonce
                 ),
             ]);
+            break;
+
+        case 'auth_apple_start':
+            if (!$has_apple_signin) {
+                outputJSON(["error" => "Apple sign-in is not configured.", "code" => "provider_not_configured"], 503);
+            }
+
+            $appleState = studioOAuthBeginState('apple');
+            $appleNonce = studioOAuthNonce();
+
+            outputJSON([
+                "status" => "success",
+                "authorize_url" => studioAppleAuthorizeUrl(
+                    $apple_service_id,
+                    studioAppleRedirectUri($lang),
+                    $appleState,
+                    $appleNonce
+                ),
+            ]);
+            break;
+
+        case 'auth_apple_callback':
+            if (!$has_apple_signin) {
+                studioSignInRedirect('error=' . urlencode('Apple sign-in is not configured.'));
+                return;
+            }
+
+            studioHandleAppleCallback(
+                $apple_service_id,
+                $apple_team_id,
+                $apple_key_id,
+                $apple_private_key,
+                $currentAccount,
+                $lang,
+                [
+                    'lists' => $defaultListsBasename,
+                    'scores' => $scoresBasename,
+                    'stats' => $statsBasename,
+                    'sync_events' => $syncEventsBasename,
+                ]
+            );
             break;
 
         case 'auth_google_callback':

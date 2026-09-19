@@ -28,11 +28,25 @@ SYNC_TOKEN="${STUDIO_API_SYNC_TOKEN:-}"
 WRITE_TOKEN="${STUDIO_API_WRITE_TOKEN:-}"
 GOOGLE_CLIENT_ID="${GOOGLE_CLIENT_ID:-}"
 GOOGLE_CLIENT_SECRET="${GOOGLE_CLIENT_SECRET:-}"
+APPLE_SERVICE_ID="${APPLE_SERVICE_ID:-}"
+APPLE_TEAM_ID="${APPLE_TEAM_ID:-}"
+APPLE_KEY_ID="${APPLE_KEY_ID:-}"
+APPLE_PRIVATE_KEY="${APPLE_PRIVATE_KEY:-}"
 
 missing=()
 [ -z "$SYNC_TOKEN" ] && missing+=("STUDIO_API_SYNC_TOKEN")
 [ -z "$GOOGLE_CLIENT_ID" ] && missing+=("GOOGLE_CLIENT_ID")
 [ -z "$GOOGLE_CLIENT_SECRET" ] && missing+=("GOOGLE_CLIENT_SECRET")
+[ -z "$APPLE_SERVICE_ID" ] && missing+=("APPLE_SERVICE_ID")
+[ -z "$APPLE_TEAM_ID" ] && missing+=("APPLE_TEAM_ID")
+[ -z "$APPLE_KEY_ID" ] && missing+=("APPLE_KEY_ID")
+
+# The .p8 is multi-line. Guard against a value that lost its newlines when it was
+# stored, which would otherwise produce an unreadable key at runtime.
+if [ -n "$APPLE_PRIVATE_KEY" ] && ! printf '%s' "$APPLE_PRIVATE_KEY" | grep -q 'BEGIN PRIVATE KEY'; then
+  echo "Warning: APPLE_PRIVATE_KEY does not look like a .p8 (no BEGIN PRIVATE KEY line)." >&2
+  echo "         Re-add it with: gh secret set APPLE_PRIVATE_KEY < AuthKey_XXXX.p8" >&2
+fi
 
 {
   echo "<?php"
@@ -50,6 +64,13 @@ missing=()
   echo "\$google_client_id = '$(php_export "$GOOGLE_CLIENT_ID")';"
   echo "\$google_client_secret = '$(php_export "$GOOGLE_CLIENT_SECRET")';"
   echo
+  echo "// Sign in with Apple. The private key is Apple's .p8; the client secret is"
+  echo "// derived from it on demand because Apple caps its lifetime."
+  echo "\$apple_service_id = '$(php_export "$APPLE_SERVICE_ID")';"
+  echo "\$apple_team_id = '$(php_export "$APPLE_TEAM_ID")';"
+  echo "\$apple_key_id = '$(php_export "$APPLE_KEY_ID")';"
+  echo "\$apple_private_key = '$(php_export "$APPLE_PRIVATE_KEY")';"
+  echo
   echo "// Pre-accounts clients may act as the owner by presenting a secret above."
   echo "\$allow_legacy_token_owner_access = true;"
 } > "$TARGET"
@@ -65,11 +86,19 @@ $sync_token = "";
 $write_token = "";
 $google_client_id = "";
 $google_client_secret = "";
+$apple_service_id = "";
+$apple_team_id = "";
+$apple_key_id = "";
+$apple_private_key = "";
 require $f;
 printf("  admin_password: %s\n", trim((string) $admin_password) !== "" ? "set" : "not set");
 printf("  sync_token    : %s\n", trim((string) $sync_token) !== "" ? "set" : "NOT SET (runtime mirror will be skipped)");
 printf("  google id     : %s\n", trim((string) $google_client_id) !== "" ? "set (" . strlen(trim((string) $google_client_id)) . " chars)" : "NOT SET (Google button hidden)");
 printf("  google secret : %s\n", trim((string) $google_client_secret) !== "" ? "set (" . strlen(trim((string) $google_client_secret)) . " chars)" : "NOT SET (Google button hidden)");
+printf("  apple service : %s\n", trim((string) $apple_service_id) !== "" ? "set" : "NOT SET (Apple button hidden)");
+printf("  apple team    : %s\n", trim((string) $apple_team_id) !== "" ? "set" : "not set");
+printf("  apple key id  : %s\n", trim((string) $apple_key_id) !== "" ? "set" : "not set");
+printf("  apple .p8     : %s\n", trim((string) $apple_private_key) !== "" ? ("set (" . substr_count((string) $apple_private_key, "\n") . " newlines)") : "NOT SET (Apple button hidden)");
 ' "$TARGET"
 
 if [ ${#missing[@]} -gt 0 ]; then

@@ -30,6 +30,27 @@ $require_list_write_auth = false;
 $google_client_id = '';
 $google_client_secret = '';
 
+// --- Sign in with Apple (optional) ---
+// From Apple Developer > Certificates, Identifiers & Profiles:
+//   $apple_service_id  the Services ID (Identifiers > Services IDs), e.g.
+//                      com.example.web
+//   $apple_team_id     Membership details > Team ID
+//   $apple_key_id      the Key ID shown next to your Sign in with Apple key
+//   $apple_private_key the full contents of the downloaded .p8 file, including
+//                      the BEGIN/END PRIVATE KEY lines
+//
+// Register this exact Return URL on the Services ID:
+//   https://language.petyabouianov.com/studio_api.php?lang=nihongo&action=auth_apple_callback
+//
+// Apple issues no static client secret: it is a JWT signed with the .p8 and is
+// generated per request, so nothing here needs rotating by hand.
+//
+// Leave these empty to hide the Apple button entirely.
+$apple_service_id = '';
+$apple_team_id = '';
+$apple_key_id = '';
+$apple_private_key = '';
+
 // Transitional: pre-accounts clients (the iOS wrapper and the deploy-time runtime
 // sync) may act as the owner account by presenting one of the secrets above.
 // Set to false once every client signs in normally.

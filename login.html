@@ -65,6 +65,12 @@
 
                     <div id="auth-providers" hidden>
                         <p class="auth-divider"><span>or</span></p>
+                        <button type="button" id="auth-apple" class="auth-provider auth-provider--apple" hidden>
+                            <svg class="auth-provider-mark" viewBox="0 0 16 20" aria-hidden="true" focusable="false">
+                                <path fill="currentColor" d="M13.1 10.6c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9-.7 0-1.8-.9-3-.8-1.5 0-2.9.9-3.7 2.3-1.6 2.7-.4 6.8 1.1 9 .8 1.1 1.7 2.3 2.9 2.2 1.2 0 1.6-.7 3-.7s1.8.7 3 .7c1.3 0 2.1-1.1 2.9-2.2.9-1.3 1.3-2.5 1.3-2.6 0 0-2.5-1-2.6-3.5ZM10.9 3.9c.6-.8 1.1-1.9 1-3-.9 0-2.1.6-2.7 1.4-.6.7-1.2 1.9-1 3 1 .1 2-.5 2.7-1.4Z"/>
+                            </svg>
+                            <span id="auth-apple-label">Continue with Apple</span>
+                        </button>
                         <button type="button" id="auth-google" class="auth-provider">
                             <svg class="auth-provider-mark" viewBox="0 0 18 18" aria-hidden="true" focusable="false">
                                 <path fill="#4285F4" d="M17.64 9.2c0-.64-.06-1.25-.16-1.84H9v3.48h4.84a4.14 4.14 0 0 1-1.8 2.72v2.26h2.92c1.7-1.57 2.68-3.88 2.68-6.62Z"/>
@@ -74,7 +80,7 @@
                             </svg>
                             <span id="auth-google-label">Continue with Google</span>
                         </button>
-                        <p class="auth-provider-note">Signing in with Google creates its own account. It is not linked to a username and password.</p>
+                        <p class="auth-provider-note">Signing in with Google or Apple creates its own account. It is not linked to a username and password.</p>
                     </div>
 
                     <p class="auth-footnote" id="auth-footnote">
@@ -278,39 +284,60 @@
             var googleButton = document.getElementById('auth-google');
             var googleLabel = document.getElementById('auth-google-label');
 
+            var appleButton = document.getElementById('auth-apple');
+            var appleLabel = document.getElementById('auth-apple-label');
+
             async function loadProviders() {
                 try {
                     var response = await fetch(API + '&action=providers', { method: 'GET' });
                     if (!response.ok) return;
                     var info = await response.json();
-                    if (info && info.google) providersBox.hidden = false;
+
+                    var any = false;
+                    if (info && info.google) {
+                        googleButton.hidden = false;
+                        any = true;
+                    }
+                    if (info && info.apple) {
+                        appleButton.hidden = false;
+                        any = true;
+                    }
+                    providersBox.hidden = !any;
                 } catch (e) { /* offline: leave provider buttons hidden */ }
             }
 
-            googleButton.addEventListener('click', async function () {
-                if (googleButton.disabled) return;
-                googleButton.disabled = true;
-                googleLabel.textContent = 'Connecting…';
-                showError('');
-                showNotice('');
+            // Shared by both provider buttons: start the round trip, then hand the
+            // browser to the provider.
+            function wireProvider(button, label, action, providerName) {
+                button.addEventListener('click', async function () {
+                    if (button.disabled) return;
+                    button.disabled = true;
+                    var original = label.textContent;
+                    label.textContent = 'Connecting…';
+                    showError('');
+                    showNotice('');
 
-                try {
-                    var response = await fetch(API + '&action=auth_google_start', { method: 'GET' });
-                    var data = await response.json().catch(function () { return {}; });
+                    try {
+                        var response = await fetch(API + '&action=' + action, { method: 'GET' });
+                        var data = await response.json().catch(function () { return {}; });
 
-                    if (response.ok && data && data.authorize_url) {
-                        window.location.href = data.authorize_url;
-                        return;
+                        if (response.ok && data && data.authorize_url) {
+                            window.location.href = data.authorize_url;
+                            return;
+                        }
+
+                        showError((data && data.error) || (providerName + ' sign-in is unavailable right now.'));
+                    } catch (e) {
+                        showError('Could not reach the server. Check your connection and try again.');
                     }
 
-                    showError((data && data.error) || 'Google sign-in is unavailable right now.');
-                } catch (e) {
-                    showError('Could not reach the server. Check your connection and try again.');
-                }
+                    button.disabled = false;
+                    label.textContent = original;
+                });
+            }
 
-                googleButton.disabled = false;
-                googleLabel.textContent = 'Continue with Google';
-            });
+            wireProvider(googleButton, googleLabel, 'auth_google_start', 'Google');
+            wireProvider(appleButton, appleLabel, 'auth_apple_start', 'Apple');
 
             form.addEventListener('submit', async function (event) {
                 event.preventDefault();

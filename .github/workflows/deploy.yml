@@ -53,6 +53,10 @@ jobs:
           STUDIO_API_WRITE_TOKEN: ${{ secrets.STUDIO_API_WRITE_TOKEN }}
           GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
           GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+          APPLE_SERVICE_ID: ${{ secrets.APPLE_SERVICE_ID }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+          APPLE_KEY_ID: ${{ secrets.APPLE_KEY_ID }}
+          APPLE_PRIVATE_KEY: ${{ secrets.APPLE_PRIVATE_KEY }}
         run: bash .github/scripts/write-api-config.sh
 
       # Stops a typo in the client id or secret from reaching production: the
@@ -63,6 +67,16 @@ jobs:
           GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
           GOOGLE_REDIRECT_URI: https://language.petyabouianov.com/studio_api.php?lang=nihongo&action=auth_google_callback
         run: php .github/scripts/check-google-credentials.php
+
+      # Apple's client secret is a JWT signed with the .p8, so a bad key or id
+      # would otherwise only show up as a dead button in production.
+      - name: Verify Apple credentials with Apple
+        env:
+          APPLE_SERVICE_ID: ${{ secrets.APPLE_SERVICE_ID }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+          APPLE_KEY_ID: ${{ secrets.APPLE_KEY_ID }}
+          APPLE_PRIVATE_KEY: ${{ secrets.APPLE_PRIVATE_KEY }}
+        run: php .github/scripts/check-apple-credentials.php
 
       - name: Deploy tracked site files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.6
