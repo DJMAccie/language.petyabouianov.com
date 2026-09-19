@@ -55,7 +55,7 @@
             letter-spacing: 0.05em;
             font-size: 0.96rem;
             font-weight: 700;
-            transition: transform 0.18s var(--ease-out-quart), background-color 0.18s var(--ease-out-quart), color 0.18s var(--ease-out-quart);
+            transition: background-color 0.18s var(--ease-out-quart), color 0.18s var(--ease-out-quart);
             animation: button-in 0.42s var(--ease-out-quart) both;
         }
 
@@ -91,12 +91,7 @@
         .home-link:focus-visible {
             background: #000;
             color: #fff;
-            transform: translateY(-1px);
             outline: none;
-        }
-
-        .home-link:active {
-            transform: translateY(0) scale(0.99);
         }
 
         .home-link:focus-visible {
@@ -122,11 +117,6 @@
                 transition: none;
             }
 
-            .home-link:hover,
-            .home-link:focus-visible,
-            .home-link:active {
-                transform: none;
-            }
         }
     </style>
 </head>

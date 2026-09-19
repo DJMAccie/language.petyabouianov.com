@@ -424,7 +424,6 @@ body #system-bar {
     border-color: #aeb8c4;
     border-bottom-color: #aeb8c4;
     color: var(--zen-ink);
-    transform: translateY(1px);
 }
 
 .daily-settings-btn:active,
@@ -434,7 +433,6 @@ body #system-bar {
 .lesson-secondary-btn:active,
 .daily-primary-btn:active,
 .lesson-primary-btn:active {
-    transform: translateY(3px);
     border-bottom-width: 1px;
 }
 
@@ -570,7 +568,6 @@ body #system-bar {
 .lesson-primary-btn:hover {
     border-bottom-width: 3px;
     background: var(--zen-surface-alt);
-    transform: translateY(1px);
 }
 
 .daily-primary-btn::after,
@@ -589,7 +586,6 @@ body #system-bar {
 .daily-primary-btn:active,
 .lesson-primary-btn:active {
     border-bottom-width: 1px;
-    transform: translateY(4px);
     transition-duration: 40ms;
 }
 
@@ -681,12 +677,10 @@ body #system-bar {
 }
 
 .daily-optional-btn:hover {
-    transform: translateY(1px);
     border-bottom-width: 2px;
 }
 
 .daily-optional-btn:active {
-    transform: translateY(3px);
     border-bottom-width: 1px;
 }
 
@@ -789,9 +783,50 @@ body #system-bar {
     color: var(--zen-blue);
 }
 
+/* The blue row highlight on hover. This used to come from Tailwind utilities on
+   the row (hover:bg-blue-500 etc.), which the build minifier stripped, so the
+   row only changed its text colour and looked broken. Column widths are declared
+   here too because the same utilities carried them. */
+.finder-table td:nth-child(1) { width: 34%; }
+.finder-table td:nth-child(2) { width: 12%; }
+.finder-table td:nth-child(3) { width: 14%; }
+.finder-table td:nth-child(4) { width: 16%; }
+
+.finder-table tbody tr {
+    transition: background-color 140ms ease;
+}
+
+.finder-table tbody tr:hover {
+    background-color: var(--zen-blue);
+}
+
+.finder-table tbody tr:hover td {
+    color: #fff;
+}
+
+.finder-table tbody tr:hover .studio-table-start-btn {
+    background: #fff;
+    color: var(--zen-ink);
+    border-color: #fff;
+    border-bottom-color: rgba(0, 0, 0, 0.25);
+}
+
 .finder-table tr:hover .studio-list-badge {
     border-color: rgba(255, 255, 255, 0.6);
     color: #fff;
+}
+
+/* The row's leading icon greys out at rest and takes the row's blue on hover.
+   Tailwind's group-hover:text-white used to handle this but is stripped by the
+   build, which left a grey icon on a blue row - effectively invisible. */
+.finder-table td .fa-list-ul,
+.finder-table td .fa-brain,
+.finder-table td .fa-torii-gate {
+    transition: color 140ms ease;
+}
+
+.finder-table tr:hover td .fa-list-ul {
+    color: var(--zen-blue) !important;
 }
 
 .library-toolbar h1 {
@@ -929,16 +964,14 @@ body #system-bar {
     font-size: 0.78rem;
     font-weight: 700;
     cursor: pointer;
-    transition: transform 120ms ease, border-bottom-width 120ms ease;
+    transition: border-bottom-width 120ms ease, background-color 120ms ease;
 }
 
 .studio-table-start-btn:hover {
-    transform: translateY(1px);
     border-bottom-width: 2px;
 }
 
 .studio-table-start-btn:active {
-    transform: translateY(2px);
     border-bottom-width: 1px;
 }
 
@@ -1220,11 +1253,9 @@ body #system-bar {
 .choice-btn:hover:not(:disabled) {
     border-color: var(--zen-blue);
     background: var(--zen-blue-soft);
-    transform: translateY(-1px);
 }
 
 .choice-btn:active:not(:disabled) {
-    transform: translateY(1px);
 }
 
 .choice-btn.correct {
@@ -1310,6 +1341,81 @@ body #system-bar {
     background: var(--zen-blue-dark);
 }
 
+/* DIALOG MODALS
+   These wrappers used to be positioned by Tailwind utility classes in the HTML.
+   The build minifier strips utilities it cannot resolve, which left the modals
+   rendering in normal flow at the bottom of the page, so the layout lives here
+   now, next to the overlay rules below that already worked this way. */
+.studio-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    overflow-y: auto;
+}
+
+.studio-modal.hidden {
+    display: none;
+}
+
+/* The panel is the dialog surface: centred, bounded, and scrollable inside. */
+.studio-modal-panel,
+#studio-stats-overlay > div,
+#studio-kanji-picker-overlay > div {
+    background: var(--zen-surface);
+    border-radius: 1rem;
+    width: min(100%, 640px);
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+}
+
+.studio-modal-panel--compact {
+    width: min(100%, 560px);
+}
+
+.studio-modal-panel--wide {
+    width: min(100%, 720px);
+}
+
+.studio-modal-panel--tall {
+    height: min(90vh, 760px);
+}
+
+.studio-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.9rem 1.1rem;
+    border-bottom: 1px solid var(--zen-line);
+    background: var(--zen-surface-alt);
+}
+
+.studio-modal-title {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--zen-ink);
+}
+
+.studio-modal-body {
+    padding: 1.1rem;
+}
+
+/* Body padding was previously supplied per-instance by Tailwind utilities. */
+.studio-modal-body--padded {
+    padding: 1.25rem;
+}
+
 /* STATS MODAL & OVERLAYS */
 #studio-results-overlay,
 #studio-stats-overlay,
@@ -1336,16 +1442,64 @@ body #system-bar {
     display: none;
 }
 
-#studio-stats-overlay > div,
-#studio-kanji-picker-overlay > div {
-    background: var(--zen-surface);
-    border-radius: 1rem;
-    width: min(100%, 640px);
-    max-height: 90vh;
+/* The stats and kanji overlays have no single wrapper element: their content is
+   a set of sibling blocks. The overlay is therefore treated as the card - bounded,
+   centred, and scrollable - and its children simply stack full width. Without this
+   the blocks sized themselves and drifted apart across the backdrop. */
+#studio-stats-overlay,
+#studio-kanji-picker-overlay {
+    background: rgba(0, 0, 0, 0.45);
+    /* Column, not row: the blocks stack vertically, and a column lets them stretch
+       to a shared width instead of each shrinking to its own content. */
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 2rem 1rem;
     overflow-y: auto;
-    padding: 1.8rem;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    gap: 0;
 }
+
+#studio-stats-overlay > *,
+#studio-kanji-picker-overlay > * {
+    /* flex-basis must be auto or it wins over width and the block shrinks. */
+    flex: 0 0 auto;
+    width: min(100%, 640px);
+    max-width: 640px;
+    background: var(--zen-surface);
+    padding: 0 1.8rem;
+    box-sizing: border-box;
+    /* The sections carry their own bottom margins; keep them inside the card so
+       adjacent blocks meet instead of showing a seam. */
+    margin: 0;
+}
+
+/* Nothing inside the card may spill past its padding. */
+#studio-stats-overlay table,
+#studio-kanji-picker-overlay table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+#studio-stats-overlay table td,
+#studio-stats-overlay table th,
+#studio-kanji-picker-overlay table td,
+#studio-kanji-picker-overlay table th {
+    overflow-wrap: anywhere;
+}
+
+#studio-stats-overlay > *:first-child,
+#studio-kanji-picker-overlay > *:first-child {
+    padding-top: 1.8rem;
+    border-radius: 1rem 1rem 0 0;
+}
+
+#studio-stats-overlay > *:last-child,
+#studio-kanji-picker-overlay > *:last-child {
+    padding-bottom: 1.8rem;
+    border-radius: 0 0 1rem 1rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+}
+
 
 .stats-header {
     display: flex;
