@@ -209,7 +209,6 @@ window.StudioDaily = (() => {
                     <div class="daily-action-content">
                         <h2>Lessons</h2>
                         <div class="daily-action-number"><strong>${lessonsDone ? 0 : (state.lessonBatches[nextBatchIndex]?.length || DAILY_LESSON_BATCH_SIZE)}</strong><span>new words</span></div>
-                        <p>See each word first. Learn in groups of five.</p>
                         <button type="button" class="daily-primary-btn daily-primary-btn--lesson" onclick="window.StudioDaily.startDailyLesson()" ${lessonsDone || fresh === 0 ? 'disabled' : ''}>${lessonButtonLabel}</button>
                         <div class="daily-quota" aria-label="Daily lesson quota">${quotaSteps}</div>
                         ${optionalAction}
@@ -221,7 +220,6 @@ window.StudioDaily = (() => {
                     <div class="daily-action-content">
                         <h2>Reviews</h2>
                         <div class="daily-action-number"><strong>${reviewReady}</strong><span>${state.reviewCompleted ? 'finished today' : 'ready'}</span></div>
-                        <p>${state.reviewCompleted ? `Nice. You reviewed ${state.reviewCount} words today.` : 'Reinforce the words that need you most.'}</p>
                         <button type="button" class="daily-primary-btn daily-primary-btn--review" onclick="window.StudioDaily.startDailyReview()" ${reviewReady === 0 ? 'disabled' : ''}>${state.reviewCompleted ? 'Reviews done' : `Review ${reviewReady} words`}</button>
                     </div>
                 </section>

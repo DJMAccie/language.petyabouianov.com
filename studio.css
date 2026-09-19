@@ -594,15 +594,6 @@ body #system-bar {
     font-size: 0.95rem;
 }
 
-.daily-action-content > p {
-    /* No reserved min-height: the copy decides, and the space above stays larger
-       than the space below so the paragraph reads as attached to its heading. */
-    margin: 0.45rem 0 0.9rem;
-    color: var(--zen-muted);
-    font-size: 0.88rem;
-    line-height: 1.45;
-}
-
 .daily-primary-btn,
 .lesson-primary-btn {
     --study-action-accent: var(--zen-green);
