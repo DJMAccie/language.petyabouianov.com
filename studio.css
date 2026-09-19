@@ -103,21 +103,27 @@ body.nihongo-page {
    above, which is the same surface. Only the button reads. */
 .studio-support-row {
     display: flex;
+    /* Stacked: Ko-fi first, then About beneath it. */
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 0.35rem;
     flex: 0 0 auto;
-    padding: 0.4rem 1rem;
+    padding: 0.5rem 1rem 0.6rem;
 }
 
 .studio-support-btn {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 0.45rem;
-    min-height: 1.9rem;
-    padding: 0 0.9rem;
+    min-height: 1.85rem;
+    padding: 0 0.95rem;
     border: 1px solid var(--zen-blue-dark);
     border-radius: 999px;
-    background: var(--zen-blue);
+    /* The darker blue, not --zen-blue: white on the lighter one measures 4.34:1,
+       just under the 4.5:1 body text needs. This is 6.14:1. */
+    background: var(--zen-blue-dark);
     color: #fff;
     font-size: 0.78rem;
     font-weight: 650;
@@ -126,7 +132,17 @@ body.nihongo-page {
 }
 
 .studio-support-btn:hover {
-    background: var(--zen-blue-dark);
+    background: #17439b;
+}
+
+.studio-support-btn--quiet {
+    border-color: var(--zen-line);
+    background: var(--zen-surface);
+    color: var(--zen-ink);
+}
+
+.studio-support-btn--quiet:hover {
+    background: var(--zen-surface-alt);
 }
 
 .studio-support-btn:focus-visible {
@@ -139,16 +155,17 @@ body.nihongo-page {
 }
 
 /* ABOUT PAGE
-   The only page on the site written for a reader rather than for the task, so it
-   is the one place with running text. It borrows the app's own measure, surface and
-   type scale rather than introducing a second visual language. */
+   The one page on the site written for a reader rather than for a task, so it is
+   the only place with running text. It borrows the app's measure, surface and type
+   scale instead of introducing a second visual language, and it deliberately uses
+   no cards: the content is a plain column, separated by rule lines and space. */
 .about-page {
     min-height: 100dvh;
     margin: 0;
     background: var(--zen-canvas);
     color: var(--zen-ink);
     font-family: var(--studio-font-sans);
-    line-height: 1.6;
+    line-height: 1.65;
 }
 
 .about-header {
@@ -158,7 +175,7 @@ body.nihongo-page {
 
 .about-header-inner,
 .about-main {
-    width: min(100%, 46rem);
+    width: min(100%, 44rem);
     margin: 0 auto;
     padding: 0 clamp(1rem, 4vw, 2rem);
 }
@@ -184,93 +201,85 @@ body.nihongo-page {
     color: var(--zen-blue);
 }
 
-.about-open {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    min-height: 2.2rem;
-    padding: 0 1rem;
-    border: 1px solid var(--zen-blue-dark);
-    border-radius: 999px;
-    background: var(--zen-blue);
-    color: #fff;
-    font-size: 0.85rem;
-    font-weight: 650;
-    text-decoration: none;
-}
-
-.about-open:hover {
-    background: var(--zen-blue-dark);
-}
-
 .about-main {
-    padding-top: 2.5rem;
-    padding-bottom: 3.5rem;
+    padding-top: 2.75rem;
+    padding-bottom: 4rem;
 }
 
 .about-main h1 {
-    margin: 0 0 0.75rem;
-    font-size: clamp(1.7rem, 4vw, 2.3rem);
+    margin: 0 0 0.8rem;
+    font-size: clamp(1.75rem, 4vw, 2.35rem);
     font-weight: 760;
     letter-spacing: -0.02em;
-    line-height: 1.2;
+    line-height: 1.18;
     text-wrap: balance;
 }
 
 .about-lede {
-    margin: 0 0 2rem;
+    margin: 0 0 2.25rem;
     color: var(--zen-muted);
-    font-size: 1.05rem;
+    font-size: 1.08rem;
+    line-height: 1.6;
 }
 
+/* Rule lines carry the structure that cards would otherwise imply. */
 .about-main h2 {
-    margin: 2.25rem 0 0.6rem;
-    font-size: 1.15rem;
+    margin: 2.5rem 0 0.75rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--zen-line);
+    font-size: 1.12rem;
     font-weight: 720;
     letter-spacing: -0.01em;
 }
 
+.about-main h1 + .about-lede + *,
+.about-main > h2:first-of-type {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: 0;
+}
+
 .about-main p {
-    margin: 0 0 0.9rem;
+    margin: 0 0 0.95rem;
 }
 
 .about-main ul {
-    margin: 0 0 0.9rem;
-    padding-left: 1.15rem;
+    margin: 0 0 0.95rem;
+    padding-left: 1.1rem;
 }
 
 .about-main li {
-    margin-bottom: 0.35rem;
+    margin-bottom: 0.4rem;
 }
 
-.about-main a {
+/* Prose links only. Scoped away from the buttons, which used to inherit this
+   colour and render white-on-blue text as blue-on-blue. */
+.about-main p a,
+.about-main li a {
     color: var(--zen-blue);
 }
 
-/* The word-count figures are the page's one piece of evidence, so they get a
-   block of their own rather than being buried in a sentence. */
+/* Figures as a plain row of labelled numbers, not tiles. */
 .about-stats {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
-    gap: 0.75rem;
-    margin: 0 0 0.9rem;
-    padding: 0;
+    grid-template-columns: repeat(auto-fit, minmax(7.5rem, 1fr));
+    gap: 0.25rem 1.5rem;
+    margin: 0 0 1.5rem;
+    padding: 0 0 1.25rem;
+    border-bottom: 1px solid var(--zen-line);
     list-style: none;
 }
 
 .about-stats li {
     margin: 0;
-    padding: 0.9rem 1rem;
-    border: 1px solid var(--zen-line);
-    border-radius: 0.75rem;
-    background: var(--zen-surface);
 }
 
 .about-stats strong {
     display: block;
     color: var(--zen-blue);
-    font-size: 1.35rem;
+    font-size: 1.4rem;
     font-weight: 760;
+    line-height: 1.2;
 }
 
 .about-stats span {
@@ -279,11 +288,15 @@ body.nihongo-page {
 }
 
 .about-note {
-    margin-top: 2.5rem;
-    padding: 1.1rem 1.25rem;
-    border: 1px solid var(--zen-line);
-    border-radius: 0.9rem;
-    background: var(--zen-surface);
+    margin-top: 2.75rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--zen-line);
+}
+
+.about-note h2 {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: 0;
 }
 
 .about-note p:last-child {
@@ -294,21 +307,46 @@ body.nihongo-page {
     display: flex;
     flex-wrap: wrap;
     gap: 0.6rem;
-    margin-top: 1.25rem;
+    margin-top: 1.5rem;
 }
 
-.about-actions .about-open {
-    min-height: 2.6rem;
-    padding: 0 1.3rem;
+/* Buttons. Written with the element qualifier so the prose link rule above can
+   never win on specificity. */
+a.about-open {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    min-height: 2.75rem;
+    padding: 0 1.35rem;
+    border: 1px solid var(--zen-blue-dark);
+    border-radius: 999px;
+    /* Darker than --zen-blue: white on the lighter blue measured about 4.0:1,
+       under the 4.5:1 that body text needs. */
+    background: var(--zen-blue-dark);
+    color: #fff;
+    font-size: 0.92rem;
+    font-weight: 650;
+    text-decoration: none;
+    transition: background-color 140ms ease;
 }
 
-.about-quiet {
+a.about-open:hover {
+    background: #17439b;
+}
+
+a.about-open:focus-visible {
+    outline: 2px solid var(--zen-blue);
+    outline-offset: 2px;
+}
+
+a.about-open.about-quiet {
     border-color: var(--zen-line);
     background: var(--zen-surface);
     color: var(--zen-ink);
 }
 
-.about-quiet:hover {
+a.about-open.about-quiet:hover {
     background: var(--zen-surface-alt);
 }
 
