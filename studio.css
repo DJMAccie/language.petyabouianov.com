@@ -95,6 +95,20 @@ body.nihongo-page {
     overflow: hidden;
 }
 
+/* Visually hidden, still read by screen readers and by crawlers. Used for the
+   header icon links, which show a glyph but should still carry anchor text. */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
 /* SUPPORT
    A slim strip at the foot of the shell, centred. It deliberately paints nothing:
    no divider, and no background of its own. The app shell already carries the
@@ -103,10 +117,8 @@ body.nihongo-page {
    above, which is the same surface. Only the button reads. */
 .studio-support-row {
     display: flex;
-    /* Ko-fi on the left, About on the right, on one line. */
     align-items: center;
-    justify-content: space-between;
-    gap: 0.5rem;
+    justify-content: center;
     flex: 0 0 auto;
     padding: 0.5rem 1rem 0.6rem;
 }
@@ -444,13 +456,28 @@ body [data-studio-footer] {
        title bar and the study content on the same edges. */
     padding: 0;
     display: flex;
-    align-items: center;
+    /* Stretch, so the inner rule element spans the bar's full height and its
+       bottom border lands on the bar's bottom edge. */
+    align-items: stretch;
     justify-content: space-between;
     gap: 1.25rem;
     flex-shrink: 0;
-    border-bottom: 1px solid var(--zen-line);
     background: var(--zen-surface);
     z-index: 15;
+}
+
+/* The divider under the section tabs. It is drawn by this element rather than by
+   a border on the bar, because a border on the bar runs the full width of the
+   viewport and every other edge on the page stops at the shared column.
+   The width subtracts the column's own gutter on each side: without that the line
+   is inset by the gutter twice, landing well inside the content it should match. */
+.studio-nav-rule {
+    width: calc(100% - (var(--studio-column-gutter) * 2));
+    margin: 0 auto;
+    border-bottom: 1px solid var(--zen-line);
+    /* The bar is align-items: stretch, so this spans its full height and the
+       border lands on the bar's bottom edge. */
+    align-self: stretch;
 }
 
 .studio-primary-nav.is-hidden {
