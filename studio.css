@@ -426,29 +426,6 @@ html {
         linear-gradient(90deg, #c7003d 0%, #a126bd 27%, #4c54d9 52%, #148fb7 76%, #23ad5b 100%);
 }
 
-/* The spectrum is the page's one loud element and it was undecodable: a stranger
-   saw a coloured bar and no way to know it was 84 lists. The caption is apparatus
-   (a numeral and four words), not prose. */
-/* The caption sits under the right end of the spectrum, the way a figure credit
-   does, so the band's data is read left to right and signed at its far end. */
-.home-lists > .home-spectrum-note {
-    max-width: none;
-    text-align: right;
-}
-
-.home-spectrum-note {
-    margin: 0.7rem 0 0;
-    color: var(--zen-muted);
-    font-size: 0.8rem;
-    letter-spacing: 0.01em;
-}
-
-.home-spectrum-note b {
-    color: var(--zen-ink);
-    font-weight: 700;
-    font-variant-numeric: tabular-nums;
-}
-
 /* The theme names as texture: four columns of short names, ruled, so the scale of the
    library is felt instead of described in a line of grey. */
 .home-themes {
