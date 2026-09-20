@@ -220,19 +220,14 @@ line up on the same edges. The landing page is a 72rem grid of bands with prose 
 readable measure inside it, because a page that has to show the product cannot be a document
 column.
 
-Bands alternate shape, and the shape is the point: a two-column hero whose screenshot is
-cropped to the Lessons card so its words are legible; a full-width statement band carrying the
-progress spectrum at page width and the theme names as a four-column ruled texture; a
-two-column lessons band with the app's own drawing above the sample list and the phone capture
-beside it; a mirrored reviews band with the second drawing; a full-bleed `surface-alt` strip for
-the story; an unequal pair for the account and free questions; and a closing column that
-carries the sign-off, the CTA and the ask in one flow, with a one-line footer under it. The ask
-used to sit in a second column beside the CTA, where it outlived its neighbour by 425px and
-made the lowest-value band the tallest on the page. Vertical rhythm between bands is
-`clamp(3.5rem, 9vh, 6rem)`.
-
-Three quarters of a landing page that has to persuade cannot be the same 600px left column four
-times. When a band is added, give it a shape no neighbouring band already has.
+Bands alternate shape, and the shape is the point: a text hero that leads with words and
+nothing beside them; a statement band carrying the progress spectrum at page width over a
+three-column ruled texture of theme names, six names to two full rows; a two-column lessons
+band holding both drawings as spots in the copy column and the phone capture as the object
+beside it; a full-bleed `surface-alt` strip for the story; an unequal pair for the account and
+free questions; and a centred closing column at the page's 46rem measure that carries the
+sign-off, the CTA and the ask, with a one-line footer under it. Vertical rhythm between bands
+is `clamp(2.6rem, 6.5vh, 4.25rem)`.
 
 Responsive behaviour is structural, not scaled. Two-column bands collapse to one column at
 900px, the theme texture drops to two columns there and one at 700px, the sample-word rows drop

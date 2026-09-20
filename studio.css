@@ -394,7 +394,9 @@ html {
    library is felt instead of described in a line of grey. */
 .home-themes {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    /* Three columns, because there are six names: two full rows instead of four and a
+       half, which left the second row two names and 640px of rule. */
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 0 1.5rem;
     margin: 1.5rem 0 0;
     padding: 0;
@@ -467,8 +469,11 @@ html {
 /* One column, so the ask sits under the closing panel instead of running 425px past
    it in an empty second column. The band used to be a grid whose right column held a
    712px card, which made the page's lowest-value section its tallest. */
+/* One centred column, so the sign-off, the CTA and the ask sit on the page's own axis
+   rather than hard against the left of a 1088px grid with 800px of nothing beside them. */
 .home-close {
-    max-width: 40rem;
+    max-width: 46rem;
+    margin-inline: auto;
     margin-bottom: clamp(2.6rem, 6.5vh, 4.25rem);
 }
 
@@ -476,7 +481,10 @@ html {
     margin-top: 2rem;
     padding-top: 1.2rem;
     border-top: 1px solid var(--zen-line);
-    max-width: 30rem;
+}
+
+.donate-embed {
+    margin-inline: auto;
 }
 
 .home-donate-note {
@@ -508,7 +516,6 @@ html {
 
     .home-hero,
     .home-band,
-    .home-band--review,
     .home-pair,
     .home-close {
         grid-template-columns: minmax(0, 1fr);
@@ -527,15 +534,15 @@ html {
     .home-themes {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
-
-    /* The reviews band flips to copy first, so the artwork follows the words it belongs to. */
-    .home-band--review .home-spot-figure {
-        order: 2;
-    }
 }
 
 @media (max-width: 700px) {
-    .home-themes,
+    .home-themes {
+        /* Two columns, not one: at one the ledger stops being a texture and becomes a
+           seven-item list, which loses the scale the band is built to show. */
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
     .home-lists-notes {
         grid-template-columns: minmax(0, 1fr);
     }
@@ -630,6 +637,12 @@ html {
 /* A real lesson, shown rather than described: the opening words of the list this
    page recommends. Romaji sits under the Japanese the way the lesson card shows
    it, and the rows are separated by the same rule lines as the sections. */
+/* The sample list is a small page inside the band, so it opens with a pause and closes
+   with one rather than running on from the paragraph above at the same rate. */
+.lesson-sample {
+    margin: 1.7rem 0 1.8rem;
+}
+
 .lesson-sample-label {
     margin: 1.75rem 0 0.6rem;
     color: var(--zen-muted);
@@ -978,7 +991,8 @@ html {
 .home-footer-inner {
     width: min(100%, 72rem);
     margin: 0 auto;
-    padding: 1.4rem 2rem 2.4rem;
+    padding: 1.4rem clamp(1rem, 4vw, 2rem) 2.4rem;
+    text-align: center;
 }
 
 .home-footer p {
