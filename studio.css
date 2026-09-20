@@ -416,13 +416,11 @@ html {
 }
 
 .home-lists-notes {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0 3rem;
     margin-top: 2rem;
 }
 
 .home-lists-notes p {
+    max-width: 46rem;
     margin: 0;
 }
 
@@ -439,22 +437,6 @@ html {
     height: auto;
     max-width: min(12rem, 55%);
     margin: 0 0 1.1rem;
-}
-
-.home-spot-figure {
-    margin: 0;
-}
-
-.home-spot--review {
-    max-width: min(16rem, 100%);
-    margin: 0 auto;
-}
-
-/* The reviews band mirrors the lessons band: artwork on the left, copy on the right.
-   These two paragraphs used to be the tail of a forty-line column. */
-.home-band--review {
-    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr);
-    align-items: center;
 }
 
 .home-band-copy {
