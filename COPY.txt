@@ -1,0 +1,170 @@
+LANDING PAGE COPY
+
+Everything a visitor reads, in the order they read it, plus the two strings
+only search engines see. Edit any line in place. The labels tell me which
+element you mean, so leave the labels alone and change the text under them.
+
+========================================================================
+SEARCH RESULTS
+========================================================================
+
+TITLE TAG
+Learn Japanese Vocabulary in a Simple and Effective Way | Nihongo Studio
+
+META DESCRIPTION
+Themed Japanese word lists, already made, with the useful words first. Five words at a time, about two minutes. Free, and no account needed.
+
+========================================================================
+HERO
+========================================================================
+
+H1
+Learn Japanese vocabulary in a simple and effective way!
+
+PARAGRAPH
+I built this app to prepare for my trip to Japan, I didn't like Anki so I tried to make my own method. I made lists of words grouped by theme which really helped me get on a basic level quickly. 
+
+PRIMARY BUTTON
+Start learning
+
+SECONDARY BUTTON
+Why 
+
+========================================================================
+LISTS
+========================================================================
+
+PARAGRAPH
+Wise men say that you can understand about 80% of conversations by knowing 20% of the words. So, by that philosophy I started researching what those words were and packaged them in easy-to-learn units. During the lessons with my sensei, each time I tried to say something and didn't know the word he wrote it down. So a lot of the lists are also based on natural vocabulary. I recommend you try to make those as well and add them as a list in the app. 
+In this app you will find lots of basic lists as a starting point. 
+
+THE THEME NAMES (ONE PER LINE)
+City and Transport
+Restaurant & Bar
+Travel Essentials
+Body Parts
+Numbers
+Basic Question Words
+
+PARAGRAPH
+Starter Kit, the first list, covers the greetings, pronouns and polite forms most sentences lean on. Travel Essentials and Restaurant & Bar are the two to start with before a trip.
+
+PARAGRAPH
+These are the lists I used, so you don't have to go looking. With an account you can edit them, split them, or make your own.
+
+========================================================================
+LESSONS
+========================================================================
+
+PARAGRAPH
+A lesson is five words. You see each one before you answer for it. It takes a couple of minutes.
+
+SAMPLE LIST LABEL
+The first five words of Starter Kit:
+
+SAMPLE WORD
+初めまして  (Hajimemashite)   meaning: Nice to meet you
+
+SAMPLE WORD
+いただけますか  (Itadakemasu ka?)   meaning: Can I have a…? / Could I receive…?
+
+SAMPLE WORD
+いいね  (Ii ne)   meaning: Nice! / That's good
+
+SAMPLE WORD
+少し  (Sukoshi)   meaning: A little
+
+SAMPLE WORD
+お会計お願いします  (O kaikei onegaishimasu)   meaning: Can I have the bill please
+
+PARAGRAPH
+There are four learning modes: Japanese to English, English to Japanese, speech, or multiple choice. Kana and kanji sit alongside romaji, so you can read a word from day one.
+
+IMAGE CAPTION
+The lesson card.
+
+========================================================================
+REVIEWS
+========================================================================
+
+
+
+PARAGRAPH
+I started learning Kanji after my trip and stumbled upon WaniKani, I really liked that structure of daily reviews and lessons in small batches so I tried implementing my version of it for my vocab lists. 
+
+PARAGRAPH
+Words come back when they're due, and the ones you got wrong come back first.
+
+
+PARAGRAPH
+I've been refining this ever since, a bit at a time. If something is missing or you encounter a bug, please tell me. I'm at petyabouianov.com. Right now I'm trying to cram more kanji.
+
+
+========================================================================
+WHY I BUILT IT
+========================================================================
+
+PARAGRAPH
+I had five months before my trip and I wanted to cram as many words as I could, so that was the whole plan. I've been to Japan since, and it worked I've had some genuine conversations with people. 
+
+========================================================================
+NO ACCOUNT NEEDED
+========================================================================
+
+PARAGRAPH
+Your progress saves in your browser, but an account keeps it across devices and lets you edit or build your own lists. You can sign in or make one whenever you want.
+
+PARAGRAPH
+Accounts store your lists and progress and nothing else.
+
+========================================================================
+IT'S FREE
+========================================================================
+
+PARAGRAPH
+There are no ads, no micro transactions and nothing costs money. I mainly built it for myself but have now opened it up for anyone to use. 
+
+========================================================================
+CLOSING
+========================================================================
+
+
+THE ASK
+A donation is welcome but never expected, and it goes towards keeping the site running.
+
+SECONDARY BUTTON
+Support Nihongo Studio
+
+FALLBACK LINK UNDER THE WIDGET
+Or open the Ko-fi page directly.
+
+========================================================================
+FOOTER
+========================================================================
+
+FOOTER LINE
+Nihongo Studio  |  Kana quiz  |  The studio  |  petyabouianov.com
+
+========================================================================
+NOTES FOR THE REWRITE
+========================================================================
+
+* Strings that carry search value, worth keeping recognisable: the title and
+  description, the phrase "Learn Japanese vocabulary" in the H1, the six theme
+  names, the five sample words with their romaji and meanings, and the four
+  answer modes.
+
+* Links that must survive: /nihongo-studio behind both buttons, /kana, /login,
+  petyabouianov.com, and the Ko-fi link behind the support button.
+
+* Your rule: no em dashes.
+
+* The five sample rows are real. They are the first five entries of Starter
+  Kit in nihongo_lists.json. If you want different words on the page, name
+  them and I will take them from the library rather than invent them.
+
+* Leave the Japanese alone. Rewrite the English around the characters, not the
+  characters themselves.
+
+* Two of these are buttons, not prose: "Start learning" is the hero's only
+  primary action, and "Start with Starter Kit" closes the page.
