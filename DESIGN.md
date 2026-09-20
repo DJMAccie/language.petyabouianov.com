@@ -188,12 +188,15 @@ keeps the same weight logic.
   carries the hero on its own now that no image sits beside it. The studio's own page titles
   stay at `clamp(1.75rem, 4vw, 2.35rem)`. Tight tracking
   (-0.02em) and balanced wrapping.
-- **Headline** (720, 1.35rem, 1.3): section headings, each opening with a hairline rule above.
+- **Headline** (720, 1.35rem, 1.3): section headings. On the landing page a heading no longer
+  opens with a rule — the band's air does that job — while the studio's still do.
   It was 1.12rem, which sat barely above the 1.08rem body, so nine headings gave a scanning
   reader no outline
   it and generous space before it.
-- **Body** (400, 1.08rem, 1.65): running text, held to a 38rem measure on the landing page and
-  a 44rem column in the app's dialogs.
+- **Body** (400, 1.08rem, 1.65): running text, held to the landing page's `--home-measure`
+  (46rem = **73ch** at 16px, inside the 65–75ch band) and a 44rem column in the app's dialogs. A band's display
+  type is allowed `--home-display` (52rem), and a two-column band's cells sit below the measure
+  rather than above it.
 - **Label** (600, 0.77rem): the status line, captions, field labels, and the window lockup at
   0.875rem.
 - **Japanese** (600, 1.02rem, 1.35): kana and kanji, always with romaji or a meaning beside it.
@@ -223,16 +226,54 @@ column.
 Bands alternate shape, and the shape is the point: a text hero that leads with words and
 nothing beside them; a statement band carrying the progress spectrum at page width over a
 three-column ruled texture of theme names, six names to two full rows; a two-column lessons
-band holding both drawings as spots in the copy column and the phone capture as the object
-beside it; a full-bleed `surface-alt` strip for the story; an unequal pair for the account and
-free questions; and a centred closing column at the page's 46rem measure that carries the
-sign-off, the CTA and the ask, with a one-line footer under it. Vertical rhythm between bands
-is `clamp(2.6rem, 6.5vh, 4.25rem)`.
+band where the prose leads at `1.3fr` and the phone capture follows at `1fr` and ends on the
+grid's right edge, with both drawings closing the band as **one plate row** rather than
+floating inside the prose; a full-bleed `surface-alt` strip for the story; an unequal pair for
+the account and free questions; and a two-cell close carrying the sign-off, the closing action
+and the donation note against the ask, with a one-line footer under it. Vertical rhythm between
+bands is `--home-band-gap`, `clamp(3.6rem, 10vh, 6rem)`.
+
+**No rules divide the landing page's bands.** Every section hairline, band edge, list row rule
+and footer rule was removed; the only borders left on `/` belong to the window bar and to the
+quiet buttons. Separation is carried entirely by air, which is why the band gap above is
+generous, and a list separates by row padding rather than by a rule. The studio keeps every one
+of its hairlines: this is a landing-page decision taken by the owner, not a change to the
+system.
+
+**The landing page's alignment is deliberately uneven.** Each band takes a different position so
+the page has a line to follow rather than one margin. The hero and the Lists heading sit
+**left**; the Lists band runs two columns with the framing paragraph left and the note **right**,
+and the spectrum's caption is right-aligned under the spectrum's far end; the lessons band is
+prose **left** and capture **right**; the story strip is the page's one **centred** band; the
+pair spreads its two questions to the two outer edges; the close mirrors the lessons band, with
+the sign-off and its action pushed **right** inside their cell against the ask on the left; the
+footer is centred. Blocks move; long prose inside them still sets ragged-right, because a ragged
+left edge costs reading speed for nothing. On one column the offsets collapse and everything
+returns to the single left edge.
+
+**The landing page has two measures and one left edge.** `.home-page` declares
+`--home-measure: 46rem` for running prose and `--home-display: 52rem` for display type, which
+sets wider; nothing else picks a width. Both hold at the page's single left edge, which is the
+same line for the hero, the statement band, the lessons band, the story strip, the pair and the
+close at every width. The page previously used four measures (832 / 736 / 1088 / 491) on two
+axes, because the story strip and the close were centred islands at 46rem sitting 32rem inboard
+of everything else; that is what made six bands read as six unrelated blocks. Wide elements —
+the spectrum, the theme texture, the plate row, a band's heading rule — run the full grid, so
+the page alternates between prose on the measure and data at page width.
 
 Responsive behaviour is structural, not scaled. Two-column bands collapse to one column at
 900px, the theme texture drops to two columns there and one at 700px, the sample-word rows drop
-to a single column at 560px, and the donation card is a plain button until the viewport can give
-its column the 432px the Ko-fi widget needs, which is 1120px.
+to a single column at 560px, the plate row stacks, and the donation card is a plain button until
+the viewport can give its column the 432px the Ko-fi widget needs, which is 1120px.
+
+**Three rules a future layout edit must not break.** The plate images carry explicit widths
+rather than `max-width` alone, because a flex item with `width: auto` holding an image that has
+not loaded yet computes to zero, and a zero-sized image never enters the viewport, so
+`loading="lazy"` never fires and the row stays empty. The story strip's vertical rhythm sits on
+the band and its horizontal inset on the inner box — one gutter, not two — so its text lands on
+the page's left edge at every width and not only at 1440. And the Ko-fi widget is capped at
+`min(52vh, 27rem)`, because uncapped its fixed 712px made the page's lowest-value section its
+second tallest by a wide margin.
 
 **The landing page carries no icon font.** Its one glyph, the brand mark, is an inline SVG, so
 the page requests nothing from a third party before first paint beyond nothing at all: the only
@@ -270,8 +311,9 @@ border under a 50px blur is the generated-UI signature this system avoids.
 
 ## Shapes
 
-Structure is drawn with 1px rules, and containers are the exception. A section heading opens
-with a hairline above it; a list separates its rows with hairlines; the window bar closes with
+Structure is drawn with 1px rules, and containers are the exception. In the studio a section
+heading opens with a hairline above it and a list separates its rows with hairlines; on the
+landing page those rules are gone and air does the same work. The window bar closes with
 one. Radii are modest and consistent: keys and small controls at 0.5rem, fields at 0.6rem,
 floating objects at 0.85rem, window panels at 1rem, and true pills at 999px for primary
 actions.
@@ -288,8 +330,9 @@ compresses when pressed.
 like a key you can push, and pressing it compresses the edge. New controls inherit it rather
 than inventing a second press treatment.
 
-**The Rule-Not-Card Rule.** Group with proximity and a hairline before reaching for a
-container. Cards are not the default, and a card inside a card is never correct.
+**The Rule-Not-Card Rule.** Group with proximity first, then a hairline of the studio's, before
+reaching for a container. **On the landing page the rule is air instead** — the owner removed
+every divider, so proximity alone carries grouping there and the band gap is sized for it. Cards are not the default, and a card inside a card is never correct.
 
 ## Components
 
@@ -329,7 +372,8 @@ container. Cards are not the default, and a card inside a card is never correct.
   countdown, words total). One typographic recipe for every item, numbers in Ink at weight
   700, labels in Muted Ink at weight 500, tabular figures throughout, so the row reads as one
   line of data.
-- **The sample lesson list:** rule-separated rows of Japanese, romaji and meaning. It is the
+- **The sample lesson list:** rows of Japanese, romaji and meaning, separated by air on the
+  landing page and by rules in the app. It is the
   system's answer to "show, don't tell", and it collapses to one column at 560px.
 - **Product screenshots:** real captures of the running app on the landing page, presented at
   0.85rem radius with the floating-object shadow and no border. They are objects, not
@@ -340,7 +384,8 @@ container. Cards are not the default, and a card inside a card is never correct.
 ### Do:
 - **Do** put the window bar on every page, app and document alike, with the lockup matched to
   `.studio-header-title`.
-- **Do** reach for a hairline rule and space before a container.
+- **Do** reach for proximity and space before a container, and for a hairline on the studio's
+  surfaces. On `/` the hairline is not available: use the band gap.
 - **Do** use Studio Blue Deep for filled buttons so white text clears 4.5:1.
 - **Do** keep numbers in tabular figures and in Ink, with their labels in Muted Ink.
 - **Do** show real product evidence: a real capture, a real word list, real numbers from the

@@ -300,6 +300,18 @@ html.dark .home-page {
     padding-top: clamp(1.75rem, 5vh, 3rem);
 }
 
+/* Two measures, named once. Running prose sits at the reading measure; display
+   type is allowed a wider one because it sets wider. Before this the page used
+   four (832 / 736 / 1088 / 491) with no rule saying which was which, so no band's
+   right edge agreed with any other's. */
+.home-page {
+    --home-measure: 46rem;
+    --home-display: 52rem;
+    /* No rules divide the bands any more, so the air does it. Generous, and
+       uneven on purpose: tight groups read as one thought. */
+    --home-band-gap: clamp(3.6rem, 10vh, 6rem);
+}
+
 /* The story strip bleeds to the viewport edges. overflow-x: clip contains that bleed
    without making a scroll container, so the sticky masthead keeps working; without
    support the strip is simply as wide as the page, which is not broken. */
@@ -311,22 +323,23 @@ html {
     width: min(100%, 72rem);
 }
 
+/* The two columns were the wrong way round: the prose got 491px while the object
+   beside it got 549px, so the text column was narrower than the picture. The prose
+   now leads and the capture is sized to fit it. */
 .home-band {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.12fr);
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
     gap: 2.5rem 3rem;
-    align-items: center;
+    align-items: start;
 }
 
 /* The hero is words and nothing else: the promise, the two facts under it, and the
    action. With no object beside them the copy takes the full grid and the title is
    allowed the display size it could not have at half width. */
-.home-hero {
-    margin-bottom: clamp(2.6rem, 6.5vh, 4.25rem);
-}
+
 
 .home-hero-copy {
-    max-width: 52rem;
+    max-width: var(--home-display);
 }
 
 .home-hero h1 {
@@ -350,12 +363,20 @@ html {
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
 }
 
+/* Figure and image take the same width and end on the grid edge. Right-aligning
+   the image inside a wider figure orphaned the caption, which centres on the
+   figure box: it sat 182px away from the capture at 900px. */
+.home-shot--phone {
+    justify-self: end;
+    width: min(100%, 26rem);
+}
+
 .home-shot--phone img {
     /* min() so the 26rem cap can never beat the column on a narrow screen: the
        plain max-width let the image stay 416px wide inside a 343px column. */
-    width: auto;
-    max-width: min(100%, 26rem);
-    margin: 0 auto;
+    width: 100%;
+    max-width: 26rem;
+    margin: 0;
 }
 
 .home-shot figcaption {
@@ -367,12 +388,27 @@ html {
 
 /* The statement band runs the full grid so the spectrum and the theme texture can use
    it, while the prose keeps a readable measure. */
-.home-lists {
-    margin-bottom: clamp(2.6rem, 6.5vh, 4.25rem);
+.home-hero,
+.home-lists,
+.home-band,
+.home-pair,
+.home-strip,
+.home-close {
+    margin-bottom: var(--home-band-gap);
 }
 
 .home-lists > p {
-    max-width: 46rem;
+    max-width: var(--home-measure);
+}
+
+/* The two framing paragraphs take one edge each instead of stacking into a
+   single wide grey block. */
+.home-lists-cols {
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+    gap: 2.5rem 3rem;
+    align-items: start;
+    margin-bottom: clamp(2rem, 4.5vw, 3rem);
 }
 
 /* The page's one colour event: the studio's own progress spectrum, at the full width
@@ -388,6 +424,29 @@ html {
             rgba(255, 255, 255, 0.34) 0 1px,
             transparent 1px calc(100% / 84)),
         linear-gradient(90deg, #c7003d 0%, #a126bd 27%, #4c54d9 52%, #148fb7 76%, #23ad5b 100%);
+}
+
+/* The spectrum is the page's one loud element and it was undecodable: a stranger
+   saw a coloured bar and no way to know it was 84 lists. The caption is apparatus
+   (a numeral and four words), not prose. */
+/* The caption sits under the right end of the spectrum, the way a figure credit
+   does, so the band's data is read left to right and signed at its far end. */
+.home-lists > .home-spectrum-note {
+    max-width: none;
+    text-align: right;
+}
+
+.home-spectrum-note {
+    margin: 0.7rem 0 0;
+    color: var(--zen-muted);
+    font-size: 0.8rem;
+    letter-spacing: 0.01em;
+}
+
+.home-spectrum-note b {
+    color: var(--zen-ink);
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
 }
 
 /* The theme names as texture: four columns of short names, ruled, so the scale of the
@@ -408,87 +467,161 @@ html {
 }
 
 .home-themes li {
-    padding: 0.55rem 0;
-    border-bottom: 1px solid var(--zen-line);
-}
-
-.home-themes li:last-child {
-    color: var(--zen-muted);
-    font-weight: 400;
+    padding: 0.85rem 0;
 }
 
 .home-lists-notes {
-    margin-top: 2rem;
+    margin-top: 0;
+    margin-left: auto;
 }
 
 .home-lists-notes p {
-    max-width: 46rem;
+    max-width: var(--home-measure);
     margin: 0;
 }
 
-.home-band,
-.home-pair {
-    margin-bottom: clamp(2.6rem, 6.5vh, 4.25rem);
-}
+
 
 /* The app's own drawings, finally on the page. Both are 1x assets (328x260 and
    399x260), so they are capped near their natural size rather than stretched. */
+/* Explicit widths, not max-width alone. A flex item with width:auto holding an
+   image that has not loaded yet computes to zero, and a zero-sized image never
+   enters the viewport, so loading="lazy" never fires and the plate row stays
+   empty. The two values are the assets' own pixel sizes, so nothing is resampled. */
 .home-spot {
     display: block;
-    width: auto;
+    width: 20.5rem;
+    max-width: 100%;
     height: auto;
-    max-width: min(12rem, 55%);
-    margin: 0 0 1.1rem;
+    margin: 0;
+}
+
+.home-spot--review {
+    width: 24.9rem;
 }
 
 .home-band-copy {
-    max-width: 34rem;
+    max-width: var(--home-measure);
 }
 
 /* The story band, full bleed: after two bands of the same left column the page
    changes shape here. The biography that used to open the page lives in it now that
    the hero names the product. */
+/* The app's two drawings close the band as one printed plate row instead of
+   floating inside the prose, where one of them arrived before the "Lessons"
+   heading and the other cut the argument in half. */
+.home-plates {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: clamp(1.5rem, 4vw, 3rem);
+    margin-top: clamp(2.2rem, 5vw, 3.4rem);
+}
+
 .home-strip {
     width: 100vw;
     margin-left: calc(50% - 50vw);
-    margin-bottom: clamp(2.6rem, 6.5vh, 4.25rem);
-    padding: clamp(2.5rem, 6vh, 4rem) 0;
-    border-top: 1px solid var(--zen-line);
-    border-bottom: 1px solid var(--zen-line);
+    /* Vertical rhythm on the band, horizontal inset on the inner box. The band's
+       own tint delimits it now that the rules are gone. */
+    padding: clamp(3rem, 8vh, 5rem) 0;
     background: var(--zen-surface-alt);
 }
 
+/* The strip was a centred 46rem island, so its text sat on a different axis from
+   every other band (352 against 176). It keeps the full-bleed ground and returns
+   to the page column; only the running text holds the reading measure. */
 .home-strip-inner {
-    max-width: 46rem;
+    width: min(100%, 72rem);
     margin: 0 auto;
     padding: 0 clamp(1rem, 4vw, 2rem);
 }
 
-/* The closing band: the sign-off and the CTA in the main column, the ask beside them
-   instead of ahead of the first lesson. */
-/* One column, so the ask sits under the closing panel instead of running 425px past
-   it in an empty second column. The band used to be a grid whose right column held a
-   712px card, which made the page's lowest-value section its tallest. */
-/* One centred column, so the sign-off, the CTA and the ask sit on the page's own axis
-   rather than hard against the left of a 1088px grid with 800px of nothing beside them. */
+/* The story is the page's one purely personal beat, so it is the one band set on
+   the centre axis. */
+.home-strip-inner > h2 {
+    margin-top: 0;
+}
+
+.home-strip .home-strip-inner > h2,
+.home-strip .home-strip-inner > p {
+    max-width: var(--home-measure);
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+/* The close was a centred 46rem island whose left column stayed empty for 813px
+   while a fixed 432px card ran down the right, which made the page's lowest-value
+   section its second tallest. It returns to the page column as two cells that begin
+   on the same line: the sign-off and the closing action on the left, the ask beside
+   them rather than under them. */
 .home-close {
-    max-width: 46rem;
-    margin-inline: auto;
-    margin-bottom: clamp(2.6rem, 6.5vh, 4.25rem);
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+    gap: clamp(1.6rem, 4vw, 3rem);
+    align-items: start;
 }
 
 .home-donate {
-    margin-top: 2rem;
-    padding-top: 1.2rem;
-    border-top: 1px solid var(--zen-line);
+    margin-top: 0;
+    padding-top: 0;
+}
+
+/* Below the width that can hold the widget the ask is a single button, so the
+   close stacks rather than leaving a near-empty second cell. */
+@media (max-width: 1119px) {
+    .home-close {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+/* The merged About page's leading margin landed inside the first cell, putting its
+   text 48.8px below the second cell's. Only the margin goes: both cells then open on
+   the same rule, which is how every other band on the page opens. */
+/* The close mirrors the lessons band: words right, object left. The sign-off is
+   three short lines, so it sets ragged-left against the grid's right edge while
+   the ask keeps the left. */
+/* The block takes the right of its cell; the prose inside it still sets
+   ragged-right, because a ragged left edge costs reading speed for nothing. The
+   action follows the block to the same edge. */
+.home-close-main {
+    justify-self: end;
+    max-width: 30rem;
+}
+
+.home-close-main .about-actions {
+    justify-content: flex-end;
+}
+
+.home-close-main .home-donate-note {
+    margin-left: auto;
+}
+
+.home-close-main .home-donate-note {
+    margin-top: 2.4rem;
+}
+
+/* The widget is third-party furniture with a fixed 712px height; uncapped it made
+   the band 923px tall on its own. Capped, it still carries the ask and the link to
+   the Ko-fi page stays above it, so a failed embed never strands the reader. */
+.donate-embed iframe {
+    max-height: min(52vh, 27rem);
 }
 
 .donate-embed {
-    margin-inline: auto;
+    max-width: 27rem;
+    margin-inline: 0;
 }
 
 .home-donate-note {
     margin: 0;
+    /* Every other prose block on the page holds the reading measure; this one did
+       not, so when the close collapsed to a single column its box ran the full
+       container. One line, so nothing is visible today, but the token system now
+       has no exception for a future copy edit to fall through. */
+    max-width: var(--home-measure);
     color: var(--zen-muted);
     font-size: 0.92rem;
 }
@@ -501,7 +634,14 @@ html {
 }
 
 .home-pair-item {
-    max-width: 32rem;
+    max-width: var(--home-measure);
+}
+
+/* The pair spreads to the two outer edges: the question that needs an account on
+   the left, the one that does not on the right. */
+.home-pair-item--free {
+    justify-self: end;
+    max-width: 28rem;
 }
 
 /* A band's heading opens it, so it carries the rule but no leading margin. */
@@ -512,13 +652,29 @@ html {
     margin-top: 0;
 }
 
+.about-note p {
+    max-width: var(--home-measure);
+}
+
 @media (max-width: 900px) {
 
     .home-hero,
     .home-band,
     .home-pair,
-    .home-close {
+    .home-close,
+    .home-lists-cols {
         grid-template-columns: minmax(0, 1fr);
+    }
+
+    /* One column, so nothing to push against: the blocks stop being offset, and
+       the action follows the text back to the left edge. */
+    .home-pair-item--free,
+    .home-close-main {
+        justify-self: stretch;
+    }
+
+    .home-close-main .about-actions {
+        justify-content: flex-start;
     }
 
     .home-hero-copy,
@@ -534,6 +690,17 @@ html {
     .home-themes {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+
+    /* Both plates take a tablet size, not only below 700px: between 701 and 825
+       they were still at desktop size and wrapped into two ragged half-empty rows. */
+    .home-plates {
+        justify-content: flex-start;
+    }
+
+    .home-spot,
+    .home-spot--review {
+        width: min(100%, 17rem);
+    }
 }
 
 @media (max-width: 700px) {
@@ -547,9 +714,14 @@ html {
         grid-template-columns: minmax(0, 1fr);
     }
 
-    /* A spot illustration at 55% of a phone column is a smudge; give it its own line. */
+    /* A spot illustration at its desktop size is a smudge on a phone; give each one
+       its own line. The width stays explicit for the reason above. */
     .home-spot {
-        max-width: min(12rem, 70%);
+        width: min(12rem, 70%);
+    }
+
+    .home-spot--review {
+        width: min(15rem, 85%);
     }
 }
 
@@ -567,13 +739,16 @@ html {
     color: var(--zen-muted);
     font-size: 1.08rem;
     line-height: 1.6;
+    /* The headline is allowed the display measure; the deck under it is running
+       prose and holds the reading measure, like every other paragraph on the page. */
+    max-width: var(--home-measure);
 }
 
 /* Rule lines carry the structure that cards would otherwise imply. */
+/* No rule above a heading any more. Separation is carried by air, which is why
+   the band rhythm below is generous. */
 .about-main h2 {
-    margin: 1.9rem 0 0.6rem;
-    padding-top: 1.1rem;
-    border-top: 1px solid var(--zen-line);
+    margin: 0 0 0.6rem;
     /* 1.35rem: the band-heading step. At 1.12rem a heading sat barely above the
        1.08rem body, so nine of them gave a search visitor no outline to scan. */
     font-size: 1.35rem;
@@ -610,9 +785,8 @@ html {
 }
 
 .about-note {
-    margin-top: 2.75rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--zen-line);
+    margin-top: 0;
+    padding-top: 0;
 }
 
 /* The closing block is the one place the page asks for something, so it gets a
@@ -654,7 +828,6 @@ html {
     margin: 0 0 1rem;
     padding: 0;
     list-style: none;
-    border-top: 1px solid var(--zen-line);
 }
 
 .lesson-sample-list li {
@@ -662,8 +835,7 @@ html {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: 0.25rem 1.5rem;
     align-items: baseline;
-    padding: 0.7rem 0;
-    border-bottom: 1px solid var(--zen-line);
+    padding: 1rem 0;
 }
 
 .lesson-sample-word {
@@ -739,6 +911,9 @@ html {
 
     .donate-embed {
         display: block;
+        /* The actions are hidden at this width, so the embed is what the cell opens
+           with and takes the rule's own rhythm rather than a second gap. */
+        margin-top: 0;
     }
 }
 
@@ -984,8 +1159,7 @@ html {
 
 /* The page's foot: who runs it, that it is free, and where to go next. */
 .home-footer {
-    margin-top: clamp(2rem, 5vh, 3rem);
-    border-top: 1px solid var(--zen-line);
+    margin-top: clamp(1rem, 3vh, 2rem);
 }
 
 .home-footer-inner {

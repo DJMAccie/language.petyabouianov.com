@@ -138,6 +138,14 @@ Open product decisions, recorded rather than invented:
   illustrations (`assets/lesson-words.png`, `assets/review-words.png`).
 - The interface language is English while the subject matter is Japanese; this split is
   existing product truth, not an oversight to correct silently.
+- **The landing page copy is written by hand and is pinned.** Confirmed directly, in the
+  owner's words: "leave the copy! you can rearrange it but ive written it manually." It may
+  be moved between sections but not reworded, added to, or deleted. Two additions are
+  permitted, and both were confirmed by the owner rather than assumed: **apparatus** —
+  section numerals, a catalog code, and the real library figures — and **repeated controls**,
+  which may reuse one of his existing labels verbatim (the closing `Start learning` is the
+  first). Neither may introduce a new sentence, and a repeated control may not be reworded to
+  suit its position. A redesign of `/` rearranges his sentences rather than writing new ones.
 
 ## Evidence on Hand
 

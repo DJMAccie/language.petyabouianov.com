@@ -126,18 +126,29 @@
 
         <section class="home-lists">
             <h2>Lists</h2>
-            <p>
-                Wise men say that you can understand about 80% of conversations by knowing 20% of
-                the words. So, by that philosophy I started researching what those words were and
-                packaged them in easy-to-learn units. During the lessons with my sensei, each time I
-                tried to say something and didn't know the word he wrote it down. So a lot of the
-                lists are also based on natural vocabulary. I recommend you try to make those as well
-                and add them as a list in the app. In this app you will find lots of basic lists as a
-                starting point.
-            </p>
+            <div class="home-lists-cols">
+                <p>
+                    Wise men say that you can understand about 80% of conversations by knowing 20% of
+                    the words. So, by that philosophy I started researching what those words were and
+                    packaged them in easy-to-learn units. During the lessons with my sensei, each time I
+                    tried to say something and didn't know the word he wrote it down. So a lot of the
+                    lists are also based on natural vocabulary. I recommend you try to make those as well
+                    and add them as a list in the app. In this app you will find lots of basic lists as a
+                    starting point.
+                </p>
+                <div class="home-lists-notes">
+                    <p>
+                        These are the lists I used, so you don't have to go looking. With an account
+                        you can edit them, split them, or make your own.
+                        Starter Kit, the first list, covers the greetings, pronouns and polite forms
+                        most sentences lean on and is an easy list to get you going.
+                    </p>
+                </div>
+            </div>
             <!-- The page's one colour event: the studio's own progress spectrum at full width,
                  one tick per list. Decorative, so it stays out of the accessibility tree. -->
             <div class="home-spectrum" data-reveal="wipe" aria-hidden="true"></div>
+            <p class="home-spectrum-note"><b>84</b> lists, one tick each.</p>
             <ul class="home-themes">
                 <li>City and Transport</li>
                 <li>Restaurant &amp; Bar</li>
@@ -146,30 +157,16 @@
                 <li>Numbers</li>
                 <li>Basic Question Words</li>
             </ul>
-            <div class="home-lists-notes">
-                <p>
-                    These are the lists I used, so you don't have to go looking. With an account
-                    you can edit them, split them, or make your own.
-                    Starter Kit, the first list, covers the greetings, pronouns and polite forms
-                    most sentences lean on and is an easy list to get you going.
-                </p>
-            </div>
         </section>
 
         <section class="home-band">
             <div class="home-band-copy">
-                <img class="home-spot" src="assets/lesson-words.png" width="328" height="260"
-                    loading="lazy" decoding="async"
-                    alt="A girl reading at a desk while small green sprout characters grow out of the open book, each holding up a word card.">
                 <h2>Lessons</h2>
                 <p>
                     I started learning Kanji after my trip and stumbled upon WaniKani, I really
                     liked that structure of daily reviews and lessons in small batches so I tried
                     implementing my version of it for my vocab lists.
                 </p>
-                <img class="home-spot home-spot--review" src="assets/review-words.png" width="399"
-                    height="260" loading="lazy" decoding="async"
-                    alt="A girl sitting cross-legged holds up a word card to a blue axolotl, with cards arcing through the air around them.">
                 <p>
                     A lesson is five words. You see each one before you answer for it. It takes a
                     couple of minutes. The review system is designed to help you retain vocabulary
@@ -217,6 +214,14 @@
                     alt="A lesson card on a phone: the word Kippu with its meaning, its kana and kanji, a 1 of 5 progress bar, and Previous and Next word buttons.">
                 <figcaption>The lesson card.</figcaption>
             </figure>
+            <div class="home-plates">
+                <img class="home-spot" src="assets/lesson-words.png" width="328" height="260"
+                    loading="lazy" decoding="async"
+                    alt="A girl reading at a desk while small green sprout characters grow out of the open book, each holding up a word card.">
+                <img class="home-spot home-spot--review" src="assets/review-words.png" width="399"
+                    height="260" loading="lazy" decoding="async"
+                    alt="A girl sitting cross-legged holds up a word card to a blue axolotl, with cards arcing through the air around them.">
+            </div>
         </section>
 
         <!-- Reviews get their own band: this is where both audiences from the story are
@@ -269,16 +274,19 @@
                         trying to cram more kanji.
                     </p>
                 </div>
+                <div class="about-actions">
+                    <a class="about-open" href="/nihongo-studio">Start learning</a>
+                </div>
+                <p class="home-donate-note">
+                    A donation is welcome but never expected, and it goes towards keeping the site
+                    running.
+                </p>
             </div>
 
             <!-- The ask, moved out of the free band: it now arrives after the product has
                  made its case and beside the closing CTA, with the widget capped and its
                  fallback inside the reserved space rather than below a blank box. -->
             <aside class="home-donate" aria-label="Supporting the studio">
-                <p class="home-donate-note">
-                    A donation is welcome but never expected, and it goes towards keeping the site
-                    running.
-                </p>
                 <div class="donate-actions">
                     <a class="about-open about-quiet" href="https://ko-fi.com/petya_bouianov" target="_blank"
                         rel="noopener noreferrer"><svg class="heart-mark" viewBox="0 0 24 24" width="15"
