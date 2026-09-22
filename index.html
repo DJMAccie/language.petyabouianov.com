@@ -31,7 +31,7 @@
     </script>
     <link rel="icon"
         href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 900 600%22><rect width=%22900%22 height=%22600%22 fill=%22white%22/><circle cx=%22450%22 cy=%22300%22 r=%22180%22 fill=%22%23bc002d%22/></svg>">
-    <link rel="stylesheet" href="studio.css?v=20260920-layout">
+    <link rel="stylesheet" href="studio.css?v=20260920-brief">
     <script type="application/ld+json">
 {
       "@context": "https://schema.org",
@@ -111,7 +111,8 @@
     <main class="about-main home-main">
         <section class="home-hero">
             <div class="home-hero-copy">
-                <h1>Learn Japanese vocabulary in a simple and effective way!</h1>
+                <span class="home-hero-label">Nihongo Studio</span>
+                <h1>Learn Japanese vocabulary in a simple and effective way</h1>
                 <p class="about-lede">
                     I built this app to prepare for my trip to Japan, I didn't like Anki so I tried
                     to make my own method. I made lists of words grouped by theme which really
@@ -126,6 +127,17 @@
 
         <section class="home-lists">
             <h2>Lists</h2>
+            <!-- The page's one colour event: the studio's own progress spectrum at full width,
+                 one tick per list. Decorative, so it stays out of the accessibility tree. -->
+            <div class="home-spectrum" data-reveal="wipe" aria-hidden="true"></div>
+            <ul class="home-themes">
+                <li>City and Transport</li>
+                <li>Restaurant &amp; Bar</li>
+                <li>Travel Essentials</li>
+                <li>Body Parts</li>
+                <li>Numbers</li>
+                <li>Basic Question Words</li>
+            </ul>
             <div class="home-lists-cols">
                 <p>
                     Wise men say that you can understand about 80% of conversations by knowing 20% of
@@ -145,17 +157,6 @@
                     </p>
                 </div>
             </div>
-            <!-- The page's one colour event: the studio's own progress spectrum at full width,
-                 one tick per list. Decorative, so it stays out of the accessibility tree. -->
-            <div class="home-spectrum" data-reveal="wipe" aria-hidden="true"></div>
-            <ul class="home-themes">
-                <li>City and Transport</li>
-                <li>Restaurant &amp; Bar</li>
-                <li>Travel Essentials</li>
-                <li>Body Parts</li>
-                <li>Numbers</li>
-                <li>Basic Question Words</li>
-            </ul>
         </section>
 
         <section class="home-band">
@@ -165,11 +166,6 @@
                     I started learning Kanji after my trip and stumbled upon WaniKani, I really
                     liked that structure of daily reviews and lessons in small batches so I tried
                     implementing my version of it for my vocab lists.
-                </p>
-                <p>
-                    A lesson is five words. You see each one before you answer for it. It takes a
-                    couple of minutes. The review system is designed to help you retain vocabulary
-                    effectively with spaced repetition, and the ones you got wrong come back first.
                 </p>
                 <div class="lesson-sample">
                     <p class="lesson-sample-label">The first five words of Starter Kit:</p>
@@ -202,6 +198,11 @@
                     </ul>
                 </div>
                 <p>
+                    A lesson is five words. You see each one before you answer for it. It takes a
+                    couple of minutes. The review system is designed to help you retain vocabulary
+                    effectively with spaced repetition, and the ones you got wrong come back first.
+                </p>
+                <p>
                     There are four learning modes: <strong>Japanese to English</strong>,
                     <strong>English to Japanese</strong>, <strong>speech</strong>, or
                     <strong>multiple choice</strong>. Kana and kanji sit alongside romaji, so you
@@ -231,16 +232,6 @@
              page changes shape here, and the biography that used to open the page lives
              in it now that the hero names the product instead. The band's own padding is
              vertical only, and the inner column carries the horizontal inset. -->
-        <section class="home-strip">
-            <div class="home-strip-inner">
-                <h2 id="why">Why I built it</h2>
-                <p>
-                    I had five months before my trip and I wanted to cram as many words as I could,
-                    so that was the whole plan. I've been to Japan since, and it worked. I've had
-                    some genuine conversations with people, albeit with broken Japanese.
-                </p>
-            </div>
-        </section>
 
         <section class="home-pair">
             <div class="home-pair-item home-pair-item--account">
@@ -263,25 +254,17 @@
             </div>
         </section>
 
-        <section class="home-close">
-            <div class="home-close-main">
-                <div class="about-note">
-                    <p>
-                        I've been refining this bit by bit. If something is missing or you
-                        encounter a bug, please tell me. I'm at
-                        <a href="https://petyabouianov.com">petyabouianov.com</a>. Right now I'm
-                        trying to cram more kanji.
-                    </p>
-                </div>
-                <div class="about-actions">
-                    <a class="about-open" href="/nihongo-studio">Start learning</a>
-                </div>
-                <p class="home-donate-note">
-                    A donation is welcome but never expected, and it goes towards keeping the site
-                    running.
+        <section class="home-strip">
+            <div class="home-strip-inner">
+                <h2 id="why">Why I built it</h2>
+                <p>
+                    I had five months before my trip and I wanted to cram as many words as I could,
+                    so that was the whole plan. I've been to Japan since, and it worked. I've had
+                    some genuine conversations with people, albeit with broken Japanese.
                 </p>
             </div>
-
+        </section>
+        <section class="home-close">
             <!-- The ask, moved out of the free band: it now arrives after the product has
                  made its case and beside the closing CTA, with the widget capped and its
                  fallback inside the reserved space rather than below a blank box. -->
@@ -304,6 +287,24 @@
                         title="Support Nihongo Studio on Ko-fi" loading="lazy" height="712"></iframe>
                 </div>
             </aside>
+            <div class="home-close-main">
+                <div class="about-note">
+                    <p>
+                        I've been refining this bit by bit. If something is missing or you
+                        encounter a bug, please tell me. I'm at
+                        <a href="https://petyabouianov.com">petyabouianov.com</a>. Right now I'm
+                        trying to cram more kanji.
+                    </p>
+                </div>
+                <p class="home-donate-note">
+                    A donation is welcome but never expected, and it goes towards keeping the site
+                    running.
+                </p>
+                <div class="about-actions">
+                    <a class="about-open" href="/nihongo-studio">Start learning</a>
+                </div>
+            </div>
+
         </section>
     </main>
 

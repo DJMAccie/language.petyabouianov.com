@@ -227,29 +227,32 @@ Bands alternate shape, and the shape is the point: a text hero that leads with w
 nothing beside them; a statement band carrying the progress spectrum at page width over a
 three-column ruled texture of theme names, six names to two full rows; a two-column lessons
 band where the prose leads at `1.3fr` and the phone capture follows at `1fr` and ends on the
-grid's right edge, with both drawings closing the band as **one plate row** rather than
-floating inside the prose; a full-bleed `surface-alt` strip for the story; an unequal pair for
-the account and free questions; and a two-cell close carrying the sign-off, the closing action
-and the donation note against the ask, with a one-line footer under it. Vertical rhythm between
+grid's right edge, with both drawings closing the band as **one plate row** tight to the band's
+foot and hugging the right; a full-bleed `surface-alt` strip for the story, left-aligned and
+placed after the pair; an unequal pair for the account and free questions; and a two-cell close
+carrying the ask first and the sign-off, the donation note and the closing action second, with a
+one-line footer under it. Vertical rhythm between
 bands is `--home-band-gap`, `clamp(3.6rem, 10vh, 6rem)`.
 
-**No rules divide the landing page's bands.** Every section hairline, band edge, list row rule
-and footer rule was removed; the only borders left on `/` belong to the window bar and to the
-quiet buttons. Separation is carried entirely by air, which is why the band gap above is
-generous, and a list separates by row padding rather than by a rule. The studio keeps every one
-of its hairlines: this is a landing-page decision taken by the owner, not a change to the
-system.
+**No rule divides one band from the next on the landing page.** Every section hairline, band
+edge and footer rule is gone, and the band gap above carries the separation. What rules remain
+on `/` are a *register, not a divider*: the theme names, the five sample word rows and the two
+value-prop headings each carry a hairline, because those items are data rather than prose and
+the rule is what makes them scannable. The window bar's edge and the quiet buttons keep theirs.
+The studio keeps every one of its hairlines: this is a landing-page decision taken by the owner,
+not a change to the system.
 
-**The landing page's alignment is deliberately uneven.** Each band takes a different position so
-the page has a line to follow rather than one margin. The hero and the Lists heading sit
-**left**; the Lists band runs two columns with the framing paragraph left and the note **right**,
-and the spectrum's caption is right-aligned under the spectrum's far end; the lessons band is
-prose **left** and capture **right**; the story strip is the page's one **centred** band; the
-pair spreads its two questions to the two outer edges; the close mirrors the lessons band, with
-the sign-off and its action pushed **right** inside their cell against the ask on the left; the
-footer is centred. Blocks move; long prose inside them still sets ragged-right, because a ragged
-left edge costs reading speed for nothing. On one column the offsets collapse and everything
-returns to the single left edge.
+**The landing page reads left to right in a single, moving line.** The page's axis is the left
+edge; what changes band to band is *what leads*. Lists leads with the spectrum and the theme
+register before any prose, so the section shows before it explains. Lessons leads with the words
+themselves — the sample list sits between the two framing paragraphs, under a blue-ruled label —
+because the Japanese is the product's only real evidence. The pair runs two columns, each value
+prop opening on its own hairline. The story strip takes the left edge with the rest of the page:
+it is a confession, not a tagline, and centring it read as a placeholder. The close puts the ask
+in the first cell and the sign-off and its action in the second, so the request reads before the
+payoff, and the donation note sits above the button rather than undercutting it. The plate row
+hugs the right, mirroring the capture above it. The footer is the one centred element. On one
+column everything collapses to the single left edge.
 
 **The landing page has two measures and one left edge.** `.home-page` declares
 `--home-measure: 46rem` for running prose and `--home-display: 52rem` for display type, which

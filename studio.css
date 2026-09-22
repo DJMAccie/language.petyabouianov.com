@@ -297,7 +297,7 @@ html.dark .home-page {
    product, statement, product, quiet story, a pair, then the close. */
 .home-main {
     width: min(100%, 72rem);
-    padding-top: clamp(1.75rem, 5vh, 3rem);
+    padding-top: clamp(2.5rem, 7vh, 4.5rem);
 }
 
 /* Two measures, named once. Running prose sits at the reading measure; display
@@ -340,6 +340,17 @@ html {
 
 .home-hero-copy {
     max-width: var(--home-display);
+}
+
+/* A starting point for the eye, echoing the app's own identity label. */
+.home-hero-label {
+    display: block;
+    margin-bottom: 0.85rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--zen-blue-text);
 }
 
 .home-hero h1 {
@@ -397,6 +408,11 @@ html {
     margin-bottom: var(--home-band-gap);
 }
 
+/* The opening band is the one that has to feel like a start. */
+.home-hero {
+    margin-bottom: clamp(4rem, 11vh, 7rem);
+}
+
 .home-lists > p {
     max-width: var(--home-measure);
 }
@@ -408,7 +424,7 @@ html {
     grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
     gap: 2.5rem 3rem;
     align-items: start;
-    margin-bottom: clamp(2rem, 4.5vw, 3rem);
+    margin-top: clamp(2rem, 4vw, 3rem);
 }
 
 /* The page's one colour event: the studio's own progress spectrum, at the full width
@@ -416,7 +432,7 @@ html {
    library. Decorative, so it is aria-hidden in the markup. */
 .home-spectrum {
     height: 0.62rem;
-    margin: 2rem 0 0;
+    margin: 0;
     border-radius: 999px;
     /* One tick per list in the library: a data encoding, not a decorative stripe. */
     background-image:
@@ -443,8 +459,11 @@ html {
     letter-spacing: -0.01em;
 }
 
+/* The one place on the landing page where a rule belongs: these are data, not
+   prose, and the register is what makes them scannable. */
 .home-themes li {
     padding: 0.85rem 0;
+    border-top: 1px solid var(--zen-line);
 }
 
 .home-lists-notes {
@@ -492,9 +511,9 @@ html {
     display: flex;
     flex-wrap: wrap;
     align-items: flex-end;
-    justify-content: space-between;
+    justify-content: flex-end;
     gap: clamp(1.5rem, 4vw, 3rem);
-    margin-top: clamp(2.2rem, 5vw, 3.4rem);
+    margin-top: clamp(1rem, 2vw, 1.6rem);
 }
 
 .home-strip {
@@ -515,8 +534,7 @@ html {
     padding: 0 clamp(1rem, 4vw, 2rem);
 }
 
-/* The story is the page's one purely personal beat, so it is the one band set on
-   the centre axis. */
+/* A personal confession, not a tagline: it takes the page's own left edge. */
 .home-strip-inner > h2 {
     margin-top: 0;
 }
@@ -524,9 +542,6 @@ html {
 .home-strip .home-strip-inner > h2,
 .home-strip .home-strip-inner > p {
     max-width: var(--home-measure);
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
 }
 
 /* The close was a centred 46rem island whose left column stayed empty for 813px
@@ -564,13 +579,10 @@ html {
    ragged-right, because a ragged left edge costs reading speed for nothing. The
    action follows the block to the same edge. */
 .home-close-main {
-    justify-self: end;
     max-width: 30rem;
 }
 
-.home-close-main .about-actions {
-    justify-content: flex-end;
-}
+
 
 .home-close-main .home-donate-note {
     margin-left: auto;
@@ -614,6 +626,14 @@ html {
     max-width: var(--home-measure);
 }
 
+/* Value props, not section labels: a rule above each gives the two blocks one
+   starting line, and the heading carries more weight than a band label. */
+.home-pair-item > h2 {
+    padding-top: 1rem;
+    border-top: 1px solid var(--zen-line);
+    font-size: 1.5rem;
+}
+
 /* The pair spreads to the two outer edges: the question that needs an account on
    the left, the one that does not on the right. */
 .home-pair-item--free {
@@ -647,7 +667,7 @@ html {
        the action follows the text back to the left edge. */
     .home-pair-item--free,
     .home-close-main {
-        justify-self: stretch;
+        justify-self: start;
     }
 
     .home-close-main .about-actions {
@@ -713,7 +733,8 @@ html {
 
 .about-lede {
     margin: 0 0 2.25rem;
-    color: var(--zen-muted);
+    /* The pitch, not a caption: it has to be read, so it takes the ink. */
+    color: var(--zen-ink);
     font-size: 1.08rem;
     line-height: 1.6;
     /* The headline is allowed the display measure; the deck under it is running
@@ -796,8 +817,10 @@ html {
 
 .lesson-sample-label {
     margin: 1.75rem 0 0.6rem;
-    color: var(--zen-muted);
-    font-size: 0.8rem;
+    padding-left: 0.6rem;
+    border-left: 2px solid var(--zen-blue);
+    color: var(--zen-blue-text);
+    font-size: 0.82rem;
     font-weight: 600;
 }
 
@@ -813,6 +836,7 @@ html {
     gap: 0.25rem 1.5rem;
     align-items: baseline;
     padding: 1rem 0;
+    border-top: 1px solid var(--zen-line);
 }
 
 .lesson-sample-word {
