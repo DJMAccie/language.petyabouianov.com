@@ -342,16 +342,6 @@ html {
     max-width: var(--home-display);
 }
 
-/* A starting point for the eye, echoing the app's own identity label. */
-.home-hero-label {
-    display: block;
-    margin-bottom: 0.85rem;
-    font-size: 0.78rem;
-    font-weight: 600;
-    letter-spacing: 0.09em;
-    text-transform: uppercase;
-    color: var(--zen-blue-text);
-}
 
 .home-hero h1 {
     font-size: clamp(2rem, 5.2vw, 3.05rem);
